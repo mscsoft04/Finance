@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Role;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class HomeController extends Controller
 {
@@ -24,13 +25,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-         //Role::create(['name'=>'super']);
-        /*  auth()->user()->givePermissionTo('add_users');
-         auth()->user()->givePermissionTo('edit_users');
-         auth()->user()->givePermissionTo('view_users');
-         auth()->user()->givePermissionTo('add_users');
+       /*  // Role::create(['name'=>'super']);
+         auth()->user()->givePermissionTo('add_branch');
+         auth()->user()->givePermissionTo('edit_branch');
+         auth()->user()->givePermissionTo('view_branch');
+         auth()->user()->givePermissionTo('add_roles');
          auth()->user()->getAllPermissions();
-       return auth()->user()->permissions; */
+       return auth()->user()->permissions;  
+      // $role = Role::create(['name' => 'admin']);
+ */
+      /* $permission = Permission::create(['name' => 'add_branch']);
+      $permission = Permission::create(['name' => 'edit_branch']);
+      $permission = Permission::create(['name' => 'view_branch']);
+ */
+auth()->user()->givePermissionTo('add_branch');
+auth()->user()->givePermissionTo('edit_branch');
+auth()->user()->givePermissionTo('view_branch');
         return view('home');
     }
 }

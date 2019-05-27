@@ -176,6 +176,11 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Spatie\Permission\PermissionServiceProvider::class,
+        /*data table */
+        yajra\Datatables\DatatablesServiceProvider::class,
+        Laralabs\Toaster\ToasterServiceProvider::class
+
+
 
 
 
@@ -232,6 +237,8 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Datatables' => yajra\Datatables\Datatables::class,
+
 
     ],
 

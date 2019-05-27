@@ -8,13 +8,13 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{ url('branch') }}">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Candinate Info</span></a>
+          <span>Branch</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="{{ url('subscriber') }}">
           <i class="fas fa-fw fa-table"></i>
-          <span>Global Document</span></a>
+          <span>Subscriber</span></a>
       </li>
     </ul>
