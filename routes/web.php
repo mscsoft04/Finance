@@ -22,13 +22,20 @@ Route::get('/branch', 'BranchController@index');
 Route::get('branch/getdata', 'BranchController@getdata')->name('branch.getdata');
 Route::get('branch/add', 'BranchController@create')->name('branch.create');
  */
-Route::get('branch/getdata', 'BranchController@getdata')->name('branch.getdata');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('branch/getdata', 'BranchController@getdata')->name('branch.getdata');
     Route::get('subscriber/getdata', 'SubscriberController@getdata')->name('subscriber.getdata');
+    Route::get('collection-area/getdata', 'CollectionAreaController@getdata')->name('collection.getdata');
+    Route::get('scheme/getdata', 'SchemeController@getdata')->name('scheme.getdata');
+    Route::get('bank/getdata', 'BankController@getdata')->name('bank.getdata');
 Route::group( ['middleware' => ['auth']], function() {
     Route::resource('users', 'UserController');
     Route::resource('roles', 'RoleController');
     Route::resource('posts', 'PostController');
     Route::resource('branch', 'BranchController');
     Route::resource('subscriber', 'SubscriberController');
+    Route::resource('collection-area', 'CollectionAreaController');
+    Route::resource('scheme', 'SchemeController');
+    Route::resource('bank', 'BankController');
 });
 
