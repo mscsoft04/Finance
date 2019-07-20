@@ -1,14 +1,15 @@
 <nav class="navbar navbar-expand navbar-purpel bg-purpel static-top">
 
-    <a class="navbar-brand mr-1" href="index.html"><img src="" alt="TEST"></a>
+    <a class="navbar-brand mr-1" href="{{ url('home') }}"><img src="{{ asset('public/image/logo.png') }}" class="logo"  alt="TEST"></a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
     </button>
 
     <ul class="ms-core-listMenu-root ms-core-listmenu-desk ml-4 mt-0 mb-0">
-    	<li><a href="#">Dash Board</a></li>
-        <li><a href="#">List</a></li>
+    	<li> <a  href="{{ url('home') }}">Dash Board </a></li>
+      <li> <a  href="{{ url('branch') }}">Branch</a>
+
     </ul>
 
     <ul class="ms-core-listMenu-root ms-core-listmenu-mob ml-auto ml-md-0 mx-1">
@@ -18,8 +19,8 @@
           <i class="fas fa-caret-square-down fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-          <a class="dropdown-item" href="#">Dash Board </a>
-          <a class="dropdown-item" href="#">List</a>
+          <a class="dropdown-item" href="{{ url('home') }}">Dash Board </a>
+          <a class="dropdown-item" href="{{ url('branch') }}">Branch</a>
 
         </div>
       </li>
@@ -29,8 +30,8 @@
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
       <div class="input-group search-nav">
-        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-
+        <!-- <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+ -->
       </div>
     </form>
 

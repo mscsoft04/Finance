@@ -935,3 +935,8 @@ cursor:pointer;}
 
 div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     margin: 18px 0 0 0 !important;}
+
+img.logo {
+    height: 50%;
+    width: 65px;
+}

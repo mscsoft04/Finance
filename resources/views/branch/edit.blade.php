@@ -2,6 +2,20 @@
 
 @section('title', 'Branch')
 
+@section('breadcrumb')
+<div class="col-lg-9 col-md-8 col-sm-8 col-2">
+            	
+            	<div class="breadcrumbbar">
+                	<ul>
+                    	<li class="breadcrumb-item">
+                        <a href="{{ url('branch') }}"><span>Branch</span><i class="fas fa-arrow-left fa-fw"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active">Edit</li>
+                    </ul>
+                </div>
+            </div>
+@endsection
+
 @section('content')
 <div class="row">
             	<div class="col-lg-12">

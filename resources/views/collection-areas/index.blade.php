@@ -1,14 +1,13 @@
 @extends('layouts.main')
 
-@section('title', 'subscriber')
-
+@section('title', 'collection-area')
 @section('breadcrumb')
 <div class="col-lg-9 col-md-8 col-sm-8 col-2">
             	
             	<div class="breadcrumbbar">
                 	<ul>
                     	<li class="breadcrumb-item">
-                        <a href="{{ url('subscriber') }}"><span>Subscriber</span><i class="fas fa-arrow-left fa-fw"></i></a>
+                        <a href="{{ url('collection-area') }}"><span>Collection-area</span><i class="fas fa-arrow-left fa-fw"></i></a>
                         </li>
                         <li class="breadcrumb-item active">List</li>
                     </ul>
@@ -24,9 +23,9 @@
                 		<div class="card mb-3">
           <div class="card-header">
           	<div class="inner-header">
-            	<div class="fl_in_h"><h5>subscriber</h5></div>
+            	<div class="fl_in_h"><h5>Collection-area</h5></div>
                 <div class="fr_in_h">
-                <a class="btn btn-link btn-sm btn-global btn-blue btn-fl-r"  href="{{ route('subscriber.create') }}">
+                <a class="btn btn-link btn-sm btn-global btn-blue btn-fl-r"  href="{{ route('collection-area.create') }}">
       <i class="fas fa-plus"></i><span>Add</span>
     </a>
                 <button class="btn btn-link btn-sm btn-global btn-dark btn-fl-r" id="filterToggle" href="#">
@@ -40,11 +39,10 @@
               <table class="table table-bordered subscriber"  width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                    <th>Subscriber Name</th>
-                    <th>Mobile Number</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Address</th>
+                    <th>Branch Name</th>
+                    <th>Area Name</th>
+                    <th>Village Name</th>
+                    <th>Pin Code</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -84,17 +82,16 @@ $(document).ready(function() {
      $('.subscriber').DataTable({
         "processing": true,
         "serverSide": true,
-        "ajax": "{{ route('subscriber.getdata') }}",
+        "ajax": "{{ route('collection.getdata') }}",
         
         "columns":[
-            { "data": "subscriber_name" },
-            { "data": "mobile_no" },
-            { "data": "mail_id" },
-            { "data": "phone_no" },
-            { "data": "c_address" },
+            { "data": "branch_name" },
+            { "data": "area_name" },
+            { "data": "village_name" },
+            { "data": "pin_code" },
             { render: function ( data, type, row ) {
                 if ( type === 'display' ) {
-                  var url = '{{ route("subscriber.edit", [":id"]) }}';
+                  var url = '{{ route("collection-area.edit", [":id"]) }}';
                   url = url.replace(':id', row.id); 
                   return ' <a href="'+url+'" class="table-action-edit action-global"><span>Edit</span> <i class="fas fa-plus"></i></a>';
 

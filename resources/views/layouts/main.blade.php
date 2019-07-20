@@ -10,7 +10,7 @@
   <meta name="author" content="">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'Finance') }}</title>
 
   <script src="{{ asset('public/js/app.js') }}" ></script>
 
@@ -41,23 +41,14 @@
     	<div class="row"> 
         	<div class="col-lg-2 col-md-3 col-sm-4 col-10">
             	
-            	<h2 class="site-icon-logo">LMS Portal</h2>
+            	<h2 class="site-icon-logo">Finance</h2>
             </div>
-            <div class="col-lg-9 col-md-8 col-sm-8 col-2">
-            	
-            	<div class="breadcrumbbar">
-                	<ul>
-                    	<li class="breadcrumb-item">
-                        <a href="#"><span>Dashboard </span><i class="fas fa-arrow-left fa-fw"></i></a>
-                        </li>
-                        <li class="breadcrumb-item active">Overview</li>
-                    </ul>
-                </div>
-            </div>
+            @yield('breadcrumb')
+            
             <div class="col-lg-1 col-md-1 display-none-mob">
             	<div class="top-bar-calander">
-                	<span class="calander-day">07</span>
-                    <span class="calander-month">mar</span>
+                	<span class="calander-day">{{date('d')}}</span>
+                    <span class="calander-month">{{date('M')}}</span>
                 </div>
             </div>
         </div>
@@ -108,6 +99,7 @@
         {!! Toastr::message() !!}
 
   @yield('script')
+  
 
 </body>
 </html>
