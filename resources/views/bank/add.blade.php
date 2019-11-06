@@ -30,6 +30,7 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="doorno"><span>Branch</span></label>
                 <select  id="branchname" name="branch_id"  class="form-control selectpicker" >
 				             <option value="">Select Branch</option>
                      @foreach ($branches as $branch)
@@ -67,8 +68,9 @@
 			  
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="bankname-name"><span>Acount Holder</span></label>
                   <input type="text" id="bankname-name" class="form-control" name="account_holder" value="{{ old('account_holder') }}" placeholder="Account Holder Name" required>
-                  <label for="bankname-name"><span>Acount Holder</span></label>
+                 
                 </div>
                 @error('account_holder')
                  <span class="invalid-feedback" role="alert">
@@ -84,8 +86,9 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="bankname"><span>Bank Name</span></label>
                   <input type="text" id="bankname" class="form-control" name="bank_name" value="{{ old('bank_name') }}" placeholder="Bank Name" required>
-                  <label for="bankname"><span>Bank Name</span></label>
+                  
                 </div>
                 @error('bank_name')
                  <span class="invalid-feedback" role="alert">
@@ -96,8 +99,9 @@
 			  
 			  <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="accountnumber"><span>Account Number</span></label>
                   <input type="text" id="accountnumber" class="form-control" name="ac_number" value="{{ old('ac_number') }}" placeholder="Account Number" required>
-                  <label for="accountnumber"><span>Account Number</span></label>
+                 
                 </div>
                 @error('ac_number')
                  <span class="invalid-feedback" role="alert">
@@ -114,8 +118,9 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="ifsccode"><span>IFSC Code</span></label>
                   <input type="text" id="ifsccode" class="form-control" name="ifsc"  value="{{ old('ifsc') }}" placeholder="IFSC Code" required>
-                  <label for="ifsccode"><span>IFSC Code</span></label>
+                  
                 </div>
                 @error('ifsc')
                  <span class="invalid-feedback" role="alert">
@@ -125,8 +130,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="bankbaranchname"><span>Bank Branch Name</span></label>
                  <input type="text" id="bankbaranchname" class="form-control" name="branch" value="{{ old('branch') }}" placeholder="Bank Branch Name" required>
-                  <label for="bankbaranchname"><span>Bank Branch Name</span></label>
+                 
                 </div>
                 @error('branch')
                  <span class="invalid-feedback" role="alert">
@@ -142,8 +148,9 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="openingbalance"><span>Opening Balance</span></label>
                 <input type="text" id="openingbalance" class="form-control" name="opening_balance" value="{{ old('opening_balance') }}" placeholder="Opening Balance" required>
-                  <label for="openingbalance"><span>Opening Balance</span></label>
+                 
 	              </div>
                 @error('opening_balance')
                  <span class="invalid-feedback" role="alert">
@@ -158,8 +165,9 @@
             <div class="form-row">
               <div class="col-md-12">
                 <div class="form-label-group">
+                <label for="doorno"><span>Address</span></label>
                   <textarea id="doorno" class="form-control" name="address"  >{{ old('address') }}</textarea>
-                  <label for="doorno"><span>Address</span></label>
+                  
                 </div>
                 @error('address')
                  <span class="invalid-feedback" role="alert">

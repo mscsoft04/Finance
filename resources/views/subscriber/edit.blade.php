@@ -31,6 +31,7 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="branchname"><span>Branch Name</span></label>
                   <select  id="branchname" name="branch_id"  class="form-control selectpicker" >
 				             <option value="">Select Branch</option>
                      @foreach ($branches as $branch)
@@ -51,6 +52,7 @@
 		  <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="salutationname"><span>Salutation</span></label>
                   <select  id="salutationname" name="salutation_name"  class="form-control selectpicker" >
 				             <option value="">Salutation</option>
                      <option  value="Mr" {{ $subscriber->salutation_name == "Mr" ? "selected":"" }}>CUDDALORE</option></select>
@@ -68,8 +70,9 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="subscribername"><span>Subscriber Name</span></label>
                   <input type="text" id="subscribername" name="subscriber_name" value="{{  $subscriber->subscriber_name }}" class="form-control" placeholder="Subscriber Name" >
-                  <label for="subscribername"><span>Subscriber Name</span></label>
+                  
                 </div>
                 @error('subscriber_name')
                  <span class="invalid-feedback" role="alert">
@@ -80,8 +83,9 @@
 			  
 			  <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="Initialname"><span>Initial</span></label>
                   <input type="text" id="Initialname" name="Initial_name" value="{{  $subscriber->Initial_name}}" class="form-control" placeholder="Initial" >
-                  <label for="Initialname"><span>Initial</span></label>
+                 
                 </div>
                 @error('Initial_name')
                  <span class="invalid-feedback" role="alert">
@@ -111,8 +115,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="txtfatherorspouse"><span>Father/SpouseName</span></label>
 				<input type="text" id="txtfatherorspouse" name="realtion_name" value="{{  $subscriber->realtion_name}}" class="form-control" placeholder="Father/SpouseName" >
-				 <label for="txtfatherorspouse"><span>Father/SpouseName</span></label>
+				 
                 </div>
 				 @error('realtion_name')
                  <span class="invalid-feedback" role="alert">
@@ -130,6 +135,7 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="dateofobirth"><span>Dob</span></label>
                   <input type="text" id="dateofobirth" name="dob" value="{{  $subscriber->dob }}" class="form-control">
 				   
                 </div>
@@ -141,8 +147,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="age"><span>Age</span></label>
                  <input type="text" id="age" class="form-control" value="{{  $subscriber->age }}" name="age" placeholder="Age" >
-                  <label for="age"><span>Age</span></label>
+                  
                 </div>
                 @error('age')
                  <span class="invalid-feedback" role="alert">
@@ -169,6 +176,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="age"><span>Marital Status</span></label>
 				  <select  id="maritalstatus" name="marital_status"  class="form-control selectpicker" ><option value="">Marital Status</option>
                      <option  value="Single" {{ $subscriber->marital_status == "Single" ? "selected":"" }}>CUDDALORE</option></select>
 				</div>
@@ -185,6 +193,7 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="dateofjoining"><span>Doj</span></label>
                   <input type="text" id="dateofjoining" class="form-control" name="doj" value="{{  $subscriber->doj }}"  >
                   
                 </div>
@@ -196,8 +205,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="mailid"><span>Mail ID</span></label>
                  <input type="text" id="mailid" name="mail_id" class="form-control" value="{{  $subscriber->mail_id}}" placeholder="Mail ID" >
-                  <label for="mailid"><span>Mail ID</span></label>
+                  
                 </div>
                 @error('mail_id')
                  <span class="invalid-feedback" role="alert">
@@ -212,8 +222,9 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="mobileno"><span>Mobile No</span></label>
                   <input type="text" id="mobileno" name="mobile_no" value="{{  $subscriber->mobile_no}}" class="form-control" placeholder="Mobile No" >
-                  <label for="mobileno"><span>Mobile No</span></label>
+                 
                 </div>
                 @error('mobile_no')
                  <span class="invalid-feedback" role="alert">
@@ -223,8 +234,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="phoneno"><span>Phone No</span></label>
                  <input type="text" id="phoneno" name="phone_no" value="{{  $subscriber->phone_no}}"  class="form-control" placeholder="Phone No" >
-                  <label for="phoneno"><span>Phone No</span></label>
+                 
                 </div>
                 @error('phone_no')
                  <span class="invalid-feedback" role="alert">
@@ -239,8 +251,9 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="aadharno"><span>Aadhar No</span></label>
                   <input type="text" id="aadharno" name="aadhar_no" value="{{  $subscriber->aadhar_no }}" class="form-control" placeholder="Aadhar No" >
-                  <label for="aadharno"><span>Aadhar No</span></label>
+                  
                 </div>
                 @error('aadhar_no')
                  <span class="invalid-feedback" role="alert">
@@ -250,8 +263,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="panno"><span>PAN No</span></label>
                  <input type="text" id="panno" name="pan_no" value="{{  $subscriber->pan_no }}" class="form-control" placeholder="PAN No" >
-                  <label for="panno"><span>PAN No</span></label>
+                  
                 </div>
                 @error('pan_no')
                  <span class="invalid-feedback" role="alert">
@@ -266,8 +280,9 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="rationcardno"><span>Ration Card No</span></label>
                   <input type="text" id="rationcardno" name="rationcard_no" value="{{  $subscriber->rationcard_no }}" class="form-control" placeholder="Ration Card No" >
-                  <label for="rationcardno"><span>Ration Card No</span></label>
+                  
                 </div>
                 @error('rationcard_no')
                  <span class="invalid-feedback" role="alert">
@@ -277,8 +292,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="drivinglicence"><span>Driving Licence</span></label>
                  <input type="text" id="drivinglicence" name="driving_licence" value="{{  $subscriber->driving_licence }}" class="form-control" placeholder="Driving Licence" >
-                  <label for="drivinglicence"><span>Driving Licence</span></label>
+                  
                 </div>
                 @error('driving_licence')
                  <span class="invalid-feedback" role="alert">
@@ -294,8 +310,9 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="voterid"><span>Voter ID</span></label>
                   <input type="text" id="voterid" name="voter_id" value="{{  $subscriber->voter_id}}" class="form-control" placeholder="Ration Card No" >
-                  <label for="voterid"><span>Voter ID</span></label>
+                  
                 </div>
                 @error('voter_id')
                  <span class="invalid-feedback" role="alert">
@@ -305,8 +322,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="gstin"><span>GSTIN</span></label>
                  <input type="text" id="gstin" name="gst_no" value="{{  $subscriber->gst_no}}" class="form-control" placeholder="GSTIN" >
-                  <label for="gstin"><span>GSTIN</span></label>
+                  
                 </div>
                 @error('gst_no')
                  <span class="invalid-feedback" role="alert">
@@ -321,8 +339,9 @@
             <div class="form-row">
               <div class="col-md-12">
                 <div class="form-label-group">
+                <label for="pdoorno"><span>Address</span></label>
                   <textarea id="pdoorno" class="form-control" name="p_address"  >{{  $subscriber->p_address }}</textarea>
-                  <label for="pdoorno"><span></span></label>
+                  
                 </div>
                 @error('p_address')
                  <span class="invalid-feedback" role="alert">
@@ -340,6 +359,7 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="pdoorno"><span>State</span></label>
 					 <select  id="pstatename" name="p_state" class="form-control selectpicker" >
 				  <option value="">State Name</option>
           <option  value="Tamilnadu" {{ $subscriber->p_state == "Tamilnadu" ? "selected":"" }}>Tamilnadu</option></select>
@@ -353,6 +373,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="pdoorno"><span>District</span></label>
                   <select  id="pdistrictname" name="p_district" class="form-control selectpicker">
                   <option value="">District</option>
           <option  value="Cuddalore" {{ $subscriber->p_district == "Cuddalore" ? "selected":"" }}>Cuddalore</option></select>
@@ -370,6 +391,7 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="pdoorno"><span>Taluk</span></label>
                  <select  id="ptalukname" name="p_taluk" class="form-control selectpicker" >
 				          <option value="">Taluk Name</option>
                   <option  value="Bhuvanagiri" {{ $subscriber->p_taluk == "Bhuvanagiri" ? "selected":"" }}>Bhuvanagiri</option></select>
@@ -382,8 +404,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="ppincode"><span>Pin code</span></label>
                  <input type="text" id="ppincode" class="form-control" name="p_pincode" value="{{  $subscriber->p_pincode }}" placeholder="Pin code" >
-                  <label for="ppincode"><span>Pin code</span></label>
+                  
                 </div>
                 @error('p_pincode')
                  <span class="invalid-feedback" role="alert">
@@ -398,6 +421,7 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="sameaddress"><span>Communicate Address</span></label>
                  <input type="checkbox" id="sameaddress" name="sameaddress" onclick="FillBilling(this.form)"><em> if Communicate Address (Same as above).</em>
 	                </div>
               </div>
@@ -408,8 +432,9 @@
             <div class="form-row">
               <div class="col-md-12">
                 <div class="form-label-group">
+                <label for="rdoorno"><span>Communicate Address</span></label>
                   <textarea id="rdoorno" class="form-control" name="c_address"  >{{  $subscriber->c_address }}</textarea>
-                  <label for="rdoorno"><span></span></label>
+                  
                 </div>
                 @error('c_address')
                  <span class="invalid-feedback" role="alert">
@@ -427,6 +452,7 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="rstatename"><span>State</span></label>
 					 <select  id="rstatename" name="c_state" class="form-control selectpicker" >
 				  <option value="">State Name</option>
           <option  value="Tamilnadu" {{ $subscriber->c_state == "Tamilnadu" ? "selected":"" }}>Tamilnadu</option></select>
@@ -440,6 +466,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="rdistrictname"><span>District</span></label>
                   <select  id="rdistrictname" name="c_district" class="form-control selectpicker">
                   <option value="">District</option>
           <option  value="Cuddalore" {{ $subscriber->c_district == "Cuddalore" ? "selected":"" }}>Cuddalore</option></select>
@@ -457,6 +484,7 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="rtalukname"><span>Taluk</span></label>
                  <select  id="rtalukname" name="c_taluk" class="form-control selectpicker" >
 				          <option value="">Taluk Name</option>
                   <option  value="Bhuvanagiri" {{ $subscriber->c_taluk == "Bhuvanagiri" ? "selected":"" }}>Bhuvanagiri</option></select>
@@ -469,8 +497,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="rpincode"><span>Pin code</span></label>
                  <input type="text" id="rpincode" class="form-control" name="c_pincode" value="{{  $subscriber->c_pincode }}" placeholder="Pin code" >
-                  <label for="rpincode"><span>Pin code</span></label>
+                 
                 </div>
                 @error('c_pincode')
                  <span class="invalid-feedback" role="alert">
@@ -501,8 +530,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="referedby"><span>Name</span></label>
                 <input type="text" id="referedby" name="refered_by" value="{{  $subscriber->refered_by}}" class="form-control" placeholder="Name" >
-                  <label for="referedby"><span>Name</span></label>
+                 
 	              </div>
                 @error('refered_by')
                  <span class="invalid-feedback" role="alert">
@@ -516,6 +546,7 @@
 		  <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="collectionarea"><span>Collection Area</span></label>
                  <select  id="collectionarea" name="collection_area" class="form-control selectpicker" >
 				          <option value="">Collection Area</option>
                   <option  value="ACF01" {{ $subscriber->collection_area == "ACF01" ? "selected":"" }}>ACF01</option></select>
@@ -528,8 +559,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="occupation"><span>Occupation</span></label>
                  <input type="text" id="occupation" class="form-control" name="occupation" value="{{  $subscriber->occupation}}" placeholder="Occupation" >
-                  <label for="occupation"><span>Occupation</span></label>
+                 
                 </div>
                 @error('occupation')
                  <span class="invalid-feedback" role="alert">
@@ -546,6 +578,7 @@
       <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="sourceoffund"><span>Source of funds</span></label>
                  <select  id="sourceoffund" name="sourceof_fund" class="form-control selectpicker" >
 				          <option value="">Source of funds</option>
                   <option  value="GOVERMENT SALARY" {{ $subscriber->sourceof_fund == "GOVERMENT SALARY" ? "selected":"" }}>GOVERMENT SALARY</option></select>
@@ -558,8 +591,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="monthlyincome"><span>Monthly Income</span></label>
                  <input type="text" id="monthlyincome" class="form-control" name="monthly_income" value="{{  $subscriber->monthly_income }}" placeholder="Monthly Income" >
-                  <label for="monthlyincome"><span>Monthly Income</span></label>
+                 
                 </div>
                 @error('monthly_income')
                  <span class="invalid-feedback" role="alert">
@@ -574,8 +608,9 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="retirementdate"><span>Retirement Date</span></label>
                   <input type="text" id="retirementdate" name="retirement_date" value="{{  $subscriber->retirement_date }}" class="form-control" placeholder="Retirement Date" >
-				   <label for="retirementdate"><span>Retirement Date</span></label>
+				  
                 </div>
                 @error('retirement_date')
                  <span class="invalid-feedback" role="alert">
@@ -585,8 +620,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="pfno"><span>PF No</span></label>
                  <input type="text" id="pfno" class="form-control" value="{{  $subscriber->pf_no }}" name="pf_no" placeholder="PF No" >
-                  <label for="pfno"><span>PF No</span></label>
+                 
                 </div>
                 @error('pfno')
                  <span class="invalid-feedback" role="alert">
@@ -601,6 +637,7 @@
 		  <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="relationship"><span>Relationship</span></label>
                  <select  id="relationship" name="relationship" class="form-control selectpicker" >
 				          <option value="">Relationship</option>
                   <option  value="FRIEND" {{ $subscriber->relationship == "FRIEND" ? "selected":"" }}>FRIEND</option></select>
@@ -613,8 +650,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="relationfor"><span>Relation for</span></label>
                  <input type="text" id="relationfor" class="form-control" name="relation_for" value="{{  $subscriber->relation_for }}" placeholder="Relation for" >
-                  <label for="relationfor"><span>Relation for</span></label>
+                  
                 </div>
                 @error('relation_for')
                  <span class="invalid-feedback" role="alert">
@@ -631,8 +669,9 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="additionalnotes"><span>Additional Notes</span></label>
                 <input type="text" id="additionalnotes" class="form-control" name="additional_notes" value="{{  $subscriber->additional_notes }}" placeholder="Additional Notes" required>
-                  <label for="additionalnotes"><span>Additional Notes</span></label>
+                  
 	              </div>
 				  @error('additional_notes')
                  <span class="invalid-feedback" role="alert">

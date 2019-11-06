@@ -32,6 +32,11 @@
           <i class="fas fa-fw fa-table"></i>
           <span>Bank</span></a>
       </li>
+      <li class="nav-item {{ request()->is('group*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('group') }}">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Group</span></a>
+      </li>
       
       
     </ul>

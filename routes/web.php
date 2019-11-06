@@ -28,6 +28,7 @@ Route::get('branch/add', 'BranchController@create')->name('branch.create');
     Route::get('collection-area/getdata', 'CollectionAreaController@getdata')->name('collection.getdata');
     Route::get('scheme/getdata', 'SchemeController@getdata')->name('scheme.getdata');
     Route::get('bank/getdata', 'BankController@getdata')->name('bank.getdata');
+    Route::get('group/getdata', 'GroupController@getdata')->name('group.getdata');
 Route::group( ['middleware' => ['auth']], function() {
     Route::resource('users', 'UserController');
     Route::resource('roles', 'RoleController');
@@ -37,5 +38,6 @@ Route::group( ['middleware' => ['auth']], function() {
     Route::resource('collection-area', 'CollectionAreaController');
     Route::resource('scheme', 'SchemeController');
     Route::resource('bank', 'BankController');
+    Route::resource('group', 'GroupController');
 });
 

@@ -30,6 +30,7 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="collectionareaname"><span>Branch Name</span></label>
                 <select  id="branchname" name="branch_id"  class="form-control selectpicker" >
 				             <option value="">Select Branch</option>
                      @foreach ($branches as $branch)
@@ -51,8 +52,9 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="collectionareaname"><span>Collection Area Name</span></label>
                 <input type="text" id="collectionareaname"name="area_name" value="{{ $collectionArea->area_name }}"  class="form-control" placeholder="Collection Area Name" required>
-                  <label for="collectionareaname"><span>Collection Area Name</span></label>
+                  
 	              </div>
                 @error('area_name')
                  <span class="invalid-feedback" role="alert">
@@ -67,8 +69,9 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="villagename"><span>Village Name</span></label>
                 <input type="text" id="villagename" class="form-control"  name="village_name" value="{{ $collectionArea->village_name }}" placeholder="Village Name" required>
-                  <label for="villagename"><span>Village Name</span></label>
+                  
 	              </div>
                 @error('village_name')
                  <span class="invalid-feedback" role="alert">
@@ -85,8 +88,9 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
+                <label for="pincode"><span>Pincode</span></label>
                 <input type="text" id="pincode" name="pin_code" value="{{ $collectionArea->pin_code }}" class="form-control" placeholder="Pincode" required>
-                  <label for="pincode"><span>Pincode</span></label>
+                  
 	              </div>
                 @error('pin_code')
                  <span class="invalid-feedback" role="alert">
