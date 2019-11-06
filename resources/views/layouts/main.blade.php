@@ -98,7 +98,7 @@
   <script src="{{ asset('public/js/sb-admin.js') }}"></script>
   <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-  <!-
+  
         {!! Toastr::message() !!}
 
   @yield('script')
