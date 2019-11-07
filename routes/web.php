@@ -39,5 +39,9 @@ Route::group( ['middleware' => ['auth']], function() {
     Route::resource('scheme', 'SchemeController');
     Route::resource('bank', 'BankController');
     Route::resource('group', 'GroupController');
+    Route::resource('ledger', 'LedgerController');
+    
 });
+Route::post('/autocomplete/fetch', 'LedgerController@fetch')->name('autocomplete.fetch');
+
 

@@ -37,6 +37,11 @@
           <i class="fas fa-fw fa-table"></i>
           <span>Group</span></a>
       </li>
+      <li class="nav-item {{ request()->is('ledger*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('ledger') }}">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Ledger</span></a>
+      </li>
       
       
     </ul>

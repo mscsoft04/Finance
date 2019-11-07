@@ -1,5 +1,5 @@
 Skip to content
-Search or jump to…
+Search or jump toï¿½
 
 Pull requests
 Issues
@@ -1438,3 +1438,114 @@ div.dataTables_wrapper div.dataTables_info,
 .icon-btn-1 {
 	margin-top:0px;
 }
+
+	.table thead th {
+		border-bottom: 1px solid #d2e4ff;
+		background: #e4eefd;
+		color: #2f5792;
+	}
+
+	.table-scroll-limit {
+		height: 280px;
+		overflow-x: auto;
+		overflow-y: auto;
+		margin-top: 20px;
+	}
+	.table td, .table th {
+		padding: 5px 8px;
+		font-size: 14px;
+		min-width: 120px;
+		border: 1px solid #d2e4ff;
+		vertical-align: middle;
+	}
+	.table tr th:first-of-type, .table tr td:first-of-type {
+		min-width: auto;
+	}
+	.table-hover tbody tr:hover {
+		background-color: rgb(240, 246, 255);
+	}
+	label {
+		margin-bottom: 3px;
+	}
+	.form-control {
+	    border: 1px solid #d2e4ff;
+		color: #2f5792;
+	}
+	.form-control, label {
+		font-size: 14px;
+		color: #2f5792;
+	}
+	.form-tab {
+		margin-top: 15px;
+		padding: 5px 15px;
+		border: 1px solid #d2e4ff;
+		height: 280px;
+	}
+	.form-tab .form-group {
+		margin-bottom: 7px;
+	}
+	.dot {
+		height: 7px;
+		width: 7px;
+		background-color: #608596;
+		border-radius: 50%;
+		display: inline-block;
+	}
+	.actions-item ul {	
+		padding: 0px 10px;
+		margin-bottom: 0;
+	}
+	.actions-item ul li a {
+		text-decoration: none;
+	}
+	.actions-item ul li {
+		list-style-type: none;
+	}
+	.ui-autocomplete {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  display: none;
+  min-width: 160px;
+  width: 100%;
+  padding: 4px 0;
+  margin: 2px 0 0 0;
+  list-style: none;
+  background-color: #ffffff;
+  border-color: #ccc;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+	}
+
+  .ui-menu-item > a.ui-corner-all {
+    display: block;
+    padding: 3px 15px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    color: #555555;
+    white-space: nowrap;
+  }
+    &.ui-state-hover, &.ui-state-active {
+      color: #ffffff;
+      text-decoration: none;
+      background-color: #0088cc;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      background-image: none;
+    }
