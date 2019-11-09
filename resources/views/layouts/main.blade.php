@@ -12,8 +12,7 @@
 
   <title>{{ config('app.name', 'Finance') }}</title>
 
-  <script src="{{ asset('public/js/app.js') }}" ></script>
-
+  <link href="{{ asset('public/vendor/bootstrap/bootstrap.css') }}" rel="stylesheet">
     <!-- Fonts -->
    <link href="{{ asset('public/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 
@@ -21,7 +20,7 @@
   <link href="{{ asset('public/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="{{ asset('public/css/bootstrap/bootstrap.css') }}" rel="stylesheet">
+  
 
     <!-- Styles -->
     <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
@@ -74,20 +73,41 @@
     </div>
 
   <!-- wrapper Ends -->
+  
 
   </div>
   
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-  <!-- Bootstrap core JavaScript-->
+  <div class="modal fade bd-example-modal-lg"  id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
   
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="response-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="response">
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+   
+    
+    
+ 
+</div>
   <!-- Custom scripts for all pages-->
   <script src="{{ asset('public/vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('public/vendor/bootstrap/js/popper.min.js') }}"></script>
   <script src="{{ asset('public/vendor/datatables/jquery.dataTables.js') }}"></script>
   <script src="{{ asset('public/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
-
-  <script src="{{ asset('public/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+ <script src="{{ asset('public/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> 
+ <script src="{{ asset('public/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+  
 
   <!-- Core plugin JavaScript-->
   <script src="{{ asset('public/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
@@ -102,7 +122,11 @@
         {!! Toastr::message() !!}
 
   @yield('script')
-  
+  <script>  
+    $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+   });
 
+  </script> 
 </body>
 </html>

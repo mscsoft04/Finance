@@ -118,6 +118,11 @@ class BranchController extends Controller
 
 
     }
-
+    public function show(Branch $branch)
+    {
+       
+        return view('branch.show', compact('branch'));
+        
+    }
 
 }

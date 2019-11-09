@@ -1,24 +1,4 @@
-Skip to content
-Search or jump to�
 
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@mscsoft04 
-0
-00mscsoft04/Finance
- Code Issues 0 Pull requests 0 Projects 0 Wiki Security Insights Settings
-Finance/public/css/style.css
-@mscsoft04 mscsoft04 login page design change
-ef356fc on Sep 28
-We found potential security vulnerabilities in your dependencies.
-Only the owner of this repository can see this message.
-
-998 lines (879 sloc)  16.1 KB
-  
-@charset "utf-8";
 /* CSS Document */
 	body{
 		font-family: 'Roboto', sans-serif;
@@ -1385,7 +1365,7 @@ div.dataTables_wrapper div.dataTables_info,
 	color: #6c7293;
 }
 .dataTables_filter  {
-	display: none;
+	display: block;
 }
 @media screen and (max-width: 767px) {
 	.datatable_cust_pagination .paginate_button {
@@ -1501,51 +1481,47 @@ div.dataTables_wrapper div.dataTables_info,
 	.actions-item ul li {
 		list-style-type: none;
 	}
-	.ui-autocomplete {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  float: left;
-  display: none;
-  min-width: 160px;
-  width: 100%;
-  padding: 4px 0;
-  margin: 2px 0 0 0;
-  list-style: none;
-  background-color: #ffffff;
-  border-color: #ccc;
-  border-color: rgba(0, 0, 0, 0.2);
-  border-style: solid;
-  border-width: 1px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  -webkit-background-clip: padding-box;
-  -moz-background-clip: padding;
-  background-clip: padding-box;
-  *border-right-width: 2px;
-  *border-bottom-width: 2px;
+	.search{
+		position: relative;
+		  width: 100%;
+		  display: inline-table;
+	  }
+	  .search-content{
+		position: absolute;
+	  width: 99%;
+	  border-top: 0px solid #ccc;
+	  border-left: 1px solid #ccc;
+	  border-right: 1px solid #ccc;
+	  border-bottom: 1px solid #ccc;
+	  max-height: 200px;
+	  overflow-y: auto;
+	  }
+	  .search-content ul{
+		padding: 0px 0;
+		margin: 0;
+		background-color: #f5f5f5;
+	  }
+	  .search-content ul li{
+	  
+		list-style: none;
+	  
+	  }
+	  .search-content ul li a:hover{
+	  
+		color: red;
+		background-color: #f5f5f5;
+	  }
+	  .search-content ul li a {
+		  display: block;
+		  padding: 5px 10px;
+		  text-decoration: none;
+	  }
+	  .btn-cancel {
+		background-color: #212529 !important;
+         color: #fff !important;
+		border: 0;
+		border-radius: 0;
+		text-transform: uppercase;
+		font-weight: 900;
+		font-size: 14px !important;
 	}
-
-  .ui-menu-item > a.ui-corner-all {
-    display: block;
-    padding: 3px 15px;
-    clear: both;
-    font-weight: normal;
-    line-height: 18px;
-    color: #555555;
-    white-space: nowrap;
-  }
-    &.ui-state-hover, &.ui-state-active {
-      color: #ffffff;
-      text-decoration: none;
-      background-color: #0088cc;
-      border-radius: 0px;
-      -webkit-border-radius: 0px;
-      -moz-border-radius: 0px;
-      background-image: none;
-    }

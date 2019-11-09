@@ -59,8 +59,7 @@
                      </div>
                 
                 </div>
-                  <div class="co
-            </div>
+                  
         </div>
       
       <!-- /.container-fluid -->
@@ -98,16 +97,39 @@ $(document).ready(function() {
             { "data": "total_fd" },
             { "data": "pso_number" },
             { "data": "blaw_number" },
-            { render: function ( data, type, row ) {
+            { "data": "id", render: function ( data, type, row ) {
                 if ( type === 'display' ) {
                   var url = '{{ route("group.edit", [":id"]) }}';
                   url = url.replace(':id', row.id); 
-                  return ' <a href="'+url+'" class="table-action-edit action-global"><span>Edit</span> <i class="fas fa-plus"></i></a>';
-
+                  
+                  var view=' <a href="'+url+'" class="table-action-edit action-global" data-toggle="tooltip" data-placement="bottom" title="Edit"><span></span> <i class="fas fa-plus"></i></a>';
+                   view +=' <a href="javascript:void(0)" class="table-action-edit action-global show" data-id="'+row.id+'" data-toggle="tooltip" data-placement="bottom" title="View"><span></span> <i class="fas fa-eye"></i></a>';
+                   return view;
                 }
                 return data;
             } }
         ]
+     });
+     $(document).on("click",".show",function(e) {
+      e.preventDefault();
+       var id=$(this).attr("data-id");
+        var show_url="{{ route('group.show', ['group' =>":id"]) }}";
+          show_url = show_url.replace(':id', id);
+          $.ajax({
+                url: show_url,
+                dataType: 'html',
+                type: 'get',
+                success: function( data, textStatus, jQxhr ){
+                    $('#response').html( data );
+                    $('#response-title').text('Group');
+                    $('#myModal').modal('show')
+
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                }
+            });
+
      });
 });
 </script>

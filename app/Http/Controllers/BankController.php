@@ -89,6 +89,8 @@ class BankController extends Controller
     public function show(Bank $bank)
     {
         //
+        $branch= Branch::where("id",$bank->branch_id)->first();
+        return view('bank.show', compact('bank','branch'));
     }
 
     /**

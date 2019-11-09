@@ -108,6 +108,8 @@ class SubscriberController extends Controller
     public function show(Subscriber $subscriber)
     {
         //
+        $branches = Branch::where("id",$subscriber->branch_id)->first();
+        return view('subscriber.show', compact('subscriber','branches'));
     }
 
     /**

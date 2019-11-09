@@ -71,6 +71,9 @@ class CollectionAreaController extends Controller
     public function show(CollectionArea $collectionArea)
     {
         //
+    
+        $branches = Branch::where("id",$collectionArea->branch_id)->first();
+        return view('collection-areas.show', compact('collectionArea','branches'));
     }
 
     /**

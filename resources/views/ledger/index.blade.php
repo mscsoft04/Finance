@@ -25,10 +25,10 @@
 			<div class="col-md-3 col-sm-12 col-lg-3">
 				<div class="form-tab">
 					<form>
-						<div class="form-group">
+						<div class="form-group search">
 							<label>First name</label>
 							<input type="text" name="name" class="form-control autocomplete" placeholder="Name">
-						<div id="data"></div>
+						<div id="data" class="search-content"></div>
 						
 						</div>
 						<div class="form-group">

@@ -94,11 +94,11 @@ class LedgerController extends Controller
         ->orWhere('phone_no', 'LIKE', "%{$query}%")
         ->orWhere('mail_id', 'LIKE', "%{$query}%")
         ->get();
-      $output = '<ul class="ui-autocomplete" style="display:block; position:relative">';
+      $output = '<ul>';
       foreach($data as $row)
       {
        $output .= "
-       <li class='ui-menu-item' ><a href='JavaScript:void(0)' class='ui-corner-all custom' data-id='".$row."'>".$row->subscriber_name."</a></li>
+       <li><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->subscriber_name."</a></li>
        ";
       }
       $output .= '</ul>';

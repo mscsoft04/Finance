@@ -72,6 +72,7 @@ class SchemeController extends Controller
     public function show(Scheme $scheme)
     {
         //
+        return view('scheme.show', compact('scheme'));
     }
 
     /**

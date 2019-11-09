@@ -85,6 +85,8 @@ class GroupController extends Controller
     public function show(Group $group)
     {
         //
+        $branch = Branch::where("id",$group->branch_id)->first();
+        return view('group.show', compact('group','branch'));
         
     }
 

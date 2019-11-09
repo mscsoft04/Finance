@@ -684,6 +684,11 @@
               <div class="col-md-2">
               <input type="submit" class="btn btn-primary btn-block btn-yellow">
           </div>
+          <div class="col-md-2">
+              
+          <a href="{{url()->previous()}}" type="button" class="btn btn-block btn-cancel">Cancel</a>
+
+          </div>
           </div>
           </div>
         </form>
