@@ -94,14 +94,36 @@ class LedgerController extends Controller
         ->orWhere('phone_no', 'LIKE', "%{$query}%")
         ->orWhere('mail_id', 'LIKE', "%{$query}%")
         ->get();
-      $output = '<ul>';
+      $output = '<table class="table table-streched table-hover">';
+      $output .= "<thead>
+          <tr>
+              <th>Name</th>
+              <th>Initial</th>
+              <th>Phone No</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>Address</th>
+              <th>Email</th>
+              <th>Occupation</th>
+          </tr>
+      </thead>
+      
+      <tbody>";
       foreach($data as $row)
       {
-       $output .= "
-       <li><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->subscriber_name."</a></li>
-       ";
+       $output .= "<tr>";
+       $output .= "<td><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->subscriber_name." </a></td>";
+       $output .= "<td><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->Initial_name."</a></td>";
+
+       $output .= "<td><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->phone_no."</a> </td>";
+       $output .= "<td><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->age."</a></td>";
+       $output .= "<td><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->gender."</a></td>";
+       $output .= "<td><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->p_address."</a></td>";
+       $output .= "<td><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->mail_id."</a></td>";
+       $output .= "<td><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->occupation."</a></td>";
+       $output .= "</tr>";
       }
-      $output .= '</ul>';
+      $output .= '</tbody></table>';
       return $output;
      }
     }

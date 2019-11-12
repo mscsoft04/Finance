@@ -23,8 +23,11 @@
                 		<div class="card  ">
      
       <div class="card-body">
-      <form method="post" action="{{ route('group.store') }}" >
+     
+      <form method="post" action="{{ route('group.update', $group->id) }}" >
+
         @csrf
+        @method('PATCH')
         <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
@@ -33,7 +36,7 @@
                 <select  id="branchname" name="branch_id"  class="form-control selectpicker" >
 				             <option value="">Select Branch</option>
                      @foreach ($branches as $branch)
-                     <option  value="{{$branch->id}}" {{ old("branch_id") == $branch->id ? "selected":"" }}>{{$branch->branch_name}}<option>
+                     <option  value="{{$branch->id}}" {{ $group->branch_id == $branch->id ? "selected":"" }}>{{$branch->branch_name}}<option>
                      @endforeach
                      </select>
  
@@ -50,7 +53,7 @@
                 <select  id="schemes" name="schemes_id"  class="form-control selectpicker" >
 				             <option value="">Select Schemes</option>
                      @foreach ($schemes as $scheme)
-                     <option  value="{{$scheme->id}}" {{ old("schemes_id") == $scheme->id ? "selected":"" }}>{{$scheme->chit_value}}</option>
+                     <option  value="{{$scheme->id}}" {{ $group->schemes_id == $scheme->id ? "selected":"" }}>{{$scheme->chit_value}}<option>
                      @endforeach
                      </select>
  
@@ -68,7 +71,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="type"><span>Type</span></label>
-                <input type="text" id="type" class="form-control" name="type"  value="{{ old('type') }}" placeholder="Type" required>
+                <input type="text" id="type" class="form-control" name="type"  value="{{ $group->type }}" placeholder="Type" required>
                 
 	              </div>
                 @error('type')
@@ -80,7 +83,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="auction_time"><span>Auction Time</span></label>
-                <input type="text" id="auction_time" class="form-control" name="auction_time"  value="{{ old('auction_time') }}" placeholder="Auction Time" required>
+                <input type="text" id="auction_time" class="form-control" name="auction_time"  value="{{ $group->auction_time }}" placeholder="Auction Time" required>
                 
 	              </div>
                 @error('auction_time')
@@ -97,7 +100,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="name"><span>Name</span></label>
-                <input type="text" id="name" class="form-control" name="name" value="{{ old('name') }}" placeholder="Name" required>
+                <input type="text" id="name" class="form-control" name="name" value="{{ $group->name }}" placeholder="Name" required>
                   
 	              </div>
                 @error('name')
@@ -109,7 +112,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="commission"><span>Commission</span></label>
-                <input type="text" id="commission" class="form-control" name="commission" value="{{ old('commission') }}" placeholder="Commission" required>
+                <input type="text" id="commission" class="form-control" name="commission" value="{{ $group->commission }}" placeholder="Commission" required>
                   
 	              </div>
                 @error('commission')
@@ -127,7 +130,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="auction_date"><span>Auction Date</span></label>
-                <input type="text" id="auction_date" name="auction_date" value="{{ old('auction_date') }}" class="form-control date" placeholder="Auction Date" >
+                <input type="text" id="auction_date" name="auction_date" value="{{ $group->auction_date }}" class="form-control date" placeholder="Auction Date" >
                 
 	              </div>
                 @error('auction_date')
@@ -139,7 +142,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="total_fd"><span>Total Fd</span></label>
-                <input type="text" id="total_fd" name="total_fd" value="{{ old('total_fd') }}" class="form-control" placeholder="Total Fd" >
+                <input type="text" id="total_fd" name="total_fd" value="{{ $group->total_fd }}" class="form-control" placeholder="Total Fd" >
                 
 	              </div>
                 @error('total_fd')
@@ -156,7 +159,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="start_date"><span>Start Date</span></label>
-                <input type="text" id="start_date" name="start_date" value="{{ old('start_date') }}" class="form-control date" placeholder="Start Date" >
+                <input type="text" id="start_date" name="start_date" value="{{ $group->start_date }}" class="form-control date" placeholder="Start Date" >
                 
 	              </div>
                 @error('start_date')
@@ -169,7 +172,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="fd_rate_interrest"><span>Fd Rate Interrest</span></label>
-                <input type="text" id="fd_rate_interrest" name="fd_rate_interrest" value="{{ old('fd_rate_interrest') }}" class="form-control" placeholder="Fd Rate Interrest" >
+                <input type="text" id="fd_rate_interrest" name="fd_rate_interrest" value="{{ $group->fd_rate_interrest }}" class="form-control" placeholder="Fd Rate Interrest" >
                 
 	              </div>
                 @error('fd_rate_interrest')
@@ -185,7 +188,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="first_due_date"><span>First Due Date</span></label>
-                <input type="text" id="first_due_date" name="first_due_date" value="{{ old('first_due_date') }}" class="form-control date" placeholder="First Due Date" >
+                <input type="text" id="first_due_date" name="first_due_date" value="{{ $group->first_due_date }}" class="form-control date" placeholder="First Due Date" >
                 
 	              </div>
                 @error('first_due_date')
@@ -197,7 +200,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="maturity_amount"><span>Maturity Amount</span></label>
-                <input type="text" id="maturity_amount" name="maturity_amount" value="{{ old('maturity_amount') }}" class="form-control" placeholder="Maturity Amount" >
+                <input type="text" id="maturity_amount" name="maturity_amount" value="{{ $group->maturity_amount }}" class="form-control" placeholder="Maturity Amount" >
                 
 	              </div>
                 @error('maturity_amount')
@@ -214,7 +217,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="fd_number"><span>FD Number</span></label>
-                <input type="text" id="fd_number" class="form-control" name="fd_number" value="{{ old('fd_number') }}"  placeholder="FD Number" required>
+                <input type="text" id="fd_number" class="form-control" name="fd_number" value="{{ $group->fd_number }}"  placeholder="FD Number" required>
                  
 	              </div>
                 @error('fd_number')
@@ -226,7 +229,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="fd_branch"><span>FD Branch</span></label>
-                <input type="text" id="fd_branch" class="form-control" name="fd_branch" value="{{ old('fd_branch') }}"  placeholder="FD Branch" required>
+                <input type="text" id="fd_branch" class="form-control" name="fd_branch" value="{{ $group->fd_branch }}"  placeholder="FD Branch" required>
                  
 	              </div>
                 @error('fd_branch')
@@ -243,7 +246,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="company_fd"><span>Company FD</span></label>
-                <input type="text" id="company_fd" class="form-control" name="company_fd" value="{{ old('company_fd') }}" placeholder="Company FD" required>
+                <input type="text" id="company_fd" class="form-control" name="company_fd" value="{{ $group->company_fd }}" placeholder="Company FD" required>
                   
 	              </div>
                 @error('company_fd')
@@ -255,7 +258,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="pso_date"><span>Pso Date </span></label>
-                <input type="text" id="pso_date" class="form-control date" name="pso_date" value="{{ old('pso_date') }}" placeholder="PSO Date" required>
+                <input type="text" id="pso_date" class="form-control date" name="pso_date" value="{{ $group->pso_date }}" placeholder="PSO Date" required>
                   
 	              </div>
                 @error('pso_date')
@@ -271,7 +274,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="fd_date"><span>FD Date</span></label>
-                <input type="text" id="fd_date" name="fd_date" value="{{ old('fd_date') }}" class="form-control date" placeholder="FD Date" >
+                <input type="text" id="fd_date" name="fd_date" value="{{ $group->fd_date }}" class="form-control date" placeholder="FD Date" >
                 
 	              </div>
                 @error('fd_date')
@@ -283,7 +286,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="blaw_date"><span>Blaw Date</span></label>
-                <input type="text" id="blaw_date" class="form-control date" name="blaw_date" value="{{ old('blaw_date') }}" placeholder="Blaw Date" required>
+                <input type="text" id="blaw_date" class="form-control date" name="blaw_date" value="{{ $group->blaw_date }}" placeholder="Blaw Date" required>
                   
 	              </div>
                 @error('blaw_date')
@@ -299,7 +302,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="fd_bank"><span>FD Bank</span></label>
-                <input type="text" id="fd_bank" class="form-control" name="fd_bank" value="{{ old('fd_bank') }}"  placeholder="FD Bank" required>
+                <input type="text" id="fd_bank" class="form-control" name="fd_bank" value="{{ $group->fd_bank }}"  placeholder="FD Bank" required>
                   
 	              </div>
                 @error('fd_bank')
@@ -312,7 +315,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="pso_number"><span>PSO Number</span></label>
-                <input type="text" id="pso_number" class="form-control" name="pso_number"  value="{{ old('pso_number') }}" placeholder="PSO Number" required>
+                <input type="text" id="pso_number" class="form-control" name="pso_number"  value="{{ $group->pso_number }}" placeholder="PSO Number" required>
                  
 	              </div>
                 @error('pso_number')
@@ -328,7 +331,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="blaw_number"><span>Blaw Number</span></label>
-                <input type="text" id="blaw_number" class="form-control" name="blaw_number"  value="{{ old('blaw_number') }}" placeholder="Blaw Number" required>
+                <input type="text" id="blaw_number" class="form-control" name="blaw_number"  value="{{ $group->blaw_number }}" placeholder="Blaw Number" required>
                  
 	              </div>
                 @error('blaw_number')
@@ -341,7 +344,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="cheque_no"><span>Cheque No</span></label>
-                <input type="text" id="cheque_no" class="form-control" name="cheque_no"  value="{{ old('cheque_no') }}" placeholder="Cheque No" required>
+                <input type="text" id="cheque_no" class="form-control" name="cheque_no"  value="{{ $group->cheque_no }}" placeholder="Cheque No" required>
                  
 	              </div>
                 @error('cheque_no')
@@ -357,7 +360,7 @@
               <div class="col-md-6">
                 <div class="form-label-group">
                 <label for="company_chit"><span>Company Chit</span></label>
-                <input type="text" id="company_chit" class="form-control" name="company_chit"  value="{{ old('company_chit') }}" placeholder="Company Chit" required>
+                <input type="text" id="company_chit" class="form-control" name="company_chit"  value="{{ $group->company_chit }}" placeholder="Company Chit" required>
                  
 	              </div>
                 @error('company_chit')
@@ -402,7 +405,8 @@
 $(document).ready(function() {
   $('.date').datepicker({
     autoclose: true,
-        todayHighlight: true,
+    todayHighlight: true,
+    format: 'yyyy/m/d',
 
   });
 

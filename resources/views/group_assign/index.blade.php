@@ -103,7 +103,7 @@ $(document).ready(function() {
                   url = url.replace(':id', row.id); 
                   
                   var view=' <a href="'+url+'" class="table-action-edit action-global" data-toggle="tooltip" data-placement="bottom" title="Edit"><span></span> <i class="fas fa-plus"></i></a>';
-                   view +=' <a href="javascript:void(0)" class="table-action-edit action-global show-view" data-id="'+row.id+'" data-toggle="tooltip" data-placement="bottom" title="View"><span></span> <i class="fas fa-eye"></i></a>';
+                   view +=' <a href="javascript:void(0)" class="table-action-edit action-global show" data-id="'+row.id+'" data-toggle="tooltip" data-placement="bottom" title="View"><span></span> <i class="fas fa-eye"></i></a>';
                   
                    view +=' <a href="javascript:void(0)" class="table-action-edit action-global assign" data-id="'+row.id+'" data-toggle="tooltip" data-placement="bottom" title="Assign"><span></span> <i class="fas fa-user-plus"></i></a>';
                    return view;
@@ -112,7 +112,7 @@ $(document).ready(function() {
             } }
         ]
      });
-     $(document).on("click",".show-view",function(e) {
+     $(document).on("click",".show",function(e) {
       e.preventDefault();
        var id=$(this).attr("data-id");
         var show_url="{{ route('group.show', ['group' =>":id"]) }}";
@@ -133,10 +133,10 @@ $(document).ready(function() {
             });
 
      });
-     $(document).on("click",".assign",function(es) {
-      es.preventDefault();
+     $(document).on("click",".assign",function(e) {
+      e.preventDefault();
        var id=$(this).attr("data-id");
-        var show_url="{{ route('groupAssign.show', ['groupAssign' =>":id"]) }}";
+        var show_url="{{ route('group.show', ['group' =>":id"]) }}";
           show_url = show_url.replace(':id', id);
           $.ajax({
                 url: show_url,
@@ -154,49 +154,6 @@ $(document).ready(function() {
             });
 
      });
-     $(document).on("click",".assign-mode",function(ea) {
-          ea.preventDefault();
-          
-        $(".assgin-view").show();    
-        
-    });
-    $(document).on("click",".assign-cancel",function(ed) {
-          ed.preventDefault();
-        $(".assgin-view").hide();    
-        
-    });
-      $(document).on('keyup', '.autocomplete', function () {
-        var query = $(this).val();
-        if(query != '')
-        {
-         var _token = $('input[name="_token"]').val();
-         $.ajax({
-          url:"{{ route('autocomplete.fetch') }}",
-          method:"POST",
-          data:{query:query, _token:_token},
-          success:function(data){
-           $('#data').fadeIn();  
-              $('#data').html(data);
-          }
-         });
-        }
-    });
-
-    $(document).on('click', '.custom', function(){  
-       
-        $('#data').fadeOut(); 
-		let data=JSON.parse($(this).attr('data-id')); 
-		$('.autocomplete').val(data.subscriber_name);
-    $('#subscriber_id').val(data.id);  
-    
-		
-		
-		console.log(data);
-    }); 
-	$(window).click(function(e) {
-		$('#data').fadeOut(); 
-   }); 
-    
 });
 </script>
 @endsection

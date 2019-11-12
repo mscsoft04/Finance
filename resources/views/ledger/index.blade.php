@@ -25,10 +25,10 @@
 			<div class="col-md-3 col-sm-12 col-lg-3">
 				<div class="form-tab">
 					<form>
-						<div class="form-group search">
+						<div class="form-group">
 							<label>First name</label>
 							<input type="text" name="name" class="form-control autocomplete" placeholder="Name">
-						<div id="data" class="search-content"></div>
+						<div id="data" class="auto-focus-table"></div>
 						
 						</div>
 						<div class="form-group">
@@ -49,7 +49,7 @@
 			</div>
 			<div class="col-md-9 col-sm-12 col=lg-9">
 				<div class="table-scroll-limit">
-					<table class="table table-streched table-hover">
+					<table class="table-normal table-streched table-hover">
 						<thead>
 							<tr>
 								<th>S.No</th>
@@ -317,7 +317,7 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-lg-12">
 				<div class="table-scroll-limit">
-					<table class="table table-streched table-hover">
+					<table class="table-normal table-streched table-hover">
 						<thead>
 							<tr>
 								<tr>
@@ -719,9 +719,10 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '.custom', function(){  
-        $('.autocomplete').val($(this).text());  
+       
         $('#data').fadeOut(); 
 		let data=JSON.parse($(this).attr('data-id')); 
+		$('.autocomplete').val(data.subscriber_name);  
 		$('.lastname').val(data.Initial_name);
 		$('.phone').val(data.phone_no);
 		$('.email').val(data.mail_id);

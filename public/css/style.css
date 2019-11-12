@@ -1419,7 +1419,7 @@ div.dataTables_wrapper div.dataTables_info,
 	margin-top:0px;
 }
 
-	.table thead th {
+	.table-normal thead th {
 		border-bottom: 1px solid #d2e4ff;
 		background: #e4eefd;
 		color: #2f5792;
@@ -1431,14 +1431,14 @@ div.dataTables_wrapper div.dataTables_info,
 		overflow-y: auto;
 		margin-top: 20px;
 	}
-	.table td, .table th {
+	.table-normal td, .table-normal th {
 		padding: 5px 8px;
 		font-size: 14px;
 		min-width: 120px;
 		border: 1px solid #d2e4ff;
 		vertical-align: middle;
 	}
-	.table tr th:first-of-type, .table tr td:first-of-type {
+	.table-normal tr th:first-of-type, .table-normal tr td:first-of-type {
 		min-width: auto;
 	}
 	.table-hover tbody tr:hover {
@@ -1525,3 +1525,56 @@ div.dataTables_wrapper div.dataTables_info,
 		font-weight: 900;
 		font-size: 14px !important;
 	}
+	.auto-focus-table table{
+		position: relative;
+
+	background-color:
+	#fff;
+
+	z-index: 999;
+
+	width: auto;;
+
+	max-width: 800px;
+	max-height: 400px;
+
+	overflow-x: scroll;
+
+	overflow: scroll;
+	overflow-y: scroll;
+
+	display: inline-block
+}
+.auto-focus-table{
+	width: 400px;
+
+position: absolute;
+}
+.table thead th {
+	border-bottom: 1px solid #d2e4ff;
+	background: #e4eefd;
+	color: #2f5792;
+}
+
+.table-scroll-limit {
+	height: 280px;
+	overflow-x: auto;
+	overflow-y: auto;
+	margin-top: 20px;
+}
+.table td, .table th {
+	padding: 5px 8px;
+	font-size: 14px;
+	min-width: 120px;
+	border: 1px solid #d2e4ff;
+	vertical-align: middle;
+}
+.table tr th:first-of-type, .table tr td:first-of-type {
+	min-width: auto;
+}
+.table-hover tbody tr:hover {
+	background-color: rgb(240, 246, 255);
+}
+.assgin-view{
+	display: none;
+}
