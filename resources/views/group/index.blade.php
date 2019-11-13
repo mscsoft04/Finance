@@ -86,7 +86,14 @@ $(document).ready(function() {
         
         "columns":[
             { "data": "type" },
-            { "data": "name" },
+            { "data": "name", render: function ( data, type, row ) {
+                if ( type === 'display' ) {
+                
+                   var view =' <a href="javascript:void(0)" class="assign" data-id="'+row.id+'" data-toggle="tooltip" data-placement="bottom" title="Assign">'+row.name+'</a>';
+                   return view;
+                }
+                return data;
+            } },
             { "data": "auction_date" },
             { "data": "start_date" },
             { "data": "first_due_date" },
