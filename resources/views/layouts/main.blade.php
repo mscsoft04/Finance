@@ -12,7 +12,7 @@
 
   <title>{{ config('app.name', 'Finance') }}</title>
 
-  <link href="{{ asset('public/vendor/bootstrap/bootstrap.css') }}" rel="stylesheet">
+  <link href="{{ asset('public/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     <!-- Fonts -->
    <link href="{{ asset('public/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 

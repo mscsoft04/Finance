@@ -62,11 +62,7 @@
                   
         </div>
       
-      <!-- /.container-fluid -->
-
       
-  
-  <!-- wrapper Ends -->
 
   
 
@@ -193,10 +189,33 @@ $(document).ready(function() {
 		
 		console.log(data);
     }); 
-	$(window).click(function(e) {
-		$('#data').fadeOut(); 
-   }); 
-    
+ 
+
+  $(document).on('click', '.assign-data', function(eda){    
+    eda.preventDefault();
+    var assign = $('#assgin-data')[0];
+    var assigndata = new FormData(assign);
+    var show_url="{{ route('groupAssign.store') }}";
+          $.ajax({
+              type: "POST",
+              enctype: 'multipart/form-data',
+              url: show_url,
+              data: assigndata,
+              processData: false,
+              contentType: false,
+              cache: false,
+              dataType: "json",
+                success: function( data, textStatus, jQxhr ){
+                  $('#myModal').modal('hide')
+                  toastr.success(data.message, data.title);
+
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                }
+            });
+
+  });
 });
 </script>
 @endsection

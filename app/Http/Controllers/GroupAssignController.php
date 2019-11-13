@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\GroupAssign;
+use App\Group;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Toastr;
+use Datatables;
 
 class GroupAssignController extends Controller
 {
@@ -35,7 +39,19 @@ class GroupAssignController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,['agent_id'=>'required', 
+                                    'customer'=>'required',
+                                    'subscriber_id'=>'required', 
+                                    'ticket_number'=>'required',
+                                    'collection_type'=>'required',
+                                    'group_id'=>'required',
+                                ]); 
+        $request['created_by']=auth()->user()->id;
+        GroupAssign::create($request->all());
+       // return Toastr::success('Added data successfully', '', ["positionClass" => "toast-top-right"]);
+        return  $arr = array('message' => 'Added data successfully');
+
+         
     }
 
     /**
@@ -46,8 +62,25 @@ class GroupAssignController extends Controller
      */
     public function show($id,Request $request)
     {
-       
-        return view('group_assign.show');
+        $data = Group::leftJoin('schemes', 'schemes.id', '=', 'groups.schemes_id')
+                ->leftJoin('group_assigns', 'group_assigns.group_id', '=', 'groups.id')
+                ->leftJoin('subscribers', 'group_assigns.subscriber_id', '=', 'subscribers.id')
+                ->where('groups.id',$id)
+                ->select('subscribers.subscriber_name',
+                         'subscribers.occupation',
+                         'subscribers.age',
+                         'groups.id as group_id',
+                         'groups.name as name',
+                         'schemes.no_of_member',
+                         'group_assigns.collection_type',
+                         'group_assigns.id',
+                         'group_assigns.ticket_number',
+                         'group_assigns.agent_id',
+                        
+                        )->get();
+            
+
+        return view('group_assign.show',compact('data'));
     }
 
     /**

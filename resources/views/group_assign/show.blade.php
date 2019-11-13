@@ -1,6 +1,8 @@
+
+
 <div class="col-md-12 col-sm-12 col=lg-12">
    <div class="card-body assgin-view">
-      <form>
+      <form id="assgin-data">
          @csrf
          <div class="form-group">
             <div class="form-row">
@@ -18,7 +20,7 @@
                <div class="col-md-6">
                   <div class="form-label-group">
                      <label for="Type"><span>Collection Type</span></label>
-                     <select  id="Type" name="type"  class="form-control" >
+                     <select  id="Type" name="collection_type"  class="form-control" >
                         <option value="">Select type</option>
                         <option  value="Monthly">Monthly</option>
                         <option  value="daily">Daily</option>
@@ -43,13 +45,14 @@
             </div>
          </div>
          <input type="hidden" id="subscriber_id" name="subscriber_id"  class="form-control" placeholder="subscriber id" required>
-         <input type="hidden" id="group_id" name="group_id"  class="form-control" placeholder="group id" required>
+         <input type="hidden" id="group_id" name="group_id"  class="form-control" placeholder="group id" value="{{ $data[0]->group_id}}" required>
+         <input type="hidden" id="id" name="id"  class="form-control" placeholder="id" required>
 
          
          <div class="form-group">
             <div class="form-row">
                <div class="col-md-2">
-                  <input type="submit" class="btn btn-primary btn-block btn-yellow">
+               <a href="JavaScript:void(0)" type="button" class="btn btn-primary btn-block btn-yellow assign-data">Save</a>
                </div>
                <div class="col-md-2">
                   <a href="JavaScript:void(0)" type="button" class="btn btn-block btn-cancel assign-cancel ">Cancel</a>
@@ -74,15 +77,28 @@
          <tbody>
             <tr>
                <th>Group name</th>
-               <td>Name</td>
+               <td>{{ $data[0]->name}}</td>
                <th>No. Of Member</th>
-               <td>63</td>
+               <td>{{ $data[0]->no_of_member}}</td>
             </tr>
             <tr>
                <th>No. Of Join</th>
-               <td>45</td>
+               @if(is_null($data[0]->id))
+               <td>{{ count($data) === 1 ? $data[0]->no_of_member : count($data) }} </td>
+               
+               @else
+               <td>{{ count($data) }} </td>
+              @endif
+               
                <th>No. Of Vecant</th>
-               <td>15</td>
+               @if(is_null($data[0]->id))
+               <td>{{ count($data) === 1 ? $data[0]->no_of_member : $data[0]->no_of_member - count($data)}}</td>
+
+               
+
+               @else
+               <td>{{ $data[0]->no_of_member - count($data) }}</td> 
+              @endif
             </tr>
          </tbody>
       </table>
@@ -98,12 +114,14 @@
             </tr>
          </thead>
          <tbody>
+         @foreach ($data as $row)
+           @if (!is_null($row->id))
             <tr>
-               <td>1</td>
-               <td>Charles Antony</td>
-               <td>Senior Engineer</td>
-               <td>Monthly</td>
-               <td>30</td>
+               <td>{{ $loop->iteration	 }}</td>
+               <td>{{ $row->subscriber_name}}</td>
+               <td>{{ $row->occupation}}</td>
+               <td>{{ $row->collection_type}}</td>
+               <td>{{ $row->age}}</td>
                <td>
                   <span class="actions-item">
                      <div class="dropdown">
@@ -120,7 +138,17 @@
                   </span>
                </td>
             </tr>
+            @endif
+
+            @endforeach
+
          </tbody>
       </table>
    </div>
 </div>
+<script>
+$(window).click(function(e) {
+    e.preventDefault();
+		$('#data').fadeOut(); 
+   });
+   </script>
