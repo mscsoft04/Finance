@@ -66,12 +66,14 @@
          <div class="fl_in_h">
             <h5>Group Assign </h5>
          </div>
+         @if($data[0]->no_of_member > count($data))
          <div class="fr_in_h">
             <a class="btn btn-link btn-sm btn-global btn-blue btn-fl-r assign-mode"  href="JavaScript:void(0)">
             <i class="fas fa-plus"></i><span>Add</span>
             </a>
             
          </div>
+         @endif
       </div>
       <table class=" table table-striped">
          <tbody>
