@@ -132,13 +132,17 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                            <ul class="">
-                              <li><a href="#"><span>Edit</span></a></li>
-                              <li><a href="#"><span>Delete</span></a></li>
+                              <li><a href="JavaScript:void(0)" data-id='{{ $row}}' class="group-assgin-edit"><span>Edit</span></a></li>
+                              <li><a href="JavaScript:void(0)" data-id='{{ $row->id}}' class="group-assgin-delete"><span>Delete</span></a></li>
                            </ul>
                         </div>
                      </div>
                   </span>
                </td>
+            </tr>
+            @else
+            <tr>
+               <td colspan="6" > No data Avaiable</td>
             </tr>
             @endif
 
@@ -149,8 +153,8 @@
    </div>
 </div>
 <script>
-$(window).click(function(e) {
-    e.preventDefault();
+$(window).click(function() {
+    
 		$('#data').fadeOut(); 
-   });
+ });
    </script>

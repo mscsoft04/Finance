@@ -46,10 +46,18 @@ class GroupAssignController extends Controller
                                     'collection_type'=>'required',
                                     'group_id'=>'required',
                                 ]); 
-        $request['created_by']=auth()->user()->id;
-        GroupAssign::create($request->all());
-       // return Toastr::success('Added data successfully', '', ["positionClass" => "toast-top-right"]);
-        return  $arr = array('message' => 'Added data successfully');
+        if($request['id']){
+            $request['updated_by']=auth()->user()->id;
+            $assign = GroupAssign::findOrFail($request['id']);
+            $assign->update($request->all());
+            return  $arr = array('message' => 'Updated data successfully');
+
+        }else {
+            $request['created_by']=auth()->user()->id;
+            GroupAssign::create($request->all());
+            return  $arr = array('message' => 'Added data successfully');
+        }
+       
 
          
     }
@@ -76,6 +84,7 @@ class GroupAssignController extends Controller
                          'group_assigns.id',
                          'group_assigns.ticket_number',
                          'group_assigns.agent_id',
+                         'group_assigns.subscriber_id'
                         
                         )->get();
             
@@ -115,5 +124,7 @@ class GroupAssignController extends Controller
     public function destroy(GroupAssign $groupAssign)
     {
         //
+       $delete= $groupAssign->delete();
+       return  $arr = array('message' => 'Deleted data successfully');
     }
 }

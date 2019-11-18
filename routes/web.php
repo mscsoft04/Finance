@@ -29,7 +29,8 @@ Route::get('branch/add', 'BranchController@create')->name('branch.create');
     Route::get('scheme/getdata', 'SchemeController@getdata')->name('scheme.getdata');
     Route::get('bank/getdata', 'BankController@getdata')->name('bank.getdata');
     Route::get('group/getdata', 'GroupController@getdata')->name('group.getdata');
-Route::group( ['middleware' => ['auth']], function() {
+    Route::get('group/{group}/auction/getdata', 'AuctionController@getdata')->name('auction.getdata');
+ Route::group( ['middleware' => ['auth']], function() {
     Route::resource('users', 'UserController');
     Route::resource('roles', 'RoleController');
     Route::resource('posts', 'PostController');
@@ -41,10 +42,14 @@ Route::group( ['middleware' => ['auth']], function() {
     Route::resource('group', 'GroupController');
     Route::resource('ledger', 'LedgerController');
     Route::resource('groupAssign', 'GroupAssignController');
+    Route::resource('group.auction', 'AuctionController');
+
 
     
     
 });
 Route::post('/autocomplete/fetch', 'LedgerController@fetch')->name('autocomplete.fetch');
+Route::post('group/{group}/auction/fetch', 'AuctionController@fetch')->name('auction.fetch');
+
 
 

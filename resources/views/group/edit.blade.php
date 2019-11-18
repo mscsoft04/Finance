@@ -53,7 +53,7 @@
                 <select  id="schemes" name="schemes_id"  class="form-control selectpicker" >
 				             <option value="">Select Schemes</option>
                      @foreach ($schemes as $scheme)
-                     <option  value="{{$scheme->id}}" {{ $group->schemes_id == $scheme->id ? "selected":"" }}>{{$scheme->chit_value}}<option>
+                     <option  value="{{$scheme->id}}" {{ $group->schemes_id == $scheme->id ? "selected":"" }}>{{$scheme->sort_form}}<option>
                      @endforeach
                      </select>
  

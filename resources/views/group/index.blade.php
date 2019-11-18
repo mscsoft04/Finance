@@ -94,7 +94,15 @@ $(document).ready(function() {
                 }
                 return data;
             } },
-            { "data": "auction_date" },
+            { "data": "auction_date", render: function ( data, type, row ) {
+                if ( type === 'display' ) {
+                  var show_url="{{ route('group.auction.index', ['group' =>":id"]) }}";
+                     show_url = show_url.replace(':id', row.id);
+                   var view =' <a href="'+show_url+'" class="auction-view" data-id="'+row.id+'" data-toggle="tooltip" data-placement="bottom" title="Auction">'+row.auction_date+'</a>';
+                   return view;
+                }
+                return data;
+            } },
             { "data": "start_date" },
             { "data": "first_due_date" },
             { "data": "total_fd" },
@@ -223,6 +231,65 @@ $(document).ready(function() {
             });
 
   });
+  $(document).on("click",".group-assgin-edit",function(esd) {
+    esd.preventDefault();
+      let data=JSON.parse($(this).attr('data-id')); 
+       $(".assgin-view").show();
+       $("#collectionareaname").val(data.subscriber_name);
+       $("#Type").val(data.collection_type);
+       $("#ticket_number").val(data.ticket_number);
+       $("#agent_id").val(data.agent_id);
+       $("#subscriber_id").val(data.subscriber_id);
+       $("#group_id").val(data.group_id);
+       $("#id").val(data.id);
+
+      /// console.log(data.subscriber_name);
+
+});
+$(document).on("click",".group-assgin-delete",function(es) {
+      es.preventDefault();
+       var id=$(this).attr("data-id");
+       var token = $('input[name="_token"]').val();
+          $.ajax({
+            url: "groupAssign/"+id,
+              type: 'DELETE',
+              data: {
+                  "id": id,
+                  "_token": token,
+              },
+                success: function( data, textStatus, jQxhr ){
+                  $('#myModal').modal('hide')
+                  toastr.success(data.message, data.title);
+
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                }
+            });
+
+     });
+     $(document).on("click",".auction",function(es) {
+      es.preventDefault();
+       var id=$(this).attr("data-id");
+        var show_url="";
+          show_url = show_url.replace(':id', id);
+          $.ajax({
+                url: show_url,
+                dataType: 'html',
+                type: 'get',
+                success: function( data, textStatus, jQxhr ){
+                    $('#response').html( data );
+                    $('#response-title').text('Auction');
+                    $('#myModal').modal('show')
+
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                }
+            });
+
+     });
+  
 });
 </script>
 @endsection

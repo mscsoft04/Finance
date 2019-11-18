@@ -127,4 +127,9 @@ class LedgerController extends Controller
       return $output;
      }
     }
+    public function showgroup($id)
+    {
+        //
+    }
+
 }
