@@ -74,10 +74,13 @@ class AuctionController extends Controller
      * @param  \App\Auction  $auction
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($group,Auction $auction)
     {
         //
-        return view('auction.show');
+        $data=Group::where('groups.id',$group)
+        ->join('schemes', 'schemes.id', '=', 'groups.schemes_id')->first();
+        $customer=Subscriber::where('id',$auction->subscriber_id)->first();
+        return view('auction.show',compact('auction','data','customer'));
     }
 
     /**
@@ -86,9 +89,17 @@ class AuctionController extends Controller
      * @param  \App\Auction  $auction
      * @return \Illuminate\Http\Response
      */
-    public function edit(Auction $auction)
+    public function edit($group,Auction $auction)
     {
         //
+        $data=Group::where('groups.id',$group)
+        ->join('schemes', 'schemes.id', '=', 'groups.schemes_id')->first();
+    $count = Auction::where('group_id',$group)->count();
+    $date= date('Y-m-d', strtotime($data->first_due_date . "+".$count."months") );
+    $customer=Subscriber::where('id',$auction->subscriber_id)->first();
+    
+    
+    return view('auction.edit',compact('customer','group','data','count','date','auction'));
     }
 
     /**
@@ -98,9 +109,25 @@ class AuctionController extends Controller
      * @param  \App\Auction  $auction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Auction $auction)
+    public function update($group,Request $request, Auction $auction)
     {
         //
+        $this->validate($request,   ['subscriber_id'=>'required', 
+                                    'group_id'=>'required',
+                                    'auction_number'=>'required',
+                                    'auction_amount'=>'required',
+                                    'auction_date'=>'required',
+                                    'commision_amount'=>'required',
+                                    'gst_amount'=>'required', 
+                                    'dividend_amount'=>'required',
+                                    'each_dividend_amount'=>'required',
+                                    'due_amount'=>'required',
+
+                                    ]);
+        $request['updated_by']=auth()->user()->id;
+        $auction->update($request->all());
+        Toastr::success('Updated data successfully', '', ["positionClass" => "toast-top-right"]);
+        return redirect()->route('group.auction.index',['group' =>$group]);
     }
 
     /**
