@@ -678,13 +678,13 @@
               </div>
           </div>
           <div class="form-group">
-            <div class="form-row">
+            <div class="form-row btntop">
               <div class="col-md-2">
               <input type="submit" class="btn btn-primary btn-block btn-blue">
           </div>
           <div class="col-md-2">
               
-          <a href="{{url()->previous()}}" type="button" class="btn btn-block btn-cancel">Cancel</a>
+          <a href="{{url()->previous()}}" type="button" class="btn btn-block btn-dark">Cancel</a>
 
           </div>
           </div>

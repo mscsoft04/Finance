@@ -895,7 +895,6 @@ cursor:pointer;}
 	border: 1px solid #424277;
 	border-radius: 0;
 	color: #fff;
-	height: 34px;
 }
 .btn-dark:hover,
 .btn-dark {
@@ -1612,4 +1611,7 @@ position: absolute;
 }
 .gardian {
 	margin-top: 15px;
+}
+.btntop {
+	margin-top: 10px;
 }
