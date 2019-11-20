@@ -65,6 +65,7 @@ class BranchController extends Controller
         'remarks'=>'required',
         ]); 
         $request['created_by']=auth()->user()->id;
+        $request['doo']=date ("Y-m-d",strtotime($request['doo']));
         Branch::create($request->all());
         //print_r($request);
         

@@ -16,6 +16,7 @@ class CreateCollectionAreasTable extends Migration
         Schema::create('collection_areas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('branch_id')->unsigned();
+            $table->string('unique_id');
             $table->string('area_name');
             $table->string('village_name');
             $table->string('pin_code');

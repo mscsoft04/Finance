@@ -15,6 +15,7 @@ class CreateSchemesTable extends Migration
     {
         Schema::create('schemes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('unique_id');
             $table->string('chit_value');
             $table->integer('no_of_member')->length(11);
             $table->float('res_fees');

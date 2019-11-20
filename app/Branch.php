@@ -30,7 +30,8 @@ class branch extends Model
                            'fd_total_month',
                            'remarks',
                            'created_by',
-                           'updated_by'
+                           'updated_by',
+                           'unique_id'
 
                         
                         ];
