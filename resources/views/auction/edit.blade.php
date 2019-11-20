@@ -1,20 +1,20 @@
 @extends('layouts.main')
 
-@section('title', 'Group')
+@section('title', 'auction')
+
 @section('breadcrumb')
 <div class="col-lg-9 col-md-8 col-sm-8 col-2">
             	
             	<div class="breadcrumbbar">
                 	<ul>
                     	<li class="breadcrumb-item">
-                        <a href="{{ url('group') }}"><span>Group</span><i class="fas fa-arrow-left fa-fw"></i></a>
+                        <a href="{{ url('collection-area') }}"><span>Auction</span><i class="fas fa-arrow-left fa-fw"></i></a>
                         </li>
-                        <li class="breadcrumb-item active">Add</li>
+                        <li class="breadcrumb-item active">Edit</li>
                     </ul>
                 </div>
             </div>
 @endsection
-
 
 @section('content')
 <div class="row">
@@ -23,355 +23,136 @@
                 		<div class="card  ">
      
       <div class="card-body">
-     
-      <form method="post" action="{{ route('group.update', $group->id) }}" >
-
+      <form method="post" action="{{ route('group.auction.update',["group"=>$group,"auction"=>$auction->id]) }}" >
         @csrf
         @method('PATCH')
         <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
+          <div class="form-row">
+             <div class="col-md-6">
+          <div class="form-label-group">
+             <label for="customer-name"><span>Customer Name</span></label>
+             <input type="text" id="customer-name" name="customer"   class="form-control autocomplete"  value="{{ $customer->subscriber_name }}" placeholder="CustomerName" required>
+             <div id="data" class="auto-focus-table"></div>
+          
+            </div>
+            @error('customer')
+            <span class="invalid-feedback" role="alert">
+                 <strong>{{ $message }}</strong>
+             </span>
+           @enderror
+       </div>
+             <div class="col-md-6">
                 <div class="form-label-group">
-                <label for="branchname"><span>Branch</span></label>
-                <select  id="branchname" name="branch_id"  class="form-control selectpicker" >
-				             <option value="">Select Branch</option>
-                     @foreach ($branches as $branch)
-                     <option  value="{{$branch->id}}" {{ $group->branch_id == $branch->id ? "selected":"" }}>{{$branch->branch_name}}<option>
-                     @endforeach
-                     </select>
- 
+                   <label for="auctionNumber"><span>Auction Number</span></label>
+                   <input type="text" id="auctionNumber"name="auction_number"   value="{{ $auction->auction_number }}" class="form-control" placeholder="Auction Number" readonly required>
                 </div>
-                @error('branch_id')
+                 @error('auction_number')
                  <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>
                 @enderror
-              </div>
-              <div class="col-md-6">
+             </div>
+          </div>
+       </div>
+       <div class="form-group">
+          <div class="form-row">
+             <div class="col-md-6">
                 <div class="form-label-group">
-                <label for="schemes"><span>Schemes</span></label>
-                <select  id="schemes" name="schemes_id"  class="form-control selectpicker" >
-				             <option value="">Select Schemes</option>
-                     @foreach ($schemes as $scheme)
-                     <option  value="{{$scheme->id}}" {{ $group->schemes_id == $scheme->id ? "selected":"" }}>{{$scheme->chit_value}}<option>
-                     @endforeach
-                     </select>
- 
+                   <label for="auctionDate"><span>Auction Date</span></label>
+                   <input type="text" id="auctionDate" name="auction_date"  class="form-control date" value="{{ $auction->auction_date }}" placeholder="Auction Date" readonly required>
                 </div>
-                @error('schemes_id')
+                 @error('auction_date')
                  <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>
                 @enderror
-              </div>
-              </div>
+             </div>
+             <div class="col-md-6">
+                <div class="form-label-group">
+                   <label for="auction-amount"><span>Auction Amount</span></label>
+                   <input type="text" id="auction-amount" name="auction_amount"  class="form-control" value="{{ $auction->auction_amount }}" placeholder="Auction Amount" required>
+                </div>
+                 @error('auction_amount')
+                 <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+             </div>
           </div>
-		    <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
+       </div>
+       <div class="form-group">
+          <div class="form-row">
+             <div class="col-md-6">
                 <div class="form-label-group">
-                <label for="type"><span>Type</span></label>
-                <input type="text" id="type" class="form-control" name="type"  value="{{ $group->type }}" placeholder="Type" required>
-                
-	              </div>
-                @error('type')
+                   <label for="commision_amount"><span>Cmp Commision</span></label>
+                   <input type="text" id="commision_amount"name="commision_amount"  class="form-control" value="{{ $auction->commision_amount }}" placeholder="Commision Amount" readonly required>
+                </div>
+                 @error('commision_amount')
                  <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>
                 @enderror
-              </div>
-              <div class="col-md-6">
+             </div>
+          
+             <div class="col-md-6">
                 <div class="form-label-group">
-                <label for="auction_time"><span>Auction Time</span></label>
-                <input type="text" id="auction_time" class="form-control" name="auction_time"  value="{{ $group->auction_time }}" placeholder="Auction Time" required>
-                
-	              </div>
-                @error('auction_time')
+                   <label for="gst_amount"><span>GST</span></label>
+                   <input type="text" id="gst_amount"name="gst_amount"  value="{{ $auction->gst_amount }}" class="form-control" placeholder="GST" readonly  required>
+                </div>
+                 @error('gst_amount')
                  <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>
                 @enderror
-              </div>
-              </div>
+             </div>
           </div>
-		  
-		   <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
+       </div>
+       <div class="form-group">
+          <div class="form-row">
+             <div class="col-md-6">
                 <div class="form-label-group">
-                <label for="name"><span>Name</span></label>
-                <input type="text" id="name" class="form-control" name="name" value="{{ $group->name }}" placeholder="Name" required>
-                  
-	              </div>
-                @error('name')
+                   <label for="dividend_amount"><span>Total Dividend Amount</span></label>
+                   <input type="text" id="dividend_amount" name="dividend_amount"  class="form-control" value="{{ $auction->dividend_amount }}" placeholder=" Total Dividend Amount" readonly required>
+                </div>
+                 @error('dividend_amount')
                  <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>
                 @enderror
-              </div>
-              <div class="col-md-6">
+             </div>
+         
+             <div class="col-md-6">
                 <div class="form-label-group">
-                <label for="commission"><span>Commission</span></label>
-                <input type="text" id="commission" class="form-control" name="commission" value="{{ $group->commission }}" placeholder="Commission" required>
-                  
-	              </div>
-                @error('commission')
+                   <label for="each_dividend_amount"><span>Each Member Dividend</span></label>
+                   <input type="text" id="each_dividend_amount" name="each_dividend_amount" value="{{ $auction->each_dividend_amount }}" class="form-control"  readonly placeholder="Each Member Dividend" required>
+                </div>
+                 @error('each_dividend_amount')
                  <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>
                 @enderror
-              </div>
-              </div>
+             </div>
           </div>
-		  
-		  
-		  <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
+       </div>
+       <div class="form-group">
+          <div class="form-row">
+             <div class="col-md-6">
                 <div class="form-label-group">
-                <label for="auction_date"><span>Auction Date</span></label>
-                <input type="text" id="auction_date" name="auction_date" value="{{ $group->auction_date }}" class="form-control date" placeholder="Auction Date" >
-                
-	              </div>
-                @error('auction_date')
+                   <label for="due_amount"><span>Due Amount</span></label>
+                   <input type="text" id="due_amount" name="due_amount" value="{{ $auction->due_amount  }}" class="form-control" placeholder="Due Amount" readonly required>
+                </div>
+                 @error('due_amount')
                  <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>
                 @enderror
-              </div>
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="total_fd"><span>Total Fd</span></label>
-                <input type="text" id="total_fd" name="total_fd" value="{{ $group->total_fd }}" class="form-control" placeholder="Total Fd" >
-                
-	              </div>
-                @error('total_fd')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
+             </div>
           </div>
+       </div>
+		
+       <input type="hidden" id="subscriber_id" name="subscriber_id" value="{{ $auction->subscriber_id }}" class="form-control" placeholder="Due Amount" readonly required>
+       <input type="hidden" id="group_id" name="group_id" value="{{ $auction->group_id}}" class="form-control" >
 
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="start_date"><span>Start Date</span></label>
-                <input type="text" id="start_date" name="start_date" value="{{ $group->start_date }}" class="form-control date" placeholder="Start Date" >
-                
-	              </div>
-                @error('start_date')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="fd_rate_interrest"><span>Fd Rate Interrest</span></label>
-                <input type="text" id="fd_rate_interrest" name="fd_rate_interrest" value="{{ $group->fd_rate_interrest }}" class="form-control" placeholder="Fd Rate Interrest" >
-                
-	              </div>
-                @error('fd_rate_interrest')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="first_due_date"><span>First Due Date</span></label>
-                <input type="text" id="first_due_date" name="first_due_date" value="{{ $group->first_due_date }}" class="form-control date" placeholder="First Due Date" >
-                
-	              </div>
-                @error('first_due_date')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="maturity_amount"><span>Maturity Amount</span></label>
-                <input type="text" id="maturity_amount" name="maturity_amount" value="{{ $group->maturity_amount }}" class="form-control" placeholder="Maturity Amount" >
-                
-	              </div>
-                @error('maturity_amount')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-		  
-		   <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="fd_number"><span>FD Number</span></label>
-                <input type="text" id="fd_number" class="form-control" name="fd_number" value="{{ $group->fd_number }}"  placeholder="FD Number" required>
-                 
-	              </div>
-                @error('fd_number')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="fd_branch"><span>FD Branch</span></label>
-                <input type="text" id="fd_branch" class="form-control" name="fd_branch" value="{{ $group->fd_branch }}"  placeholder="FD Branch" required>
-                 
-	              </div>
-                @error('fd_branch')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-		  
-		  <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="company_fd"><span>Company FD</span></label>
-                <input type="text" id="company_fd" class="form-control" name="company_fd" value="{{ $group->company_fd }}" placeholder="Company FD" required>
-                  
-	              </div>
-                @error('company_fd')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="pso_date"><span>Pso Date </span></label>
-                <input type="text" id="pso_date" class="form-control date" name="pso_date" value="{{ $group->pso_date }}" placeholder="PSO Date" required>
-                  
-	              </div>
-                @error('pso_date')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="fd_date"><span>FD Date</span></label>
-                <input type="text" id="fd_date" name="fd_date" value="{{ $group->fd_date }}" class="form-control date" placeholder="FD Date" >
-                
-	              </div>
-                @error('fd_date')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="blaw_date"><span>Blaw Date</span></label>
-                <input type="text" id="blaw_date" class="form-control date" name="blaw_date" value="{{ $group->blaw_date }}" placeholder="Blaw Date" required>
-                  
-	              </div>
-                @error('blaw_date')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-		   <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="fd_bank"><span>FD Bank</span></label>
-                <input type="text" id="fd_bank" class="form-control" name="fd_bank" value="{{ $group->fd_bank }}"  placeholder="FD Bank" required>
-                  
-	              </div>
-                @error('fd_bank')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="pso_number"><span>PSO Number</span></label>
-                <input type="text" id="pso_number" class="form-control" name="pso_number"  value="{{ $group->pso_number }}" placeholder="PSO Number" required>
-                 
-	              </div>
-                @error('pso_number')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="blaw_number"><span>Blaw Number</span></label>
-                <input type="text" id="blaw_number" class="form-control" name="blaw_number"  value="{{ $group->blaw_number }}" placeholder="Blaw Number" required>
-                 
-	              </div>
-                @error('blaw_number')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="cheque_no"><span>Cheque No</span></label>
-                <input type="text" id="cheque_no" class="form-control" name="cheque_no"  value="{{ $group->cheque_no }}" placeholder="Cheque No" required>
-                 
-	              </div>
-                @error('cheque_no')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="company_chit"><span>Company Chit</span></label>
-                <input type="text" id="company_chit" class="form-control" name="company_chit"  value="{{ $group->company_chit }}" placeholder="Company Chit" required>
-                 
-	              </div>
-                @error('company_chit')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-		  
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-2">
@@ -384,8 +165,6 @@
           </div>
           </div>
           </div>
-          		  
-		
         </form>
        
       </div>
@@ -399,17 +178,71 @@
 
 @endsection
 @section('script')
-
 <script type="text/javascript">
 
 $(document).ready(function() {
-  $('.date').datepicker({
+  $(document).on('keyup', '.autocomplete', function () {
+        var query = $(this).val();
+        if(query != '')
+        {
+         var _token = $('input[name="_token"]').val();
+         $.ajax({
+          url:"{{ route('auction.fetch',["group"=>$group]) }}",
+          method:"POST",
+          data:{query:query, _token:_token},
+          success:function(data){
+           $('#data').fadeIn();  
+              $('#data').html(data);
+          }
+         });
+        }
+    });
+
+    $(document).on('click', '.custom', function(){  
+       
+        $('#data').fadeOut(); 
+		let data=JSON.parse($(this).attr('data-id')); 
+		$('.autocomplete').val(data.subscriber_name);
+    $('#subscriber_id').val(data.id);  
+    
+		
+		
+		console.log(data);
+    }); 
+
+    $(document).on('keyup', '#auction-amount', function () {
+        var amount = $(this).val();
+        var total_amount="{{ $data->chit_value}}";
+        var total_member="{{ $data->no_of_member}}";
+        var montly_due="{{ $data->monthly_due}}";
+        var commision_amount=percentage(5, total_amount);
+        $("#commision_amount").val(commision_amount);
+        var gst=(commision_amount*12)/100;
+        $("#gst_amount").val(gst);
+        var total_divde=amount-commision_amount;
+        $("#dividend_amount").val(total_divde);
+        var each_dividend=total_divde/total_member;
+        $("#each_dividend_amount").val(each_dividend);
+
+        var due_amount=montly_due-each_dividend;
+        $("#due_amount").val(due_amount);
+
+        
+        
+     
+    });
+    function percentage(percent, total) {
+    return ((percent / 100) * total).toFixed(2)
+   }
+   
+   $('.date').datepicker({
     autoclose: true,
     todayHighlight: true,
-    format: 'yyyy/m/d',
+    format: 'yyyy/mm/dd',
 
-  });
+  }).datepicker("update", "{{  $auction->auction_date }} ");
 
+    
 });
 </script>
 @endsection

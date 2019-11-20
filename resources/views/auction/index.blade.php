@@ -78,12 +78,7 @@
   
 
 @endsection
-@push('scripts')
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
-<script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
-<script src="/vendor/datatables/buttons.server-side.js"></script>
 
-@endpush
 
 @section('script')
 <script type="text/javascript">
@@ -119,13 +114,13 @@ $(document).ready(function() {
             { "data": "due_amount" },
             { "data": "id", render: function ( data, type, row ) {
                 if ( type === 'display' ) {
-                  var url = '{{ route("group.edit", [":id"]) }}';
+                  var url = '{{ route("group.auction.edit", ["group"=>$group ,"auction"=>":id"]) }}';
                   url = url.replace(':id', row.id); 
                   
                   var view=' <a href="'+url+'" class="table-action-edit action-global" data-toggle="tooltip" data-placement="bottom" title="Edit"><span></span> <i class="fas fa-plus"></i></a>';
                    view +=' <a href="javascript:void(0)" class="table-action-edit action-global show" data-id="'+row.id+'" data-toggle="tooltip" data-placement="bottom" title="View"><span></span> <i class="fas fa-eye"></i></a>';
                   
-                   view +=' <a href="javascript:void(0)" class="table-action-edit action-global assign" data-id="'+row.id+'" data-toggle="tooltip" data-placement="bottom" title="Assign"><span></span> <i class="fas fa-user-plus"></i></a>';
+                  // view +=' <a href="javascript:void(0)" class="table-action-edit action-global assign" data-id="'+row.id+'" data-toggle="tooltip" data-placement="bottom" title="Assign"><span></span> <i class="fas fa-user-plus"></i></a>';
                    return view;
                 }
                 return data;
@@ -136,7 +131,7 @@ $(document).ready(function() {
      $(document).on("click",".show",function(e) {
       e.preventDefault();
        var id=$(this).attr("data-id");
-        var show_url="{{ route('group.show', ['group' =>":id"]) }}";
+        var show_url="{{ route('group.auction.show', ['group' =>$group,'auction' =>":id"]) }}";
           show_url = show_url.replace(':id', id);
           $.ajax({
                 url: show_url,
@@ -144,7 +139,7 @@ $(document).ready(function() {
                 type: 'get',
                 success: function( data, textStatus, jQxhr ){
                     $('#response').html( data );
-                    $('#response-title').text('Group');
+                    $('#response-title').text('Auction');
                     $('#myModal').modal('show')
 
                 },
@@ -154,27 +149,7 @@ $(document).ready(function() {
             });
 
      });
-     $(document).on("click",".assign",function(e) {
-      e.preventDefault();
-       var id=$(this).attr("data-id");
-        var show_url="{{ route('group.show', ['group' =>":id"]) }}";
-          show_url = show_url.replace(':id', id);
-          $.ajax({
-                url: show_url,
-                dataType: 'html',
-                type: 'get',
-                success: function( data, textStatus, jQxhr ){
-                    $('#response').html( data );
-                    $('#response-title').text('Group');
-                    $('#myModal').modal('show')
-
-                },
-                error: function( jqXhr, textStatus, errorThrown ){
-                    console.log( errorThrown );
-                }
-            });
-
-     });
+     
 });
 </script>
 @endsection
