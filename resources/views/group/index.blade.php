@@ -40,6 +40,7 @@
               <table class="table table-bordered subscriber"  width="100%" cellspacing="0">
                 <thead>
                   <tr>
+                    <th>Group Id</th>
                     <th>Type</th>
                     <th>Name</th>
                     <th>Auction Date</th>
@@ -85,6 +86,7 @@ $(document).ready(function() {
         "ajax": "{{ route('group.getdata') }}",
         
         "columns":[
+            {"data":"unique_id"},
             { "data": "type" },
             { "data": "name", render: function ( data, type, row ) {
                 if ( type === 'display' ) {

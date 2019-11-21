@@ -63,6 +63,7 @@
               <table class="table table-bordered subscriber"  width="100%" cellspacing="0">
                 <thead>
                   <tr>
+                      <th>Subscriber ID</th>
                     <th>Subscriber Name</th>
                     <th>Mobile Number</th>
                     <th>Email</th>
@@ -104,6 +105,7 @@ $(document).ready(function() {
         "ajax": "{{ route('subscriber.getdata') }}",
         
         "columns":[
+          { "data": "unique_id" },
             { "data": "subscriber_name" },
             { "data": "mobile_no" },
             { "data": "mail_id" },

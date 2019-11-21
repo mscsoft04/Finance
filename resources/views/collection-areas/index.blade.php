@@ -39,6 +39,7 @@
               <table class="table table-bordered subscriber"  width="100%" cellspacing="0">
                 <thead>
                   <tr>
+                    <th>Collection Area ID</th>
                     <th>Branch Name</th>
                     <th>Area Name</th>
                     <th>Village Name</th>
@@ -84,6 +85,7 @@ $(document).ready(function() {
         "ajax": "{{ route('collection.getdata') }}",
         
         "columns":[
+            {"data":"unique_id"},
             { "data": "branch_name" },
             { "data": "area_name" },
             { "data": "village_name" },

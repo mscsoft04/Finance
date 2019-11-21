@@ -154,6 +154,7 @@ class AuctionController extends Controller
                          'auctions.due_amount',
                          'auctions.auction_number',
                          'subscribers.subscriber_name',
+                         'auctions.unique_id',
                          'groups.name',
                          'auctions.id',
                          

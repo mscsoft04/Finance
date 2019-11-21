@@ -46,6 +46,7 @@
               <table class="table table-bordered subscriber"  width="100%" cellspacing="0">
                 <thead>
                   <tr>
+                    <th>Auction Code</th>
                     <th>Subscriber</th>
                     <th>Group</th>
                     <th>Auction Number</th>
@@ -103,6 +104,7 @@ $(document).ready(function() {
         "ajax": "{{ route('auction.getdata', ['group'=>$group]) }}",
         
         "columns":[
+            { "data": "unique_id" },
             { "data": "subscriber_name" },
             { "data": "name" },
             { "data": "auction_number" },

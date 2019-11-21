@@ -17,6 +17,7 @@ class CreateSubscribersTable extends Migration
             $table->bigIncrements('id');
             $table->integer('branch_id')->unsigned();
             $table->string('subscriber_name');
+            $table->string('unique_id')->nullable();
             $table->string('Initial_name');
             $table->string('relation_type');
             $table->string('realtion_name');

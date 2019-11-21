@@ -16,17 +16,18 @@ class CreateGroupsTable extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->integer('branch_id')->unsigned();
+            $table->string('unique_id')->nullable();
             $table->foreign('branch_id')->references('id')->on('branches');
             $table->unsignedBigInteger('schemes_id');
             $table->foreign('schemes_id')->references('id')->on('schemes');
             $table->string('type');
             $table->string('name');
-            $table->date('auction_date');
-            $table->date('start_date');
-            $table->date('first_due_date');
+            $table->date('auction_date')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('first_due_date')->nullable();
             $table->string('fd_number');
             $table->string('company_fd');
-            $table->date('fd_date');
+            $table->date('fd_date')->nullable();
             $table->string('fd_bank');
             $table->string('pso_number');
             $table->string('blaw_number');
@@ -38,8 +39,8 @@ class CreateGroupsTable extends Migration
             $table->string('fd_rate_interrest');
             $table->string('maturity_amount');
             $table->string('fd_branch');
-            $table->date('pso_date');
-            $table->date('blaw_date');
+            $table->date('pso_date')->nullable();
+            $table->date('blaw_date')->nullable();
             $table->timestamps();
         });
         

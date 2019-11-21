@@ -16,6 +16,7 @@ class CreateGroupAssignsTable extends Migration
         Schema::create('group_assigns', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('subscriber_id');
+            $table->string('unique_id')->nullable();
             $table->foreign('subscriber_id')->references('id')->on('subscribers');
             $table->unsignedBigInteger('group_id');
             $table->foreign('group_id')->references('id')->on('groups');
