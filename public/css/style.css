@@ -900,7 +900,8 @@ cursor:pointer;}
 .btn-dark {
 	background-color: #666;
 	border: 1px solid #666;
-	color: #fff
+	color: #fff;
+	border-radius: 0;
 }
 .dataTable thead{
 	background-color: #f5f5f5;
@@ -919,6 +920,9 @@ cursor:pointer;}
 }
 .main-content-sec {
     padding: 0px 0.1rem;
+}
+.navbar-nav li a .fa-chevron-right {
+	display: none;
 }
 .filterbar{
 	margin-top:0px;
@@ -1610,8 +1614,41 @@ position: absolute;
 	color: #424277;
 }
 .gardian {
-	margin-top: 15px;
+	margin-top: 20px;
 }
 .btntop {
 	margin-top: 10px;
+}
+.gendertab {
+	margin-top: 30px;
+}
+
+.profile-image {
+	text-align: right;
+	width: 150px;
+	height: 150px;
+	float: right;
+
+}
+.profile {
+	width: 150px;
+	height: 150px;
+}
+.uploadbtn .btn {
+	width: 100%;
+	margin-top: 20px;
+}
+.card.card-box {
+	border: 1px solid #f3f3f3 !important;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.card-header {
+	border-bottom: 1px solid #f3f3f3 !important;
+	background-color: #f8f9fa;
+	padding: 3px 20px;
+
+}
+.btncenter .btn {
+	width: 150px;
 }
