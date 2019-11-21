@@ -1,5 +1,6 @@
 
 /* CSS Document */
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 	body{
 		font-family: 'Roboto', sans-serif;
 		font-size: 14px;
@@ -185,6 +186,7 @@
 	
 	table {
 	  border-collapse: collapse;
+	  font-family: 'Roboto', sans-serif;
 	}
 	
 	caption {
@@ -516,7 +518,7 @@
 	}
 	
 	.sidebar i{
-		display: none;
+		display: inline-block;
 	}
 	.sidebar.toggled i{
 		display:block;
@@ -594,6 +596,7 @@
 }
 .navbar {
 	padding: 0.05rem 1rem;
+	height: 45px;
 	}
 
 input[type="text"]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -609,7 +612,8 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
   color: #fff;
 }
 .navbar-nav li a i{
-	color: #fff;
+	color: #424277;
+	width: 25px;
 }
 .user-circle{
 	    background-color: #ffd938;
@@ -873,21 +877,35 @@ cursor:pointer;}
     padding: 0.2rem;
     color: #fff;
     font-size: 0.5rem;
-	margin-top:4px;
+	margin-top:2px;
 }
 .btn-purpel i{
 	background-color: #424277;
 }
 .btn-dark i{
-	background-color: #32323c;
+	background-color: #868686;
 }
 
 .btn-blue i{
-	background-color: #007bff;
+	background-color: #6f6fab;
+}
+.btn-blue:hover,
+.btn-blue {
+	background-color: #424277;
+	border: 1px solid #424277;
+	border-radius: 0;
+	color: #fff;
+}
+.btn-dark:hover,
+.btn-dark {
+	background-color: #666;
+	border: 1px solid #666;
+	color: #fff
 }
 .dataTable thead{
 	background-color: #f5f5f5;
 	color: #32323c;
+	font-family: 'Roboto', sans-serif;
 }
 @media(min-width:769px){
 #sidebarToggle{
@@ -922,10 +940,9 @@ cursor:pointer;}
 }
 .action-global i {
     float: right;
-    background-color: #007bff;
     padding: 0.2rem;
-    color: #fff;
-    font-size: 0.5rem;
+    color: #424277;
+    font-size: 16px;
     margin-top: 4px;
 	    margin-left: 10px;
 }
@@ -1353,9 +1370,7 @@ transition: all 0.6s;
 	width: 150px;
 }
 /*Added by raja on 28 may 19 5:22pm*/
-.table thead th {
-	border-bottom: 1px solid #dee2e6;
-}
+
 .card .table thead {
 
 }
@@ -1363,6 +1378,7 @@ transition: all 0.6s;
 div.dataTables_wrapper div.dataTables_info, 
 .card .table tbody tr td {
 	color: #6c7293;
+	font-family: 'Roboto', sans-serif;
 }
 .dataTables_filter  {
 	display: block;
@@ -1522,7 +1538,6 @@ div.dataTables_wrapper div.dataTables_info,
 		border: 0;
 		border-radius: 0;
 		text-transform: uppercase;
-		font-weight: 900;
 		font-size: 14px !important;
 	}
 	.auto-focus-table table{
@@ -1550,11 +1565,6 @@ div.dataTables_wrapper div.dataTables_info,
 
 position: absolute;
 }
-.table thead th {
-	border-bottom: 1px solid #d2e4ff;
-	background: #e4eefd;
-	color: #2f5792;
-}
 
 .table-scroll-limit {
 	height: 280px;
@@ -1566,7 +1576,6 @@ position: absolute;
 	padding: 5px 8px;
 	font-size: 14px;
 	min-width: 120px;
-	border: 1px solid #d2e4ff;
 	vertical-align: middle;
 }
 .table tr th:first-of-type, .table tr td:first-of-type {
@@ -1577,4 +1586,32 @@ position: absolute;
 }
 .assgin-view{
 	display: none;
+}
+.table-bordered {
+	border-top: 0;
+}
+.table-bordered thead th {
+	border-bottom-width: 0px; 
+}
+.navbar-purpel .navbar-nav li a i {
+	color: #fff;
+}
+.modal-header {
+	padding: 5px 15px;
+}
+.modal-header .close {
+	padding: 20px;
+}
+.page-item.active .page-link {
+	    background-color: #424277;
+    border-color: #424277;
+}
+.page-link {
+	color: #424277;
+}
+.gardian {
+	margin-top: 15px;
+}
+.btntop {
+	margin-top: 10px;
 }

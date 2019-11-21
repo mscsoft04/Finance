@@ -91,7 +91,7 @@ $(document).ready(function() {
                   var url = '{{ route("subscriber.edit", [":id"]) }}';
                   url = url.replace(':id', row.id); 
                   
-                  var view=' <a href="'+url+'" class="table-action-edit action-global" data-toggle="tooltip" data-placement="bottom" title="Edit"><span></span> <i class="fas fa-plus"></i></a>';
+                  var view=' <a href="'+url+'" class="table-action-edit action-global" data-toggle="tooltip" data-placement="bottom" title="Edit"><span></span> <i class="far fa-edit"></i></a>';
                    view +=' <a href="javascript:void(0)" class="table-action-edit action-global show" data-id="'+row.id+'" data-toggle="tooltip" data-placement="bottom" title="View"><span></span> <i class="fas fa-eye"></i></a>';
                    return view;
                 }

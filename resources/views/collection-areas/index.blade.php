@@ -39,6 +39,7 @@
               <table class="table table-bordered subscriber"  width="100%" cellspacing="0">
                 <thead>
                   <tr>
+                    <th>Collection Area ID</th>
                     <th>Branch Name</th>
                     <th>Area Name</th>
                     <th>Village Name</th>
@@ -84,6 +85,7 @@ $(document).ready(function() {
         "ajax": "{{ route('collection.getdata') }}",
         
         "columns":[
+            {"data":"unique_id"},
             { "data": "branch_name" },
             { "data": "area_name" },
             { "data": "village_name" },
@@ -93,7 +95,7 @@ $(document).ready(function() {
                   var url = '{{ route("collection-area.edit", [":id"]) }}';
                   url = url.replace(':id', row.id); 
                   
-                  var view=' <a href="'+url+'" class="table-action-edit action-global" data-toggle="tooltip" data-placement="bottom" title="Edit"><span></span> <i class="fas fa-plus"></i></a>';
+                  var view=' <a href="'+url+'" class="table-action-edit action-global" data-toggle="tooltip" data-placement="bottom" title="Edit"><span></span> <i class="far fa-edit"></i></a>';
                    view +=' <a href="javascript:void(0)" class="table-action-edit action-global show" data-id="'+row.id+'" data-toggle="tooltip" data-placement="bottom" title="View"><span></span> <i class="fas fa-eye"></i></a>';
                    return view;
                 }

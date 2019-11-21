@@ -7,7 +7,7 @@
     </button>
 
     <ul class="ms-core-listMenu-root ms-core-listmenu-desk ml-4 mt-0 mb-0">
-    	<li> <a  href="{{ url('home') }}">Dash Board </a></li>
+    	<li> <a  href="{{ url('home') }}">Dashboard </a></li>
       <li> <a  href="{{ url('branch') }}">Branch</a>
 
     </ul>

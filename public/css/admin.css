@@ -95,11 +95,12 @@ body {
 }
 
 .navbar-nav .nav-item .nav-link .badge {
-  position: absolute;
-  margin-left: 0.75rem;
-  top: 0.3rem;
-  font-weight: 400;
-  font-size: 0.5rem;
+    position: absolute;
+    margin-left: 0;
+    top: 0;
+    font-weight: 400;
+    left: 16px;
+    font-size: 0.5rem;
 }
 
 @media (min-width: 768px) {
@@ -171,7 +172,9 @@ body {
   width: 0 !important;
   overflow: hidden;
 }
-
+.sidebar .nav-item.active .fa-chevron-right {
+  display: none;
+}
 @media (min-width: 768px) {
   .sidebar {
     width: 225px !important;
@@ -180,9 +183,15 @@ body {
     display: block;
     width: 100%;
     text-align: left;
-    padding: 0.5rem 1rem;
+    padding: 15px 0px;
+    padding-left: 15px;
+    border-top: 1px solid #f5f5f5;
     width: 225px;
 	
+  }
+  .sidebar .nav-item .nav-link .fa-chevron-right {
+    font-size: 12px;
+    padding-top: 6px;
   }
   .sidebar .nav-item .nav-link span {
     font-size: 14px;

@@ -17,7 +17,7 @@ class CreateBranchTable extends Migration
             $table->increments('id');
             $table->string('branch_name', 100);
             $table->string('branch_code', 100)->unique();
-            $table->string('unique_id');
+            $table->string('unique_id', 100)->nullable();
             $table->string('email', 100)->unique();
             $table->string('phone_no', 100);
             $table->string('mobile_no', 100);	

@@ -27,7 +27,7 @@ class CollectionAreaController extends Controller
     {
      //$CollectionArea = CollectionArea::all();
      $CollectionArea=DB::table('collection_areas as area')->join('branches', 'area.branch_id', '=', 'branches.id')
-            ->select(['branches.branch_name', 'area.area_name', 'area.village_name', 'area.pin_code', 'area.id']);
+            ->select(['area.unique_id','branches.branch_name', 'area.area_name', 'area.village_name', 'area.pin_code', 'area.id']);
      return Datatables::of($CollectionArea)->make(true);
     }
     /**

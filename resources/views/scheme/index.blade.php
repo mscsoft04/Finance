@@ -40,6 +40,7 @@
               <table class="table table-bordered subscriber"  width="100%" cellspacing="0">
                 <thead>
                   <tr>
+                    <th>Scheme ID</th>
                     <th>Chit Value</th>
                     <th>No Of Member</th>
                     <th>Registration Fees</th>
@@ -88,6 +89,7 @@ $(document).ready(function() {
         "ajax": "{{ route('scheme.getdata') }}",
         
         "columns":[
+            { "data":"unique_id"},
             { "data": "chit_value" },
             { "data": "no_of_member" },
             { "data": "res_fees" },

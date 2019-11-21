@@ -39,6 +39,7 @@
               <table class="table table-bordered branch"  width="100%" cellspacing="0">
                 <thead>
                   <tr>
+                    <th>Branch Id</th>
                     <th>Branch Name</th>
                     <th>Branch Code</th>
                     <th>Email</th>
@@ -87,6 +88,8 @@ $(document).ready(function() {
         "ajax": "{{ route('branch.getdata') }}",
         
         "columns":[
+          
+          { "data": "unique_id" },
             { "data": "branch_name" },
             { "data": "branch_code" },
             { "data": "email" },
