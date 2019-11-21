@@ -22,20 +22,43 @@
             	<div class="col-lg-12">
                 	<div class="widget-bg"> 
                 		<div class="card mb-3">
-          <div class="card-header">
-          	<div class="inner-header">
-            	<div class="fl_in_h"><h5>subscriber</h5></div>
-                <div class="fr_in_h">
-                <a class="btn btn-link btn-sm btn-global btn-blue btn-fl-r"  href="{{ route('subscriber.create') }}">
-      <i class="fas fa-plus"></i><span>Add</span>
-    </a>
-                <button class="btn btn-link btn-sm btn-global btn-dark btn-fl-r" id="filterToggle" href="#">
-      <i class="fas fa-filter"></i><span>Filter</span>
-    </button>
+                      <div class="card-header">
+                      	<div class="inner-header">
+                        	<div class="fl_in_h"><h5>subscriber</h5></div>
+                            <div class="fr_in_h">
+                            <a class="btn btn-link btn-sm btn-global btn-blue btn-fl-r"  href="{{ route('subscriber.create') }}">
+                  <i class="fas fa-plus"></i><span>Add</span>
+                </a>
+                           
+                                
+                   <span class="dropdown filterdropdown">
+                   <button class="btn btn-link btn-sm btn-global btn-dark tn-fl-r" id="dropdownMenuButton" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-filter"></i><span>Filter</span>
+
+                    </button>
+                    <div class="dropdown-menu">
+                      <form class="px-4 py-3">
+                        <div class="form-group">
+                          <label for="exampleDropdownFormEmail1">Email address</label>
+                          <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleDropdownFormPassword1">Test</label>
+                          <select  class="form-control ng-untouched ng-pristine ng-valid" tabindex="0"><option  value="">Select </option><!----><option  value="1">Selected</option><option  value="2">Rejected</option><option  value="3">Hold</option><option  value="4">Ready for interview</option><option  value="5">Yet to confirm</option><option  value="6">Interview in Progress</option><option  value="7">Offer Declined</option>
+                          </select>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                      </form>
+                     
+                    </div>
+                </span>
                 </div>
+
             </div>
           </div>
           <div class="card-body">
+            
             <div class="table-responsive">
               <table class="table table-bordered subscriber"  width="100%" cellspacing="0">
                 <thead>

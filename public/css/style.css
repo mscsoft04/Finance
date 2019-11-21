@@ -1643,12 +1643,15 @@ position: absolute;
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
-.card-header {
+.card.card-box .card-header {
 	border-bottom: 1px solid #f3f3f3 !important;
 	background-color: #f8f9fa;
 	padding: 3px 20px;
 
 }
+.filterdropdown .dropdown-menu {
+	width: 250px;
+ }
 .btncenter .btn {
 	width: 150px;
 }
