@@ -307,7 +307,7 @@
                               <div class="card-header">
                                  Other Details
                               </div>
-                              <div class="card-body">
+                              <div class="card-body pad-38">
                                  <div class="form-row">
                                     <!-- Form row start-->
                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -339,7 +339,7 @@
                                  <!-- Form row end-->
                                  <div class="form-row">
                                     <!--Form row start -->
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                        <div class="form-label-group">
                                           <label for="pfno"><span>Relationship</span></label>
                                           <select  id="relationship" name="relationship" class="form-control selectpicker" >
@@ -353,7 +353,7 @@
                                        </span>
                                        @enderror
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                        <div class="form-label-group">
                                           <label for="relationfor"><span>Relation for</span></label>
                                           <input type="text" id="relationfor" class="form-control" name="relation_for" value="{{ old('relation_for') }}" placeholder="Relation for" >
