@@ -32,12 +32,16 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-
+<!-- 
 					 <div class="form-group custom-control custom-checkbox">
                      <input class="form-check-input" type="checkbox" name="remember" id="customCheck" {{ old('remember') ? 'checked' : '' }}>
 
 						<label class="custom-control-label" for="customCheck">Remember</label>
-					 </div>
+					 </div> -->
+                     <div class="form-group custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" name="remember" id="customCheck" {{ old('remember') ? 'checked' : '' }}>
+                                <label class="custom-control-label" for="customCheck">Remember</label>
+                             </div>
 					<button type="submit" class="btn btn-login login-btn">Submit</button>
                 </form>
                 @if (Route::has('password.request'))
