@@ -107,6 +107,7 @@ class BranchController extends Controller
                                     'remarks'=>'required',
                                 ]); 
             $request['updated_by']=auth()->user()->id;
+            $request['doo']=date ("Y-m-d",strtotime($request['doo']));
 
             $branch = Branch::findOrFail($id);
 

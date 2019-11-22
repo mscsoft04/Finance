@@ -8,7 +8,8 @@
 	}
 	
 	.bg-purpel{
-		background-color: #424277;
+		/*background-color: #424277;*/
+		background-color: #5151a9;
 	}
 	.navbar-purpel .navbar-brand{
 		color:#fff;
@@ -891,8 +892,10 @@ cursor:pointer;}
 }
 .btn-blue:hover,
 .btn-blue {
-	background-color: #424277;
-	border: 1px solid #424277;
+	/*background-color: #424277;
+	border: 1px solid #424277;*/
+	background-color: #5151a9;
+    border: 1px solid #5151a9;
 	border-radius: 0;
 	color: #fff;
 }
@@ -976,16 +979,16 @@ min-height: 100vh;
 padding : 50px 0;
 }
 .banner-sec{background:url(../image/bg-02.jpg)  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 10px 10px 10px 10px; padding:0;}
-.container{background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}
+.login-block .container{background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}
 .carousel-inner{border-radius:0 10px 10px 0;}
 .carousel-caption{text-align:left; left:5%;}
 .forgot-sec, .login-sec{padding: 50px 30px; position:relative;}
 .login-sec .copy-text{position:absolute; width:80%; bottom:20px; font-size:13px; text-align:center;}
 .login-sec .copy-text i{color:#FEB58A;}
 .login-sec .copy-text a{color:#E36262;}
-.forgot-sec h2,.login-sec h2{margin-bottom:30px; font-weight:800; font-size:30px; color: #DE6262;}
-.forgot-sec h2:after,.login-sec h2:after{content:" "; width:100px; height:5px; background:#FEB58A; display:block; margin-top:20px; border-radius:3px; margin-left:auto;margin-right:auto}
-.btn-login{background: #DE6262; color:#fff; font-weight:600;}
+.forgot-sec h2,.login-sec h2{margin-bottom:30px; font-weight:800; font-size:30px; color: #5151a9;}
+.forgot-sec h2:after,.login-sec h2:after{content:" "; width:100px; height:5px; background:#5151a9; display:block; margin-top:20px; border-radius:3px; margin-left:auto;margin-right:auto}
+.btn-login{background: #5151a9; color:#fff; font-weight:600;}
 .banner-text{width:70%; position:absolute; bottom:40px; padding-left:20px;}
  .banner-text h2{color:#fff; font-weight:600;}
  .banner-text h2:after{content:" "; width:100px; height:5px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
@@ -1007,7 +1010,7 @@ padding : 50px 0;
 .fpass {
 	display: block;
 	margin-top: 20px;
-	color: #de6262;
+	color: #5151a9;
 }
 .forgottenpass .btn {
 	width: 45%;
@@ -1652,6 +1655,58 @@ position: absolute;
 .filterdropdown .dropdown-menu {
 	width: 250px;
  }
+ .pad-38 {
+ 	padding-bottom: 38px;
+ }
 .btncenter .btn {
 	width: 150px;
+}
+.card-templates {
+    background-color: #3e89c5;
+}
+.after-loop-item .card-body {
+	padding: 15px;
+}
+ a.after-loop-item .card-body i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 4rem;
+    left: 1rem;
+    color: rgba(255,255,255,.5);
+    transition: .15s all ease;
+}
+.after-loop-item .card-body h2 {
+	font-size: 30px;
+}
+.after-loop-item .card-body h2,
+.align-items-end h4 {
+	color: #fff;
+}
+.card-snippets {
+    background-color: #ffc107;
+}
+.card-guides {
+    background-color: #28a745;
+}
+.card-expence  {
+	background-color: #9a9a9a;
+}
+.card-pending {
+	background-color: #d04040;
+}
+.card-auction {
+	background-color: #56a5a5;
+}
+.bottomgap {
+	margin-bottom: 30px;	
+}
+.bottomgap a:hover {
+	text-decoration: none;
+}
+table.dataTable thead > tr > th.sorting_asc, table.dataTable thead > tr > th.sorting_desc, table.dataTable thead > tr > th.sorting, table.dataTable thead > tr > td.sorting_asc, table.dataTable thead > tr > td.sorting_desc, table.dataTable thead > tr > td.sorting {
+	vertical-align: middle;
+}
+.btngap  {
+	margin-top: 20px;
 }

@@ -321,7 +321,7 @@
                               <div class="card-header">
                                  Other Details
                               </div>
-                              <div class="card-body">
+                              <div class="card-body pad-38">
                                  <div class="form-row">
                                     <!-- Form row start-->
                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -353,12 +353,16 @@
                                  <!-- Form row end-->
                                  <div class="form-row">
                                     <!--Form row start -->
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                        <div class="form-label-group">
                                           <label for="pfno"><span>Relationship</span></label>
                                           <select  id="relationship" name="relationship" class="form-control selectpicker" >
                                              <option value="">Relationship</option>
-                                             <option  value="FRIEND" {{ old("relationship") == "FRIEND" ? "selected":"" }}>FRIEND</option>
+                                          
+                                             @foreach ($relationships as $relationship)
+                                       <option  value="{{$relationship->id}}" {{ old("relationship") == $relationship->id ? "selected":"" }}>{{$relationship->name }}</option>
+                                       @endforeach
+                                            
                                           </select>
                                        </div>
                                        @error('relationship')
@@ -367,7 +371,7 @@
                                        </span>
                                        @enderror
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                        <div class="form-label-group">
                                           <label for="relationfor"><span>Relation for</span></label>
                                           <input type="text" id="relationfor" class="form-control" name="relation_for" value="{{ old('relation_for') }}" placeholder="Relation for" >
@@ -681,7 +685,10 @@
                                           <label for="occupation"><span>Source of funds</span></label>
                                           <select  id="sourceoffund" name="sourceof_fund" class="form-control selectpicker" >
                                              <option value="">Source of funds</option>
-                                             <option  value="GOVERMENT SALARY" {{ old("sourceof_fund") == "GOVERMENT SALARY" ? "selected":"" }}>GOVERMENT SALARY</option>
+                                             @foreach ($sources as $source)
+                                             <option  value="{{$source->id}}" {{ old("sourceof_fund") == $source->id ? "selected":"" }}>{{$source->name }}</option>
+                                             @endforeach
+                                             
                                           </select>
                                        </div>
                                        @error('sourceof_fund')

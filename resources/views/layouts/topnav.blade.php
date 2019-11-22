@@ -7,8 +7,8 @@
     </button>
 
     <ul class="ms-core-listMenu-root ms-core-listmenu-desk ml-4 mt-0 mb-0">
-    	<li> <a  href="{{ url('home') }}">Dashboard </a></li>
-      <li> <a  href="{{ url('branch') }}">Branch</a>
+    	<li> <a  href="{{ url('home') }}"> <i class="fas fa-tachometer-alt"></i> Dashboard </a></li>
+      <li> <a  href="{{ url('branch') }}"> <i class="fas fa-code-branch"></i> Branch</a>
 
     </ul>
 
@@ -19,8 +19,8 @@
           <i class="fas fa-caret-square-down fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-          <a class="dropdown-item" href="{{ url('home') }}">Dash Board </a>
-          <a class="dropdown-item" href="{{ url('branch') }}">Branch</a>
+          <a class="dropdown-item" href="{{ url('home') }}"> <i class="fas fa-tachometer-alt"></i> Dashboard </a>
+          <a class="dropdown-item" href="{{ url('branch') }}"> <i class="fas fa-code-branch"></i> Branch</a>
 
         </div>
       </li>

@@ -11,6 +11,8 @@ use App\State;
 use App\City;
 use App\Taluk;
 use App\Village;
+use App\Relationship;
+use App\SourceOfFunds;
 
 use Toastr;
 
@@ -49,8 +51,10 @@ class SubscriberController extends Controller
         $cities=City::all();
         $taluks=Taluk::all();
         $villages=Village::all();
+        $relationships=Relationship::all();
+        $sources=SourceOfFunds::all();
         //echo $id;
-        return view('subscriber.add',compact('branches','areas','states','cities','taluks','villages'));
+        return view('subscriber.add',compact('branches','areas','states','cities','taluks','villages','relationships','sources'));
     }
 
     /**
@@ -102,6 +106,15 @@ class SubscriberController extends Controller
                                     'relation_for'=>'required',
                                     'additional_notes'=>'required'
                                 ]);
+                                if($request['dob']){
+                                    $request['dob']=date ("Y-m-d",strtotime($request['dob']));
+                                }
+                                if($request['doj']){
+                                    $request['doj']=date ("Y-m-d",strtotime($request['doj']));
+                                }
+                                if($request['retirement_date']){
+                                    $request['retirement_date']=date ("Y-m-d",strtotime($request['retirement_date']));
+                                }
                                 $request['created_by']=auth()->user()->id;
                                 Subscriber::create($request->all());
                                 //print_r($request);
@@ -133,9 +146,15 @@ class SubscriberController extends Controller
     {
         //
         $branches = Branch::all();
+        $branches = Branch::all();
+        $areas=CollectionArea::all();
+        $states=State::all();
+        $cities=City::all();
+        $taluks=Taluk::all();
+        $villages=Village::all();
         //echo $id;
 
-        return view('subscriber.edit', compact('subscriber','branches'));
+        return view('subscriber.edit', compact('subscriber','branches','areas','states','cities','taluks','villages'));
     }
 
     /**
@@ -189,7 +208,15 @@ class SubscriberController extends Controller
                                 ]);
                                 $request['updated_by']=auth()->user()->id;
 
-                               // $subscriber = Subscriber::findOrFail($subscriber);
+                                if($request['dob']){
+                                    $request['dob']=date ("Y-m-d",strtotime($request['dob']));
+                                }
+                                if($request['doj']){
+                                    $request['doj']=date ("Y-m-d",strtotime($request['doj']));
+                                }
+                                if($request['retirement_date']){
+                                    $request['retirement_date']=date ("Y-m-d",strtotime($request['retirement_date']));
+                                }
                     
                                 $subscriber->update($request->all());
                                 Toastr::success('Updated data successfully', '', ["positionClass" => "toast-top-right"]);
