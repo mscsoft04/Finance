@@ -6,6 +6,12 @@ use App\Subscriber;
 use Illuminate\Http\Request;
 use Datatables;
 use App\Branch;
+use App\CollectionArea;
+use App\State;
+use App\City;
+use App\Taluk;
+use App\Village;
+
 use Toastr;
 
 
@@ -38,8 +44,13 @@ class SubscriberController extends Controller
     {
         //
         $branches = Branch::all();
+        $areas=CollectionArea::all();
+        $states=State::all();
+        $cities=City::all();
+        $taluks=Taluk::all();
+        $villages=Village::all();
         //echo $id;
-        return view('subscriber.add',compact('branches'));
+        return view('subscriber.add',compact('branches','areas','states','cities','taluks','villages'));
     }
 
     /**

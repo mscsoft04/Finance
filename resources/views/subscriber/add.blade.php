@@ -36,7 +36,7 @@
                                     <select  id="branchname" name="branch_id"  class="form-control selectpicker" >
                                        <option value="">Select Branch</option>
                                        @foreach ($branches as $branch)
-                                       <option  value="{{$branch->id}}" {{ old("branch_id") == $branch->id ? "selected":"" }}>{{$branch->branch_name}}</option>
+                                       <option  value="{{$branch->id}}" {{ old("branch_id") == $branch->id ? "selected":"" }}>{{$branch->branch_name .'('.$branch->unique_id.')'}}</option>
                                        @endforeach
                                     </select>
                                  </div>
@@ -54,6 +54,10 @@
                                              <option value="">Salutation</option>
                                              <option  value="Mr" {{ old("salutation_name") == "Mr" ? "selected":"" }}>Mr</option>
                                              <option  value="Mrs" {{ old("salutation_name") == "Mrs" ? "selected":"" }}>Mrs</option>
+                                             <option  value="Dr" {{ old("salutation_name") == "Dr" ? "selected":"" }}>Dr</option>
+                                             <option  value="Prof" {{ old("salutation_name") == "Prof" ? "selected":"" }}>Prof</option>
+                                             <option  value="Rev" {{ old("salutation_name") == "Rev" ? "selected":"" }}>Rev</option>
+                                             <option  value="Other" {{ old("salutation_name") == "Other" ? "selected":"" }}>Other</option>
                                           </select>
                                        </div>
                                        @error('salutation_name')
@@ -90,9 +94,9 @@
                                     <!-- Form row start-->
                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                        <div class="form-label-group gardian">
-                                          <input type="radio" id="rfatherorspouse" name="relation_type" value="father" {{ old("relation_type") == 'father' ? "checked":"" }} > &nbsp;&nbsp;Father Name &nbsp;&nbsp;
-                                          <input type="radio" id="rfatherorspouse" name="relation_type" value="spouse" {{ old("relation_type") == 'spouse' ? "checked":"" }}>&nbsp;&nbsp;Spouse's Name &nbsp;&nbsp;
-                                          <input type="radio" id="rfatherorspouse" name="relation_type" value="spouse" {{ old("relation_type") == 'spouse' ? "checked":"" }}>&nbsp;&nbsp;Others
+                                          <input type="radio"  name="relation_type" value="father" {{ old("relation_type") == 'father' ? "checked":"" }} > &nbsp;&nbsp;Father Name &nbsp;&nbsp;
+                                          <input type="radio"  name="relation_type" value="spouse" {{ old("relation_type") == 'spouse' ? "checked":"" }}>&nbsp;&nbsp;Spouse's Name &nbsp;&nbsp;
+                                          <input type="radio"  name="relation_type" value="spouse" {{ old("relation_type") == 'spouse' ? "checked":"" }}>&nbsp;&nbsp;Others
                                        </div>
                                        @error('relation_type')
                                        <span class="invalid-feedback" role="alert">
@@ -106,9 +110,13 @@
                                     <!-- Form row start-->
                                     <div class="col-3 col-sm-3 col-md-4 col-lg-2 col-xl-2">
                                        <div class="form-label-group">
-                                          <label>Salutation</label>
-                                          <select class="form-control">
-                                             <option value="1" selected="selected">S/O</option>
+                                          <label>Select</label>
+                                          <select class="form-control" name="name_of_father">
+                                             <option value="S/o" {{ old("name_of_father") == "S/o" ? "selected":"" }}>S/o</option>
+                                             <option value="W/o" {{ old("name_of_father") == "W/o" ? "selected":"" }}>W/o</option>
+                                             <option value="D/o" {{ old("name_of_father") == "D/o" ? "selected":"" }}>D/o</option>
+                                             <option value="R/o" {{ old("name_of_father") == "R/o" ? "selected":"" }}>R/o</option>
+                                             
                                           </select>
                                        </div>
                                     </div>
@@ -130,7 +138,7 @@
                                     <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
                                        <div class="form-label-group">
                                           <label for="dateofobirth"><span>Dob</span></label>
-                                          <input type="text" id="dateofobirth" name="dob" value="{{ old('dob') }}" class="form-control">
+                                          <input type="text" id="dateofobirth" name="dob" value="{{ old('dob') }}" class="form-control dob date">
                                        </div>
                                        @error('dob')
                                        <span class="invalid-feedback" role="alert">
@@ -170,7 +178,10 @@
                                           <label for="maritalstatus"><span>Marital Status</span></label>
                                           <select  id="maritalstatus" name="marital_status"  class="form-control selectpicker" >
                                              <option value="">Marital Status</option>
-                                             <option  value="Single" {{ old("marital_status") == "Single" ? "selected":"" }}>CUDDALORE</option>
+                                             <option  value="Single" {{ old("marital_status") == "Single" ? "selected":"" }}>Single</option>
+                                             <option  value="Married" {{ old("marital_status") == "Married" ? "selected":"" }}>Married</option>
+                                             <option  value="Widowed" {{ old("marital_status") == "Widowed" ? "selected":"" }}>Widowed</option>
+                                             <option  value="Divorced" {{ old("marital_status") == "Divorced" ? "selected":"" }}>Divorced</option>
                                           </select>
                                        </div>
                                        @error('marital_status')
@@ -182,7 +193,7 @@
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                        <div class="form-label-group">
                                           <label for="dateofjoining"><span>DOJ</span></label>
-                                          <input type="text" id="dateofjoining" class="form-control" name="doj" value="{{ old('doj') }}"  >
+                                          <input type="text" id="dateofjoining" class="form-control date" name="doj" value="{{ old('doj') }}"  >
                                        </div>
                                        @error('doj')
                                        <span class="invalid-feedback" role="alert">
@@ -199,7 +210,10 @@
                                           <label for="referedby"><span>Collection Area</span></label>
                                           <select  id="collectionarea" name="collection_area" class="form-control selectpicker" >
                                              <option value="">Collection Area</option>
-                                             <option  value="ACF01" {{ old("collection_area") == "ACF01" ? "selected":"" }}>ACF01</option>
+                                             @foreach ($areas as $area)
+                                             <option  value="{{$area->id}}" {{ old("collection_area") == $area->id ? "selected":"" }}>{{$area->area_name .'('.$area->unique_id.')'}}</option>
+                                             @endforeach
+                                             
                                           </select>
                                        </div>
                                        @error('collection_area')
@@ -422,7 +436,10 @@
                                           <label for="gstin"><span>State</span></label>
                                           <select  id="pstatename" name="p_state" class="form-control selectpicker" >
                                              <option value="">State Name</option>
-                                             <option  value="Tamilnadu" {{ old("p_state") == "Tamilnadu" ? "selected":"" }}>Tamilnadu</option>
+                                             @foreach ($states as $state)
+                                             <option  value="{{$state->id}}" {{ old("p_state") == $state->id ? "selected":"" }}>{{ $state->name }}</option>
+                                             @endforeach
+                                    
                                           </select>
                                        </div>
                                        @error('p_state')
@@ -436,7 +453,10 @@
                                           <label for="gstin"><span>District</span></label>
                                           <select  id="pdistrictname" name="p_district" class="form-control selectpicker">
                                              <option value="">District</option>
-                                             <option  value="Cuddalore" {{ old("p_district") == "Cuddalore" ? "selected":"" }}>Cuddalore</option>
+                                             @foreach ($cities as $city)
+                                             <option  value="{{$city->id}}" {{ old("p_state") == $city->id ? "selected":"" }}>{{ $city->name }}</option>
+                                             @endforeach
+                                            
                                           </select>
                                        </div>
                                        @error('p_district')
@@ -450,7 +470,10 @@
                                           <label for="gstin"><span>Taluk</span></label>
                                           <select  id="ptalukname" name="p_taluk" class="form-control selectpicker" >
                                              <option value="">Taluk Name</option>
-                                             <option  value="Bhuvanagiri" {{ old("p_taluk") == "Bhuvanagiri" ? "selected":"" }}>Bhuvanagiri</option>
+                                             @foreach ($taluks as $taluk)
+                                             <option  value="{{$taluk->id}}" {{ old("p_taluk") == $taluk->id ? "selected":"" }}>{{ $taluk->name }}</option>
+                                             @endforeach
+                                             
                                           </select>
                                        </div>
                                        @error('p_taluk')
@@ -461,13 +484,17 @@
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                        <div class="form-label-group">
-                                          <label for="gstin"><span>Village</span></label>
-                                          <select  id="pdistrictname" name="p_district" class="form-control selectpicker">
-                                             <option value="">Village</option>
-                                             <option  value="Cuddalore" {{ old("p_district") == "Cuddalore" ? "selected":"" }}>Cuddalore</option>
+                                          <label for="pvillagename"><span>Village</span></label>
+                                          <select  id="pvillagename" name="p_village" class="form-control selectpicker">
+                                             <option value="">Village</option> 
+                                             
+                                             @foreach ($villages as $village)
+                                             <option  value="{{$village->id}}" {{ old("p_village") == $village->id ? "selected":"" }}>{{ $village->name }}</option>
+                                             @endforeach
+
                                           </select>
                                        </div>
-                                       @error('p_district')
+                                       @error('p_village')
                                        <span class="invalid-feedback" role="alert">
                                        <strong>{{ $message }}</strong>
                                        </span>
@@ -475,8 +502,8 @@
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                        <div class="form-label-group">
-                                          <label for="pdoorno"><span>Address</span></label>
-                                          <textarea id="pdoorno" class="form-control" name="p_address"  >{{ old('p_address') }}</textarea>
+                                          <label for="p_address"><span>Address</span></label>
+                                          <textarea id="p_address" class="form-control" name="p_address"  >{{ old('p_address') }}</textarea>
                                        </div>
                                        @error('p_address')
                                        <span class="invalid-feedback" role="alert">
@@ -536,7 +563,7 @@
                            <div class="form-row">
                               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                  <div class="form-label-group">
-                                    <input type="checkbox" id="sameaddress" name="sameaddress" onclick="FillBilling(this.form)"><em> if Communicate Address (Same as above).</em>
+                                    <input type="checkbox" id="sameaddress" name="sameaddress" ><em> if Communicate Address (Same as above).</em>
                                  </div>
                               </div>
                            </div>
@@ -552,7 +579,9 @@
                                           <label for="rdoorno"><span>State</span></label>
                                           <select  id="rstatename" name="c_state" class="form-control selectpicker" >
                                              <option value="">State Name</option>
-                                             <option  value="Tamilnadu" {{ old("c_state") == "Tamilnadu" ? "selected":"" }}>Tamilnadu</option>
+                                             @foreach ($states as $state)
+                                             <option  value="{{$state->id}}" {{ old("c_state") == $state->id ? "selected":"" }}>{{ $state->name }}</option>
+                                             @endforeach
                                           </select>
                                        </div>
                                        @error('c_state')
@@ -566,7 +595,10 @@
                                           <label for="rdoorno"><span>District</span></label>
                                           <select  id="rdistrictname" name="c_district" class="form-control selectpicker">
                                              <option value="">District</option>
-                                             <option  value="Cuddalore" {{ old("c_district") == "Cuddalore" ? "selected":"" }}>Cuddalore</option>
+                                             @foreach ($cities as $city)
+                                             <option  value="{{$city->id}}" {{ old("c_district") == $city->id ? "selected":"" }}>{{ $city->name }}</option>
+                                             @endforeach
+                                             
                                           </select>
                                        </div>
                                        @error('c_district')
@@ -578,9 +610,12 @@
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                        <div class="form-label-group">
                                           <label for="rdoorno"><span>Taluk</span></label>
-                                          <select  id="rtalukname" name="c_taluk" class="form-control selectpicker" >
+                                          <select  id="rtalukname" name="c_taluk" class="form-control" >
                                              <option value="">Taluk Name</option>
-                                             <option  value="Bhuvanagiri" {{ old("c_taluk") == "Bhuvanagiri" ? "selected":"" }}>Bhuvanagiri</option>
+                                             @foreach ($taluks as $taluk)
+                                             <option  value="{{$taluk->id}}" {{ old("c_taluk") == $taluk->id ? "selected":"" }}>{{ $taluk->name }}</option>
+                                             @endforeach
+                                             
                                           </select>
                                        </div>
                                        @error('c_taluk')
@@ -592,9 +627,12 @@
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                        <div class="form-label-group">
                                           <label for="gstin"><span>Village</span></label>
-                                          <select  id="pdistrictname" name="p_district" class="form-control selectpicker">
+                                          <select  id="cvillage" name="c_village" class="form-control selectpicker">
                                              <option value="">Village</option>
-                                             <option  value="Cuddalore" {{ old("p_district") == "Cuddalore" ? "selected":"" }}>Cuddalore</option>
+                                             @foreach ($villages as $village)
+                                             <option  value="{{$village->id}}" {{ old("c_village") == $village->id ? "selected":"" }}>{{ $village->name }}</option>
+                                             @endforeach
+               
                                           </select>
                                        </div>
                                        @error('p_district')
@@ -666,7 +704,7 @@
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                        <div class="form-label-group">
                                           <label for="retirementdate"><span>Retirement Date</span></label>
-                                          <input type="text" id="retirementdate" name="retirement_date" value="{{ old('retirement_date') }}" class="form-control" placeholder="Retirement Date" >
+                                          <input type="text" id="retirementdate" name="retirement_date" value="{{ old('retirement_date') }}" class="form-control date" placeholder="Retirement Date" >
                                        </div>
                                        @error('retirement_date')
                                        <span class="invalid-feedback" role="alert">
@@ -718,18 +756,45 @@
 <script type="text/javascript">
    $(document).ready(function() {
    
-     $('#dateofobirth').datepicker({
+     $('.date').datepicker({
                todayHighlight: true, 
                format: 'yyyy-m-d',
                autoclose: true, 
            
      });
-     $('#dateofjoining').datepicker({
-            autoclose: true, 
-           todayHighlight: true,
-           format: 'yyyy-m-d' 
-     });
+     
+     $('#sameaddress').click(function() {
       
+         if ($(this).is(':checked')) {
+           var state=$("#pstatename").val();
+           var city=$("#pdistrictname").val();
+           var taluk=$("#ptalukname").val();
+           var village=$("#pvillagename").val();
+           var address=$("#p_address").val();
+           var Pincode=$("#ppincode").val();
+
+           $("#rstatename").val(state);
+           $("#rdistrictname").val(city);
+           $("#rtalukname").val(taluk);
+           $("#cvillage").val(village);
+           $("#rdoorno").val(address);
+           $("#rpincode").val(Pincode);
+          
+           
+         }
+     });
+     $(".dob").datepicker().on('changeDate', function(e) {
+        var age= calcAge($(this).val());
+        $("#age").val(age);
+       
+    });
+    
+
+   function calcAge(dateString) {
+   var birthday = +new Date(dateString);
+   return~~ ((Date.now() - birthday) / (31557600000));
+    }
    });
+   
 </script>
 @endsection
