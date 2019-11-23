@@ -152,9 +152,11 @@ class SubscriberController extends Controller
         $cities=City::all();
         $taluks=Taluk::all();
         $villages=Village::all();
+        $relationships=Relationship::all();
+        $sources=SourceOfFunds::all();
         //echo $id;
 
-        return view('subscriber.edit', compact('subscriber','branches','areas','states','cities','taluks','villages'));
+        return view('subscriber.edit', compact('subscriber','branches','areas','states','cities','taluks','villages','relationships','sources'));
     }
 
     /**

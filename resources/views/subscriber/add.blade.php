@@ -359,7 +359,7 @@
                                           <select  id="relationship" name="relationship" class="form-control selectpicker" >
                                              <option value="">Relationship</option>
                                           
-                                             @foreach ($relationships as $relationship)
+                                       @foreach ($relationships as $relationship)
                                        <option  value="{{$relationship->id}}" {{ old("relationship") == $relationship->id ? "selected":"" }}>{{$relationship->name }}</option>
                                        @endforeach
                                             
@@ -420,8 +420,9 @@
                                        </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 uploadbtn">
-                                       <button class="btn btn-global btn-blue" type="button">Camera</button>
-                                       <button class="btn btn-global btn-yellow" type="button">Upload</button>
+                                          
+                                      <button class="btn btn-global btn-yellow" type="button" onClick="pre_take_buttons()" >Upload</button>
+                                       <button class="btn btn-global btn-yellow" type="button" onClick="save_photo()" >Upload</button>
                                     </div>
                                  </div>
                                  <!-- Form row end-->
@@ -438,7 +439,7 @@
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                        <div class="form-label-group">
                                           <label for="gstin"><span>State</span></label>
-                                          <select  id="pstatename" name="p_state" class="form-control selectpicker" >
+                                          <select  id="pstatename" name="p_state" class="form-control state" >
                                              <option value="">State Name</option>
                                              @foreach ($states as $state)
                                              <option  value="{{$state->id}}" {{ old("p_state") == $state->id ? "selected":"" }}>{{ $state->name }}</option>
@@ -455,7 +456,7 @@
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                        <div class="form-label-group">
                                           <label for="gstin"><span>District</span></label>
-                                          <select  id="pdistrictname" name="p_district" class="form-control selectpicker">
+                                          <select  id="pdistrictname" name="p_district" class="form-control city">
                                              <option value="">District</option>
                                              @foreach ($cities as $city)
                                              <option  value="{{$city->id}}" {{ old("p_state") == $city->id ? "selected":"" }}>{{ $city->name }}</option>
@@ -472,7 +473,7 @@
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                        <div class="form-label-group">
                                           <label for="gstin"><span>Taluk</span></label>
-                                          <select  id="ptalukname" name="p_taluk" class="form-control selectpicker" >
+                                          <select  id="ptalukname" name="p_taluk" class="form-control taluk" >
                                              <option value="">Taluk Name</option>
                                              @foreach ($taluks as $taluk)
                                              <option  value="{{$taluk->id}}" {{ old("p_taluk") == $taluk->id ? "selected":"" }}>{{ $taluk->name }}</option>
@@ -489,7 +490,7 @@
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                        <div class="form-label-group">
                                           <label for="pvillagename"><span>Village</span></label>
-                                          <select  id="pvillagename" name="p_village" class="form-control selectpicker">
+                                          <select  id="pvillagename" name="p_village" class="form-control village">
                                              <option value="">Village</option> 
                                              
                                              @foreach ($villages as $village)
@@ -581,7 +582,7 @@
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                        <div class="form-label-group">
                                           <label for="rdoorno"><span>State</span></label>
-                                          <select  id="rstatename" name="c_state" class="form-control selectpicker" >
+                                          <select  id="rstatename" name="c_state" class="form-control c-state" >
                                              <option value="">State Name</option>
                                              @foreach ($states as $state)
                                              <option  value="{{$state->id}}" {{ old("c_state") == $state->id ? "selected":"" }}>{{ $state->name }}</option>
@@ -597,7 +598,7 @@
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                        <div class="form-label-group">
                                           <label for="rdoorno"><span>District</span></label>
-                                          <select  id="rdistrictname" name="c_district" class="form-control selectpicker">
+                                          <select  id="rdistrictname" name="c_district" class="form-control c-ctiy">
                                              <option value="">District</option>
                                              @foreach ($cities as $city)
                                              <option  value="{{$city->id}}" {{ old("c_district") == $city->id ? "selected":"" }}>{{ $city->name }}</option>
@@ -614,7 +615,7 @@
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                        <div class="form-label-group">
                                           <label for="rdoorno"><span>Taluk</span></label>
-                                          <select  id="rtalukname" name="c_taluk" class="form-control" >
+                                          <select  id="rtalukname" name="c_taluk" class="form-control c-taluk" >
                                              <option value="">Taluk Name</option>
                                              @foreach ($taluks as $taluk)
                                              <option  value="{{$taluk->id}}" {{ old("c_taluk") == $taluk->id ? "selected":"" }}>{{ $taluk->name }}</option>
@@ -631,7 +632,7 @@
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                        <div class="form-label-group">
                                           <label for="gstin"><span>Village</span></label>
-                                          <select  id="cvillage" name="c_village" class="form-control selectpicker">
+                                          <select  id="cvillage" name="c_village" class="form-control c-village">
                                              <option value="">Village</option>
                                              @foreach ($villages as $village)
                                              <option  value="{{$village->id}}" {{ old("c_village") == $village->id ? "selected":"" }}>{{ $village->name }}</option>
@@ -758,11 +759,12 @@
 </div>
 @endsection
 @section('script')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="{{ asset('public/vendor/webcam/webcam.js') }}"></script>
+
 <script type="text/javascript">
    $(document).ready(function() {
-   
+      
+
      $('.date').datepicker({
                todayHighlight: true, 
                format: 'yyyy-m-d',
@@ -801,6 +803,143 @@
    var birthday = +new Date(dateString);
    return~~ ((Date.now() - birthday) / (31557600000));
     }
+   $(document).on("change",".state",function(){
+     // alert($(this).val());
+      let city=@json($cities); 
+      const result = city.filter(res => res.state_id==$(this).val());
+      console.log(result);
+      $('#pdistrictname').html("");
+      $("#ptalukname").html("");
+      $("#pvillagename").html("");
+      $('#pdistrictname').append($('<option>', { value : "" }).text("Select District"));
+      $('#ptalukname').append($('<option>', { value : "" }).text("Select Taluk Name"));
+      $('#pvillagename').append($('<option>', { value : "" }).text("Select Village"));
+      $.each(result, function(key, value) {
+          $('#pdistrictname').append($('<option>', { value : value.id }).text(value.name));
+      });
+
+   });
+
+   $(document).on("change",".city",function(){
+     // alert($(this).val());
+      let taluk=@json($taluks); 
+      const result = taluk.filter(res => res.city_id==$(this).val());
+      console.log(result);
+      $("#ptalukname").html("");
+      $("#pvillagename").html("");
+      
+      $('#ptalukname').append($('<option>', { value : "" }).text("Select Taluk Name"));
+      $('#pvillagename').append($('<option>', { value : "" }).text("Select Village"));
+      $.each(result, function(key, value) {
+          $('#ptalukname').append($('<option>', { value : value.id }).text(value.name));
+      });
+
+   });
+   $(document).on("change",".taluk",function(){
+     // alert($(this).val());
+      let village=@json($villages); 
+      const result = village.filter(res => res.taluk_id==$(this).val());
+      console.log(result);
+      
+      $("#pvillagename").html("");
+      $('#pvillagename').append($('<option>', { value : "" }).text("Select Village"));
+      $.each(result, function(key, value) {
+          $('#pvillagename').append($('<option>', { value : value.id }).text(value.name));
+      });
+
+   });
+
+
+//comunication addresss
+
+   $(document).on("change",".c-state",function(){
+     // alert($(this).val());
+      let city=@json($cities); 
+      const result = city.filter(res => res.state_id==$(this).val());
+      console.log(result); 
+           
+
+      $('#rdistrictname').html("");
+      $("#rtalukname").html("");
+      $("#cvillage").html("");
+      $('#rdistrictname').append($('<option>', { value : "" }).text("Select District"));
+      $('#rtalukname').append($('<option>', { value : "" }).text("Select Taluk Name"));
+      $('#cvillage').append($('<option>', { value : "" }).text("Select Village"));
+      $.each(result, function(key, value) {
+          $('#rdistrictname').append($('<option>', { value : value.id }).text(value.name));
+      });
+
+   });
+
+   $(document).on("change",".c-ctiy",function(){
+     // alert($(this).val());
+      let taluk=@json($taluks); 
+      const result = taluk.filter(res => res.city_id==$(this).val());
+      console.log(result);
+      $("#rtalukname").html("");
+      $("#cvillage").html("");
+      
+      $('#rtalukname').append($('<option>', { value : "" }).text("Select Taluk Name"));
+      $('#cvillage').append($('<option>', { value : "" }).text("Select Village"));
+      $.each(result, function(key, value) {
+          $('#rtalukname').append($('<option>', { value : value.id }).text(value.name));
+      });
+
+   });
+   $(document).on("change",".c-taluk",function(){
+     // alert($(this).val());
+      let village=@json($villages); 
+      const result = village.filter(res => res.taluk_id==$(this).val());
+      console.log(result);
+      
+      $("#cvillage").html("");
+      $('#cvillage').append($('<option>', { value : "" }).text("Select Village"));
+      $.each(result, function(key, value) {
+          $('#cvillage').append($('<option>', { value : value.id }).text(value.name));
+      });
+
+   });
+
+
+    Webcam.set({
+			width: 320,
+			height: 240,
+			image_format: 'jpeg',
+			jpeg_quality: 90
+		});
+		Webcam.attach( ".profile-image" );
+   function preview_snapshot() {
+			// freeze camera so user can preview pic
+			Webcam.freeze();
+			
+			// swap button sets
+			document.getElementById('pre_take_buttons').style.display = 'none';
+			document.getElementById('uploadbtn').style.display = '';
+		}
+		
+		function cancel_preview() {
+			// cancel preview freeze and return to live camera feed
+			Webcam.unfreeze();
+			
+			// swap buttons back
+			document.getElementById('pre_take_buttons').style.display = '';
+			document.getElementById('uploadbtn').style.display = 'none';
+		}
+		
+		function save_photo() {
+			// actually snap photo (from preview freeze) and display it
+			Webcam.snap( function(data_uri) {
+				// display results in page
+				document.getElementById('results').innerHTML = 
+					'<h2>Here is your image:</h2>' + 
+					'<img src="'+data_uri+'"/>';
+				
+				// swap buttons back
+				document.getElementById('pre_take_buttons').style.display = '';
+				document.getElementById('uploadbtn').style.display = 'none';
+			} );
+		}
+
    });
    
 </script>
