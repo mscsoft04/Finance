@@ -418,12 +418,16 @@
                                        <div class="profile-image">
                                           <img src="{{ asset('public/image/girl.svg') }}" class="profile"  alt="profile photo">
                                        </div>
+                                       <div class="profile-image-save"  style="display: none">
+                                          <img src="{{ asset('public/image/girl.svg') }}" class="profile"  alt="profile photo">
+                                       </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4 uploadbtn">
                                           
-                                      <button class="btn btn-warning preview" type="button" onClick="pre_take_buttons()" >Preview</button>
-                                       <button class="btn btn-primary save" type="button" onClick="save_photo()" style="display:none">Save</button>
-                                       <button class="btn btn-default cancel" type="button" onClick="cancel_preview()" style="display:none">Cancel</button>
+                                      <button class="btn btn-warning preview" type="button" onClick="preview_snapshot()" >Preview</button>
+                                       <button class="btn btn-primary save" type="button" onClick="save_photo()" style="display: none">Save</button>
+                                       <button class="btn btn-default cancel" type="button" onClick="cancel_preview()" style="display: none">Cancel</button>
+                                       <button class="btn btn-danger delete" type="button" onClick="delete_preview()" style="display: none">Delete</button>
                                     </div>
                                  </div>
                                  <!-- Form row end-->
@@ -902,46 +906,63 @@
    });
 
 
-    Webcam.set({
-			width: 320,
-			height: 240,
-			image_format: 'jpeg',
-			jpeg_quality: 90
-		});
-		Webcam.attach( ".profile-image" );
+   
+   });
+
+ Webcam.set({
+         width: 320,
+         height: 240,
+         image_format: 'jpeg',
+         jpeg_quality: 90
+      });
+      Webcam.attach( ".profile-image" );
    function preview_snapshot() {
-			// freeze camera so user can preview pic
-			Webcam.freeze();
-			
-			$(".preview").hide();
+         // freeze camera so user can preview pic
+         Webcam.freeze();
+         
+         $(".preview").hide();
          $(".save").show();
          $(".cancel").show();
-		}
-		
-		function cancel_preview() {
-			// cancel preview freeze and return to live camera feed
-			Webcam.unfreeze();
-			
+      }
+      
+      function cancel_preview() {
+         // cancel preview freeze and return to live camera feed
+         Webcam.unfreeze();
+         
          $(".preview").show();
          $(".save").hide();
          $(".cancel").hide();
-		}
-		
-		function save_photo() {
-			// actually snap photo (from preview freeze) and display it
-			Webcam.snap( function(data_uri) {
-				// display results in page
-				document.getElementById('profile-image').innerHTML = 
-					'<h2>Here is your image:</h2>' + 
-					'<img src="'+data_uri+'"/>';
-				
+      }
+      
+      function save_photo() {
+         // actually snap photo (from preview freeze) and display it
+         Webcam.snap( function(data_uri) {
+            // display results in page
+            $('.profile-image').hide();
+          $('.profile-image-save').html( 
+               '<h2>Here is your image:</h2>' + 
+               '<img src="'+data_uri+'"/>');
+          console.log(data_uri);
+            
+            $('.profile-image-save, .delete').show();
                $(".preview").hide();
                $(".save").hide();
                $(".cancel").hide();
-			} );
-		}
+         } );
 
-   });
+      }
+         function delete_preview() {
+         // cancel preview freeze and return to live camera feed
+          Webcam.unfreeze();
+          $('.profile-image-save').hide();
+          $('.profile-image').show();
+         $('.preview').show();
+         $('.save').hide();
+         $('.cancel').hide();
+         $('.delete').hide();
+      }
+      
+
    
 </script>
 @endsection
