@@ -421,9 +421,9 @@
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4 uploadbtn">
                                           
-                                      <button class="btn btn-warning" type="button" onClick="pre_take_buttons()" >Preview</button>
-                                       <button class="btn btn-primary" type="button" onClick="save_photo()" >Save</button>
-                                       <button class="btn btn-default" type="button" onClick="save_photo()" >Cancel</button>
+                                      <button class="btn btn-warning preview" type="button" onClick="pre_take_buttons()" >Preview</button>
+                                       <button class="btn btn-primary save" type="button" onClick="save_photo()" style="display:none">Save</button>
+                                       <button class="btn btn-default cancel" type="button" onClick="cancel_preview()" style="display:none">Cancel</button>
                                     </div>
                                  </div>
                                  <!-- Form row end-->
@@ -913,31 +913,31 @@
 			// freeze camera so user can preview pic
 			Webcam.freeze();
 			
-			// swap button sets
-			document.getElementById('pre_take_buttons').style.display = 'none';
-			document.getElementById('uploadbtn').style.display = '';
+			$(".preview").hide();
+         $(".save").show();
+         $(".cancel").show();
 		}
 		
 		function cancel_preview() {
 			// cancel preview freeze and return to live camera feed
 			Webcam.unfreeze();
 			
-			// swap buttons back
-			document.getElementById('pre_take_buttons').style.display = '';
-			document.getElementById('uploadbtn').style.display = 'none';
+         $(".preview").show();
+         $(".save").hide();
+         $(".cancel").hide();
 		}
 		
 		function save_photo() {
 			// actually snap photo (from preview freeze) and display it
 			Webcam.snap( function(data_uri) {
 				// display results in page
-				document.getElementById('results').innerHTML = 
+				document.getElementById('profile-image').innerHTML = 
 					'<h2>Here is your image:</h2>' + 
 					'<img src="'+data_uri+'"/>';
 				
-				// swap buttons back
-				document.getElementById('pre_take_buttons').style.display = '';
-				document.getElementById('uploadbtn').style.display = 'none';
+               $(".preview").hide();
+               $(".save").hide();
+               $(".cancel").hide();
 			} );
 		}
 
