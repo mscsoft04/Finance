@@ -65,9 +65,9 @@
                   <tr>
                       <th>Subscriber ID</th>
                     <th>Subscriber Name</th>
+                    <th>Father Name</th>
                     <th>Mobile Number</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
+                    <th>Occupationr</th>
                     <th>Address</th>
                     <th>Action</th>
                   </tr>
@@ -107,9 +107,9 @@ $(document).ready(function() {
         "columns":[
           { "data": "unique_id" },
             { "data": "subscriber_name" },
+            { "data": "realtion_name" },
             { "data": "mobile_no" },
-            { "data": "mail_id" },
-            { "data": "phone_no" },
+            { "data": "occupation" },
             { "data": "c_address" },
             { "data": "id",render: function ( data, type, row ) {
                 if ( type === 'display' ) {

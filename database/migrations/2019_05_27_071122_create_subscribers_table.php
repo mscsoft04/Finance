@@ -73,8 +73,8 @@ class CreateSubscribersTable extends Migration
             $table->foreign('sourceof_fund')->references('id')->on('source_of_funds');
             $table->unsignedBigInteger('relationship')->unsigned();
             $table->foreign('relationship')->references('id')->on('relationships');
-            $table->string('relation_for');
-            $table->text('additional_notes');
+            $table->string('relation_for')->nullable();
+            $table->text('additional_notes')->nullable();
             $table->text('profile')->nullable();
             $table->enum('status', ['0', '1','2','3'])->default('1');
             $table->integer('created_by')->length(11);	

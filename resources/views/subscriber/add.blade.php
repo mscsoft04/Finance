@@ -51,7 +51,6 @@
                                        <div class="form-label-group">
                                           <label for="salutationname"><span>Salutation</span></label>
                                           <select  id="salutationname" name="salutation_name"  class="form-control selectpicker" >
-                                             <option value="">Salutation</option>
                                              <option  value="Mr" {{ old("salutation_name") == "Mr" ? "selected":"" }}>Mr</option>
                                              <option  value="Mrs" {{ old("salutation_name") == "Mrs" ? "selected":"" }}>Mrs</option>
                                              <option  value="Dr" {{ old("salutation_name") == "Dr" ? "selected":"" }}>Dr</option>
@@ -94,9 +93,9 @@
                                     <!-- Form row start-->
                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                        <div class="form-label-group gardian">
-                                          <input type="radio"  name="relation_type" value="father" {{ old("relation_type") == 'father' ? "checked":"" }} > &nbsp;&nbsp;Father Name &nbsp;&nbsp;
+                                          <input type="radio"  name="relation_type" value="father" {{ old("relation_type") == 'father' ? "checked":"checked" }} > &nbsp;&nbsp;Father Name &nbsp;&nbsp;
                                           <input type="radio"  name="relation_type" value="spouse" {{ old("relation_type") == 'spouse' ? "checked":"" }}>&nbsp;&nbsp;Spouse's Name &nbsp;&nbsp;
-                                          <input type="radio"  name="relation_type" value="spouse" {{ old("relation_type") == 'spouse' ? "checked":"" }}>&nbsp;&nbsp;Others
+                                          <input type="radio"  name="relation_type" value="other" {{ old("relation_type") == 'spouse' ? "checked":"" }}>&nbsp;&nbsp;other
                                        </div>
                                        @error('relation_type')
                                        <span class="invalid-feedback" role="alert">
@@ -159,7 +158,7 @@
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
                                        <div class="form-label-group gendertab">
-                                          <input type="radio" id="Male"  name="gender" value="male" {{ old("gender") == "male" ? "checked":"" }}>&nbsp;&nbsp;Male&nbsp;&nbsp;                        
+                                          <input type="radio" id="Male"  name="gender" value="male" {{ old("gender") == "male" ? "checked":"checked" }}>&nbsp;&nbsp;Male&nbsp;&nbsp;                        
                                           <input type="radio" id="Female" name="gender" value="female" {{ old("gender") == "female" ? "checked":"" }}>&nbsp;&nbsp;Female&nbsp;&nbsp; 
                                           <input type="radio" id="Transgender" name="gender"  value="transgender" {{ old("gender") == "transgender" ? "checked":"" }}>&nbsp;&nbsp;Transgender
                                        </div>
@@ -177,7 +176,6 @@
                                        <div class="form-label-group">
                                           <label for="maritalstatus"><span>Marital Status</span></label>
                                           <select  id="maritalstatus" name="marital_status"  class="form-control selectpicker" >
-                                             <option value="">Marital Status</option>
                                              <option  value="Single" {{ old("marital_status") == "Single" ? "selected":"" }}>Single</option>
                                              <option  value="Married" {{ old("marital_status") == "Married" ? "selected":"" }}>Married</option>
                                              <option  value="Widowed" {{ old("marital_status") == "Widowed" ? "selected":"" }}>Widowed</option>
@@ -389,7 +387,7 @@
                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                        <div class="form-label-group">
                                           <label for="additionalnotes"><span>Additional Notes</span></label>
-                                          <input type="text" id="additionalnotes" class="form-control" name="additional_notes" value="{{ old('additional_notes') }}" placeholder="Additional Notes" required>
+                                          <input type="text" id="additionalnotes" class="form-control" name="additional_notes" value="{{ old('additional_notes') }}" placeholder="Additional Notes">
                                        </div>
                                        @error('additional_notes')
                                        <span class="invalid-feedback" role="alert">
@@ -421,7 +419,7 @@
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4 uploadbtn">
                                           
-                                      <button class="btn btn-warning preview" type="button" onClick="pre_take_buttons()" >Preview</button>
+                                      <button class="btn btn-warning preview" type="button" onClick="preview_snapshot()" >Preview</button>
                                        <button class="btn btn-primary save" type="button" onClick="save_photo()" style="display:none">Save</button>
                                        <button class="btn btn-default cancel" type="button" onClick="cancel_preview()" style="display:none">Cancel</button>
                                     </div>
@@ -902,13 +900,23 @@
    });
 
 
-    Webcam.set({
+   
+      try {
+         Webcam.set({
 			width: 320,
 			height: 240,
 			image_format: 'jpeg',
 			jpeg_quality: 90
-		});
-		Webcam.attach( ".profile-image" );
+		  });
+         Webcam.attach( ".profile-image" );
+       }
+       catch(error) {
+         console.error(error);
+  
+       }
+      
+
+		
    function preview_snapshot() {
 			// freeze camera so user can preview pic
 			Webcam.freeze();

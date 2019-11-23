@@ -396,7 +396,7 @@
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                            <div class="form-label-group">
                               <label for="additionalnotes"><span>Additional Notes</span></label>
-                              <input type="text" id="additionalnotes" class="form-control" name="additional_notes" value="{{ $subscriber->additional_notes }}" placeholder="Additional Notes" required>
+                              <input type="text" id="additionalnotes" class="form-control" name="additional_notes" value="{{ $subscriber->additional_notes }}" placeholder="Additional Notes">
                            </div>
                            @error('additional_notes')
                            <span class="invalid-feedback" role="alert">
