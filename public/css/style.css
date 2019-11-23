@@ -1627,11 +1627,10 @@ position: absolute;
 }
 
 .profile-image {
-	text-align: right;
+	margin: 0 auto;
 	width: 150px;
 	height: 150px;
-	float: right;
-
+	
 }
 .profile {
 	width: 150px;
@@ -1639,7 +1638,8 @@ position: absolute;
 }
 .uploadbtn .btn {
 	width: 100%;
-	margin-top: 20px;
+	margin-top: 5px;
+	border-radius: 0;
 }
 .card.card-box {
 	border: 1px solid #f3f3f3 !important;
@@ -1709,4 +1709,7 @@ table.dataTable thead > tr > th.sorting_asc, table.dataTable thead > tr > th.sor
 }
 .btngap  {
 	margin-top: 20px;
+}
+.uploadbtn {
+
 }

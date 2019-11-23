@@ -414,15 +414,16 @@
                                  <br/>
                                  <div class="form-row">
                                     <!--Form start -->
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                                        <div class="profile-image">
                                           <img src="{{ asset('public/image/girl.svg') }}" class="profile"  alt="profile photo">
                                        </div>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 uploadbtn">
+                                    <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4 uploadbtn">
                                           
-                                      <button class="btn btn-global btn-yellow" type="button" onClick="pre_take_buttons()" >Upload</button>
-                                       <button class="btn btn-global btn-yellow" type="button" onClick="save_photo()" >Upload</button>
+                                      <button class="btn btn-warning" type="button" onClick="pre_take_buttons()" >Preview</button>
+                                       <button class="btn btn-primary" type="button" onClick="save_photo()" >Save</button>
+                                       <button class="btn btn-default" type="button" onClick="save_photo()" >Cancel</button>
                                     </div>
                                  </div>
                                  <!-- Form row end-->
