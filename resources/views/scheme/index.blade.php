@@ -41,13 +41,13 @@
                 <thead>
                   <tr>
                     <th>Scheme ID</th>
+                    <th>Short Form</th>
                     <th>Chit Value</th>
                     <th>No Of Member</th>
+                    <th>Monthly Due</th>
                     <th>Registration Fees</th>
                     <th>Enrollment Fees</th>
                     <th>Letter Fees</th>
-                    <th>Short Form</th>
-                    <th>Monthly Due</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -90,13 +90,13 @@ $(document).ready(function() {
         
         "columns":[
             { "data":"unique_id"},
+            { "data": "sort_form" },
             { "data": "chit_value" },
             { "data": "no_of_member" },
+            { "data": "monthly_due" },
             { "data": "res_fees" },
             { "data": "enroll_fees" },
             { "data": "letter_fees" },
-            { "data": "sort_form" },
-            { "data": "monthly_due" },
             { "data": "id",render: function ( data, type, row ) {
                 if ( type === 'display' ) {
                   var url = '{{ route("scheme.edit", [":id"]) }}';

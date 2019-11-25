@@ -421,7 +421,8 @@
                                        </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4 uploadbtn">
-                                          
+                                       <input type="hidden" id="profile" class="form-control" name="image" value="{{ old('image') }}">
+   
                                       <button class="btn btn-warning preview" type="button" onClick="preview_snapshot()" >Preview</button>
                                        <button class="btn btn-primary save" type="button" onClick="save_photo()" style="display: none">Save</button>
                                        <button class="btn btn-default cancel" type="button" onClick="cancel_preview()" style="display: none">Cancel</button>
@@ -910,7 +911,7 @@
  Webcam.set({
          width: 320,
          height: 240,
-         image_format: 'jpeg',
+         image_format: 'png',
          jpeg_quality: 90
       });
       Webcam.attach( ".profile-image" );
@@ -941,7 +942,7 @@
                '<h2>Here is your image:</h2>' + 
                '<img src="'+data_uri+'"/>');
           console.log(data_uri);
-            
+            $("#profile").val(data_uri);
             $('.profile-image-save, .delete').show();
                $(".preview").hide();
                $(".save").hide();

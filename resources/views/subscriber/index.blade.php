@@ -67,7 +67,7 @@
                     <th>Subscriber Name</th>
                     <th>Father Name</th>
                     <th>Mobile Number</th>
-                    <th>Occupationr</th>
+                    <th>Occupation</th>
                     <th>Address</th>
                     <th>Action</th>
                   </tr>

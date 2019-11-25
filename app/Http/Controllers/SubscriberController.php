@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Storage;
+
 
 use App\Subscriber;
 use Illuminate\Http\Request;
@@ -119,6 +121,15 @@ class SubscriberController extends Controller
                                 }
                                 if($request['retirement_date']){
                                     $request['retirement_date']=date ("Y-m-d",strtotime($request['retirement_date']));
+                                }
+                                if($request->image){
+                                    $image = $request->image;  // your base64 encoded
+                                    $image = str_replace('data:image/png;base64,', '', $image);
+                                    $image = str_replace(' ', '+', $image);
+                                    $imageName = str_random(10) . '.png';
+                                
+                                    Storage::disk('local')->put($imageName, base64_decode($image));  
+                                    $request['profile']=Storage::url($imageName);
                                 }
                                 $request['created_by']=auth()->user()->id;
                                 Subscriber::create($request->all());
