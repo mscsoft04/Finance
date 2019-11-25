@@ -26,10 +26,14 @@
           	<div class="inner-header">
             	<div class="fl_in_h"><h5>Scheme</h5></div>
                 <div class="fr_in_h">
+                    
+                    <button class="btn btn-link btn-sm btn-global btn-dark btn-fl-r" id="ExportReporttoExcel" >
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                        <span>Export</span></button>
                 <a class="btn btn-link btn-sm btn-global btn-blue btn-fl-r"  href="{{ route('scheme.create') }}">
       <i class="fas fa-plus"></i><span>Add</span>
     </a>
-                <button class="btn btn-link btn-sm btn-global btn-dark btn-fl-r" id="filterToggle" href="#">
+                <button class="btn btn-link btn-sm btn-global btn-dark btn-fl-r" id="filterToggle" >
       <i class="fas fa-filter"></i><span>Filter</span>
     </button>
                 </div>
@@ -73,6 +77,16 @@
 @endsection
 
 @section('script')
+
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.print.min.js"></script>
+
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -83,9 +97,19 @@ $(document).ready(function() {
         }
         return data;
     };
-     $('.subscriber').DataTable({
+  var table=   $('.subscriber').DataTable({
         "processing": true,
         "serverSide": true,
+        "buttons": [
+        { 
+            extend: 'excel',
+            filename: 'Scheme',
+            title :'Scheme',
+            exportOptions: {
+                    columns: [ 0, 1, 2, 2,3,4 ]
+                }
+        }
+    ],
         "ajax": "{{ route('scheme.getdata') }}",
         
         "columns":[
@@ -113,6 +137,10 @@ $(document).ready(function() {
             } }
         ]
      });
+
+     $("#ExportReporttoExcel").on("click", function() {
+              table.button( '.buttons-excel' ).trigger();
+      });
      $(document).on("click",".show",function(e) {
       e.preventDefault();
        var id=$(this).attr("data-id");
