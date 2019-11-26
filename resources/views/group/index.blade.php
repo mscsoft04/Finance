@@ -46,9 +46,8 @@
                     <th>Group Id</th>
                     <th>Type</th>
                     <th>Name</th>
-                    <th>Auction Date</th>
-                    <th>Start Date</th>
-                    <th>First Due Date</th>
+                    <th>Auction Day</th>
+                    <th>First Auction Date</th>
                     <th>Total Fd</th>
                     <th>Pso Number</th>
                     <th>Blaw Number</th>
@@ -121,13 +120,12 @@ $(document).ready(function() {
                 if ( type === 'display' ) {
                   var show_url="{{ route('group.auction.index', ['group' =>":id"]) }}";
                      show_url = show_url.replace(':id', row.id);
-                   var view =' <a href="'+show_url+'" class="auction-view" data-id="'+row.id+'" data-toggle="tooltip" data-placement="bottom" title="Auction">'+row.auction_date+'</a>';
+                   var view =' <a href="'+show_url+'" class="auction-view" data-id="'+row.id+'" data-toggle="tooltip" data-placement="bottom" title="Auction">'+row.auction_day+'</a>';
                    return view;
                 }
                 return data;
             } },
-            { "data": "start_date" },
-            { "data": "first_due_date" },
+            { "data": "first_auction_date" },
             { "data": "total_fd" },
             { "data": "pso_number" },
             { "data": "blaw_number" },

@@ -34,7 +34,7 @@
                 <select  id="branchname" name="branch_id"  class="form-control selectpicker" >
 				             <option value="">Select Branch</option>
                      @foreach ($branches as $branch)
-                     <option  value="{{$branch->id}}" {{ old("branch_id") == $branch->id ? "selected":"" }}>{{$branch->branch_name}}<option>
+                     <option  value="{{$branch->id}}" {{ old("branch_id") == $branch->id ? "selected":"" }}>{{$branch->branch_name}}</option>
                      @endforeach
                      </select>
  

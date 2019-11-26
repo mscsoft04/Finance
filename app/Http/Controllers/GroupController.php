@@ -46,34 +46,60 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request,['branch_id'=>'required', 
-                                    'schemes_id'=>'required',
-                                    'type'=>'required', 
-                                    'name'=>'required',
-                                    'auction_date'=>'required',
-                                    'start_date'=>'required',
-                                    'first_due_date'=>'required',
-                                    'fd_number'=>'required',
-                                    'company_fd'=>'required',
-                                    'fd_date'=>'required',
-                                    'fd_bank'=>'required',
-                                    'pso_number'=>'required',
-                                    'blaw_number'=>'required',
-                                    'cheque_no'=>'required',
-                                    'company_chit'=>'required',
+        $this->validate($request,['branch_id'=>'required|exists:branches,id', 
+                                    'schemes_id'=>'required|exists:schemes,id',
+                                    'type'=>'required|max:30', 
+                                    'name'=>'required|max:30',
+                                    'auction_day'=>'required',
                                     'auction_time'=>'required',
-                                    'commission'=>'required',
-                                    'total_fd'=>'required',
-                                    'fd_rate_interrest'=>'required',
-                                    'maturity_amount'=>'required',
-                                    'fd_branch'=>'required',
-                                    'pso_date'=>'required',
-                                    'blaw_date'=>'required'
-                                ]); 
-        
-        Group::create($request->all());
-        Toastr::success('Added data successfully', '', ["positionClass" => "toast-top-right"]);
-        return redirect()->route('group.index');
+                                    'first_auction_date'=>'required|date',
+                                    'second_auction_date'=>'required|date',
+                                    'last_auction_date'=>'required|date',
+                                    'pso_number'=>'nullable|max:20',
+                                    'pso_date'=>'nullable|date',
+                                    'blaw_number'=>'nullable|max:20',
+                                    'blaw_date'=>'nullable|date',
+                                    'blaw_amount'=>'nullable|max:20',
+                                    'fd_branch'=>'nullable|max:20',
+                                    'fd_number'=>'nullable|max:20',
+                                    'fd_date'=>'nullable|date',
+                                    'fd_amount'=>'nullable|max:20',
+                                    'commission'=>'nullable|max:20',
+                                    'total_fd'=>'nullable|max:20',
+                                    'fd_rate_interrest'=>'nullable|max:20',
+                                    'fd_maturity_interest'=>'nullable|max:20',
+                                    'fd_maturity_date'=>'nullable|date',
+                                    'maturity_amount'=>'nullable|max:20',
+                                    'fd_bank'=>'nullable|max:20',
+                                    'cheque_no'=>'nullable|max:20',
+                                    'company_chit'=>'required|max:30',
+                                    'group_Type'=>'required',
+                        ]); 
+                        if($request['first_auction_date']){
+                            $request['first_auction_date']=date ("Y-m-d",strtotime($request['first_auction_date']));
+                        }
+                        if($request['second_auction_date']){
+                            $request['second_auction_date']=date ("Y-m-d",strtotime($request['second_auction_date']));
+                        }
+                        if($request['last_auction_date']){
+                            $request['last_auction_date']=date ("Y-m-d",strtotime($request['last_auction_date']));
+                        }
+                        if($request['pso_date']){
+                            $request['pso_date']=date ("Y-m-d",strtotime($request['pso_date']));
+                        }
+                        if($request['blaw_date']){
+                            $request['blaw_date']=date ("Y-m-d",strtotime($request['blaw_date']));
+                        }
+                        if($request['fd_date']){
+                            $request['fd_date']=date ("Y-m-d",strtotime($request['fd_date']));
+                        }
+                        if($request['fd_maturity_date']){
+                            $request['fd_maturity_date']=date ("Y-m-d",strtotime($request['fd_maturity_date']));
+                        }
+                        $request['created_by']=auth()->user()->id;
+                        Group::create($request->all());
+                        Toastr::success('Added data successfully', '', ["positionClass" => "toast-top-right"]);
+                        return redirect()->route('group.index');
     }
 
     /**
@@ -114,36 +140,63 @@ class GroupController extends Controller
     public function update(Request $request, Group $group)
     {
         //
-        $this->validate($request,['branch_id'=>'required', 
-                                    'schemes_id'=>'required',
-                                    'type'=>'required', 
-                                    'name'=>'required',
-                                    'auction_date'=>'required',
-                                    'start_date'=>'required',
-                                    'first_due_date'=>'required',
-                                    'fd_number'=>'required',
-                                    'company_fd'=>'required',
-                                    'fd_date'=>'required',
-                                    'fd_bank'=>'required',
-                                    'pso_number'=>'required',
-                                    'blaw_number'=>'required',
-                                    'cheque_no'=>'required',
-                                    'company_chit'=>'required',
-                                    'auction_time'=>'required',
-                                    'commission'=>'required',
-                                    'total_fd'=>'required',
-                                    'fd_rate_interrest'=>'required',
-                                    'maturity_amount'=>'required',
-                                    'fd_branch'=>'required',
-                                    'pso_date'=>'required',
-                                    'blaw_date'=>'required'
-                                ]); 
+                            $this->validate($request,['branch_id'=>'required|exists:branches,id', 
+                                                        'schemes_id'=>'required|exists:schemes,id',
+                                                        'type'=>'required|max:30', 
+                                                        'name'=>'required|max:30',
+                                                        'auction_day'=>'required',
+                                                        'auction_time'=>'required',
+                                                        'first_auction_date'=>'required|date',
+                                                        'second_auction_date'=>'required|date',
+                                                        'last_auction_date'=>'required|date',
+                                                        'pso_number'=>'nullable|max:20',
+                                                        'pso_date'=>'nullable|date',
+                                                        'blaw_number'=>'nullable|max:20',
+                                                        'blaw_date'=>'nullable|date',
+                                                        'blaw_amount'=>'nullable|max:20',
+                                                        'fd_branch'=>'nullable|max:20',
+                                                        'fd_number'=>'nullable|max:20',
+                                                        'fd_date'=>'nullable|date',
+                                                        'fd_amount'=>'nullable|max:20',
+                                                        'commission'=>'nullable|max:20',
+                                                        'total_fd'=>'nullable|max:20',
+                                                        'fd_rate_interrest'=>'nullable|max:20',
+                                                        'fd_maturity_interest'=>'nullable|max:20',
+                                                        'fd_maturity_date'=>'nullable|date',
+                                                        'maturity_amount'=>'nullable|max:20',
+                                                        'fd_bank'=>'nullable|max:20',
+                                                        'cheque_no'=>'nullable|max:20',
+                                                        'company_chit'=>'required|max:30',
+                                                        'group_Type'=>'required',
+                                                    ]); 
+                    if($request['first_auction_date']){
+                    $request['first_auction_date']=date ("Y-m-d",strtotime($request['first_auction_date']));
+                    }
+                    if($request['second_auction_date']){
+                    $request['second_auction_date']=date ("Y-m-d",strtotime($request['second_auction_date']));
+                    }
+                    if($request['last_auction_date']){
+                    $request['last_auction_date']=date ("Y-m-d",strtotime($request['last_auction_date']));
+                    }
+                    if($request['pso_date']){
+                    $request['pso_date']=date ("Y-m-d",strtotime($request['pso_date']));
+                    }
+                    if($request['blaw_date']){
+                    $request['blaw_date']=date ("Y-m-d",strtotime($request['blaw_date']));
+                    }
+                    if($request['fd_date']){
+                    $request['fd_date']=date ("Y-m-d",strtotime($request['fd_date']));
+                    }
+                    if($request['fd_maturity_date']){
+                    $request['fd_maturity_date']=date ("Y-m-d",strtotime($request['fd_maturity_date']));
+                    }
+                    $request['updated_by']=auth()->user()->id;
 
-        $group->update($request->all());
+                   $group->update($request->all());
        
 
-        Toastr::success('Updated data successfully', '', ["positionClass" => "toast-top-right"]);
-        return redirect()->route('group.index');
+                Toastr::success('Updated data successfully', '', ["positionClass" => "toast-top-right"]);
+                return redirect()->route('group.index');
     }
 
     /**
