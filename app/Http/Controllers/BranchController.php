@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Datatables;
 use App\Branch;
 use Toastr;
+use App\State;
+use App\City;
+use App\Taluk;
+use App\Village;
 class BranchController extends Controller
 {
     /**
@@ -37,8 +41,12 @@ class BranchController extends Controller
     }
 
     public function create()
-    {
-        return view('branch.add');
+    {   
+        $states=State::all();
+        $cities=City::all();
+        $taluks=Taluk::all();
+        $villages=Village::all();
+        return view('branch.add',compact('states','cities','taluks','villages'));
     }
     public function store(Request $request)
     {
@@ -77,9 +85,12 @@ class BranchController extends Controller
     public function edit($id)
     {
         $branch = Branch::find($id);
-        //echo $id;
+        $states=State::all();
+        $cities=City::all();
+        $taluks=Taluk::all();
+        $villages=Village::all();
 
-        return view('branch.edit', compact('branch'));
+        return view('branch.edit', compact('branch','states','cities','taluks','villages'));
     }
 
 

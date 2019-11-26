@@ -247,10 +247,13 @@
               <div class="col-md-6">
                 <div class="form-label-group form-select-group">
                 <label for="statename"><span>State</span></label>
-					 <select  id="statename" name="state" class="form-control selectpicker" >
-				  <option value="">State Name</option>
-          <option  value="Tamilnadu" {{ old("state") == "Tamilnadu" ? "selected":"" }}>Tamilnadu</option></select>
-
+					 <select  id="statename" name="state" class="form-control state" >
+          <option value="">State Name</option>
+          
+          @foreach ($states as $state)
+          <option  value="{{$state->id}}" {{ old("state") == $state->id ? "selected":"" }}>{{ $state->name }}</option>
+          @endforeach
+          </select>
                 </div>
                 @error('state')
                  <span class="invalid-feedback" role="alert">
@@ -261,9 +264,12 @@
               <div class="col-md-6">
                 <div class="form-label-group form-select-group">
                 <label for="districtname"><span>City</span></label>
-                  <select  id="districtname" name="city" class="form-control selectpicker">
+                  <select  id="districtname" name="city" class="form-control city">
                   <option value="">City</option>
-          <option  value="Cuddalore" {{ old("city") == "Cuddalore" ? "selected":"" }}>Cuddalore</option></select>
+                  @foreach ($cities as $city)
+                  <option  value="{{$city->id}}" {{ old("city") == $city->id ? "selected":"" }}>{{ $city->name }}</option>
+                  @endforeach
+                </select>
                 </div>
                 @error('city')
                  <span class="invalid-feedback" role="alert">
@@ -279,9 +285,12 @@
               <div class="col-md-6">
                 <div class="form-label-group form-select-group">
                 <label for="talukname"><span>Taluk</span></label>
-                 <select  id="talukname" name="taluk" class="form-control selectpicker" >
-				          <option value="">Taluk Name</option>
-                  <option  value="Bhuvanagiri" {{ old("taluk") == "Bhuvanagiri" ? "selected":"" }}>Bhuvanagiri</option></select>
+                 <select  id="talukname" name="taluk" class="form-control taluk" >
+                  <option value="">Taluk Name</option>
+                  @foreach ($taluks as $taluk)
+                  <option  value="{{$taluk->id}}" {{ old("taluk") == $taluk->id ? "selected":"" }}>{{ $taluk->name }}</option>
+                  @endforeach
+                </select>
                 </div>
                 @error('taluk')
                  <span class="invalid-feedback" role="alert">
@@ -371,6 +380,52 @@ $(document).ready(function() {
     todayHighlight: true,
 
   });
+  $(document).on("change",".state",function(){
+     // alert($(this).val());
+      let city=@json($cities); 
+      const result = city.filter(res => res.state_id==$(this).val());
+      console.log(result);
+      $('#districtname').html("");
+      $("#talukname").html("");
+     // $("#pvillagename").html("");
+      $('#districtname').append($('<option>', { value : "" }).text("Select District"));
+      $('#talukname').append($('<option>', { value : "" }).text("Select Taluk Name"));
+     // $('#pvillagename').append($('<option>', { value : "" }).text("Select Village"));
+      $.each(result, function(key, value) {
+          $('#districtname').append($('<option>', { value : value.id }).text(value.name));
+      });
+
+   });
+
+   $(document).on("change",".city",function(){
+     // alert($(this).val());
+      let taluk=@json($taluks); 
+      const result = taluk.filter(res => res.city_id==$(this).val());
+      console.log(result);
+      $("#talukname").html("");
+     // $("#pvillagename").html("");
+      
+      $('#talukname').append($('<option>', { value : "" }).text("Select Taluk Name"));
+     // $('#pvillagename').append($('<option>', { value : "" }).text("Select Village"));
+      $.each(result, function(key, value) {
+          $('#talukname').append($('<option>', { value : value.id }).text(value.name));
+      });
+
+   });
+  /*  $(document).on("change",".taluk",function(){
+     // alert($(this).val());
+      let village=@json($villages); 
+      const result = village.filter(res => res.taluk_id==$(this).val());
+      console.log(result);
+      
+      $("#pvillagename").html("");
+      $('#pvillagename').append($('<option>', { value : "" }).text("Select Village"));
+      $.each(result, function(key, value) {
+          $('#pvillagename').append($('<option>', { value : value.id }).text(value.name));
+      });
+      });
+ */
+   
 });
 </script>
 @endsection
