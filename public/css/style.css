@@ -1752,9 +1752,21 @@ span {
 	overflow: auto;
 	margin-top: 40px;
 }
+.tkno {
+	overflow-x: hidden;
+}
 .custtable {
 	height: 530px;
 	overflow: auto;
+}
+.table-btn tbody tr td  {
+	padding: 3px;
+}
+.table-btn {
+	margin-bottom: 20px;
+}
+.table-btn tbody tr td .btn {
+	min-width: 90px;
 }
 table thead th {
 	background-color: #f3f3f3;
