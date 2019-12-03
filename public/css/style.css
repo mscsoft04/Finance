@@ -1740,7 +1740,25 @@ table.dataTable thead > tr > th.sorting_asc, table.dataTable thead > tr > th.sor
 .address-detail-table thead th {
 	border-bottom: 0;
 }
-
+span {
+	color: #2f5792;
+	font-size: 14px;
+}
+.btn {
+	border-radius: 0;
+}
+.custtable-small {
+	height: 255px;
+	overflow: auto;
+	margin-top: 40px;
+}
+.custtable {
+	height: 530px;
+	overflow: auto;
+}
+table thead th {
+	background-color: #f3f3f3;
+}
 table.dataTable thead .sorting:before, 
 table.dataTable thead .sorting:after,
 table.dataTable thead .sorting_asc:before, 
