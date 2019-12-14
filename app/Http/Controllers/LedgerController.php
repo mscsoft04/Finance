@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Ledger;
 use Illuminate\Http\Request;
 use App\Subscriber;
+use App\GroupAssign;
 
 class LedgerController extends Controller
 {
@@ -130,6 +131,76 @@ class LedgerController extends Controller
     public function showgroup($id)
     {
         //
+    }
+    public function auctiondata(Request $request)
+    {
+        //
+        $data = GroupAssign::leftJoin('groups', 'group_assigns.group_id', '=', 'groups.id')
+                ->leftJoin('auctions', 'auctions.group_id', '=', 'group_assigns.group_id')
+                ->leftJoin('schemes', 'schemes.id', '=', 'groups.schemes_id')
+                ->where('group_assigns.subscriber_id',$request['id'])
+                ->select('groups.name as group_name',
+                         'groups.unique_id as group_id',
+                         'groups.group_Type',
+                         'groups.id as groupId',
+                         'schemes.chit_value',
+                         'schemes.monthly_due',
+                         'group_assigns.collection_type',
+                         'group_assigns.ticket_number',
+                         'group_assigns.subscriber_id',
+                         'auctions.status',
+                         'auctions.subscriber_id as actionSub_id',
+                         'auctions.auction_number',
+                        
+                        )->get()->groupBy(function($item) {
+                            return $item->group_id;
+                        });
+                        $id=$request['id'];
+    
+            
+           
+           return view('ledger.show_group',compact('data','id'));
+    }
+    public function addPayment(Request $request){
+         
+         $data = GroupAssign::leftJoin('groups', 'group_assigns.group_id', '=', 'groups.id')
+                ->leftJoin('auctions', 'auctions.group_id', '=', 'group_assigns.group_id')
+                ->leftJoin('credit_payment_auctions', function ($join) {
+                    $join->on('credit_payment_auctions.auction_id', '=', 'auctions.id');
+                    $join->on('credit_payment_auctions.subscriber_id', '=', 'group_assigns.subscriber_id')
+                    ->where('credit_payment_auctions.status', '=', '0')
+                    ->orWhereNull('credit_payment_auctions.status');
+                    
+                         
+                })
+                ->where('group_assigns.subscriber_id',$request['subscriber_id'])
+                ->where('group_assigns.group_id',$request['group'])
+              
+                 ->select(
+                  'auctions.auction_number',
+                  'auctions.due_amount',
+                  'auctions.auction_date',
+                  'credit_payment_auctions.payment_date',
+                  'credit_payment_auctions.paid_amount',
+                  'credit_payment_auctions.penalty_amount',
+                  'credit_payment_auctions.discount_amount',
+                  'credit_payment_auctions.pending_amount',
+                  'credit_payment_auctions.credit_amount',
+                  'credit_payment_auctions.status',
+                 
+                 )->get();
+
+         return $this->days_diff(date("Y-m-d"),date("Y-m-30"));
+
+        return view('ledger.add');
+
+    }
+
+    public function days_diff($fromDay,$toDay){
+        $from = \Carbon\Carbon::createFromFormat('Y-m-d', $fromDay);
+        $to = \Carbon\Carbon::createFromFormat('Y-m-d', $toDay);
+        $diff_in_days = $to->diffInDays($from);
+      return  $diff_in_days;
     }
 
 }

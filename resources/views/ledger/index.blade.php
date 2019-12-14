@@ -49,24 +49,7 @@
 			</div>
 			<div class="col-md-9 col-sm-12 col=lg-9">
 				<div class="table-scroll-limit group-table">
-				<table class="table-normal table-streched table-hover">
-						<thead>
-							<tr>
-								<th>S.No</th>
-								<th>Group Name</th>
-								<th>Ticket No</th>
-								<th>CollectionType</th>
-								<th>Inst Amount</th>
-								<th>C Inst</th>
-								<th>Due Amount</th>
-								<th>AUC</th>
-								<th>Pay</th>
-								<th>Reg</th>
-							</tr>
-						</thead>
-						<tbody>
-					   </tbody>
-                 </table>
+				
 					
 				</div>
 			</div>
@@ -483,13 +466,66 @@ $(document).ready(function(){
 		$('.lastname').val(data.Initial_name);
 		$('.phone').val(data.phone_no);
 		$('.email').val(data.mail_id);
+		actionData(data.id);
 		
 		console.log(data);
     }); 
 	$(window).click(function(e) {
 		$('#data').fadeOut(); 
-   }); 
+   });
+   function actionData(id){
+	if(id != '')
+        {
+         var _token = $('input[name="_token"]').val();
+         $.ajax({
+          url:"{{ route('auctiondata.list') }}",
+          method:"POST",
+          data:{id:id, _token:_token},
+          success:function(data){
 
+              $('.group-table').html(data);
+          }
+         });
+        } 
+
+   }
+   $(document).on("click",".add-payment",function(e) {
+      e.preventDefault();
+       var data=JSON.parse($(this).attr("data-id"));
+	   var _token = $('input[name="_token"]').val();
+        var show_url="{{ route('payment.add') }}";
+          $.ajax({
+                url: show_url,
+                dataType: 'html',
+				method:"POST",
+                data:{group:data.groupId,subscriber_id:data.subscriber_id, _token:_token},
+                success: function( data, textStatus, jQxhr ){
+                    $('#response').html( data );
+                    $('#response-title').text('Payment Add');
+                    $('#myModal').modal('show')
+
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                }
+            });
+
+     });
+$(document).on("click",".pay-type",function(pay) {
+	  pay.preventDefault();
+	  var type=$(this).val();
+	 if(type=='cash'){
+		$("#bank_name").attr('readonly', true);
+	    $("#cheque_number").attr('readonly', true);
+	     $("#ChequeDate").attr('disabled', true);
+	 }else{
+       $("#bank_name").attr('readonly', false);
+	  $("#cheque_number").attr('readonly', false);
+	  $("#ChequeDate").attr('disabled', false);
+	 }
+	  
+	 
+});
 });
 </script>
 @endsection

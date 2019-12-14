@@ -226,192 +226,176 @@
                         <div class="card card-box">
                           <!-- card start -->
                           <div class="card-header">
-                             Day Closing Book
+                             Monthly Collection
                           </div>
                           <div class="card-body address-tab">
                               <div class="form-row">
                                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                     <div class="dailycollections">
                                       <div class="row">    
-                                        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 top20">
-                                          <button class="btn btn-success" type="button">Ledger Add</button>
-                                        </div>
-                                          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 radiobtn">
-                                            <label><input type="radio" name="book" checked="checked">Day Book</label>
-                                            <label><input type="radio" name="book">Cash Book</label>
-                                            <label><input type="radio" name="book">Bank Book</label>
-                                          </div>
-                                        <div class="col-12 col-sm-12 col-md-2 col-lg-3 col-xl-3">
-                                          <label>Voucher From Date</label>
-                                          <div class="input-group">
-                                              <input type="text" class="form-control" placeholder="" name="voucherfromdate" id="voucherfromdate">
-                                              <div class="input-group-append">
-                                                <button class="btn btn-success" type="submit"><i class="far fa-calendar-alt"></i></button>
-                                              </div>
-                                            </div>
-                                        </div>
-                                         <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                                          <label>Voucher To Date</label>
+                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                          <label>Receipt Date <span class="text-danger">*</span></label>
                                           <div class="input-group">
                                               <input type="text" class="form-control" placeholder="" name="vouchertodate" id="vouchertodate">
                                               <div class="input-group-append">
                                                 <button class="btn btn-success" type="submit"><i class="far fa-calendar-alt"></i></button>
                                               </div>
                                             </div>
-                                        </div>
-                                      </div>
-                                      <div class="row">    
-                                        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 top20">
-                                          <button class="btn btn-success" type="button">Voucher Add</button>
-                                        </div>
-                                          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 radiobtn">
-                                            <label><input type="radio" name="book" checked="checked">All </label>
-                                            <label><input type="radio" name="book">Single Ledger</label>
-                                            <label><input type="radio" name="book">Single Group</label>
                                           </div>
-                                        <div class="col-12 col-sm-12 col-md-2 col-lg-3 col-xl-3 top20 btn100">
-                                         <button class="btn btn-primary" type="button">Preview</button>
-                                        </div>
-                                         <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 top20 btn100">
-                                        <button class="btn btn-dark" type="button">Close</button>
-                                        
-                                        </div>
-                                      </div>
-                                               
-                                             
+                                          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                            <label>Cash/Bank <span class="text-danger">*</span></label>
+                                            <input type="text" name="cashbank" class="form-control" placeholder="" id="cashbank">
+                                          </div>
+                                          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                              <label>Bank Name <span class="text-danger">*</span></label>
+                                              <input type="text" name="bankname" class="form-control" placeholder="" id="bankname">
+                                           </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                              <div class="card card-box">
+                                                <!-- card start -->
+                                                <div class="card-header">
+                                                   Cash Book
+                                                </div>
+                                                <div class="card-body address-tab">
+                                                  <div class="row">
+                                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                                      <label>Receipt No <span class="text-danger">*</span></label>
+                                                      <input type="text" name="receip-no" class="form-control" placeholder="" id="receip-no">
+                                                    </div>
+                                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                                      <label>Deposit No <span class="text-danger">*</span></label>
+                                                      <input type="text" name="deposit-no" class="form-control" placeholder="" id="bankname">
+                                                    </div>
+                                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                                      <label>Remarks <span class="text-danger">*</span></label>
+                                                      <textarea class="form-control" id="remarks" name="remarks"></textarea>
+                                                    </div>
+                                                  </div>
+                                                  <div class="row">
+                                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                                      <label>Receipt Type <span class="text-danger">*</span></label>
+                                                      <select class="form-control">
+                                                        <option selected="selected">Cash</option>
+                                                        <option>Cheque</option>
+                                                        <option>Net Banking</option>
+                                                      </select>
+                                                    </div>
+                                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                                    <label>Voucher Date <span class="text-danger">*</span></label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" placeholder="" name="voucherdate" id="voucherdate">
+                                                        <div class="input-group-append">
+                                                          <button class="btn btn-success" type="submit"><i class="far fa-calendar-alt"></i></button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
                                             </div>
                                         </div>
-                                       </div>
-                                   </div>
-                                
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                                   <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                    <div class="row">
-                                    <div class="table-responsive table-dcollect">
+                                    <div class="table-responsive t-m-collection">
                                       <table class="table table-hover table-bordered table-sm">
                                         <thead>
                                           <tr>
-                                            <th>S.No</th>
+                                            <th>Inst No</th>
+                                            <th>Inst Amt</th>
+                                            <th>Paid</th>
+                                            <th>Due Amount</th>
+                                            <th>Penalty Amount</th>
+                                            <th>Other Amount</th>
+                                            <th>Total Amount</th>
+                                            <th>Status</th>
                                             <th>Tick</th>
-                                            <th>Cash/Bank</th>
-                                            <th>Ledger  Name</th>
-                                            <th>Payment</th>
-                                            <th>Receipt</th>
-                                            <th>Balance</th>
-                                            <th>Narration</th>
                                           </tr>
                                         </thead>
                                         <tbody>
-                                         <tr class="tr-blue">
-                                          <td>1</td> 
-                                          <td><input type="checkbox" name="checked"></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td class="text-rigt"></td>
-                                          <td>Open Balance</td>
-                                          <td class="text-rigt">3,19,040.00 Dr</td>
-                                          <td></td>
+                                         <tr>
+                                           <td>14</td>
+                                           <td class="text-right">5000.00</td>
+                                           <td class="text-right">350.00</td>
+                                           <td class="text-right">4550.00</td>
+                                           <td class="text-right">890.00</td>
+                                           <td class="text-right">0.00</td>
+                                           <td class="text-right">5440.00</td>
+                                           <td><span class="badge badge-pill badge-danger">Pending</span></td>
+                                           <td><input type="checkbox" name="checked"></td>
                                          </tr>
                                           <tr>
-                                          <td>2</td> 
-                                          <td><input type="checkbox" name="checked"></td>
-                                          <td>Cash Book</td>
-                                          <td>Employee Advance A/C</td>
-                                          <td class="text-rigt">200.00</td>
-                                          <td class="text-rigt">0.00</td>
-                                          <td class="text-rigt">3,18,840.00 Dr</td>
-                                          <td>EMP ADV / 1935 : MUKILAN M / College</td>
+                                           <td>14</td>
+                                           <td class="text-right">5000.00</td>
+                                           <td class="text-right">350.00</td>
+                                           <td class="text-right">4550.00</td>
+                                           <td class="text-right">890.00</td>
+                                           <td class="text-right">0.00</td>
+                                           <td class="text-right">5440.00</td>
+                                           <td><span class="badge badge-pill badge-danger">Pending</span></td>
+                                           <td><input type="checkbox" name="checked"></td>
                                          </tr>
-                                         <tr>
-                                          <td>3</td> 
-                                          <td><input type="checkbox" name="checked"></td>
-                                          <td>Cash Book</td>
-                                          <td>Employee Advance A/C</td>
-                                          <td class="text-rigt">200.00</td>
-                                          <td class="text-rigt">0.00</td>
-                                          <td class="text-rigt">3,18,840.00 Dr</td>
-                                          <td>EMP ADV / 1935 : MUKILAN M / College</td>
+                                          <tr>
+                                           <td>14</td>
+                                           <td class="text-right">5000.00</td>
+                                           <td class="text-right">350.00</td>
+                                           <td class="text-right">4550.00</td>
+                                           <td class="text-right">890.00</td>
+                                           <td class="text-right">0.00</td>
+                                           <td class="text-right">5440.00</td>
+                                           <td><span class="badge badge-pill badge-danger">Pending</span></td>
+                                           <td><input type="checkbox" name="checked"></td>
                                          </tr>
-                                         <tr>
-                                          <td>4</td> 
-                                          <td><input type="checkbox" name="checked"></td>
-                                          <td>Cash Book</td>
-                                          <td>Employee Advance A/C</td>
-                                          <td class="text-rigt">200.00</td>
-                                          <td class="text-rigt">0.00</td>
-                                          <td class="text-rigt">3,18,840.00 Dr</td>
-                                          <td>EMP ADV / 1935 : MUKILAN M / College</td>
+                                          <tr>
+                                           <td>14</td>
+                                           <td class="text-right">5000.00</td>
+                                           <td class="text-right">350.00</td>
+                                           <td class="text-right">4550.00</td>
+                                           <td class="text-right">890.00</td>
+                                           <td class="text-right">0.00</td>
+                                           <td class="text-right">5440.00</td>
+                                           <td><span class="badge badge-pill badge-danger">Pending</span></td>
+                                           <td><input type="checkbox" name="checked"></td>
                                          </tr>
-                                         <tr>
-                                          <td>5</td> 
-                                          <td><input type="checkbox" name="checked"></td>
-                                          <td>Cash Book</td>
-                                          <td>Employee Advance A/C</td>
-                                          <td class="text-rigt">200.00</td>
-                                          <td class="text-rigt">0.00</td>
-                                          <td class="text-rigt">3,18,840.00 Dr</td>
-                                          <td>EMP ADV / 1935 : MUKILAN M / College</td>
+                                          <tr>
+                                           <td>14</td>
+                                           <td class="text-right">5000.00</td>
+                                           <td class="text-right">350.00</td>
+                                           <td class="text-right">4550.00</td>
+                                           <td class="text-right">890.00</td>
+                                           <td class="text-right">0.00</td>
+                                           <td class="text-right">5440.00</td>
+                                           <td><span class="badge badge-pill badge-danger">Pending</span></td>
+                                           <td><input type="checkbox" name="checked"></td>
                                          </tr>
-                                         <tr>
-                                          <td>6</td> 
-                                          <td><input type="checkbox" name="checked"></td>
-                                          <td>Cash Book</td>
-                                          <td>Employee Advance A/C</td>
-                                          <td class="text-rigt">200.00</td>
-                                          <td class="text-rigt">0.00</td>
-                                          <td class="text-rigt">3,18,840.00 Dr</td>
-                                          <td>EMP ADV / 1935 : MUKILAN M / College</td>
-                                         </tr>
-                                         <tr>
-                                          <td>7</td> 
-                                          <td><input type="checkbox" name="checked"></td>
-                                          <td>Cash Book</td>
-                                          <td>Employee Advance A/C</td>
-                                          <td class="text-rigt">200.00</td>
-                                          <td class="text-rigt">0.00</td>
-                                          <td class="text-rigt">3,18,840.00 Dr</td>
-                                          <td>EMP ADV / 1935 : MUKILAN M / College</td>
-                                         </tr>
-                                         <tr>
-                                          <td>8</td> 
-                                          <td><input type="checkbox" name="checked"></td>
-                                          <td>Cash Book</td>
-                                          <td>Employee Advance A/C</td>
-                                          <td class="text-rigt">200.00</td>
-                                          <td class="text-rigt">0.00</td>
-                                          <td class="text-rigt">3,18,840.00 Dr</td>
-                                          <td>EMP ADV / 1935 : MUKILAN M / College</td>
-                                         </tr>
-                                         <tr>
-                                          <td>9</td> 
-                                          <td><input type="checkbox" name="checked"></td>
-                                          <td>Cash Book</td>
-                                          <td>Employee Advance A/C</td>
-                                          <td class="text-rigt">200.00</td>
-                                          <td class="text-rigt">0.00</td>
-                                          <td class="text-rigt">3,18,840.00 Dr</td>
-                                          <td>EMP ADV / 1935 : MUKILAN M / College</td>
-                                         </tr>
-                                         <tr>
-                                          <td>10</td> 
-                                          <td><input type="checkbox" name="checked"></td>
-                                          <td>Cash Book</td>
-                                          <td>Employee Advance A/C</td>
-                                          <td class="text-rigt">200.00</td>
-                                          <td class="text-rigt">0.00</td>
-                                          <td class="text-rigt">3,18,840.00 Dr</td>
-                                          <td>EMP ADV / 1935 : MUKILAN M / College</td>
+                                          <tr>
+                                           <td>14</td>
+                                           <td class="text-right">5000.00</td>
+                                           <td class="text-right">350.00</td>
+                                           <td class="text-right">4550.00</td>
+                                           <td class="text-right">890.00</td>
+                                           <td class="text-right">0.00</td>
+                                           <td class="text-right">5440.00</td>
+                                           <td><span class="badge badge-pill badge-danger">Pending</span></td>
+                                           <td><input type="checkbox" name="checked"></td>
                                          </tr>
                                         </tbody>
                                         <tfoot>
                                           <tr class="tr-green">
                                             <th></th>
-                                            <th><input type="checkbox" name="check"></th>
                                             <th></th>
                                             <th>Total</th>
-                                            <th class="text-right">6,47,536.00</th>
-                                            <th class="text-right">65,96,730.00</th>
-                                            <th class="text-right">2,68,234.00 Dr</th>
-                                            <th class="text-right"></th>
+                                            <th class="text-right">33,470.00</th>
+                                            <th class="text-right">5,020.00</th>
+                                            <th class="text-right">0.00</th>
+                                            <th class="text-right">38,490.00</th>
+                                            <th></th>
+                                            <th><input type="checkbox" name="checked"></th>
                                           </tr>
                                         </tfoot>
                                       </table>
@@ -419,7 +403,7 @@
                                   </div>
                                 </div>
                               </div>
-                               </div>
+                              </div>
                            </div> <!-- Card end -->
                           </div> <!-- col-mg-6end-->
                         </div> <!--Row End -->
@@ -476,7 +460,7 @@
 $(document).ready(function() {
   $('#address-detail').DataTable();
 
-  $('#voucherfromdate, #vouchertodate').datepicker({
+  $('#voucherdate, #vouchertodate').datepicker({
     autoclose: true,
     todayHighlight: true,
 

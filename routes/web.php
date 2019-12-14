@@ -49,6 +49,8 @@ Route::get('branch/add', 'BranchController@create')->name('branch.create');
     
 });
 Route::post('/autocomplete/fetch', 'LedgerController@fetch')->name('autocomplete.fetch');
+Route::post('/auctiondata/list', 'LedgerController@auctiondata')->name('auctiondata.list');
+Route::post('/payment/add', 'LedgerController@addPayment')->name('payment.add');
 Route::post('group/{group}/auction/fetch', 'AuctionController@fetch')->name('auction.fetch');
 
 
