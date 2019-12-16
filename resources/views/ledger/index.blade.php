@@ -1,5 +1,4 @@
 @extends('layouts.main')
-
 @section('title', 'ledger')
 @section('breadcrumb')
 <div class="col-lg-9 col-md-8 col-sm-8 col-2">
@@ -431,7 +430,6 @@
 		</div>
 		</div>
 		</div>
-	
 
 
 
@@ -500,9 +498,9 @@ $(document).ready(function(){
 				method:"POST",
                 data:{group:data.groupId,subscriber_id:data.subscriber_id, _token:_token},
                 success: function( data, textStatus, jQxhr ){
-                    $('#response').html( data );
-                    $('#response-title').text('Payment Add');
-                    $('#myModal').modal('show')
+                    $('#response-full').html( data );
+                    $('#response-full-title').text('Bill');
+                    $('#myModal-full').modal('show')
 
                 },
                 error: function( jqXhr, textStatus, errorThrown ){

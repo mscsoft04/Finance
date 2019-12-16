@@ -18,6 +18,11 @@
 		
 		<tr>
 			<td>{{ $loop->iteration }}</td>
+			@if ( (count($row) == 1 ) && (is_null($row[0]->auction_number)))
+			<td><a href="javascript:void(0)" class="add-payment-diabled" data-id="{{$row[0] }}">{{ $row[0]->group_name }}</a></td>
+			@else
+			<td><a href="javascript:void(0)" class="add-payment" data-id="{{$row[0] }}">{{ $row[0]->group_name }}</a></td>
+			@endif
 		   <td><a class="add-payment" data-id="{{$row[0] }}">{{ $row[0]->group_name }}</a></td>
 			<td>{{ $row[0]->ticket_number }}</td>
 			<td>{{ $row[0]->collection_type }}</td>
