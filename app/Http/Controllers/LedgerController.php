@@ -226,14 +226,15 @@ class LedgerController extends Controller
                 $preCentage=($exit==true)?$row['prize_subscriber_penalty']:$row['non_prize_subscriber_penalty'];
                 $penalty=($amount*$preCentage/100)/365;
                 $day=$day_count-$row['penalty_days'];
-                $result['penalty']=$penalty*$day ;
+                $penalty_amount=$penalty*$day ;
+                $result['penalty']=$penalty_amount;
 
              }else{
-                $penalty=0;
-                $result['penalty']=$penalty;
+                $penalty_amount=0;
+                $result['penalty']=$penalty_amount;
              }
              $result['pending_amount']=$amount;
-             $result['total_amount']=$penalty+$amount-$discount;
+             $result['total_amount']=$penalty_amount+$amount-$discount;
 
              $results[]=$result;
 
