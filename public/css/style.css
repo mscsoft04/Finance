@@ -1783,3 +1783,6 @@ table.dataTable thead .sorting_desc_disabled:before,
 table.dataTable thead .sorting_desc_disabled:after {
 	bottom: 5px;
 }
+.invalid-feedback {
+ display: block;
+}
