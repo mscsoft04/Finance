@@ -43,6 +43,7 @@ Route::get('branch/add', 'BranchController@create')->name('branch.create');
     Route::resource('ledger', 'LedgerController');
     Route::resource('groupAssign', 'GroupAssignController');
     Route::resource('group.auction', 'AuctionController');
+    Route::resource('creditpayment', 'CreditPaymentAuctionController');
 
 
     

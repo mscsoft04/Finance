@@ -22,6 +22,7 @@ class CreateCreditPaymentAuctionDetailsTable extends Migration
             $table->foreign('auction_id')->references('id')->on('auctions');
             $table->date('payment_date');
             $table->decimal('paid_amount', 8, 2);
+            $table->decimal('pending_amount', 8, 2);
             $table->decimal('penalty_amount', 8, 2);
             $table->decimal('discount_amount', 8, 2);
             $table->decimal('credit_amount', 8, 2);

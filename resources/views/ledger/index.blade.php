@@ -524,6 +524,31 @@ $(document).on("click",".pay-type",function(pay) {
 	  
 	 
 });
+$(document).on('click', '.creditPayment-add', function(creditPay){    
+    creditPay.preventDefault();
+    var creditPayment = $('#creditPaymentData')[0];
+    var creditPaymentData = new FormData(creditPayment);
+    var show_url="{{ route('creditpayment.store') }}";
+          $.ajax({
+              type: "POST",
+              enctype: 'multipart/form-data',
+              url: show_url,
+              data: creditPaymentData,
+              processData: false,
+              contentType: false,
+              cache: false,
+              dataType: "json",
+                success: function( data, textStatus, jQxhr ){
+                  $('#myModal-full').modal('hide')
+                  toastr.success(data.message, data.title);
+
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                }
+            });
+
+  });
 });
 </script>
 @endsection

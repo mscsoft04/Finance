@@ -20,10 +20,6 @@ class CreateCreditPaymentAuctionHistoriesTable extends Migration
             $table->foreign('subscriber_id')->references('id')->on('subscribers');
             $table->date('payment_date');
             $table->decimal('paid_amount', 8, 2);
-            $table->decimal('penalty_amount', 8, 2);
-            $table->decimal('discount_amount', 8, 2);
-            $table->decimal('balance_amount', 8, 2);
-            $table->decimal('credit_amount', 8, 2);
             $table->string('payment_type')->nullable();
             $table->string('bank_name')->nullable();
             $table->string('cheque_number')->nullable();

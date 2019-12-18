@@ -165,13 +165,11 @@ class LedgerController extends Controller
          
          $data = GroupAssign::leftJoin('groups', 'group_assigns.group_id', '=', 'groups.id')
                 ->leftJoin('branches', 'branches.id', '=', 'groups.branch_id')
+                ->leftJoin('subscribers', 'subscribers.id', '=', 'group_assigns.subscriber_id')
                 ->leftJoin('auctions', 'auctions.group_id', '=', 'group_assigns.group_id')
                 ->leftJoin('credit_payment_auctions', function ($join) {
                     $join->on('credit_payment_auctions.auction_id', '=', 'auctions.id');
-                    $join->on('credit_payment_auctions.subscriber_id', '=', 'group_assigns.subscriber_id')
-                    ->where('credit_payment_auctions.status', '=', '0')
-                    ->orWhereNull('credit_payment_auctions.status');
-                    
+                    $join->on('credit_payment_auctions.subscriber_id', '=', 'group_assigns.subscriber_id');
                          
                 })
                 ->where('group_assigns.subscriber_id',$request['subscriber_id'])
@@ -188,6 +186,7 @@ class LedgerController extends Controller
                   'credit_payment_auctions.pending_amount',
                   'credit_payment_auctions.credit_amount',
                   'credit_payment_auctions.status',
+                  'subscribers.credit_amount as cus_credit_amount',
                   'branches.bonus_days',
                   'branches.bonus_precentage',
                   'branches.penalty_days',
@@ -198,11 +197,15 @@ class LedgerController extends Controller
          $exit=DB::table('auctions')->where('group_id', $request['group'])->where('subscriber_id', $request['subscriber_id'])->exists();
           $results=array();
           $date=date("Y-m-d");
+          $cus_credit_amount="";
          foreach($data as $key=>$row){
+             
+             if(is_null($row['status']) || empty($row['status']) || $row['status']==0){
             
              $result['auction_number']=$row['auction_number'];
              $result['due_amount']=$row['due_amount'];
              $result['paid_amount']=$row['paid_amount'];
+             $cus_credit_amount=$row['cus_credit_amount'];
              
              $diff_days=$this->days_diff($row['auction_date'],$date);
              $result['days']=$diff_days;
@@ -237,7 +240,7 @@ class LedgerController extends Controller
              $result['total_amount']=$penalty_amount+$amount-$discount;
 
              $results[]=$result;
-
+            }
          }
          $toatl_due_amount=array_sum(array_column($results,'due_amount'));
          $toatl_pending_amount=array_sum(array_column($results,'pending_amount'));
@@ -250,16 +253,17 @@ class LedgerController extends Controller
                       "discount"=>$toatl_discount,
                       "pending_amount"=>$toatl_pending_amount,
                       "penalty"=>$toatl_penalty,
-                      "total_amount"=>$toatl_total_amount,
+                      "total_amount"=>number_format($toatl_total_amount,2),
                       "paid_amount"=>$toatl_paid_amount,
                       "auction_number"=>"",
                       "days"=>"",
                     );
+         $res=$results;
          array_push($results,$total);
          $group_id=$request['group'];
          $subscriber_id= $request['subscriber_id'];
 
-        return view('ledger.add',compact('data','results','group_id','subscriber_id'));
+        return view('ledger.add',compact('res','results','cus_credit_amount','group_id','subscriber_id','total'));
 
     }
 
