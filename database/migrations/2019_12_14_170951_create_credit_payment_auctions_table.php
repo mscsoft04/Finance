@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuctionsTable extends Migration
+class CreateCreditPaymentAuctionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,19 @@ class CreateAuctionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('auctions', function (Blueprint $table) {
+        Schema::create('credit_payment_auctions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('unique_id')->nullable();
             $table->unsignedBigInteger('subscriber_id');
-            $table->string('unique_id');
             $table->foreign('subscriber_id')->references('id')->on('subscribers');
-            $table->unsignedBigInteger('group_id');
-            $table->foreign('group_id')->references('id')->on('groups');
-            $table->string('auction_number');
-            $table->string('auction_amount');
-            $table->date('auction_date');
-            $table->string('commision_amount');
-            $table->string('gst_amount');
-            $table->string('dividend_amount');
-            $table->string('each_dividend_amount');
-            $table->string('due_amount');
+            $table->unsignedBigInteger('auction_id');
+            $table->foreign('auction_id')->references('id')->on('auctions');
+            $table->date('payment_date');
+            $table->decimal('paid_amount', 8, 2);
+            $table->decimal('penalty_amount', 8, 2);
+            $table->decimal('discount_amount', 8, 2);
+            $table->decimal('pending_amount', 8, 2);
+            $table->decimal('credit_amount', 8, 2);
             $table->enum('status', ['0', '1','3','4'])->default('0');
             $table->integer('created_by')->length(11);	
             $table->integer('updated_by')->length(11)->nullable();
@@ -42,6 +40,6 @@ class CreateAuctionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('auctions');
+        Schema::dropIfExists('credit_payment_auctions');
     }
 }

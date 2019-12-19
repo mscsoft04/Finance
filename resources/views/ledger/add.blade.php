@@ -1,406 +1,119 @@
-@extends('layouts.main')
-
-@section('title', 'Group')
-@section('breadcrumb')
-<div class="col-lg-9 col-md-8 col-sm-8 col-2">
-            	
-            	<div class="breadcrumbbar">
-                	<ul>
-                    	<li class="breadcrumb-item">
-                        <a href="{{ url('group') }}"><span>Group</span><i class="fas fa-arrow-left fa-fw"></i></a>
-                        </li>
-                        <li class="breadcrumb-item active">Add</li>
-                    </ul>
-                </div>
-            </div>
-@endsection
-
-
-@section('content')
-<div class="row">
-            	<div class="col-lg-12">
-                	<div class="widget-bg"> 
-                		<div class="card  ">
+<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+   <form method="post" id="creditPaymentData">
+      @csrf
+  <div class="form-row">
+     <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <label>Payment Date <span class="text-danger">*</span></label>
+        <div class="input-group mb-3">
+           <input type="text" class="form-control" placeholder="Payment Date" name="payment_date" id="paymentdate">
+           <div class="input-group-append">
+              <button class="btn btn-success" type="submit"><i class="far fa-calendar-alt"></i></button>
+           </div>
+        </div>
+     </div>
+     <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <label>Payment Type <span class="text-danger">*</span></label>
+        <select class="form-control pay-type" name="payment_type">
+           <option selected="selected" value="cash">Cash</option>
+           <option value="cheque">Cheque</option>
+        </select>
+     </div>
+     <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <label>Bill Amount<span class="text-danger">*</span></label>
+        <input type="text" name="paid_amount" class="form-control" placeholder="Bill Amount">
+     </div>
+     <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <label>Pending Amount<span class="text-danger">*</span></label>
+        <input type="text" name="bank_name" class="form-control" value="{{ $total["total_amount"]?? 0 - $cus_credit_amount ?? 0 }}" placeholder="Pending Amount" readonly>
+     </div>
+     <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <label>Credit Amount<span class="text-danger">*</span></label>
+     <input type="text" name="credit_amount" class="form-control" value="{{ $cus_credit_amount ?? 0}}" placeholder="Credit Amount" readonly>
+     </div>
      
-      <div class="card-body">
-      <form method="post" action="{{ route('group.store') }}" >
-        @csrf
-        <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="branchname"><span>Branch</span></label>
-                <select  id="branchname" name="branch_id"  class="form-control selectpicker" >
-				             <option value="">Select Branch</option>
-                     @foreach ($branches as $branch)
-                     <option  value="{{$branch->id}}" {{ old("branch_id") == $branch->id ? "selected":"" }}>{{$branch->branch_name}}<option>
-                     @endforeach
-                     </select>
- 
-                </div>
-                @error('branch_id')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="schemes"><span>Schemes</span></label>
-                <select  id="schemes" name="schemes_id"  class="form-control selectpicker" >
-				             <option value="">Select Schemes</option>
-                     @foreach ($schemes as $scheme)
-                     <option  value="{{$scheme->id}}" {{ old("schemes_id") == $scheme->id ? "selected":"" }}>{{$scheme->chit_value}}<option>
-                     @endforeach
-                     </select>
- 
-                </div>
-                @error('schemes_id')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-		    <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="type"><span>Type</span></label>
-                <input type="text" id="type" class="form-control" name="type"  value="{{ old('type') }}" placeholder="Type" required>
-                
-	              </div>
-                @error('type')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="auction_time"><span>Auction Time</span></label>
-                <input type="text" id="auction_time" class="form-control" name="auction_time"  value="{{ old('auction_time') }}" placeholder="Auction Time" required>
-                
-	              </div>
-                @error('auction_time')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-		  
-		   <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="name"><span>Name</span></label>
-                <input type="text" id="name" class="form-control" name="name" value="{{ old('name') }}" placeholder="Name" required>
-                  
-	              </div>
-                @error('name')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="commission"><span>Commission</span></label>
-                <input type="text" id="commission" class="form-control" name="commission" value="{{ old('commission') }}" placeholder="Commission" required>
-                  
-	              </div>
-                @error('commission')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-		  
-		  
-		  <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="auction_date"><span>Auction Date</span></label>
-                <input type="text" id="auction_date" name="auction_date" value="{{ old('auction_date') }}" class="form-control date" placeholder="Auction Date" >
-                
-	              </div>
-                @error('auction_date')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="total_fd"><span>Total Fd</span></label>
-                <input type="text" id="total_fd" name="total_fd" value="{{ old('total_fd') }}" class="form-control" placeholder="Total Fd" >
-                
-	              </div>
-                @error('total_fd')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
+     <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <label>Bank Name<span class="text-danger">*</span></label>
+        <input type="text" name="bank_name" class="form-control" id="bank_name" placeholder="Bank Name" readonly>
+     </div>
+     <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <label>Cheque Number<span class="text-danger">*</span></label>
+        <input type="text" name="cheque_number" class="form-control" id="cheque_number" placeholder="Cheque Number" readonly>
+     </div>
+     <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <label>Cheque Date <span class="text-danger">*</span></label>
+        <div class="input-group mb-3">
+           <input type="text" class="form-control" placeholder="Cheque Date" name="cheque_date" id="ChequeDate" disabled>
+           <div class="input-group-append">
+              <button class="btn btn-success" type="submit"><i class="far fa-calendar-alt"></i></button>
+           </div>
+        </div>
+     </div>
+     <input type="hidden" class="form-control" value="{{ $subscriber_id}}" name="subscriber_id" >
+     <input type="hidden" class="form-control" value="{{ $group_id}}" name="group_id" >
+  </div>
 
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="start_date"><span>Start Date</span></label>
-                <input type="text" id="start_date" name="start_date" value="{{ old('start_date') }}" class="form-control date" placeholder="Start Date" >
-                
-	              </div>
-                @error('start_date')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="fd_rate_interrest"><span>Fd Rate Interrest</span></label>
-                <input type="text" id="fd_rate_interrest" name="fd_rate_interrest" value="{{ old('fd_rate_interrest') }}" class="form-control" placeholder="Fd Rate Interrest" >
-                
-	              </div>
-                @error('fd_rate_interrest')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="first_due_date"><span>First Due Date</span></label>
-                <input type="text" id="first_due_date" name="first_due_date" value="{{ old('first_due_date') }}" class="form-control date" placeholder="First Due Date" >
-                
-	              </div>
-                @error('first_due_date')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="maturity_amount"><span>Maturity Amount</span></label>
-                <input type="text" id="maturity_amount" name="maturity_amount" value="{{ old('maturity_amount') }}" class="form-control" placeholder="Maturity Amount" >
-                
-	              </div>
-                @error('maturity_amount')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-		  
-		   <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="fd_number"><span>FD Number</span></label>
-                <input type="text" id="fd_number" class="form-control" name="fd_number" value="{{ old('fd_number') }}"  placeholder="FD Number" required>
-                 
-	              </div>
-                @error('fd_number')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="fd_branch"><span>FD Branch</span></label>
-                <input type="text" id="fd_branch" class="form-control" name="fd_branch" value="{{ old('fd_branch') }}"  placeholder="FD Branch" required>
-                 
-	              </div>
-                @error('fd_branch')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-		  
-		  <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="company_fd"><span>Company FD</span></label>
-                <input type="text" id="company_fd" class="form-control" name="company_fd" value="{{ old('company_fd') }}" placeholder="Company FD" required>
-                  
-	              </div>
-                @error('company_fd')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="pso_date"><span>Pso Date </span></label>
-                <input type="text" id="pso_date" class="form-control date" name="pso_date" value="{{ old('pso_date') }}" placeholder="PSO Date" required>
-                  
-	              </div>
-                @error('pso_date')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="fd_date"><span>FD Date</span></label>
-                <input type="text" id="fd_date" name="fd_date" value="{{ old('fd_date') }}" class="form-control date" placeholder="FD Date" >
-                
-	              </div>
-                @error('fd_date')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="blaw_date"><span>Blaw Date</span></label>
-                <input type="text" id="blaw_date" class="form-control date" name="blaw_date" value="{{ old('blaw_date') }}" placeholder="Blaw Date" required>
-                  
-	              </div>
-                @error('blaw_date')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-		   <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="fd_bank"><span>FD Bank</span></label>
-                <input type="text" id="fd_bank" class="form-control" name="fd_bank" value="{{ old('fd_bank') }}"  placeholder="FD Bank" required>
-                  
-	              </div>
-                @error('fd_bank')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="pso_number"><span>PSO Number</span></label>
-                <input type="text" id="pso_number" class="form-control" name="pso_number"  value="{{ old('pso_number') }}" placeholder="PSO Number" required>
-                 
-	              </div>
-                @error('pso_number')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="blaw_number"><span>Blaw Number</span></label>
-                <input type="text" id="blaw_number" class="form-control" name="blaw_number"  value="{{ old('blaw_number') }}" placeholder="Blaw Number" required>
-                 
-	              </div>
-                @error('blaw_number')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="cheque_no"><span>Cheque No</span></label>
-                <input type="text" id="cheque_no" class="form-control" name="cheque_no"  value="{{ old('cheque_no') }}" placeholder="Cheque No" required>
-                 
-	              </div>
-                @error('cheque_no')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                <label for="company_chit"><span>Company Chit</span></label>
-                <input type="text" id="company_chit" class="form-control" name="company_chit"  value="{{ old('company_chit') }}" placeholder="Company Chit" required>
-                 
-	              </div>
-                @error('company_chit')
-                 <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              </div>
-          </div>
-		  
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-2">
-              <input type="submit" class="btn btn-primary btn-block btn-yellow">
-          </div>
-          </div>
-          </div>
-          		  
-		
-        </form>
-       
+  <div class="form-group  text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 offset-md-4">
+   <div class="form-row btntop">
+      <div class="col-md-2">
+         <a href="JavaScript:void(0)" type="button" class="btn btn-primary btn-block btn-yellow creditPayment-add">Save</a>
+         
       </div>
+      <div class="col-md-2">
+         <a href="" data-dismiss="modal" class="btn btn-block btn-dark">Cancel</a>
+      </div>
+   </div>
+</div>
+</form>
+
+
+ 
+ <div class="row">
+  <div class="col-md-12 col-sm-12 col-lg-12">
+    <div class="table-scroll-limit">
+      <table class="table table-streched table-hover">
+        <thead>
+          <tr>
+            <th>AuctionNo</th>
+            <th>Days</th>
+            <th>DueAmount</th>
+            <th>PaidAmount</th>
+            <th>DiscountAmount</th>
+            <th>PenaltyAmount</th>
+            <th>PendingAmount</th>
+            <th>TotalAmount</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($results as $row)
+          <tr>
+            <td>{{ $row['auction_number'] }}</td>
+            <td>{{ $row['days'] }}</td>
+            <td>{{ number_format($row['due_amount'], 2) }}</td>
+            <td>{{ number_format($row['paid_amount'], 2) }}</td>
+            <td>{{ number_format($row['discount'], 2) }}</td>
+            <td>{{ number_format($row['penalty'], 2) }}</td>
+            <td>{{ number_format($row['pending_amount'], 2) }}</td>
+            <td>{{ number_format($row['total_amount'], 2) }}</td>
+            
+        
+            
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
     </div>
-                     </div>
-                
-                </div>
-                
-            </div>
-       
-
-@endsection
-@section('script')
-
-<script type="text/javascript">
+  </div>
+</div>
+  
+  <script type="text/javascript">
 
 $(document).ready(function() {
-  $('.date').datepicker({
+ 
+
+  $('#paymentdate,#ChequeDate').datepicker({
     autoclose: true,
-        todayHighlight: true,
+    todayHighlight: true,
 
   });
-
 });
 </script>
-@endsection

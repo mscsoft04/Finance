@@ -77,8 +77,10 @@ class CreateSubscribersTable extends Migration
             $table->text('additional_notes')->nullable();
             $table->text('profile')->nullable();
             $table->enum('status', ['0', '1','2','3'])->default('1');
+            $table->decimal('credit_amount', 8, 2)->nullable();
             $table->integer('created_by')->length(11);	
-            $table->integer('updated_by')->length(11)->nullable();	
+            $table->integer('updated_by')->length(11)->nullable();
+
             $table->timestamps();
         });
         

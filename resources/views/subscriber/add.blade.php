@@ -118,6 +118,11 @@
                                              
                                           </select>
                                        </div>
+                                       @error('name_of_father')
+                                       <span class="invalid-feedback" role="alert">
+                                       <strong>{{ $message }}</strong>
+                                       </span>
+                                       @enderror
                                     </div>
                                     <div class="col-3 col-sm-3 col-md-8 col-lg-10 col-xl-10">
                                        <div class="form-label-group">
@@ -463,7 +468,7 @@
                                           <select  id="pdistrictname" name="p_district" class="form-control city">
                                              <option value="">District</option>
                                              @foreach ($cities as $city)
-                                             <option  value="{{$city->id}}" {{ old("p_state") == $city->id ? "selected":"" }}>{{ $city->name }}</option>
+                                             <option  value="{{$city->id}}" {{ old("p_district") == $city->id ? "selected":"" }}>{{ $city->name }}</option>
                                              @endforeach
                                             
                                           </select>

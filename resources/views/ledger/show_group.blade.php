@@ -1,33 +1,53 @@
-
-							<tr>
-								<td>1</td>
-								<td>Charles Antony</td>
-								<td>Senior Engineer</td>
-								<td>charlesantony1234@gmail.com</td>
-								<td>HCL</td>
-								<td>30</td>
-								<td>12/05/2019</td>
-								<td>100000</td>
-								<td>986545643</td>
-								<td>India</td>
-								<td>Tasmilnadu</td>
-								<td>Chennai</td>
-								<td><span class="badge badge-pill badge-primary">Active</span></td>
-								<td>
-								<span class="actions-item">
-									<div class="dropdown">
-									  <a data-toggle="dropdown">
-										<div><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-									  </a>
-									  <div class="dropdown-menu dropdown-menu-right">
-										<ul class="">
-										  <li><a href="#"><span>Edit</span></a></li>
-										  <li><a href="#"><span>Delete</span></a></li>
-										</ul>
-									  </div>
-									</div>
-								  </span>
-								</td>
-							</tr>
-							
-							
+<table class="table-normal table-streched table-hover">
+	<thead>
+		<tr>
+			<th>S.No</th>
+			<th>Group Name</th>
+			<th>Ticket No</th>
+			<th>CollectionType</th>
+			<th>Inst Amount</th>
+			<th>C Inst</th>
+			<th>Due Amount</th>
+			<th>AUC</th>
+			<th>Pay</th>
+			<th>Reg</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach ($data as $row)
+		
+		<tr>
+			<td>{{ $loop->iteration }}</td>
+			@if ( (count($row) == 1 ) && (is_null($row[0]->auction_number)))
+			<td><a href="javascript:void(0)" class="add-payment-diabled" data-id="{{$row[0] }}">{{ $row[0]->group_name }}</a></td>
+			@else
+			<td><a href="javascript:void(0)" class="add-payment" data-id="{{$row[0] }}">{{ $row[0]->group_name }}</a></td>
+			@endif
+			<td>{{ $row[0]->ticket_number }}</td>
+			<td>{{ $row[0]->collection_type }}</td>
+			<td>{{ $row[0]->chit_value }}</td>
+			@if ( (count($row) == 1 ) && (is_null($row[0]->auction_number)))
+			<td>0</td>
+			@else
+			<td>{{ count($row) }}</td>
+			@endif
+			<td>{{ $row[0]->monthly_due }}</td>
+			
+			@foreach ($row as $val)
+			@if ( $val->actionSub_id  == $id)
+			   <td>{{ 'YES' }} </td>
+			   <td>{{ ($val->status==0)? "NO" : "YES"}}</td>
+			   @break
+			@else
+			@if($loop->last)
+			<td>{{ 'No' }} </td>
+			<td>{{ 'No' }} </td>
+              @endif
+			
+			 @endif
+			@endforeach
+			<td>{{ $row[0]->group_Type }} </td>
+		</tr>
+		@endforeach
+   </tbody>
+</table>

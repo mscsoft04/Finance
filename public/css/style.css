@@ -1863,5 +1863,7 @@ table.billreport {
 	border: 0;
 }
 .table.billreport td, .billreport.table th {
-	border-top: 0px;
+	border-top: 0px;}
+.invalid-feedback {
+ display: block;
 }
