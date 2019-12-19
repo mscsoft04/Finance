@@ -1867,3 +1867,20 @@ table.billreport {
 .invalid-feedback {
  display: block;
 }
+.custtable-group {
+	height: 320px;
+}
+.td-blue-bg {
+	background-color: #eaebff;
+}
+.card .table tbody tr td.givenchit {
+	vertical-align: middle;
+	color: #ef5959;
+	font-weight: bold;
+	text-align: center;
+	font-size: 14px;
+}
+.chitfund-table {
+	height: 320px;
+	overflow: auto;
+}
