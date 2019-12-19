@@ -1,6 +1,10 @@
-<table class=" table table-striped">
+
+<table class=" table table-bordered">
   
   <tbody>
+    <tr>
+      <th colspan="4"><img src="{{ asset('public/image/girl.svg') }}" style="width: 100px;"></th>
+    </tr>
     <tr>
       <th scope="row">Branch Name</th>
       <td>{{ $branches->branch_name}}</td>

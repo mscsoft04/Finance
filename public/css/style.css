@@ -871,6 +871,9 @@ cursor:pointer;}
 	text-decoration:none;
 	border:1px solid #dee2e6
 }
+.btn-global span {
+	color: #fff;
+}
 .btn-global i{
 	float: right;
    
@@ -1482,7 +1485,7 @@ div.dataTables_wrapper div.dataTables_info,
 		margin-top: 15px;
 		padding: 5px 15px;
 		border: 1px solid #d2e4ff;
-		height: 280px;
+		height: 400px;
 	}
 	.form-tab .form-group {
 		margin-bottom: 7px;
@@ -1547,6 +1550,7 @@ div.dataTables_wrapper div.dataTables_info,
 		text-transform: uppercase;
 		font-size: 14px !important;
 	}
+	
 	.auto-focus-table table{
 		position: relative;
 
@@ -1574,7 +1578,7 @@ position: absolute;
 }
 
 .table-scroll-limit {
-	height: 280px;
+	height: 400px;
 	overflow-x: auto;
 	overflow-y: auto;
 	margin-top: 20px;
@@ -1587,6 +1591,12 @@ position: absolute;
 }
 .table tr th:first-of-type, .table tr td:first-of-type {
 	min-width: auto;
+}
+.t-m-collection {
+	padding: 3px;
+}
+.t-m-collection .table tr th:first-of-type {
+	min-width: 70px;
 }
 .table-hover tbody tr:hover {
 	background-color: rgb(240, 246, 255);
@@ -1782,4 +1792,76 @@ table.dataTable thead .sorting_asc_disabled:after,
 table.dataTable thead .sorting_desc_disabled:before, 
 table.dataTable thead .sorting_desc_disabled:after {
 	bottom: 5px;
+}
+.btn-top20  {
+	margin-top: 20px;
+}
+.chitpaymenttable table {
+	background-color: #fff;
+}
+.dailycollections,
+.chitpaymenttable {
+	background-color: #fdfdfd;
+	border: 1px solid #f3f3f3;
+	padding: 5px;
+}
+.percentagelabel {
+	display: inline-block;
+	float: right;	
+}
+.percentagelabel input {
+	width: 80px;
+	padding: 0 5px;
+	border: 1px solid #d2e4ff;
+	height: 37px;
+}
+.cdate {
+	margin-top: 10px;
+}
+.countvalue span {
+	padding: 5px 10px;
+	display: inline-block;
+}
+@media screen and (min-width: 1024px) {
+	.chitpaymenttable {
+		height: 655px;
+	}
+}
+.table tr th, .table tr td {
+	vertical-align: middle;
+	font-size: 13px;
+}
+.table-dcollect {
+	height: 430px;
+	margin-bottom: 30px;
+	overflow: auto;
+	padding: 10px;
+}
+.billseries {
+	background-color: #fdfdfd;
+	border: 1px solid #f3f3f3;
+
+}
+.tr-blue {
+	background-color: rgb(240, 246, 255);
+}
+.radiobtn label {
+	padding-right: 10px;
+	padding-top: 25px;
+
+}
+.top20 {
+	margin-top: 25px;
+}
+.btn100 .btn {
+	width: 100%;
+}
+.tr-green {
+	background-color: #e5fff0;
+}
+table.billreport {
+	border: 0;
+}
+.table.billreport td, .billreport.table th {
+	border-top: 0px;
 }

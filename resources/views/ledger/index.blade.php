@@ -25,6 +25,9 @@
 			<div class="col-md-3 col-sm-12 col-lg-3">
 				<div class="form-tab">
 					<form>
+						<div class="form-group text-center">
+							<img src="{{ asset('public/image/girl.svg') }}"  style="width:100px">
+						</div>
 						<div class="form-group">
 							<label>First name</label>
 							<input type="text" name="name" class="form-control autocomplete" placeholder="Name">
