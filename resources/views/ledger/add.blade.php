@@ -88,12 +88,12 @@
           <tr>
             <td>{{ $row['auction_number'] }}</td>
             <td>{{ $row['days'] }}</td>
-            <td>{{ number_format($row['due_amount'], 2) }}</td>
-            <td>{{ number_format($row['paid_amount'], 2) }}</td>
-            <td>{{ number_format($row['discount'], 2) }}</td>
-            <td>{{ number_format($row['penalty'], 2) }}</td>
-            <td>{{ number_format($row['pending_amount'], 2) }}</td>
-            <td>{{ number_format($row['total_amount'], 2) }}</td>
+            <td>{{ number_format((float)$row['due_amount'], 2) }}</td>
+            <td>{{ number_format((float)$row['paid_amount'], 2) }}</td>
+            <td>{{ number_format((float)$row['discount'], 2) }}</td>
+            <td>{{ number_format((float)$row['penalty'], 2) }}</td>
+            <td>{{ number_format((float)$row['pending_amount'], 2) }}</td>
+            <td>{{ number_format((float)$row['total_amount'], 2) }}</td>
             
         
             

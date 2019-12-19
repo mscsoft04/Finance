@@ -386,7 +386,12 @@ class CreditPaymentAuctionController extends Controller
               $preCentage=($exit==true)?$row['prize_subscriber_penalty']:$row['non_prize_subscriber_penalty'];
               $penalty=($amount*$preCentage/100)/365;
               $day=$day_count-$row['penalty_days'];
-              $penalty_amount=$penalty*$day ;
+              $penalty_amount=0;
+                if($amount>=1000){
+                    $p_a=$penalty*$day ;
+                    $penalty_amount=$this->round_off($p_a);
+                    
+                }
               $result['penalty']=$penalty_amount+$row['penalty_amount'];
 
            }else{
@@ -408,5 +413,18 @@ class CreditPaymentAuctionController extends Controller
         $diff_in_days = $to->diffInDays($from);
       return  $diff_in_days;
     }
+    public function round_off($data){
+      $x=intdiv($data,5);
+      $v=$data-$x*5;
+        $d=0;
+     if($v<3){
+         $d= $data-$v;
+     }else{
+          $s=5-$v;
+          $d= $data+$s;
+
+     }
+   return $d;
+  }
     
 }

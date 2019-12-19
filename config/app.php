@@ -178,7 +178,8 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         /*data table */
         yajra\Datatables\DatatablesServiceProvider::class,
-        Laralabs\Toaster\ToasterServiceProvider::class
+        Laralabs\Toaster\ToasterServiceProvider::class,
+		Barryvdh\DomPDF\ServiceProvider::class,
 
 
 

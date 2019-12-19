@@ -15,427 +15,284 @@
 @endsection
 
 @section('content')
-<div class="row">
-<div class="col-lg-12">
-                	<div class="widget-bg"> 
-                		<div class="card  ">
-		<div class="row">
-			
-			<div class="col-md-3 col-sm-12 col-lg-3">
-				<div class="form-tab">
-					<form>
-						<div class="form-group text-center">
-							<img src="{{ asset('public/image/girl.svg') }}"  style="width:100px">
+
+	  <div class="row">
+		<div class="col-lg-12">
+		  <div class="widget-bg"> 
+			<div class="card  ">
+			  <div class="card-body">
+				<div class="row">
+				  
+					<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+					  <form>
+					  <div class="card card-box">
+						<!-- card start -->
+						<div class="card-header">
+						   Customer Details
 						</div>
-						<div class="form-group">
-							<label>First name</label>
-							<input type="text" name="name" class="form-control autocomplete" placeholder="Name">
-						<div id="data" class="auto-focus-table"></div>
-						
+						<div class="card-body address-tab">
+							<div class="table-responsive">
+								<table class="table table-hover table-bordered">
+								  <tbody>
+									<tr>
+									  <td rowspan="10" colspan="2">
+										<img src="http://localhost:8000/public/image/girl.svg" style="width: 100px; height: 100px;" alt="profile">
+									  </td>
+									  <td colspan="2"><input type="text" name="name" class="form-control autocomplete" placeholder="Name">
+										<div id="data" class="auto-focus-table"></div>
+										
+										</div>
+										{{ csrf_field() }}
+									</td>
+								
+									</tr>
+									<tr>
+									  <td class="table-primary">Occupation</td>
+									  <td ><span class="occupation"></span></td>
+									</tr>
+									<tr>
+									  <td class="table-primary">Address</td>
+									  <td><span class="address"></span></td>
+									</tr>
+									<tr>
+									  <td class="table-primary">Village</td>
+									  <td><span class="village"></span></td>
+									</tr>
+									<tr>
+									  <td class="table-primary">Taluk</td>
+									  <td><span class="taluk"></span></td>
+									</tr>
+									<tr>
+									  <td class="table-primary">Pincode</td>
+									  <td><span class="pincode"></span></td>
+									</tr>
+									<tr>
+									  <td class="table-primary">Mobile</td>
+									  <td><span class="phone"></span></td>
+									</tr>
+									<tr>
+									  <td class="table-primary">Email</td>
+									  <td><span class="email"></span></td>
+									</tr>
+									<tr>
+									  <td class="table-primary">Area Name</td>
+									  <td><span class="area"></span></td>
+									</tr>
+									<tr>
+									  <td class="table-primary">DR Amt</td>
+									  <td><span class="credit_amount"></span></td>
+									</tr>
+								  </tbody>
+								</table>
+							  </div>
 						</div>
-						<div class="form-group">
-							<label>Last name</label>
-							<input type="text" name="name" class="form-control lastname" placeholder="Name">
-						</div>
-						<div class="form-group">
-							<label>Email</label>
-							<input type="text" name="name" class="form-control email" placeholder="Name">
-						</div>
-						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" name="name" class="form-control phone" placeholder="Name">
-						</div>
-						{{ csrf_field() }}
-					</form>
-				</div>
-			</div>
-			<div class="col-md-9 col-sm-12 col=lg-9">
-				<div class="table-scroll-limit group-table">
-				
-					
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12 col-sm-12 col-lg-12">
-				<div class="table-scroll-limit">
-					<table class="table-normal table-streched table-hover">
-						<thead>
-							<tr>
+					 </div> <!-- Card end -->
+					</div> <!-- col-mg-6 end-->
+					<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 address-detail">
+						  <div class="card card-box"> 
+						  <!-- card start -->
+							<div class="card-header">
+							 Group  Details
+							</div>
+							<div class="card-body">
+								<div class="table-responsive custtable-group group-table">
+									
+								  </div>
+							</div>
+						  </div> <!-- Card end-->
+					  </div>
+					</div> <!--Row End -->
+					<div class="row">
+					  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+						<div class="table-responsive">
+							<table class="table table-hover table-bordered">
+							  <tbody>
 								<tr>
-								<th>S.No</th>
-								<th>Name</th>
-								<th>Position</th>
-								<th>Email</th>
-								<th>Office</th>
-								<th>Age</th>
-								<th>Start date</th>
-								<th>Salary</th>
-								<th>Phone</th>
-								<th>Country</th>
-								<th>State</th>
-								<th>City</th>
-								<th>Location</th>
-								<th>Vichle no</th>
-								<th>Joined Date</th>
-								<th>DOB</th>
-								<th>Status</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Charles Antony</td>
-								<td>Senior Engineer</td>
-								<td>charlesantony1234@gmail.com</td>
-								<td>HCL</td>
-								<td>30</td>
-								<td>12/05/2019</td>
-								<td>100000</td>
-								<td>986545643</td>
-								<td>India</td>
-								<td>Tasmilnadu</td>
-								<td>Chennai</td>
-								<td>Nungambakkam</td>
-								<td>TN 01 C 9876</td>
-								<td>15/06/2019</td>
-								<td>05/08/2000</td>
-								<td><span class="badge badge-pill badge-primary">Active</span></td>
-								<td>
-								<span class="actions-item">
-									<div class="dropdown">
-									  <a data-toggle="dropdown">
-										<div><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-									  </a>
-									  <div class="dropdown-menu dropdown-menu-right">
-										<ul class="">
-										  <li><a href="#"><span>Edit</span></a></li>
-										  <li><a href="#"><span>Delete</span></a></li>
-										</ul>
-									  </div>
-									</div>
-								  </span>
-								</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Charles Antony</td>
-								<td>Senior Engineer</td>
-								<td>charlesantony1234@gmail.com</td>
-								<td>HCL</td>
-								<td>30</td>
-								<td>12/05/2019</td>
-								<td>100000</td>
-								<td>986545643</td>
-								<td>India</td>
-								<td>Tasmilnadu</td>
-								<td>Chennai</td>
-								<td>Nungambakkam</td>
-								<td>TN 01 C 9876</td>
-								<td>15/06/2019</td>
-								<td>05/08/2000</td>
-								<td><span class="badge badge-pill badge-success">Success</span></td>
-								<td>
-								<span class="actions-item">
-									<div class="dropdown">
-									  <a data-toggle="dropdown">
-										<div><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-									  </a>
-									  <div class="dropdown-menu dropdown-menu-right">
-										<ul class="">
-										  <li><a href="#"><span>Edit</span></a></li>
-										  <li><a href="#"><span>Delete</span></a></li>
-										</ul>
-									  </div>
-									</div>
-								  </span>
-								</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Charles Antony</td>
-								<td>Senior Engineer</td>
-								<td>charlesantony1234@gmail.com</td>
-								<td>HCL</td>
-								<td>30</td>
-								<td>12/05/2019</td>
-								<td>100000</td>
-								<td>986545643</td>
-								<td>India</td>
-								<td>Tasmilnadu</td>
-								<td>Chennai</td>
-								<td>Nungambakkam</td>
-								<td>TN 01 C 9876</td>
-								<td>15/06/2019</td>
-								<td>05/08/2000</td>
-								<td><span class="badge badge-pill badge-danger">Pending</span></td>
-								<td>
-								<span class="actions-item">
-									<div class="dropdown">
-									  <a data-toggle="dropdown">
-										<div><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-									  </a>
-									  <div class="dropdown-menu dropdown-menu-right">
-										<ul class="">
-										  <li><a href="#"><span>Edit</span></a></li>
-										  <li><a href="#"><span>Delete</span></a></li>
-										</ul>
-									  </div>
-									</div>
-								  </span>
-								</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>Charles Antony</td>
-								<td>Senior Engineer</td>
-								<td>charlesantony1234@gmail.com</td>
-								<td>HCL</td>
-								<td>30</td>
-								<td>12/05/2019</td>
-								<td>100000</td>
-								<td>986545643</td>
-								<td>India</td>
-								<td>Tasmilnadu</td>
-								<td>Chennai</td>
-								<td>Nungambakkam</td>
-								<td>TN 01 C 9876</td>
-								<td>15/06/2019</td>
-								<td>05/08/2000</td>
-								<td><span class="badge badge-pill badge-primary">Active</span></td>
-								<td>
-								<span class="actions-item">
-									<div class="dropdown">
-									  <a data-toggle="dropdown">
-										<div><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-									  </a>
-									  <div class="dropdown-menu dropdown-menu-right">
-										<ul class="">
-										  <li><a href="#"><span>Edit</span></a></li>
-										  <li><a href="#"><span>Delete</span></a></li>
-										</ul>
-									  </div>
-									</div>
-								  </span>
-								</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>Charles Antony</td>
-								<td>Senior Engineer</td>
-								<td>charlesantony1234@gmail.com</td>
-								<td>HCL</td>
-								<td>30</td>
-								<td>12/05/2019</td>
-								<td>100000</td>
-								<td>986545643</td>
-								<td>India</td>
-								<td>Tasmilnadu</td>
-								<td>Chennai</td>
-								<td>Nungambakkam</td>
-								<td>TN 01 C 9876</td>
-								<td>15/06/2019</td>
-								<td>05/08/2000</td>
-								<td><span class="badge badge-pill badge-primary">Active</span></td>
-								<td>
-								<span class="actions-item">
-									<div class="dropdown">
-									  <a data-toggle="dropdown">
-										<div><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-									  </a>
-									  <div class="dropdown-menu dropdown-menu-right">
-										<ul class="">
-										  <li><a href="#"><span>Edit</span></a></li>
-										  <li><a href="#"><span>Delete</span></a></li>
-										</ul>
-									  </div>
-									</div>
-								  </span>
-								</td>
-							</tr>
-							<tr>
-								<td>6</td>
-								<td>Charles Antony</td>
-								<td>Senior Engineer</td>
-								<td>charlesantony1234@gmail.com</td>
-								<td>HCL</td>
-								<td>30</td>
-								<td>12/05/2019</td>
-								<td>100000</td>
-								<td>986545643</td>
-								<td>India</td>
-								<td>Tasmilnadu</td>
-								<td>Chennai</td>
-								<td>Nungambakkam</td>
-								<td>TN 01 C 9876</td>
-								<td>15/06/2019</td>
-								<td>05/08/2000</td>
-								<td><span class="badge badge-pill badge-primary">Active</span></td>
-								<td>
-								<span class="actions-item">
-									<div class="dropdown">
-									  <a data-toggle="dropdown">
-										<div><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-									  </a>
-									  <div class="dropdown-menu dropdown-menu-right">
-										<ul class="">
-										  <li><a href="#"><span>Edit</span></a></li>
-										  <li><a href="#"><span>Delete</span></a></li>
-										</ul>
-									  </div>
-									</div>
-								  </span>
-								</td>
-							</tr>
-							<tr>
-								<td>7</td>
-								<td>Charles Antony</td>
-								<td>Senior Engineer</td>
-								<td>charlesantony1234@gmail.com</td>
-								<td>HCL</td>
-								<td>30</td>
-								<td>12/05/2019</td>
-								<td>100000</td>
-								<td>986545643</td>
-								<td>India</td>
-								<td>Tasmilnadu</td>
-								<td>Chennai</td>
-								<td>Nungambakkam</td>
-								<td>TN 01 C 9876</td>
-								<td>15/06/2019</td>
-								<td>05/08/2000</td>
-								<td><span class="badge badge-pill badge-primary">Active</span></td>
-								<td>
-								<span class="actions-item">
-									<div class="dropdown">
-									  <a data-toggle="dropdown">
-										<div><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-									  </a>
-									  <div class="dropdown-menu dropdown-menu-right">
-										<ul class="">
-										  <li><a href="#"><span>Edit</span></a></li>
-										  <li><a href="#"><span>Delete</span></a></li>
-										</ul>
-									  </div>
-									</div>
-								  </span>
-								</td>
-							</tr>
-							<tr>
-								<td>8</td>
-							<td>Charles Antony</td>
-								<td>Senior Engineer</td>
-								<td>charlesantony1234@gmail.com</td>
-								<td>HCL</td>
-								<td>30</td>
-								<td>12/05/2019</td>
-								<td>100000</td>
-								<td>986545643</td>
-								<td>India</td>
-								<td>Tasmilnadu</td>
-								<td>Chennai</td>
-								<td>Nungambakkam</td>
-								<td>TN 01 C 9876</td>
-								<td>15/06/2019</td>
-								<td>05/08/2000</td>
-								<td><span class="badge badge-pill badge-primary">Active</span></td>
-								<td>
-								<span class="actions-item">
-									<div class="dropdown">
-									  <a data-toggle="dropdown">
-										<div><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-									  </a>
-									  <div class="dropdown-menu dropdown-menu-right">
-										<ul class="">
-										  <li><a href="#"><span>Edit</span></a></li>
-										  <li><a href="#"><span>Delete</span></a></li>
-										</ul>
-									  </div>
-									</div>
-								  </span>
-								</td>
-							</tr>
-							<tr>
-								<td>9</td>
-								<td>Charles Antony</td>
-								<td>Senior Engineer</td>
-								<td>charlesantony1234@gmail.com</td>
-								<td>HCL</td>
-								<td>30</td>
-								<td>12/05/2019</td>
-								<td>100000</td>
-								<td>986545643</td>
-								<td>India</td>
-								<td>Tasmilnadu</td>
-								<td>Chennai</td>
-								<td>Nungambakkam</td>
-								<td>TN 01 C 9876</td>
-								<td>15/06/2019</td>
-								<td>05/08/2000</td>
-								<td><span class="badge badge-pill badge-primary">Active</span></td>
-								<td>
-								<span class="actions-item">
-									<div class="dropdown">
-									  <a data-toggle="dropdown">
-										<div><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-									  </a>
-									  <div class="dropdown-menu dropdown-menu-right">
-										<ul class="">
-										  <li><a href="#"><span>Edit</span></a></li>
-										  <li><a href="#"><span>Delete</span></a></li>
-										</ul>
-									  </div>
-									</div>
-								  </span>
-								</td>
-							</tr>
-							<tr>
-								<td>10</td>
-								<td>Charles Antony</td>
-								<td>Senior Engineer</td>
-								<td>charlesantony1234@gmail.com</td>
-								<td>HCL</td>
-								<td>30</td>
-								<td>12/05/2019</td>
-								<td>100000</td>
-								<td>986545643</td>
-								<td>India</td>
-								<td>Tasmilnadu</td>
-								<td>Chennai</td>
-								<td>Nungambakkam</td>
-								<td>TN 01 C 9876</td>
-								<td>15/06/2019</td>
-								<td>05/08/2000</td>
-								<td><span class="badge badge-pill badge-primary">Active</span></td>
-								<td>
-								<span class="actions-item">
-									<div class="dropdown">
-									  <a data-toggle="dropdown">
-										<div><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-									  </a>
-									  <div class="dropdown-menu dropdown-menu-right">
-										<ul class="">
-										  <li><a href="#"><span>Edit</span></a></li>
-										  <li><a href="#"><span>Delete</span></a></li>
-										</ul>
-									  </div>
-									</div>
-								  </span>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+								  <th>Auction</th>
+								  <th>Auction Date</th>
+								  <th>Divident Amt</th>
+								  <th>Due Amount</th>
+								  <th>Auction Amt</th>
+								  <th>Payable Amt</th>
+								  <th>Payment Amt</th>
+								  <th>Balance Amt</th>
+								  <td rowspan="2" class="givenchit"><strong>They Given Chit Surety</strong></td>
+								</tr>
+							  
+								<tr>
+								  <td>15</td>
+								  <td>14/11/2019</td>
+								  <td class="text-right">235.00</td>
+								  <td class="text-right">2770.00</td>
+								  <td class="text-right">7700.00</td>
+								  <td class="text-right">52, 300.00</td>
+								  <td class="text-right">53,400.00</td>
+								  <td class="text-right">0.00</td>
+								  
+								</tr>
+							  </tbody>
+							</table>
+						</div>
+					  </div>
+					</div>
+					  <div class="row">
+					  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+						<div class="table-responsive chitfund-table">
+							<table class="table table-hover table-bordered">
+							  <thead>
+								<tr>
+								  <th style="min-width: 100px">Bill Series</th>
+								  <th>Bill No</th>
+								  <th>Bill Date</th>
+								  <th>Bill Amt</th>
+								  <th>Penalty Amt</th>
+								  <th>Other Amt</th>
+								  <th>Credit/Pending</th>
+								  <th>Total Amt</th>
+								  <th>Rec Type</th>
+								  <th>F.Inst</th>
+								  <th>To Inst</th>
+								  <th>ChqD</th>
+								</tr>
+							  </thead>
+							  <tbody>
+								<tr>
+								  <td></td>
+								  <td></td>
+								  <td></td>
+								  <td class="text-right text-success">37,970.00</td>
+								  <td class="text-right text-success">180.00</td>
+								  <td class="text-right text-success">0.00</td>
+								  <td class="text-right text-success">0.00</td>
+								  <td class="text-right text-success">38,150.00</td>
+								  <td class=" text-success"></td>
+								  <td class="text-center"></td>
+								  <td class="text-center"></td>
+								  <td></td>
+								</tr>
+								<tr>
+								  <td>DC BILL TRF</td>
+								  <td>44241</td>
+								  <td>22/11/2019</td>
+								  <td class="text-right">2,770.00</td>
+								  <td class="text-right">5.00</td>
+								  <td class="text-right"0.00></td>
+								  <td class="text-right"></td>
+								  <td class="text-right">2,775.00</td>
+								  <td>Cash</td>
+								  <td class="text-center">15</td>
+								  <td class="text-center">15</td>
+								  <td></td>
+								</tr>
+								 <tr>
+								  <td>DC BILL TRF</td>
+								  <td>44241</td>
+								  <td>22/11/2019</td>
+								  <td class="text-right">2,770.00</td>
+								  <td class="text-right">5.00</td>
+								  <td class="text-right"0.00></td>
+								  <td class="text-right"></td>
+								  <td class="text-right">2,775.00</td>
+								  <td>Cash</td>
+								  <td class="text-center">15</td>
+								  <td class="text-center">15</td>
+								  <td></td>
+								</tr>
+								 <tr>
+								  <td>DC BILL TRF</td>
+								  <td>44241</td>
+								  <td>22/11/2019</td>
+								  <td class="text-right">2,770.00</td>
+								  <td class="text-right">5.00</td>
+								  <td class="text-right"0.00></td>
+								  <td class="text-right"></td>
+								  <td class="text-right">2,775.00</td>
+								  <td>Cash</td>
+								  <td class="text-center">15</td>
+								  <td class="text-center">15</td>
+								  <td></td>
+								</tr>
+								 <tr>
+								  <td>DC BILL TRF</td>
+								  <td>44241</td>
+								  <td>22/11/2019</td>
+								  <td class="text-right">2,770.00</td>
+								  <td class="text-right">5.00</td>
+								  <td class="text-right"0.00></td>
+								  <td class="text-right"></td>
+								  <td class="text-right">2,775.00</td>
+								  <td>Cash</td>
+								  <td class="text-center">15</td>
+								  <td class="text-center">15</td>
+								  <td></td>
+								</tr>
+								 <tr>
+								  <td>DC BILL TRF</td>
+								  <td>44241</td>
+								  <td>22/11/2019</td>
+								  <td class="text-right">2,770.00</td>
+								  <td class="text-right">5.00</td>
+								  <td class="text-right"0.00></td>
+								  <td class="text-right"></td>
+								  <td class="text-right">2,775.00</td>
+								  <td>Cash</td>
+								  <td class="text-center">15</td>
+								  <td class="text-center">15</td>
+								  <td></td>
+								</tr>
+								 <tr>
+								  <td>DC BILL TRF</td>
+								  <td>44241</td>
+								  <td>22/11/2019</td>
+								  <td class="text-right">2,770.00</td>
+								  <td class="text-right">5.00</td>
+								  <td class="text-right"0.00></td>
+								  <td class="text-right"></td>
+								  <td class="text-right">2,775.00</td>
+								  <td>Cash</td>
+								  <td class="text-center">15</td>
+								  <td class="text-center">15</td>
+								  <td></td>
+								</tr>
+								 <tr>
+								  <td>DC BILL TRF</td>
+								  <td>44241</td>
+								  <td>22/11/2019</td>
+								  <td class="text-right">2,770.00</td>
+								  <td class="text-right">5.00</td>
+								  <td class="text-right"0.00></td>
+								  <td class="text-right"></td>
+								  <td class="text-right">2,775.00</td>
+								  <td>Cash</td>
+								  <td class="text-center">15</td>
+								  <td class="text-center">15</td>
+								  <td></td>
+								</tr>
+								 <tr>
+								  <td>DC BILL TRF</td>
+								  <td>44241</td>
+								  <td>22/11/2019</td>
+								  <td class="text-right">2,770.00</td>
+								  <td class="text-right">5.00</td>
+								  <td class="text-right"0.00></td>
+								  <td class="text-right"></td>
+								  <td class="text-right">2,775.00</td>
+								  <td>Cash</td>
+								  <td class="text-center">15</td>
+								  <td class="text-center">15</td>
+								  <td></td>
+								</tr>
+							  </tbody>
+							</table>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				  </form>
 				</div>
+			  </div>
 			</div>
-		</div>
-		</div>
-		</div>
-		</div>
-		</div>
-
-
-
+	
 
 @endsection
 @section('script')
@@ -464,9 +321,20 @@ $(document).ready(function(){
         $('#data').fadeOut(); 
 		let data=JSON.parse($(this).attr('data-id')); 
 		$('.autocomplete').val(data.subscriber_name);  
-		$('.lastname').val(data.Initial_name);
-		$('.phone').val(data.phone_no);
-		$('.email').val(data.mail_id);
+		$('.address').text(data.p_address);
+		$('.phone').text(data.mobile_no);
+		$('.email').text(data.mail_id);
+		$('.pincode').text(data.p_pincode);
+		$('.credit_amount').text(data.credit_amount);
+		$('.taluk').text(data.taluk);
+		$('.village').text(data.village);
+		$('.profile').text(data.profile);
+		$('.area').text(data.area);
+		$('.occupation').text(data.occupation);
+		
+		
+		
+		
 		actionData(data.id);
 		
 		console.log(data);

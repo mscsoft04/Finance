@@ -91,9 +91,28 @@ class LedgerController extends Controller
      if($request->get('query'))
      {
       $query = $request->get('query');
-      $data = Subscriber::where('subscriber_name', 'LIKE', "%{$query}%")
-        ->orWhere('phone_no', 'LIKE', "%{$query}%")
-        ->orWhere('mail_id', 'LIKE', "%{$query}%")
+      $data = Subscriber::leftJoin('taluks', 'subscribers.p_taluk', '=', 'taluks.id')
+               ->leftJoin('villages', 'subscribers.p_village', '=', 'villages.id')
+               ->leftJoin('collection_areas', 'subscribers.collection_area', '=', 'collection_areas.id')
+            ->where('subscribers.subscriber_name', 'LIKE', "%{$query}%")
+        ->orWhere('subscribers.mobile_no', 'LIKE', "%{$query}%")
+        ->orWhere('subscribers.mail_id', 'LIKE', "%{$query}%")
+        ->select('subscribers.id',
+                 'subscribers.subscriber_name',
+                 'subscribers.Initial_name',
+                 'subscribers.age',
+                 'subscribers.mobile_no',
+                 'subscribers.gender',
+                 'subscribers.mail_id',
+                 'subscribers.p_pincode',
+                 'subscribers.profile',
+                 'subscribers.credit_amount',
+                 'subscribers.occupation',
+                 'taluks.name as taluk',
+                 'villages.name as village',
+                 'collection_areas.area_name as area'
+                        
+                )
         ->get();
       $output = '<table class="table table-streched table-hover">';
       $output .= "<thead>
@@ -116,7 +135,7 @@ class LedgerController extends Controller
        $output .= "<td><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->subscriber_name." </a></td>";
        $output .= "<td><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->Initial_name."</a></td>";
 
-       $output .= "<td><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->phone_no."</a> </td>";
+       $output .= "<td><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->mobile_no."</a> </td>";
        $output .= "<td><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->age."</a></td>";
        $output .= "<td><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->gender."</a></td>";
        $output .= "<td><a href='JavaScript:void(0)' class='custom' data-id='".$row."'>".$row->p_address."</a></td>";
@@ -202,42 +221,50 @@ class LedgerController extends Controller
              
              if(is_null($row['status']) || empty($row['status']) || $row['status']==0){
             
-             $result['auction_number']=$row['auction_number'];
-             $result['due_amount']=$row['due_amount'];
-             $result['paid_amount']=$row['paid_amount'];
-             $cus_credit_amount=$row['cus_credit_amount'];
+             $result['auction_number']=$row['auction_number']??0;
+             $result['due_amount']=$row['due_amount']??0;
+             $result['paid_amount']=$row['paid_amount']??0;
+             $cus_credit_amount=$row['cus_credit_amount']??0;
              
              $diff_days=$this->days_diff($row['auction_date'],$date);
              $result['days']=$diff_days;
              $discount=0;
              if($row['bonus_days'] >=$diff_days){
                  $discount=($row['due_amount']*$row['bonus_precentage']/100);
-                 $result['discount']=$discount;
+                 $result['discount']=$discount??0;
              }else{
-                $result['discount']=$discount;  
+                $result['discount']=$discount??0;  
              }
               $day_count=0; $amount=0;
              if(is_null($row['payment_date']) || empty($row['payment_date'])){
                 $day_count=$this->days_diff($row['auction_date'],$date);
-                 $amount=$row['due_amount'];
+                 $amount=$row['due_amount']??0;
 
              }else{
                 $day_count=$this->days_diff($row['payment_date'],$date);
-                $amount=$row['due_amount']-$row['paid_amount'];
+                $amount=$row['due_amount']-$row['paid_amount']??0;
              }
              if($row['penalty_days'] < $day_count){
                 $preCentage=($exit==true)?$row['prize_subscriber_penalty']:$row['non_prize_subscriber_penalty'];
                 $penalty=($amount*$preCentage/100)/365;
                 $day=$day_count-$row['penalty_days'];
-                $penalty_amount=$penalty*$day ;
-                $result['penalty']=$penalty_amount;
+                $penalty_amount=0;
+                if($amount>=1000){
+                    $p_a=$penalty*$day ;
+                    $penalty_amount=$this->round_off($p_a);
+                    
+                }
+               
+                $result['penalty']=$penalty_amount+$row['penalty_amount'];;
 
              }else{
                 $penalty_amount=0;
-                $result['penalty']=$penalty_amount;
+                $result['penalty']=$penalty_amount+$row['penalty_amount'];
              }
-             $result['pending_amount']=$amount;
-             $result['total_amount']=$penalty_amount+$amount-$discount;
+             $result['pending_amount']=$amount??0;
+            
+             $tot=$penalty_amount+$amount-$discount;
+             $result['total_amount']=$tot??0;
 
              $results[]=$result;
             }
@@ -272,6 +299,19 @@ class LedgerController extends Controller
         $to = \Carbon\Carbon::createFromFormat('Y-m-d', $toDay);
         $diff_in_days = $to->diffInDays($from);
       return  $diff_in_days;
+    }
+    public function round_off($data){
+         $x=intdiv($data,5);
+         $v=$data-$x*5;
+           $d=0;
+        if($v<3){
+            $d= $data-$v;
+        }else{
+             $s=5-$v;
+             $d= $data+$s;
+
+        }
+      return $d;
     }
 
 }

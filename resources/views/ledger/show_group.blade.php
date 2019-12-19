@@ -1,4 +1,4 @@
-<table class="table-normal table-streched table-hover">
+<table class="table table-hover">
 	<thead>
 		<tr>
 			<th>S.No</th>
