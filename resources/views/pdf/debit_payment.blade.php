@@ -1,31 +1,29 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>Hello</title>
+    <title>Bill</title>
   </head>
   <body>
    <div class="container">
-   <table class="" style="width: 800px; border: 1px solid #ccc;padding: 10px;background-color: #fff;">
+   <table class="" style="width: 100%; border: 1px solid #ccc;padding:0px;background-color: #fff;">
       <tbody>
         <tr>
           <td rowspan="4" style="padding: 10px;">
-            <img src="http://localhost:8000/public/image/agnilogo.jpg" alt="Agni Logo" width="100">
+            <img src="./image/agnilogo.jpg" alt="Agni Logo" width="100">
           </td>
-          <td style="text-align: center;"><strong>AGNISWARI CHIT FUNDS PVT LTD</strong></td>
+          <td><strong>AGNISWARI CHIT FUNDS PVT LTD</strong></td>
         </tr>
         <tr>
-          <td style="text-align: center;">
+          <td>
             HEAD OFFICE <br/>
             4/411,NORTH MAIN ROAD, SETHIYATHOPE & POST ,BHUVANAGIRI TALUK ,608702<br/>
             04144 - 244381,9488624381
             <br/>
-            <span style="font-weight: bold;text-decoration: underline;display: inline-block;padding-top: 10px;float: right">REPRINT</span><br>
-            <span style="font-weight: bold;text-decoration: underline;display: inline-block;padding-top: 30px;">MONTHLY RECEIPT</span>
           </td>
         </tr>
       </tbody>
     </table>
-    <table style="width: 800px; border: 1px solid #ccc;padding: 0px;background-color: #fff;border-collapse: collapse;">
+    <table style="width: 100%; border: 1px solid #ccc;padding: 0px;background-color: #fff;border-collapse: collapse;">
       <tbody>
         <tr>
           <td style="padding: 5px;">Group/Tkt.No : </td>

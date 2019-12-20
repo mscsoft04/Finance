@@ -12,9 +12,9 @@
 */
 
 Route::get('/', function () {
-$pdf = App::make('dompdf.wrapper');
-$pdf->loadHTML('<h1>Test</h1>');
-return $pdf->stream();
+  /*  $pdf = App::make('dompdf.wrapper');
+   $pdf->loadView('pdf.credit_payment')->setPaper('a4', 'landscape');
+   return $pdf->stream('bill.pdf',array("Attachment" => false)); */
 });
 
 Auth::routes();

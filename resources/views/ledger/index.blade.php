@@ -455,6 +455,8 @@ $(document).on('click', '.creditPayment-add', function(creditPay){
                     } else {
                         var URL = window.URL || window.webkitURL;
                         var downloadUrl = URL.createObjectURL(blob);
+						window.open(downloadUrl, '_blank');
+						console.log(downloadUrl);
 
                         if (filename) { 
                             // use HTML5 a[download] attribute to specify filename
@@ -464,14 +466,14 @@ $(document).on('click', '.creditPayment-add', function(creditPay){
                             if (typeof a.download === 'undefined') {
                                 window.location = downloadUrl;
                             } else {
-                                a.href = downloadUrl;
+                                 a.href = downloadUrl;
                                 a.download = filename;
                                 document.body.appendChild(a);
                                 a.target = "_blank";
-                                a.click();
+                                a.click(); 
                             }
                         } else {
-                            window.location = downloadUrl;
+                           window.location = downloadUrl;
                         }
                     }   
 
