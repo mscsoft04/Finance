@@ -301,17 +301,22 @@ class LedgerController extends Controller
       return  $diff_in_days;
     }
     public function round_off($data){
-         $x=intdiv($data,5);
-         $v=$data-$x*5;
-           $d=0;
+        $x=intdiv($data,5);
+        $v=$data-$x*5;
+        if($v!=0){
+       
+        $d=0;
         if($v<3){
-            $d= $data-$v;
+          $d= $data-$v;
         }else{
-             $s=5-$v;
-             $d= $data+$s;
-
+         $s=5-$v;
+         $d= $data+$s;
         }
+       }else{
+         $d= $data;
+      }
       return $d;
-    }
+       
+   }
 
 }

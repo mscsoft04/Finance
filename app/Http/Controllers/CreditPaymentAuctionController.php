@@ -262,7 +262,7 @@ class CreditPaymentAuctionController extends Controller
           }//each end
 
          
-          return  $arr = array('message' => 'Added data successfully');
+          return  $arr = array('message' => 'Added data successfully',"data"=>$histroy_id);
                               
           
     }
@@ -416,15 +416,20 @@ class CreditPaymentAuctionController extends Controller
     public function round_off($data){
       $x=intdiv($data,5);
       $v=$data-$x*5;
-        $d=0;
-     if($v<3){
-         $d= $data-$v;
+      if($v!=0){
+     
+      $d=0;
+      if($v<3){
+        $d= $data-$v;
+      }else{
+       $s=5-$v;
+       $d= $data+$s;
+      }
      }else{
-          $s=5-$v;
-          $d= $data+$s;
-
-     }
-   return $d;
-  }
+       $d= $data;
+    }
+    return $d;
+     
+ }
     
 }
