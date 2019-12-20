@@ -244,7 +244,7 @@ class LedgerController extends Controller
                 $day_count=$this->days_diff($row['payment_date'],$date);
                 $amount=$row['due_amount']-$row['paid_amount']??0;
              }
-             if($row['penalty_days'] < $day_count){
+             if($row['penalty_days'] < $diff_days){
                 $preCentage=($exit==true)?$row['prize_subscriber_penalty']:$row['non_prize_subscriber_penalty'];
                 $penalty=($amount*$preCentage/100)/365;
                 $day=$day_count-$row['penalty_days'];
