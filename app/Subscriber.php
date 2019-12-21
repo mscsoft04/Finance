@@ -53,6 +53,7 @@ class Subscriber extends Model
                            'relationship',
                            'relation_for',
                            'additional_notes',
+                           'credit_amount',
                            'created_by',
                            'updated_by'
 
