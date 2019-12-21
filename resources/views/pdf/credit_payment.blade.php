@@ -31,12 +31,12 @@
           <td style="padding: 5px 10px;">08/08/2017  12:C</td>
         </tr>
          <tr>
-          <td style="padding: 5px;">Cust.Name  : </td>
-          <td style="padding: 5px 10px;">Mr .MANIKANDAN  S ( 5 )</td>
+          <td style="padding: 5px;">Cust.Name/CusID  : </td>
+         <td style="padding: 5px 10px;">{{ $data->subscriber_name .'/'.$data->subscriber_id}}</td>
           <td style="padding: 5px;">Bill Series No : </td>
-          <td style="padding: 5px 10px;">OFFICE BILL / 13267</td>
+          <td style="padding: 5px 10px;">{{ $data->unique_id}}</td>
         </tr>
-         <tr>
+         {{-- <tr>
           <td style="padding: 5px;">Inst. Amt : </td>
           <td style="padding: 5px 10px;"><span>3000.00   & 20</span></td>
           <td style="padding: 5px;">Chit Value: </td>
@@ -47,7 +47,7 @@
           <td style="padding: 5px 10px;"><span>8</span></td>
           <td style="padding: 5px;">Dividend  : </td>
           <td style="padding: 5px 10px;">220.00</td>
-        </tr>
+        </tr> --}}
          <tr>
           <td colspan="4" style="padding: 20px 0px; padding-bottom: 0px;border-collapse: collapse;">
             <table style="width: 100%; border: 1px solid #ccc; border-collapse: collapse;" >
@@ -58,12 +58,12 @@
              </tr>
              <tr>
                <td style="border-right: 1px solid #ccc;padding: 5px;">Due Amount</td>
-               <td style="text-align: right;padding: 5px;">2,780</td>
+               <td style="text-align: right;padding: 5px;">{{ $data->paid_amount }}</td>
                <td>.00</td>
              </tr>
               <tr>
                <td style="border-right: 1px solid #ccc;padding: 5px;">Penalty Amount</td>
-               <td style="text-align: right;padding: 5px;">25</td>
+               <td style="text-align: right;padding: 5px;">0</td>
                <td>.00</td>
              </tr>
               <tr>
@@ -73,7 +73,7 @@
              </tr>
              <tr style="border-top: 1px solid #ccc;font-weight: bold;">
                <td style="border-right: 1px solid #ccc;padding: 5px;">Total Amount</td>
-               <td style="text-align: right;padding: 5px;">2,805</td>
+               <td style="text-align: right;padding: 5px;">{{ $data->paid_amount }}</td>
                <td>.00</td>
              </tr>
             </table>
@@ -84,11 +84,11 @@
             <table style="width: 100%; border-collapse: collapse;">
               <tr>
                 <td style="padding: 5px">Rupees:</td>
-                <td colspan="3"><span style="border-bottom: 1px dashed #ccc; display: inline-block;padding: 5px;width: 95%;">TWO THOUSAND EIGHT HUNDRED FIVE ONLY</span></td>
+                <td colspan="3"><span style="border-bottom: 1px dashed #ccc; display: inline-block;padding: 5px;width: 95%;">{{ $text }}</span></td>
               </tr>
               <tr>
                 <td style="padding: 5px">Pay Type: </td>
-                <td colspan="3"  style="padding: 5px">Cash</td>
+                <td colspan="3"  style="padding: 5px">{{ $data->payment_type }}</td>
               </tr>
             </table>
             <table style="width: 100%; border-collapse: collapse;">
@@ -96,7 +96,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td colspan="" style="text-align: center;padding: 5px;padding-right: 0px;padding-top: 30px;font-weight: bold;"> Revathi</td>
+              <td colspan="" style="text-align: center;padding: 5px;padding-right: 0px;padding-top: 30px;font-weight: bold;">{{ $user }}</td>
               </tr>
                <tr>
                 <td colspan="3" style="text-align: left;padding: 5px;padding-top: 20px;font-size: 14px;"><small><strong>* The administration is not responsible for the money being built without receipt</strong></small></td>

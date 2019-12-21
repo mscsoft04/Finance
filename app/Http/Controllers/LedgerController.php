@@ -6,6 +6,8 @@ use App\Ledger;
 use Illuminate\Http\Request;
 use App\Subscriber;
 use App\GroupAssign;
+use App\CreditPaymentAuctionDetail;
+use App\CreditPaymentAuctionHistory;
 
 class LedgerController extends Controller
 {
@@ -151,7 +153,7 @@ class LedgerController extends Controller
     {
         //
     }
-    public function auctiondata(Request $request)
+    public function groupdata(Request $request)
     {
         //
         $data = GroupAssign::leftJoin('groups', 'group_assigns.group_id', '=', 'groups.id')
@@ -318,5 +320,130 @@ class LedgerController extends Controller
       return $d;
        
    }
+   public function autciondata(Request $request){
+    $data = GroupAssign::leftJoin('groups', 'group_assigns.group_id', '=', 'groups.id')
+    ->leftJoin('branches', 'branches.id', '=', 'groups.branch_id')
+    ->leftJoin('subscribers', 'subscribers.id', '=', 'group_assigns.subscriber_id')
+    ->leftJoin('auctions', 'auctions.group_id', '=', 'group_assigns.group_id')
+    ->leftJoin('credit_payment_auctions', function ($join) {
+        $join->on('credit_payment_auctions.auction_id', '=', 'auctions.id');
+        $join->on('credit_payment_auctions.subscriber_id', '=', 'group_assigns.subscriber_id');
+             
+    })
+    ->where('group_assigns.subscriber_id',$request['subscriber_id'])
+    ->where('group_assigns.group_id',$request['group'])
+    ->select(
+      'auctions.auction_number',
+      'auctions.unique_id',
+      'auctions.due_amount',
+      'auctions.auction_date',
+      'auctions.id as autcion_id',
+      'credit_payment_auctions.payment_date',
+      'credit_payment_auctions.paid_amount',
+      'credit_payment_auctions.penalty_amount',
+      'credit_payment_auctions.discount_amount',
+      'credit_payment_auctions.pending_amount',
+      'credit_payment_auctions.credit_amount',
+      'credit_payment_auctions.status',
+      'subscribers.credit_amount as cus_credit_amount',
+      'branches.bonus_days',
+      'branches.bonus_precentage',
+      'branches.penalty_days',
+      'branches.prize_subscriber_penalty',
+      'branches.non_prize_subscriber_penalty'
+     
+     )->orderBy('auctions.id', 'DESC')->get();
+
+     $exit=DB::table('auctions')->where('group_id', $request['group'])->where('subscriber_id', $request['subscriber_id'])->exists();
+     $results=array();
+     $date=date("Y-m-d");
+     $cus_credit_amount="";
+    foreach($data as $key=>$row){
+       $result['auction_number']= $row['auction_number'];
+       $result['due_amount']= $row['due_amount'];
+       $result['unique_id']= $row['unique_id'];
+       $result['auction_date']= $row['auction_date'];
+       $result['paid_amount']= $row['paid_amount'];
+       $result['payment_date']= $row['payment_date'];
+       $result['subscriber_id']= $request['subscriber_id'];
+       $result['autcion_id']=$row['autcion_id'];
+       $result['status']= $row['status'];
+        
+     if(is_null($row['status']) || empty($row['status']) || $row['status']==0){
+        $diff_days=$this->days_diff($row['auction_date'],$date);
+        $result['days']=$diff_days;
+        $discount=0;
+        if($row['bonus_days'] >=$diff_days){
+            $discount=($row['due_amount']*$row['bonus_precentage']/100);
+            $result['discount']=$discount??0;
+        }else{
+           $result['discount']=$discount??0;  
+        }
+         $day_count=0; $amount=0;
+        if(is_null($row['payment_date']) || empty($row['payment_date'])){
+           $day_count=$this->days_diff($row['auction_date'],$date);
+            $amount=$row['due_amount']??0;
+
+        }else{
+           $day_count=$this->days_diff($row['payment_date'],$date);
+           $amount=$row['due_amount']-$row['paid_amount']??0;
+        }
+        if($row['penalty_days'] < $diff_days){
+           $preCentage=($exit==true)?$row['prize_subscriber_penalty']:$row['non_prize_subscriber_penalty'];
+           $penalty=($amount*$preCentage/100)/365;
+           $day=$day_count-$row['penalty_days'];
+           $penalty_amount=0;
+           if($amount>=1000){
+               $p_a=$penalty*$day ;
+               $penalty_amount=$this->round_off($p_a);
+               
+           }
+          
+           $result['penalty']=$penalty_amount+$row['penalty_amount'];;
+
+        }else{
+           $penalty_amount=0;
+           $result['penalty']=$penalty_amount+$row['penalty_amount'];
+        }
+        $result['pending_amount']=$amount??0;
+       
+        $tot=$penalty_amount+$amount-$discount;
+        $result['total_amount']=$tot??0;
+       
+     }else{
+        $result['discount']=$row['discount_amount'];
+        $result['penalty']=$row['discount_amount'];
+        $result['pending_amount']=$row['discount_amount'];
+
+
+     }
+     $results[]=$result;
+    }
+
+   return view('ledger.show_acution',compact('results'));
+
+
+
+    }
+   public function  creditpayment(Request $request){
+      $data=CreditPaymentAuctionHistory::leftJoin('credit_payment_auction_details', 'credit_payment_auction_details.histroy_id', '=', 'credit_payment_auction_histories.id')
+      ->where("credit_payment_auction_histories.subscriber_id",$request['subscriber_id'])
+      ->where("credit_payment_auction_details.auction_id",$request['autcion_id'])
+      ->select(
+        'credit_payment_auction_details.payment_date',
+        'credit_payment_auction_details.paid_amount',
+        'credit_payment_auction_details.penalty_amount',
+        'credit_payment_auction_details.pending_amount',
+        'credit_payment_auction_details.discount_amount',
+        'credit_payment_auction_details.credit_amount',
+        'credit_payment_auction_details.status',
+       )->get();
+
+       return view('ledger.auction_details',compact('data'));
+      
+
+    }
+
+
 
 }

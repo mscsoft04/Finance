@@ -52,9 +52,12 @@ Route::get('branch/add', 'BranchController@create')->name('branch.create');
     
 });
 Route::post('/autocomplete/fetch', 'LedgerController@fetch')->name('autocomplete.fetch');
-Route::post('/auctiondata/list', 'LedgerController@auctiondata')->name('auctiondata.list');
+Route::post('/groupdata/list', 'LedgerController@groupdata')->name('groupdata.list');
 Route::post('/payment/add', 'LedgerController@addPayment')->name('payment.add');
 Route::post('group/{group}/auction/fetch', 'AuctionController@fetch')->name('auction.fetch');
+Route::post('/autciondata/list', 'LedgerController@autciondata')->name('autciondata.list');
+Route::post('/creditpayment/list', 'LedgerController@creditpayment')->name('creditpayment.list');
+Route::post('/billgenerate/generate', 'CreditPaymentAuctionController@bill_generate')->name('billgenerate.generate');
 
 
 

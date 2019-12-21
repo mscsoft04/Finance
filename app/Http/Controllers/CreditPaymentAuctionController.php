@@ -8,6 +8,7 @@ use App\CreditPaymentAuctionHistory;
 use App\GroupAssign;
 use App\Subscriber;
 use Toastr;
+use App;
 use Illuminate\Http\Request;
 
 class CreditPaymentAuctionController extends Controller
@@ -463,10 +464,25 @@ class CreditPaymentAuctionController extends Controller
     $paise = ($decimal > 0) ? "." . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise' : '';
     return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise;
   }
-  public function bill_generate(){
+  public function bill_generate(Request $request){
 
+   
+    $data=CreditPaymentAuctionHistory::leftJoin('subscribers', 'subscribers.id', '=', 'credit_payment_auction_histories.subscriber_id')
+         ->where('credit_payment_auction_histories.id',$request['id'])->select(
+          'credit_payment_auction_histories.payment_date',
+          'credit_payment_auction_histories.paid_amount',
+          'credit_payment_auction_histories.payment_type',
+          'subscribers.subscriber_name',
+          'subscribers.unique_id as subscriber_id',
+          'credit_payment_auction_histories.unique_id', 
+          
+         
+         )->first();
+         
     $pdf = App::make('dompdf.wrapper');
-    $pdf->loadView('pdf.credit_payment')->setPaper('a4', 'landscape');
+     $text=$this->getIndianCurrency($data->paid_amount);
+    $user=auth()->user()->name;
+    $pdf->loadView('pdf.credit_payment',compact('data','text','user'))->setPaper('a4', 'landscape');
     return $pdf->stream('bill.pdf',array("Attachment" => false));
 
   }

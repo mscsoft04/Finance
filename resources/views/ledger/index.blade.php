@@ -102,188 +102,10 @@
 						  </div> <!-- Card end-->
 					  </div>
 					</div> <!--Row End -->
-					<div class="row">
-					  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-						<div class="table-responsive">
-							<table class="table table-hover table-bordered">
-							  <tbody>
-								<tr>
-								  <th>Auction</th>
-								  <th>Auction Date</th>
-								  <th>Divident Amt</th>
-								  <th>Due Amount</th>
-								  <th>Auction Amt</th>
-								  <th>Payable Amt</th>
-								  <th>Payment Amt</th>
-								  <th>Balance Amt</th>
-								  <td rowspan="2" class="givenchit"><strong>They Given Chit Surety</strong></td>
-								</tr>
-							  
-								<tr>
-								  <td>15</td>
-								  <td>14/11/2019</td>
-								  <td class="text-right">235.00</td>
-								  <td class="text-right">2770.00</td>
-								  <td class="text-right">7700.00</td>
-								  <td class="text-right">52, 300.00</td>
-								  <td class="text-right">53,400.00</td>
-								  <td class="text-right">0.00</td>
-								  
-								</tr>
-							  </tbody>
-							</table>
-						</div>
-					  </div>
-					</div>
 					  <div class="row">
 					  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 						<div class="table-responsive chitfund-table">
-							<table class="table table-hover table-bordered">
-							  <thead>
-								<tr>
-								  <th style="min-width: 100px">Bill Series</th>
-								  <th>Bill No</th>
-								  <th>Bill Date</th>
-								  <th>Bill Amt</th>
-								  <th>Penalty Amt</th>
-								  <th>Other Amt</th>
-								  <th>Credit/Pending</th>
-								  <th>Total Amt</th>
-								  <th>Rec Type</th>
-								  <th>F.Inst</th>
-								  <th>To Inst</th>
-								  <th>ChqD</th>
-								</tr>
-							  </thead>
-							  <tbody>
-								<tr>
-								  <td></td>
-								  <td></td>
-								  <td></td>
-								  <td class="text-right text-success">37,970.00</td>
-								  <td class="text-right text-success">180.00</td>
-								  <td class="text-right text-success">0.00</td>
-								  <td class="text-right text-success">0.00</td>
-								  <td class="text-right text-success">38,150.00</td>
-								  <td class=" text-success"></td>
-								  <td class="text-center"></td>
-								  <td class="text-center"></td>
-								  <td></td>
-								</tr>
-								<tr>
-								  <td>DC BILL TRF</td>
-								  <td>44241</td>
-								  <td>22/11/2019</td>
-								  <td class="text-right">2,770.00</td>
-								  <td class="text-right">5.00</td>
-								  <td class="text-right"0.00></td>
-								  <td class="text-right"></td>
-								  <td class="text-right">2,775.00</td>
-								  <td>Cash</td>
-								  <td class="text-center">15</td>
-								  <td class="text-center">15</td>
-								  <td></td>
-								</tr>
-								 <tr>
-								  <td>DC BILL TRF</td>
-								  <td>44241</td>
-								  <td>22/11/2019</td>
-								  <td class="text-right">2,770.00</td>
-								  <td class="text-right">5.00</td>
-								  <td class="text-right"0.00></td>
-								  <td class="text-right"></td>
-								  <td class="text-right">2,775.00</td>
-								  <td>Cash</td>
-								  <td class="text-center">15</td>
-								  <td class="text-center">15</td>
-								  <td></td>
-								</tr>
-								 <tr>
-								  <td>DC BILL TRF</td>
-								  <td>44241</td>
-								  <td>22/11/2019</td>
-								  <td class="text-right">2,770.00</td>
-								  <td class="text-right">5.00</td>
-								  <td class="text-right"0.00></td>
-								  <td class="text-right"></td>
-								  <td class="text-right">2,775.00</td>
-								  <td>Cash</td>
-								  <td class="text-center">15</td>
-								  <td class="text-center">15</td>
-								  <td></td>
-								</tr>
-								 <tr>
-								  <td>DC BILL TRF</td>
-								  <td>44241</td>
-								  <td>22/11/2019</td>
-								  <td class="text-right">2,770.00</td>
-								  <td class="text-right">5.00</td>
-								  <td class="text-right"0.00></td>
-								  <td class="text-right"></td>
-								  <td class="text-right">2,775.00</td>
-								  <td>Cash</td>
-								  <td class="text-center">15</td>
-								  <td class="text-center">15</td>
-								  <td></td>
-								</tr>
-								 <tr>
-								  <td>DC BILL TRF</td>
-								  <td>44241</td>
-								  <td>22/11/2019</td>
-								  <td class="text-right">2,770.00</td>
-								  <td class="text-right">5.00</td>
-								  <td class="text-right"0.00></td>
-								  <td class="text-right"></td>
-								  <td class="text-right">2,775.00</td>
-								  <td>Cash</td>
-								  <td class="text-center">15</td>
-								  <td class="text-center">15</td>
-								  <td></td>
-								</tr>
-								 <tr>
-								  <td>DC BILL TRF</td>
-								  <td>44241</td>
-								  <td>22/11/2019</td>
-								  <td class="text-right">2,770.00</td>
-								  <td class="text-right">5.00</td>
-								  <td class="text-right"0.00></td>
-								  <td class="text-right"></td>
-								  <td class="text-right">2,775.00</td>
-								  <td>Cash</td>
-								  <td class="text-center">15</td>
-								  <td class="text-center">15</td>
-								  <td></td>
-								</tr>
-								 <tr>
-								  <td>DC BILL TRF</td>
-								  <td>44241</td>
-								  <td>22/11/2019</td>
-								  <td class="text-right">2,770.00</td>
-								  <td class="text-right">5.00</td>
-								  <td class="text-right"0.00></td>
-								  <td class="text-right"></td>
-								  <td class="text-right">2,775.00</td>
-								  <td>Cash</td>
-								  <td class="text-center">15</td>
-								  <td class="text-center">15</td>
-								  <td></td>
-								</tr>
-								 <tr>
-								  <td>DC BILL TRF</td>
-								  <td>44241</td>
-								  <td>22/11/2019</td>
-								  <td class="text-right">2,770.00</td>
-								  <td class="text-right">5.00</td>
-								  <td class="text-right"0.00></td>
-								  <td class="text-right"></td>
-								  <td class="text-right">2,775.00</td>
-								  <td>Cash</td>
-								  <td class="text-center">15</td>
-								  <td class="text-center">15</td>
-								  <td></td>
-								</tr>
-							  </tbody>
-							</table>
+							
 						  </div>
 						</div>
 					  </div>
@@ -307,7 +129,7 @@ $(document).ready(function(){
          $.ajax({
           url:"{{ route('autocomplete.fetch') }}",
           method:"POST",
-          data:{query:query, _token:_token},
+          data:{query:query, _token:"{{ csrf_token() }}"},
           success:function(data){
            $('#data').fadeIn();  
               $('#data').html(data);
@@ -335,21 +157,20 @@ $(document).ready(function(){
 		
 		
 		
-		actionData(data.id);
-		
-		console.log(data);
+		groupdata(data.id);
+		$('.chitfund-table').html("");
     }); 
 	$(window).click(function(e) {
 		$('#data').fadeOut(); 
    });
-   function actionData(id){
+   function groupdata(id){
 	if(id != '')
         {
          var _token = $('input[name="_token"]').val();
          $.ajax({
-          url:"{{ route('auctiondata.list') }}",
+          url:"{{ route('groupdata.list') }}",
           method:"POST",
-          data:{id:id, _token:_token},
+          data:{id:id, _token:"{{ csrf_token() }}"},
           success:function(data){
 
               $('.group-table').html(data);
@@ -358,16 +179,35 @@ $(document).ready(function(){
         } 
 
    }
+   function autcionData(id){
+	if(id != '')
+        {
+		var data=id;//JSON.parse($(this).attr("data-id"));
+	   	var _token = $('input[name="_token"]').val();
+		   $('.chitfund-table').html("");
+         $.ajax({
+          url:"{{ route('autciondata.list') }}",
+          method:"POST",
+		  data:{group:data.groupId,subscriber_id:data.subscriber_id, _token:"{{ csrf_token() }}"},
+          success:function(data){
+
+              $('.chitfund-table').html(data);
+          }
+         });
+        } 
+
+   }
    $(document).on("click",".add-payment",function(e) {
       e.preventDefault();
        var data=JSON.parse($(this).attr("data-id"));
+	   autcionData(data);
 	   var _token = $('input[name="_token"]').val();
         var show_url="{{ route('payment.add') }}";
           $.ajax({
                 url: show_url,
                 dataType: 'html',
 				method:"POST",
-                data:{group:data.groupId,subscriber_id:data.subscriber_id, _token:_token},
+                data:{group:data.groupId,subscriber_id:data.subscriber_id, _token:"{{ csrf_token() }}"},
                 success: function( data, textStatus, jQxhr ){
                     $('#response-full').html( data );
                     $('#response-full-title').text('Bill');
@@ -412,7 +252,7 @@ $(document).on('click', '.creditPayment-add', function(creditPay){
                 success: function( data, textStatus, jQxhr ){
                   $('#myModal-full').modal('hide')
 				  toastr.success(data.message, data.title); 
-				  pdf_load();
+				  pdf_load(data.data);
 
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
@@ -422,16 +262,13 @@ $(document).on('click', '.creditPayment-add', function(creditPay){
 
   });
 
-  function pdf_load(){
-
+  function pdf_load(data){
+	  console.log(data);
 	$.ajax({
-            cache: false,
-            type: 'get',
-            url: 'http://localhost:8000/',
-            contentType: false,
-            processData: false,
-            data:1,
-             //xhrFields is what did the trick to read the blob to pdf
+           
+            type:'POST',
+            url: '{{ route('billgenerate.generate') }}',
+            data:{id:data,_token:"{{ csrf_token() }}"},
             xhrFields: {
                 responseType: 'blob'
             },
@@ -485,6 +322,33 @@ $(document).on('click', '.creditPayment-add', function(creditPay){
 
 
   }
+
+$(document).on('click', '.accordion-toggle', function(hs){    
+    hs.preventDefault();
+	$('.hiddenRow').hide();
+	var data=JSON.parse($(this).attr("data-id"));
+	var dataID=data.unique_id;
+	var _token = $('input[name="_token"]').val();
+         $.ajax({
+          url:"{{ route('creditpayment.list') }}",
+          method:"POST",
+		  dataType: 'html',
+		  data:{autcion_id:data.autcion_id,subscriber_id:data.subscriber_id, _token:"{{ csrf_token() }}"},
+          success:function(data){
+              $("#demo-"+dataID).html(data);
+          }
+         });
+	$(this).next('tr').find('.hiddenRow').show();
+  });
+  $(document).on('change', '.group-check', function(hs){   
+    $('.group-check').not(this).prop('checked', false); 
+	if($(this).is(':checked')){
+     $(".group-check").not($(this)).attr("checked",false);
+	 var data=JSON.parse($(this).attr("data-id"));
+	 autcionData(data);
+    } 
+  });
+  
 });
 </script>
 @endsection

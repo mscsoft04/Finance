@@ -2,6 +2,7 @@
 	<thead>
 		<tr>
 			<th>S.No</th>
+			<th>Check</th>
 			<th>Group Name</th>
 			<th>Ticket No</th>
 			<th>CollectionType</th>
@@ -18,6 +19,7 @@
 		
 		<tr>
 			<td>{{ $loop->iteration }}</td>
+			<td class="text-success"><label><input type="checkbox" data-id="{{$row[0] }}" class="group-check" name="check"></label></td>
 			@if ( (count($row) == 1 ) && (is_null($row[0]->auction_number)))
 			<td><a href="javascript:void(0)" class="add-payment-diabled" data-id="{{$row[0] }}">{{ $row[0]->group_name }}</a></td>
 			@else
