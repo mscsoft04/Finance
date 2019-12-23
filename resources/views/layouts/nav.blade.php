@@ -51,6 +51,13 @@
           <i class="fas fa-clipboard-list"></i>
           <span>Ledger</span></a>
       </li>
+      <li class="nav-item {{ request()->is('state*') ? 'active' : '' }}{{ request()->is('city*') ? 'active' : '' }}
+        {{ request()->is('taluk*') ? 'active' : '' }}{{ request()->is('village*') ? 'active' : '' }}{{ request()->is('master*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('master') }}">
+          <i class="fas fa-chevron-right float-right"></i>
+          <i class="fas fa-cogs"></i>
+          <span>Master</span></a>
+      </li>
       
       
     </ul>

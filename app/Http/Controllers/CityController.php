@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\City;
+use App\State;
 use Illuminate\Http\Request;
+use Datatables;
+use Toastr;
 
 class CityController extends Controller
 {
@@ -15,6 +18,7 @@ class CityController extends Controller
     public function index()
     {
         //
+        return view('city.index');
     }
 
     /**
@@ -25,6 +29,8 @@ class CityController extends Controller
     public function create()
     {
         //
+        $state = State::all();
+        return view('city.add',compact('state'));
     }
 
     /**
@@ -36,6 +42,10 @@ class CityController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,   ['name'=>'required',"state_id"=>'required']);
+        City::create($request->all());
+        Toastr::success('Added data successfully', '', ["positionClass" => "toast-top-right"]);
+        return redirect()->route('city.index');
     }
 
     /**
@@ -47,6 +57,8 @@ class CityController extends Controller
     public function show(City $city)
     {
         //
+        $state = State::all();
+        return view('city.add',compact('state','city'));
     }
 
     /**
@@ -58,6 +70,8 @@ class CityController extends Controller
     public function edit(City $city)
     {
         //
+        $state = State::all();
+        return view('city.edit',compact('state','city'));
     }
 
     /**
@@ -70,6 +84,12 @@ class CityController extends Controller
     public function update(Request $request, City $city)
     {
         //
+        $this->validate($request,   ['name'=>'required',"state_id"=>'required']);
+        $city->update($request->all());
+       
+
+        Toastr::success('Updated data successfully', '', ["positionClass" => "toast-top-right"]);;
+        return redirect()->route('city.index');
     }
 
     /**
@@ -81,5 +101,11 @@ class CityController extends Controller
     public function destroy(City $city)
     {
         //
+    }
+    function getdata()
+    {
+        $city = City::join('states', 'states.id', '=', 'cities.state_id')
+        ->select(['cities.name','states.name as statename','cities.id']);
+        return Datatables::of($city)->make(true);
     }
 }

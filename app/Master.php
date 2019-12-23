@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Taluk extends Model
+class Master extends Model
 {
     //
-    protected $fillable = ['name','city_id'];
 }

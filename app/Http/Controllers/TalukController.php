@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Taluk;
 use Illuminate\Http\Request;
+use Datatables;
+use Toastr;
+
+use App\City;
 
 class TalukController extends Controller
 {
@@ -15,6 +19,7 @@ class TalukController extends Controller
     public function index()
     {
         //
+        return view('taluk.index');
     }
 
     /**
@@ -25,6 +30,8 @@ class TalukController extends Controller
     public function create()
     {
         //
+        $cities = City::all();
+        return view('taluk.add',compact('cities'));
     }
 
     /**
@@ -36,6 +43,10 @@ class TalukController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,   ['name'=>'required',"city_id"=>'required']);
+        Taluk::create($request->all());
+        Toastr::success('Added data successfully', '', ["positionClass" => "toast-top-right"]);
+        return redirect()->route('taluk.index');
     }
 
     /**
@@ -58,6 +69,8 @@ class TalukController extends Controller
     public function edit(Taluk $taluk)
     {
         //
+        $cities = City::all();
+        return view('taluk.edit',compact('cities','taluk'));
     }
 
     /**
@@ -70,6 +83,10 @@ class TalukController extends Controller
     public function update(Request $request, Taluk $taluk)
     {
         //
+        $this->validate($request,   ['name'=>'required',"city_id"=>'required']);
+        $taluk->update($request->all());
+       Toastr::success('Updated data successfully', '', ["positionClass" => "toast-top-right"]);
+        return redirect()->route('taluk.index');
     }
 
     /**
@@ -81,5 +98,11 @@ class TalukController extends Controller
     public function destroy(Taluk $taluk)
     {
         //
+    }
+    function getdata()
+    {
+        $taluk = Taluk::join('cities', 'taluks.city_id', '=', 'cities.id')
+        ->select(['taluks.id','cities.name as cityname','taluks.name']);
+        return Datatables::of($taluk)->make(true);
     }
 }

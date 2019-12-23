@@ -26,7 +26,7 @@
             <a href="#" class="after-loop-item card border-0 card-templates">
                 <div class="card-body d-flex align-items-end flex-column text-right">
                 <h4>Group</h4>
-                <h2>50</h2>
+                <h2>{{ $group }}</h2>
                 <i class="far fa-object-group"></i>
                 </div>
             </a>
@@ -35,7 +35,7 @@
             <a href="/snippets/" class="after-loop-item card border-0 card-snippets">
                 <div class="card-body d-flex align-items-end flex-column text-right">
                 <h4>Branch</h4>
-                <h2 class="w-75">40</h2>
+                <h2 class="w-75">{{ $branch }}</h2>
                 <i class="fas fa-code-branch"></i>
                 </div>
             </a>
@@ -43,17 +43,35 @@
         <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
             <a href="/guides/" class="after-loop-item card border-0 card-guides shadow-lg">
             <div class="card-body d-flex align-items-end flex-column text-right">
-                <h4>Scheme</h4>
-                <h2 class="w-75">20</h2>
-                <i class="fas fa-pencil-ruler"></i>
+                <h4>Subscriber</h4>
+                <h2 class="w-75">{{ $subscriber }}</h2>
+            <i class="fas fa-users"></i>
             </div>
             </a>
         </div>
          <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
             <a href="#" class="after-loop-item card border-0 card-expence">
                 <div class="card-body d-flex align-items-end flex-column text-right">
-                <h4>Expence</h4>
-                <h2>50</h2>
+                <h4>Today Credit</h4>
+                <h2>{{ $today_credit }}</h2>
+                <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
+            <a href="#" class="after-loop-item card border-0 card-auction">
+                <div class="card-body d-flex align-items-end flex-column text-right">
+                <h4>Last Day Credit</h4>
+                <h2>{{ $last_credit }}</h2>
+                <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
+            <a href="/snippets/" class="after-loop-item card border-0 card-pending">
+                <div class="card-body d-flex align-items-end flex-column text-right">
+                <h4>This Month Credit</h4>
+                <h2 class="w-75">{{ $thisMonth_credit }}</h2>
                 <i class="fas fa-file-invoice-dollar"></i>
                 </div>
             </a>

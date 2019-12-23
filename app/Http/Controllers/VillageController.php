@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Village;
+use App\Taluk;
 use Illuminate\Http\Request;
+use Datatables;
+use Toastr;
 
 class VillageController extends Controller
 {
@@ -15,6 +18,7 @@ class VillageController extends Controller
     public function index()
     {
         //
+        return view('village.index');
     }
 
     /**
@@ -25,6 +29,8 @@ class VillageController extends Controller
     public function create()
     {
         //
+        $taluks = Taluk::all();
+        return view('village.add',compact('taluks'));
     }
 
     /**
@@ -36,6 +42,10 @@ class VillageController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,   ['name'=>'required',"taluk_id"=>'required']);
+        Village::create($request->all());
+        Toastr::success('Added data successfully', '', ["positionClass" => "toast-top-right"]);
+        return redirect()->route('village.index');
     }
 
     /**
@@ -58,6 +68,8 @@ class VillageController extends Controller
     public function edit(Village $village)
     {
         //
+        $taluks = Taluk::all();
+        return view('village.edit',compact('taluks','village'));
     }
 
     /**
@@ -70,6 +82,11 @@ class VillageController extends Controller
     public function update(Request $request, Village $village)
     {
         //
+        $this->validate($request,   ['name'=>'required',"taluk_id"=>'required']);
+        $village->update($request->all());
+        Toastr::success('Updated data successfully', '', ["positionClass" => "toast-top-right"]);
+        return redirect()->route('village.index');
+        
     }
 
     /**
@@ -81,5 +98,11 @@ class VillageController extends Controller
     public function destroy(Village $village)
     {
         //
+    }
+    function getdata()
+    {
+        $village = Village::join('taluks', 'taluks.id', '=', 'villages.taluk_id')
+        ->select(['villages.id','taluks.name as talukname','villages.name']);
+        return Datatables::of($village)->make(true);
     }
 }

@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\State;
+use App\Master;
 use Illuminate\Http\Request;
 
-
-use Datatables;
-use Toastr;
-class StateController extends Controller
+class MasterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +15,7 @@ class StateController extends Controller
     public function index()
     {
         //
-        return view('state.index');
+        return view('master');
     }
 
     /**
@@ -29,7 +26,6 @@ class StateController extends Controller
     public function create()
     {
         //
-        return view('state.add');
     }
 
     /**
@@ -41,19 +37,15 @@ class StateController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request,   ['name'=>'required']);
-        State::create($request->all());
-        Toastr::success('Added data successfully', '', ["positionClass" => "toast-top-right"]);
-        return redirect()->route('state.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\State  $state
+     * @param  \App\Master  $master
      * @return \Illuminate\Http\Response
      */
-    public function show(State $state)
+    public function show(Master $master)
     {
         //
     }
@@ -61,47 +53,34 @@ class StateController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\State  $state
+     * @param  \App\Master  $master
      * @return \Illuminate\Http\Response
      */
-    public function edit(State $state)
+    public function edit(Master $master)
     {
         //
-        return view('state.edit',compact('state'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\State  $state
+     * @param  \App\Master  $master
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, State $state)
+    public function update(Request $request, Master $master)
     {
         //
-        $this->validate($request,   ['name'=>'required']);
-        $state->update($request->all());
-       
-
-        Toastr::success('Updated data successfully', '', ["positionClass" => "toast-top-right"]);
-        return redirect()->route('state.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\State  $state
+     * @param  \App\Master  $master
      * @return \Illuminate\Http\Response
      */
-    public function destroy(State $state)
+    public function destroy(Master $master)
     {
         //
-    }
-
-    function getdata()
-    {
-        $state = State::all();
-        return Datatables::of($state)->make(true);
     }
 }

@@ -28,6 +28,15 @@ Route::get('branch/add', 'BranchController@create')->name('branch.create');
     Route::get('branch/getdata', 'BranchController@getdata')->name('branch.getdata');
     Route::get('subscriber/getdata', 'SubscriberController@getdata')->name('subscriber.getdata');
     Route::get('collection-area/getdata', 'CollectionAreaController@getdata')->name('collection.getdata');
+
+    Route::get('state/getdata', 'StateController@getdata')->name('state.getdata');
+    Route::get('city/getdata', 'CityController@getdata')->name('city.getdata');
+    Route::get('taluk/getdata', 'TalukController@getdata')->name('taluk.getdata');
+    Route::get('village/getdata', 'VillageController@getdata')->name('village.getdata');
+
+    
+
+
     Route::get('scheme/getdata', 'SchemeController@getdata')->name('scheme.getdata');
     Route::get('bank/getdata', 'BankController@getdata')->name('bank.getdata');
     Route::get('group/getdata', 'GroupController@getdata')->name('group.getdata');
@@ -46,6 +55,12 @@ Route::get('branch/add', 'BranchController@create')->name('branch.create');
     Route::resource('groupAssign', 'GroupAssignController');
     Route::resource('group.auction', 'AuctionController');
     Route::resource('creditpayment', 'CreditPaymentAuctionController');
+    Route::resource('master', 'MasterController');
+    Route::resource('state', 'StateController');
+    Route::resource('city', 'CityController');
+    Route::resource('taluk', 'TalukController');
+    Route::resource('village', 'VillageController');
+    
 
 
     
