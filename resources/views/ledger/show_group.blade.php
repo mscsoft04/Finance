@@ -25,7 +25,7 @@
 			@else
 			<td><a href="javascript:void(0)" class="add-payment" data-id="{{$row[0] }}">{{ $row[0]->group_name }}</a></td>
 			@endif
-			<td>{{ $row[0]->ticket_number }}</td>
+			<td><a href="{{ route('paymentData.add') }}" class="" data-id="{{$row[0] }}">{{ $row[0]->ticket_number }}</a></td>
 			<td>{{ $row[0]->collection_type }}</td>
 			<td>{{ $row[0]->chit_value }}</td>
 			@if ( (count($row) == 1 ) && (is_null($row[0]->auction_number)))

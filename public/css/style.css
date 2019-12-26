@@ -1900,3 +1900,16 @@ table.billreport {
 .tab-panel-tab  .nav-tabs .nav-link {
 	color: #000;
 }
+
+.card-header .inner-header-pay {
+display: table;
+width: 100%;
+padding: 0 0px 0 0;
+
+}
+.inner-header-pay .fl_in_h{
+	float: left;
+}
+.inner-header-pay .fr_in_h{
+	float: right;
+}

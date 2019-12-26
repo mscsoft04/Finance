@@ -72,5 +72,7 @@ Route::post('/autciondata/list', 'LedgerController@autciondata')->name('autciond
 Route::post('/creditpayment/list', 'LedgerController@creditpayment')->name('creditpayment.list');
 Route::post('/billgenerate/generate', 'CreditPaymentAuctionController@bill_generate')->name('billgenerate.generate');
 
+Route::get('/paymentData/add', 'LedgerController@paymentData')->name('paymentData.add');
+
 
 

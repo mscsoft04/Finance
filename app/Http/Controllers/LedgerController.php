@@ -444,6 +444,9 @@ class LedgerController extends Controller
 
     }
 
+   public function paymentData(){
+    return view('ledger.payment');
 
+   }
 
 }

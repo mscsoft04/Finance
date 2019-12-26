@@ -1,186 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <meta name="csrf-token" content="lDj5NJOGg8Q77CLY0LyKyFiFTO9wLdm0cLs4133e">
-      <title>Laravel</title>
-      <link href="http://localhost:8000/public/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-      <!-- Fonts -->
-      <link href="http://localhost:8000/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-      <!-- Page level plugin CSS-->
-      <link href="http://localhost:8000/public/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-      <!-- Custom styles for this template-->
-      <!-- Styles -->
-      <link href="http://localhost:8000/public/css/app.css" rel="stylesheet">
-      <link href="http://localhost:8000/public/css/admin.css" rel="stylesheet">
-      <link href="http://localhost:8000/public/css/style.css" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-      <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
-      <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
-      <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=6_rmgpZWaLPpnr67PFbnBqeTshdt1Jj-YYtaEnf6Qatgp8S143d6zF_lSDLiwKPG5K91ES6noZaAhzuACTWOAw" charset="UTF-8"></script>
-   </head>
-   <body id="page-top">
-      <nav class="navbar navbar-expand navbar-purpel bg-purpel static-top">
-         <a class="navbar-brand mr-1" href="http://localhost:8000/home"><img src="http://localhost:8000/public/image/logo.png" class="logo"  alt="TEST"></a>
-         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-         <i class="fas fa-bars"></i>
-         </button>
-         <ul class="ms-core-listMenu-root ms-core-listmenu-desk ml-4 mt-0 mb-0">
-            <li> <a  href="http://localhost:8000/home"> <i class="fas fa-tachometer-alt"></i> Dashboard </a></li>
-            <li> <a  href="http://localhost:8000/branch"> <i class="fas fa-code-branch"></i> Branch</a>
-         </ul>
-         <ul class="ms-core-listMenu-root ms-core-listmenu-mob ml-auto ml-md-0 mx-1">
-            <li class="dropdown no-arrow ">
-               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               <i class="fas fa-caret-square-down fa-fw"></i>
-               </a>
-               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                  <a class="dropdown-item" href="http://localhost:8000/home"> <i class="fas fa-tachometer-alt"></i> Dashboard </a>
-                  <a class="dropdown-item" href="http://localhost:8000/branch"> <i class="fas fa-code-branch"></i> Branch</a>
-               </div>
-            </li>
-         </ul>
-         <!-- Navbar Search -->
-         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <div class="input-group search-nav">
-               <!-- <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                  -->
-            </div>
-         </form>
-         <!-- Navbar -->
-         <ul class="navbar-nav ml-auto ml-md-0">
-            <li class="nav-item dropdown no-arrow mx-1">
-               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               <i class="fas fa-bell fa-fw"></i>
-               <span class="badge badge-danger">9+</span>
-               </a>
-               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-               </div>
-            </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               <i class="fas fa-cog fa-fw"></i>
-               </a>
-               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-               </div>
-            </li>
-            <li class="nav-item dropdown no-arrow">
-               <a class="nav-link dropdown-toggle user-circle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               <span class="user-circle-text">
-               a
-               </i>
-               </a>
-               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                  <a class="dropdown-item" href="#">Settings</a>
-                  <a class="dropdown-item" href="#">Activity Log</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="http://localhost:8000/logout"
-                     onclick="event.preventDefault();
-                     document.getElementById('logout-form').submit();">
-                  Logout
-                  </a>
-                  <form id="logout-form" action="http://localhost:8000/logout" method="POST" style="display: none;">
-                     <input type="hidden" name="_token" value="lDj5NJOGg8Q77CLY0LyKyFiFTO9wLdm0cLs4133e">        
-                  </form>
-               </div>
-            </li>
-         </ul>
-      </nav>
-      <div class="site-icon-wrapper">
-         <div class="container-fluid">
-            <div class="row">
-               <div class="col-lg-2 col-md-3 col-sm-4 col-10">
-                  <h2 class="site-icon-logo">Finance</h2>
-               </div>
-               <div class="col-lg-9 col-md-8 col-sm-8 col-2">
-                  <div class="breadcrumbbar">
-                     <ul>
-                        <li class="breadcrumb-item">
-                           <a href="http://localhost:8000/branch"><span>Branch</span><i class="fas fa-arrow-left fa-fw"></i></a>
+@extends('layouts.main')
+@section('title', 'Payment')
+@section('breadcrumb')
+<div class="col-lg-9 col-md-8 col-sm-8 col-2">
+            	
+            	<div class="breadcrumbbar">
+                	<ul>
+                    	<li class="breadcrumb-item">
+                        <a href="{{ url('ledger') }}"><span>Payment</span><i class="fas fa-arrow-left fa-fw"></i></a>
                         </li>
-                        <li class="breadcrumb-item active">Add</li>
-                     </ul>
-                  </div>
-               </div>
-               <div class="col-lg-1 col-md-1 display-none-mob">
-                  <div class="top-bar-calander">
-                     <span class="calander-day">25</span>
-                     <span class="calander-month">Nov</span>
-                  </div>
-               </div>
+<!--                         <li class="breadcrumb-item active">Edit</li>
+ -->                    </ul>
+                </div>
             </div>
-         </div>
-      </div>
-      <div id="wrapper">
-      <!-- wrapper starts -->
-      <!-- Sidebar -->
-      <ul class="sidebar navbar-nav">
-         <li class="nav-item ">
-            <a class="nav-link" href="http://localhost:8000/home">
-            <i class="fas fa-chevron-right float-right"></i>
-            <i class="fas fa-tachometer-alt"></i>
-            <span>Dashboard</span>
-            </a>
-         </li>
-         <li class="nav-item active">
-            <a class="nav-link" href="http://localhost:8000/branch">
-            <i class="fas fa-chevron-right float-right"></i>
-            <i class="fas fa-code-branch"></i>
-            <span>Branch</span></a>
-         </li>
-         <li class="nav-item ">
-            <a class="nav-link" href="http://localhost:8000/subscriber">
-            <i class="fas fa-chevron-right float-right"></i>
-            <i class="fas fa-exclamation-circle"></i>
-            <span>Subscriber</span></a>
-         </li>
-         <li class="nav-item ">
-            <a class="nav-link" href="http://localhost:8000/collection-area">
-            <i class="fas fa-chevron-right float-right"></i>
-            <i class="fas fa-hand-holding-usd"></i>
-            <span>Collection-Area</span></a>
-         </li>
-         <li class="nav-item ">
-            <a class="nav-link" href="http://localhost:8000/scheme">
-            <i class="fas fa-chevron-right float-right"></i>
-            <i class="far fa-clock"></i>
-            <span>Scheme</span></a>
-         </li>
-         <li class="nav-item ">
-            <a class="nav-link" href="http://localhost:8000/bank">
-            <i class="fas fa-chevron-right float-right"></i>
-            <i class="fas fa-money-check-alt"></i>
-            <span>Bank</span></a>
-         </li>
-         <li class="nav-item ">
-            <a class="nav-link" href="http://localhost:8000/group">
-            <i class="fas fa-chevron-right float-right"></i>
-            <i class="fas fa-users"></i>
-            <span>Group</span></a>
-         </li>
-         <li class="nav-item ">
-            <a class="nav-link" href="http://localhost:8000/ledger">
-            <i class="fas fa-chevron-right float-right"></i>
-            <i class="fas fa-clipboard-list"></i>
-            <span>Ledger</span></a>
-         </li>
-      </ul>
-      <div id="content-wrapper">
-         <div class="container-fluid main-content-sec">
-            <div class="row">
+@endsection
+
+@section('content')
+
+ <div class="row">
                <div class="col-lg-12">
                   <div class="widget-bg">
                      <div class="card  ">
@@ -218,13 +54,13 @@
                                                     <div class="card card-box">
                                                       <!-- card start -->
                                                       <div class="card-header">
-                                                        <div class="inner-header">
+                                                        <div class="inner-header-pay">
                                                           <div class="fl_in_h">
                                                              <h5>Document Details</h5>
                                                           </div>
                                                           <div class="fr_in_h">
                                                              
-                                                             <a class="btn btn-link btn-sm btn-global btn-blue btn-fl-r" href="javascript:void(0)">
+                                                             <a class="btn btn-link btn-sm btn-global btn-blue btn-fl-r  add-new-doc" href="javascript:void(0)">
                                                              <i class="fas fa-plus"></i><span>Add New</span>
                                                              </a>
                                                             
@@ -232,6 +68,7 @@
                                                        </div>
                                                       </div>
                                                       <div class="card-body">
+                                                       <div id="doc-new"> 
                                                          <div class="row">
                                                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                                <div class="form-label-group">
@@ -248,17 +85,18 @@
                                                                <div class="form-label-group">
                                                                 <label><span>Document</span></label>
                                                                 <div class="custom-file">
-                                                                  <input type="file" class="custom-file-input" id="customFile">
-                                                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                                                  <input type="file" class="custom-file-input" id="customFile-1">
+                                                                  <label class="custom-file-label" for="customFile-1">Choose file</label>
                                                                </div>
                                                               </div>
                                                             </div>
                                                             <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2" style="margin-top: 29px;"> 
-                                                              <button class="btn btn-danger btn-sm" type="button">Delete</button>
+                                                              <button class="btn btn-danger btn-sm deleteFile" type="button" >Delete</button>
                                                             </div>
 
                                                             
                                                          </div>
+                                                      </div>
                                                       </div>
                                                    </div>
                                                       
@@ -422,7 +260,7 @@
                                                        <!-- card start -->
                                                        <div class="card-header">
                                                        
-                                                        <div class="inner-header">
+                                                        <div class="inner-header-pay">
                                                           <div class="fl_in_h">
                                                              <h5> Surety Detail</h5>
                                                           </div>
@@ -637,47 +475,60 @@
                   </div>
                </div>
             </div>
-         </div>
-         <!-- wrapper Ends -->
-      </div>
-      <!-- Custom scripts for all pages-->
-      <script src="http://localhost:8000/public/vendor/jquery/jquery.min.js"></script>
-      <script src="http://localhost:8000/public/vendor/bootstrap/js/popper.min.js"></script>
-      <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-      <script src="http://localhost:8000/public/vendor/datatables/dataTables.bootstrap4.js"></script>
-      <script src="http://localhost:8000/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
-      <script src="http://localhost:8000/public/vendor/bootstrap/js/bootstrap.min.js"></script>
-      <!-- Core plugin JavaScript-->
-      <script src="http://localhost:8000/public/vendor/jquery-easing/jquery.easing.min.js"></script>
-      <!-- Page level plugin JavaScript-->
-      <script src="http://localhost:8000/public/vendor/chart.js/Chart.min.js"></script>
-      <script src="http://localhost:8000/public/js/sb-admin.js"></script>
-      <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-      <script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
-      <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.flash.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-      <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>
-      <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.print.min.js"></script>
-      <script src="https://code.highcharts.com/highcharts.js"></script>
-      <script src="https://code.highcharts.com/modules/exporting.js"></script>
-      <script src="https://code.highcharts.com/modules/export-data.js"></script>
-      <script type="text/javascript"></script>
-      <script type="text/javascript">
-         $(document).ready(function() {
-           $('#address-detail').DataTable();
-           $('#startdate').datepicker({
-             autoclose: true,
-             todayHighlight: true,
-           });
-         });
-      </script>
-      <script>  
-         $(document).ready(function(){
-         $('[data-toggle="tooltip"]').tooltip(); 
-         });
-      </script> 
-   </body>
-</html>
+@endsection
+@section('script')
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+     var id=2;
+var myvar = '<div class="row">'+
+'                                                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">'+
+'                                                               <div class="form-label-group">'+
+'                                                                     <label><span>Document Type</span></label>'+
+'                                                                     <select class="form-control" name="document-type">'+
+'                                                                        <option value="">Document Type</option>'+
+'                                                                        <option>Doc 1</option>'+
+'                                                                        <option>Doc 2</option>'+
+'                                                                        <option>Doc 3</option>'+
+'                                                                     </select>'+
+'                                                                  </div>'+
+'                                                            </div>'+
+'                                                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">'+
+'                                                               <div class="form-label-group">'+
+'                                                                <label><span>Document</span></label>'+
+'                                                                <div class="custom-file">'+
+'                                                                  <input type="file" class="custom-file-input" id="customFile-'+id+'">'+
+'                                                                  <label class="custom-file-label" for="customFile-'+id+'">Choose file</label>'+
+'                                                               </div>'+
+'                                                              </div>'+
+'                                                            </div>'+
+'                                                            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2" style="margin-top: 29px;"> '+
+'                                                              <button class="btn btn-danger btn-sm deleteFile" type="button">Delete</button>'+
+'                                                            </div>'+
+''+
+'                                                            '+
+'                                                         </div>';
+	
+
+  
+    
+
+$(document).on("click", ".add-new-doc", function() {
+
+   $("#doc-new").append(myvar);
+   id=id+1;
+
+});
+
+$(document).on("click", ".deleteFile", function() {
+   $(this).closest('.row').remove();
+});
+
+
+
+});
+
+
+</script>
+@endsection
