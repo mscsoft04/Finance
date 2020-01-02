@@ -1913,3 +1913,7 @@ padding: 0 0px 0 0;
 .inner-header-pay .fr_in_h{
 	float: right;
 }
+ .doc-height {
+ 	min-height: 304px;
+ 	margin-bottom: 0 !important;
+ }
