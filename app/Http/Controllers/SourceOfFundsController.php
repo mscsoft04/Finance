@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\SourceOfFunds;
 use Illuminate\Http\Request;
+use Datatables;
+use Toastr;
 
 class SourceOfFundsController extends Controller
 {
@@ -15,6 +17,7 @@ class SourceOfFundsController extends Controller
     public function index()
     {
         //
+        return view('source_funds.index');
     }
 
     /**
@@ -25,6 +28,7 @@ class SourceOfFundsController extends Controller
     public function create()
     {
         //
+        return view('source_funds.add');
     }
 
     /**
@@ -36,6 +40,10 @@ class SourceOfFundsController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,   ['name'=>'required']);
+        SourceOfFunds::create($request->all());
+        Toastr::success('Added data successfully', '', ["positionClass" => "toast-top-right"]);
+        return redirect()->route('sourceOfFunds.index');
     }
 
     /**
@@ -55,9 +63,10 @@ class SourceOfFundsController extends Controller
      * @param  \App\SourceOfFunds  $sourceOfFunds
      * @return \Illuminate\Http\Response
      */
-    public function edit(SourceOfFunds $sourceOfFunds)
+    public function edit(SourceOfFunds $sourceOfFund)
     {
         //
+        return view('source_funds.edit',compact('sourceOfFund'));
     }
 
     /**
@@ -67,9 +76,15 @@ class SourceOfFundsController extends Controller
      * @param  \App\SourceOfFunds  $sourceOfFunds
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SourceOfFunds $sourceOfFunds)
+    public function update(Request $request, SourceOfFunds $sourceOfFund)
     {
         //
+        $this->validate($request,   ['name'=>'required']);
+        $sourceOfFund->update($request->all());
+       
+
+        Toastr::success('Updated data successfully', '', ["positionClass" => "toast-top-right"]);
+        return redirect()->route('sourceOfFunds.index');
     }
 
     /**
@@ -81,5 +96,10 @@ class SourceOfFundsController extends Controller
     public function destroy(SourceOfFunds $sourceOfFunds)
     {
         //
+    }
+    public  function getdata()
+    {
+        $sourceOfFunds = SourceOfFunds::all();
+        return Datatables::of($sourceOfFunds)->make(true);
     }
 }

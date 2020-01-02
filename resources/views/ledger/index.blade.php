@@ -23,7 +23,7 @@
 			  <div class="card-body">
 				<div class="row">
 				  
-					<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 					  <form>
 					  <div class="card card-box">
 						<!-- card start -->
@@ -35,10 +35,10 @@
 								<table class="table table-hover table-bordered">
 								  <tbody>
 									<tr>
-									  <td rowspan="10" colspan="2">
+									  <td rowspan="6" colspan="2">
 										<img src="http://localhost:8000/public/image/girl.svg" style="width: 100px; height: 100px;" alt="profile">
 									  </td>
-									  <td colspan="2"><input type="text" name="name" class="form-control autocomplete" placeholder="Name">
+									  <td colspan="6"><input type="text" name="name" class="form-control autocomplete" placeholder="Name">
 										<div id="data" class="auto-focus-table"></div>
 										
 										</div>
@@ -49,38 +49,34 @@
 									<tr>
 									  <td class="table-primary">Occupation</td>
 									  <td ><span class="occupation"></span></td>
-									</tr>
-									<tr>
+							
 									  <td class="table-primary">Address</td>
 									  <td><span class="address"></span></td>
 									</tr>
 									<tr>
 									  <td class="table-primary">Village</td>
 									  <td><span class="village"></span></td>
-									</tr>
-									<tr>
+								
 									  <td class="table-primary">Taluk</td>
 									  <td><span class="taluk"></span></td>
 									</tr>
 									<tr>
 									  <td class="table-primary">Pincode</td>
 									  <td><span class="pincode"></span></td>
-									</tr>
-									<tr>
+									
 									  <td class="table-primary">Mobile</td>
 									  <td><span class="phone"></span></td>
 									</tr>
 									<tr>
 									  <td class="table-primary">Email</td>
 									  <td><span class="email"></span></td>
-									</tr>
-									<tr>
+									
 									  <td class="table-primary">Area Name</td>
 									  <td><span class="area"></span></td>
 									</tr>
 									<tr>
 									  <td class="table-primary">DR Amt</td>
-									  <td><span class="credit_amount"></span></td>
+									  <td colspan="4"><span class="credit_amount"></span></td>
 									</tr>
 								  </tbody>
 								</table>
@@ -88,7 +84,7 @@
 						</div>
 					 </div> <!-- Card end -->
 					</div> <!-- col-mg-6 end-->
-					<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 address-detail">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 address-detail">
 						  <div class="card card-box"> 
 						  <!-- card start -->
 							<div class="card-header">

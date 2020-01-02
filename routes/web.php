@@ -31,7 +31,10 @@ Route::get('branch/add', 'BranchController@create')->name('branch.create');
     Route::get('city/getdata', 'CityController@getdata')->name('city.getdata');
     Route::get('taluk/getdata', 'TalukController@getdata')->name('taluk.getdata');
     Route::get('village/getdata', 'VillageController@getdata')->name('village.getdata');
-
+    Route::get('documentType/getdata', 'DocumentTypeController@getdata')->name('documentType.getdata');
+    Route::get('relationship/getdata', 'RelationshipController@getdata')->name('relationship.getdata');
+    Route::get('sourceOfFunds/getdata', 'SourceOfFundsController@getdata')->name('sourceOfFunds.getdata');
+    
     
 
 
@@ -39,6 +42,7 @@ Route::get('branch/add', 'BranchController@create')->name('branch.create');
     Route::get('bank/getdata', 'BankController@getdata')->name('bank.getdata');
     Route::get('group/getdata', 'GroupController@getdata')->name('group.getdata');
     Route::get('group/{group}/auction/getdata', 'AuctionController@getdata')->name('auction.getdata');
+
  Route::group( ['middleware' => ['auth']], function() {
     Route::resource('users', 'UserController');
     Route::resource('roles', 'RoleController');
@@ -58,6 +62,12 @@ Route::get('branch/add', 'BranchController@create')->name('branch.create');
     Route::resource('city', 'CityController');
     Route::resource('taluk', 'TalukController');
     Route::resource('village', 'VillageController');
+    Route::resource('documentType', 'DocumentTypeController');
+    Route::resource('relationship', 'RelationshipController');
+    Route::resource('sourceOfFunds', 'SourceOfFundsController');
+    
+    
+
     
 
 

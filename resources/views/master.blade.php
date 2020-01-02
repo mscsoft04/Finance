@@ -61,8 +61,38 @@
                 </div>
             </a>
         </div>
+
+        <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
+            <a href="{{ url('documentType') }}" class="after-loop-item card border-0 card-guides">
+                <div class="card-body d-flex align-items-end flex-column text-right">
+                <h4>Document Type</h4>
+                <h2></h2>
+                <i class="fas fa-file" aria-hidden="true"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
+            <a href="{{ url('relationship') }}" class="after-loop-item card border-0 card-templates">
+                <div class="card-body d-flex align-items-end flex-column text-right">
+                <h4>Relationship</h4>
+                <h2></h2>
+                <i class="fas fa-user" aria-hidden="true"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
+            <a href="{{ url('sourceOfFunds') }}" class="after-loop-item card border-0 card-templates">
+                <div class="card-body d-flex align-items-end flex-column text-right">
+                <h4>Source Of Funds</h4>
+                <h2></h2>
+                <i class="fas fa-rupee-sign"></i>
+                </div>
+            </a>
+        </div>
         
-        
+         
     </div>
 </div>
 

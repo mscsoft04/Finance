@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Relationship;
+use App\DocumentType;
 use Illuminate\Http\Request;
 use Datatables;
 use Toastr;
 
-class RelationshipController extends Controller
+class DocumentTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class RelationshipController extends Controller
     public function index()
     {
         //
-        return view('relationship.index');
+        return view('document_type.index');
     }
 
     /**
@@ -28,7 +28,7 @@ class RelationshipController extends Controller
     public function create()
     {
         //
-        return view('relationship.add');
+        return view('document_type.add');
     }
 
     /**
@@ -41,18 +41,19 @@ class RelationshipController extends Controller
     {
         //
         $this->validate($request,   ['name'=>'required']);
-        Relationship::create($request->all());
+        $request['created_by']=auth()->user()->id;
+        DocumentType::create($request->all());
         Toastr::success('Added data successfully', '', ["positionClass" => "toast-top-right"]);
-        return redirect()->route('relationship.index');
+        return redirect()->route('documentType.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Relationship  $relationship
+     * @param  \App\DocumentType  $documentType
      * @return \Illuminate\Http\Response
      */
-    public function show(Relationship $relationship)
+    public function show(DocumentType $documentType)
     {
         //
     }
@@ -60,46 +61,48 @@ class RelationshipController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Relationship  $relationship
+     * @param  \App\DocumentType  $documentType
      * @return \Illuminate\Http\Response
      */
-    public function edit(Relationship $relationship)
+    public function edit(DocumentType $documentType)
     {
         //
-        return view('relationship.edit',compact('relationship'));
+        return view('document_type.edit',compact('documentType'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Relationship  $relationship
+     * @param  \App\DocumentType  $documentType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Relationship $relationship)
+    public function update(Request $request, DocumentType $documentType)
     {
         //
         $this->validate($request,   ['name'=>'required']);
-        $relationship->update($request->all());
+        $request['updated_by']=auth()->user()->id;
+        $documentType->update($request->all());
+
        
 
         Toastr::success('Updated data successfully', '', ["positionClass" => "toast-top-right"]);
-        return redirect()->route('relationship.index');
+        return redirect()->route('documentType.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Relationship  $relationship
+     * @param  \App\DocumentType  $documentType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Relationship $relationship)
+    public function destroy(DocumentType $documentType)
     {
         //
     }
     public  function getdata()
     {
-        $relationship = Relationship::all();
-        return Datatables::of($relationship)->make(true);
+        $type = DocumentType::all();
+        return Datatables::of($type)->make(true);
     }
 }
