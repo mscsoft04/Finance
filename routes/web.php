@@ -65,6 +65,8 @@ Route::get('branch/add', 'BranchController@create')->name('branch.create');
     Route::resource('documentType', 'DocumentTypeController');
     Route::resource('relationship', 'RelationshipController');
     Route::resource('sourceOfFunds', 'SourceOfFundsController');
+    Route::resource('debitPayment.auction', 'DebitPaymentController');
+    Route::resource('auctionDocument.auction', 'AuctionDocumentController');
     
     
 
