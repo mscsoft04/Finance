@@ -12,6 +12,7 @@ use App\Village;
 use App\Relationship;
 use App\SourceOfFunds;
 use App\AuctionDocument;
+use App\Auction;
 
 use Toastr;
 
@@ -33,6 +34,7 @@ class DebitPaymentController extends Controller
         $villages=Village::all();
         $relationships=Relationship::all();
         $sources=SourceOfFunds::all();
+        $auctionData=Auction::where('id',$auction)->first();
         $auction_doc=AuctionDocument:: leftJoin('document_types', 'auction_documents.document_id', '=', 'document_types.id')
                     ->where('auction_documents.auction_id',$auction)
                     ->select('auction_documents.id',
@@ -42,7 +44,7 @@ class DebitPaymentController extends Controller
                             'auction_documents.status',
                             'document_types.name',
                             )->get();
-        return view('debit_payment.payment',compact('auction_doc','document','auction','states','cities','taluks','villages','relationships','sources'));
+        return  view('debit_payment.payment',compact('auctionData','auction_doc','document','auction','states','cities','taluks','villages','relationships','sources'));
     }
 
     /**
