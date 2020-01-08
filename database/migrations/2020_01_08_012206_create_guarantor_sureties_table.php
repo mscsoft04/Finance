@@ -22,7 +22,7 @@ class CreateGuarantorSuretiesTable extends Migration
             $table->string('Initial_name');
             $table->string('relation_type');
             $table->string('name_of_father');
-            $table->string('guarantor_type');
+            $table->string('guarantor_type')->nullable();
             $table->date('dob')->nullable();
             $table->integer('age')->unsigned();
             $table->string('gender');

@@ -14,7 +14,8 @@ use App\SourceOfFunds;
 use App\AuctionDocument;
 use App\Auction;
 use App\NomineeDetails;
-
+use App\GuarantorSurety;
+use App\GuarantorDocument;
 use Toastr;
 
 
@@ -59,6 +60,30 @@ class DebitPaymentController extends Controller
                             'document_types.name',
                  )->get();
 
+                 $guarantor=GuarantorSurety::leftJoin('states', 'guarantor_sureties.state', '=', 'states.id')
+                                ->leftJoin('taluks', 'guarantor_sureties.taluk', '=', 'taluks.id')
+                                ->leftJoin('cities', 'guarantor_sureties.district', '=', 'cities.id')
+                                ->leftJoin('villages', 'guarantor_sureties.village', '=', 'villages.id')
+                                ->leftJoin('relationships', 'guarantor_sureties.relationship', '=', 'relationships.id')
+                                ->leftJoin('source_of_funds', 'guarantor_sureties.sourceof_fund', '=', 'source_of_funds.id')
+                                ->leftJoin('guarantor_documents', 'guarantor_sureties.id', '=', 'guarantor_documents.guarantor_id')
+                                ->leftJoin('document_types', 'guarantor_documents.document_id', '=', 'document_types.id')
+                                ->where('guarantor_sureties.auction_id',$auction)
+                                ->select('guarantor_sureties.*',
+                                            'states.name as state_name',
+                                            'taluks.name as taluk_name',
+                                            'cities.name as city_name',
+                                            'villages.name as village_name',
+                                            'relationships.name as relationShip_name',
+                                            'source_of_funds.name as funds',
+                                            'guarantor_documents.remarks',
+                                            'guarantor_documents.document_date',
+                                            'guarantor_documents.document',
+                                            'guarantor_documents.status',
+                                            'guarantor_documents.id as docId',
+                                            'document_types.name',
+                                )->get();
+                  $guarantors=$this->group_by('id',$guarantor);
 
 
         $auction_doc=AuctionDocument:: leftJoin('document_types', 'auction_documents.document_id', '=', 'document_types.id')
@@ -70,7 +95,7 @@ class DebitPaymentController extends Controller
                             'auction_documents.status',
                             'document_types.name',
                             )->get();
-        return  view('debit_payment.payment',compact('nominees','auctionData','auction_doc','document','auction','states','cities','taluks','villages','relationships','sources'));
+        return  view('debit_payment.payment',compact('guarantors','nominees','auctionData','auction_doc','document','auction','states','cities','taluks','villages','relationships','sources'));
     }
 
     /**
@@ -137,5 +162,16 @@ class DebitPaymentController extends Controller
     public function destroy(DebitPayment $debitPayment)
     {
         //
+    }
+    public function group_by($key, $data) {
+        $result = array();
+    
+        foreach($data as $val) {
+            
+                $result[$val[$key]][] = $val;
+           
+        }
+        
+        return $result;
     }
 }

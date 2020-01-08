@@ -202,7 +202,7 @@
                                                                                    </div>
                                                                                    <div class="col-4 col-sm-4 col-md-6 col-lg-6 col-xl-6">
                                                                                        <div class="form-label-group">
-                                                                                           <label for="subscribername"><span>Subscriber Name</span></label>
+                                                                                           <label for="subscribername"><span>Nominee Name</span></label>
                                                                                            <input type="text"  name="nominee_name" value="" class="form-control" placeholder="Nominee Name">
                                                                                        </div>
                                                                                    </div>
@@ -660,7 +660,7 @@
                                                    </div>
 
                                                    <div class="tab-pane" id="tabs-4" role="tabpanel">
-                                                    
+                                                    <div class="guarantor-add" style="display:none">
                                                     <form method="POST" id="guarantorData"  enctype="multipart/form-data" >
                                                         @csrf
                                                           <div class="form-group">
@@ -691,8 +691,8 @@
                                                                                    </div>
                                                                                    <div class="col-4 col-sm-4 col-md-6 col-lg-6 col-xl-6">
                                                                                        <div class="form-label-group">
-                                                                                           <label for="subscribername"><span>Subscriber Name</span></label>
-                                                                                           <input type="text"  name="nominee_name" value="" class="form-control" placeholder="Nominee Name">
+                                                                                           <label for="subscribername"><span>Guarantor Name</span></label>
+                                                                                           <input type="text"  name="guarantor_name" value="" class="form-control" placeholder="Guarantor Name">
                                                                                        </div>
                                                                                    </div>
                                                                                    <div class="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3">
@@ -917,7 +917,7 @@
                                                                                            <input type="text"  class="form-control" name="monthly_income" value="" placeholder="Monthly Income">
                                                                                        </div>
                                                                                    </div>
-                                                                                   <input type="hidden" name="subscriber_id" value="{{ $auctionData->subscriber_id }}">
+                                                                                   <input type="hidden" name="auction_id" value="{{ $auction }}">
                                                                                </div>
                                                                            </div>
                                                                            <!-- card end -->
@@ -1022,98 +1022,103 @@
                                                                <div class="form-group  text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 offset-md-4">
                                                                    <div class="form-row btntop">
                                                                        <div class="col-md-2">
-                                                                           <input type="submit" class="btn btn-primary btn-block btn-blue nominee-save">
+                                                                           <input type="submit" class="btn btn-primary btn-block btn-blue guarantor-Surety">
                                                                        </div>
                                                                        <div class="col-md-2">
-                                                                           <a href="{{url()->previous()}}" class="btn btn-block btn-dark">Cancel</a>
+                                                                           <a href="javascript:void(0)" class="btn btn-block btn-dark guarantor-cancel">Cancel</a>
                                                                        </div>
                                                                    </div>
                                                                </div>
                                                        </form>
-
+                                                    </div>
                                                        </div>
-                                                      
-                                                       <table class=" table table-bordered">
+                                                       <div class="col-md-2 col-2 col-sm-2 col-lg-2 col-xl-2" style="float: right;padding-bottom: 5px;" >
+                                            
+                                                        <input type="button" class="btn btn-success btn-block btn-fl-r addGuarantor" value="Add new" style="margin-top:10px">
+                                                        </div>
+                                                        @foreach ($guarantors as $guarantor)
+                                                      <table class=" table table-bordered">
                                                         <tbody>
                                                            <tr>
                                                               <th colspan="4"><img src="http://localhost:8000/public/image/girl.svg" style="width: 100px;"></th>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Name </th>
-                                                           <td>{{ $nominees[0]->salutation_name.'.'.$nominees[0]->nominee_name.' '.$nominees[0]->Initial_name}}</td>
+                                                           <td>{{ $guarantor[0]->salutation_name.'.'.$guarantor[0]->nominee_name.' '.$guarantor[0]->Initial_name}}</td>
                                                               <th scope="row">Occupation</th>
-                                                              <td>{{ $nominees[0]->occupation }}</td>
+                                                              <td>{{ $guarantor[0]->occupation }}</td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Father Name</th>
-                                                              <td>{{ $nominees[0]->relation_type.' '.$nominees[0]->name_of_father }}</td>
+                                                              <td>{{ $guarantor[0]->relation_type.' '.$guarantor[0]->name_of_father }}</td>
                                                               <th scope="row">Realtion Name</th>
-                                                              <td>{{ $nominees[0]->relationShip_name }}</td>
+                                                              <td>{{ $guarantor[0]->relationShip_name }}</td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Date Of Birth</th>
-                                                              <td>{{ $nominees[0]->dob }}</td>
+                                                              <td>{{ $guarantor[0]->dob }}</td>
                                                               <th scope="row">Age</th>
-                                                              <td>{{ $nominees[0]->age }}</td>
+                                                              <td>{{ $guarantor[0]->age }}</td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Gender</th>
-                                                              <td>{{ $nominees[0]->gender }}</td>
+                                                              <td>{{ $guarantor[0]->gender }}</td>
                                                               <th scope="row">Marital Status</th>
-                                                              <td>{{ $nominees[0]->marital_status }}</td>
+                                                              <td>{{ $guarantor[0]->marital_status }}</td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Date Of Joing</th>
-                                                              <td>{{ $nominees[0]->doj }}</td>
+                                                              <td>{{ $guarantor[0]->doj }}</td>
                                                               <th scope="row">Email</th>
-                                                              <td>{{ $nominees[0]->mail_id }}</td>
+                                                              <td>{{ $guarantor[0]->mail_id }}</td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Mobile Number</th>
-                                                              <td>{{ $nominees[0]->mobile_no }}</td>
+                                                              <td>{{ $guarantor[0]->mobile_no }}</td>
                                                               <th scope="row">Phone Number</th>
-                                                              <td>{{ $nominees[0]->phone_no }}</td>
+                                                              <td>{{ $guarantor[0]->phone_no }}</td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row" rowspan="6">Permanent Address</th>
                                                               <th scope="row">ADDRESS</th>
-                                                              <td colspan="2">{{ $nominees[0]->address }}</td>
+                                                              <td colspan="2">{{ $guarantor[0]->address }}</td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">State</th>
-                                                              <td colspan="2">{{ $nominees[0]->state_name }}</td>
+                                                              <td colspan="2">{{ $guarantor[0]->state_name }}</td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">District</th>
-                                                              <td colspan="2">{{ $nominees[0]->city_name }}</td>
+                                                              <td colspan="2">{{ $guarantor[0]->city_name }}</td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Taluk</th>
-                                                              <td colspan="2">{{ $nominees[0]->taluk_name }}</td>
+                                                              <td colspan="2">{{ $guarantor[0]->taluk_name }}</td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Village</th>
-                                                              <td colspan="2">{{ $nominees[0]->village_name }}</td>
+                                                              <td colspan="2">{{ $guarantor[0]->village_name }}</td>
                                                            </tr>
                                                            <tr>
                                                             <th scope="row">Pincode</th>
-                                                            <td colspan="2">{{ $nominees[0]->pincode }}</td>
+                                                            <td colspan="2">{{ $guarantor[0]->pincode }}</td>
                                                          </tr>
                                                           
                                                            <tr>
                                                               <th scope="row">Designation</th>
-                                                              <td>{{ $nominees[0]->designation }}</td>
+                                                              <td>{{ $guarantor[0]->designation }}</td>
                                                               <th scope="row">Monthly Income</th>
-                                                              <td>{{ $nominees[0]->monthly_income }}</td>
+                                                              <td>{{ $guarantor[0]->monthly_income }}</td>
                                                            </tr>
                                                            <tr>
                                                             <th scope="row">Source Of Funds</th>
-                                                            <td colspan="2">{{ $nominees[0]->sourceof_fund }}</td>
+                                                            <td colspan="3">{{ $nominees[0]->funds }}</td>
                                                             
                                                          </tr>
                                                           
                                                         </tbody>
-                                                     </table>
+                                                     </table> 
+
                                                      <table class="table">
                                                         <thead class="thead-light">
                                                            <tr>
@@ -1126,12 +1131,16 @@
                                                            </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($nominees as $nominee)
+                                                            @foreach ($guarantor as $row)
+                                                            
+                                                            @if ($row['docId'])
                                                             <tr>
-                                                            <th scope="row">{{ $loop->iteration }}</th>
-                                                              <td>{{ $nominee->name }}</td>
-                                                            <td><a href="{{ url($nominee->document) }}" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
-                                                              <td>{{ $nominee->remarks }}</td>
+                                                                <th scope="row">{{ $loop->iteration }}</th>
+                                                              <td>{{ $row['name'] }}</td>
+                                                              @if ($row['document'])
+                                                            <td><a href="{{ url($row['document']) }}" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
+                                                            @endif
+                                                            <td>{{ $row['remarks'] }}</td>
                                                               <td>
                                                                  <span class="badge badge-info">Save</span> 
  
@@ -1140,11 +1149,13 @@
                                                                   
                                                              </td>
                                                             </tr>
+                                                            @endif
                                                             @endforeach
                                                           
                                                           
                                                         </tbody>
                                                      </table>
+                                                     @endforeach
                                                   </div>
                                                    <div class="tab-pane" id="tabs-3" role="tabpanel">
                                                        <div class="card card-box">
@@ -1155,17 +1166,43 @@
                                                            <div class="card-body">
                                                                <div class="row">
                                                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                                                       <div class="form-label-group">
-                                                                           <label><span>Date</span></label>
-                                                                           <input type="text" class="form-control" name="date" id="date" placeholder="Date">
-                                                                       </div>
+                                                                    <div class="form-label-group">
+                                                                        <label>Payment Date</label>
+                                                                       <div class="input-group mb-3">
+                                                                      <input type="text" class="form-control date" placeholder="Date" name="payment_date" >
+                                                                      <div class="input-group-append">
+                                                                        <button class="btn btn-success" type="button"><i class="far fa-calendar-alt"></i></button>
+                                                                      </div>
+                                                                    </div>
+                                                                     </div>
                                                                    </div>
                                                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                                        <div class="form-label-group">
                                                                            <label><span>Pay type</span></label>
-                                                                           <input type="text" class="form-control" name="paytype" id="paytype" placeholder="Pay type">
-                                                                       </div>
+                                                                           <select class="form-control pay-type" name="payment_type">
+                                                                            <option selected="selected" value="cash">Cash</option>
+                                                                            <option value="cheque">Cheque</option>
+                                                                         </select>
+                                                                        
+                                                                        </div>
                                                                    </div>
+                                                                   <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                                    <label>Bank Name<span class="text-danger">*</span></label>
+                                                                    <input type="text" name="bank_name" class="form-control" id="bank_name" placeholder="Bank Name" readonly>
+                                                                 </div>
+                                                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                                    <label>Cheque Number<span class="text-danger">*</span></label>
+                                                                    <input type="text" name="cheque_number" class="form-control" id="cheque_number" placeholder="Cheque Number" readonly>
+                                                                 </div>
+                                                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                                    <label>Cheque Date <span class="text-danger">*</span></label>
+                                                                    <div class="input-group mb-3">
+                                                                       <input type="text" class="form-control" placeholder="Cheque Date" name="cheque_date" id="ChequeDate" disabled>
+                                                                       <div class="input-group-append">
+                                                                          <button class="btn btn-success" type="submit"><i class="far fa-calendar-alt"></i></button>
+                                                                       </div>
+                                                                    </div>
+                                                                 </div>
                                                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                                        <div class="form-label-group">
                                                                            <label><span>Amount</span></label>
@@ -1174,10 +1211,41 @@
                                                                    </div>
                                                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                                        <div class="form-label-group">
-                                                                           <label><span>Pay Amount</span></label>
+                                                                           <label><span>Payable Amount</span></label>
                                                                            <input type="text" class="form-control" name="pay-amount" id="pay-amount" placeholder="Pay Amount">
                                                                        </div>
                                                                    </div>
+                                                                   <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                                    <div class="form-label-group">
+                                                                        <label><span>Due Amount</span></label>
+                                                                        <input type="text" class="form-control" name="pay-amount" id="pay-amount" placeholder="Pay Amount">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                                    <div class="form-label-group">
+                                                                        <label><span>GST Amount</span></label>
+                                                                        <input type="text" class="form-control" name="pay-amount" id="pay-amount" placeholder="Pay Amount">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                                    <div class="form-label-group">
+                                                                        <label><span>Processing Amount</span></label>
+                                                                        <input type="text" class="form-control" name="pay-amount" id="pay-amount" placeholder="Pay Amount">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                                    <div class="form-label-group">
+                                                                        <label><span>Other Amount</span></label>
+                                                                        <input type="text" class="form-control" name="pay-amount" id="pay-amount" placeholder="Pay Amount">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                                    <div class="form-label-group">
+                                                                        <label><span>Pay Amount</span></label>
+                                                                        <input type="text" class="form-control" name="pay-amount" id="pay-amount" placeholder="Pay Amount">
+                                                                    </div>
+                                                                </div>
+                                                                
                                                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                                                        <div class="form-label-group">
                                                                            <label><span>Remarks</span></label>
@@ -1214,7 +1282,9 @@
            </div>
        </div>
    </div>
-</div>@endsection
+</div>
+
+@endsection
 @section('script')
 <script src="{{ asset('public/vendor/webcam/webcam.js') }}"></script>
 <script type="text/javascript">
@@ -1223,7 +1293,7 @@ $(document).ready(function() {
 
 var myvar =  $("#doc-new").html();
    // console.log(myvar);
-
+$(".guarantor-add").hide();
 
 $(document).on("click", ".add-new-doc", function() {
    $("#doc-new").append(myvar);
@@ -1238,6 +1308,16 @@ $(document).on("click", ".add-new-guarantor-doc", function() {
 $(document).on("click", ".deleteFile", function() {
    $(this).closest('.row').remove();
 });
+
+$(document).on("click", ".addGuarantor", function() {
+    $(".guarantor-add").show();
+   
+});
+$(document).on("click", ".guarantor-cancel", function() {
+    $(".guarantor-add").hide();
+   
+});
+
 $('.date').datepicker({
     autoclose: true,
     todayHighlight: true,
@@ -1299,7 +1379,34 @@ $(document).on('click', '.document-save', function(documentSave){
             });
 
   });
-  
+ 
+  $(document).on('click', '.guarantor-Surety', function(guarantorSave){    
+    guarantorSave.preventDefault();
+    var formData = $('#guarantorData')[0];
+    var guarantorData = new FormData(formData);
+    var show_url="{{ route('guarantorSurety.store') }}";
+          $.ajax({
+              type: "POST",
+              enctype: 'multipart/form-data',
+              url: show_url,
+              data: guarantorData,
+              processData: false,
+              contentType: false,
+              cache: false,
+              dataType: "json",
+                success: function( data, textStatus, jQxhr ){
+
+                    toastr.success(data.message, data.title);
+                    removeLocationHash();
+                    window.location.href += "#tabs-4";
+                    location.reload();
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    printErrorMsg( jqXhr.responseJSON.errors );
+                }
+            });
+
+  });
   function removeLocationHash(){
     var noHashURL = window.location.href.replace(/#.*$/, '');
     window.history.replaceState('', document.title, noHashURL) 
@@ -1477,7 +1584,7 @@ Webcam.set({
       $.each(result, function(key, value) {
         $(".nominee_village").append($('<option>', { value : value.id }).text(value.name));
       });
-
+    });
 
       $(document).on("change",".guarantor_state",function(){
      // alert($(this).val());
@@ -1524,6 +1631,6 @@ Webcam.set({
       });
 
    });
-});
+
 </script>
 @endsection
