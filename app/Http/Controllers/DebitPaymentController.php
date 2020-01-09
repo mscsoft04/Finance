@@ -117,6 +117,32 @@ class DebitPaymentController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[ 'auction_id'=>'required',
+                                    'payment_date'=>'required',
+                                    'payment_type'=>'required',
+                                    'bank_name'=>'required',
+                                    'cheque_number'=>'required',
+                                    'cheque_date'=>'required',
+                                    'amount'=>'required',
+                                    'payable_amount'=>'required',
+                                    'due_amount'=>'required',
+                                    'gst_amount'=>'required',
+                                    'processing_amount'=>'required',
+                                    'other_amount'=>'required',
+                                    'remarks'=>'required',
+                                    'pay_amount'=>'required',
+                                 ]); 
+         if($request['payment_date']){
+            $request['payment_date']=date ("Y-m-d",strtotime($request['payment_date']));
+          }
+          if($request['cheque_date']){
+              $request['cheque_date']=date ("Y-m-d",strtotime($request['cheque_date']));
+          }
+        $request['created_by']=auth()->user()->id;
+        DebitPayment::create($request->all());
+        return  $arr = array('message' => 'Updated data successfully');
+
+
     }
 
     /**

@@ -1158,6 +1158,8 @@
                                                      @endforeach
                                                   </div>
                                                    <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                                    <form method="POST" id="paymentData"  enctype="multipart/form-data" >
+                                                        @csrf
                                                        <div class="card card-box">
                                                            <!-- card start -->
                                                            <div class="card-header">
@@ -1197,52 +1199,52 @@
                                                                  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                                     <label>Cheque Date <span class="text-danger">*</span></label>
                                                                     <div class="input-group mb-3">
-                                                                       <input type="text" class="form-control" placeholder="Cheque Date" name="cheque_date" id="ChequeDate" disabled>
+                                                                       <input type="text" class="form-control date" placeholder="Cheque Date" name="cheque_date" id="ChequeDate" disabled>
                                                                        <div class="input-group-append">
-                                                                          <button class="btn btn-success" type="submit"><i class="far fa-calendar-alt"></i></button>
+                                                                          <button class="btn btn-success" type="button"><i class="far fa-calendar-alt"></i></button>
                                                                        </div>
                                                                     </div>
                                                                  </div>
                                                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                                        <div class="form-label-group">
                                                                            <label><span>Amount</span></label>
-                                                                           <input type="text" class="form-control" name="amount" id="amount" placeholder="Amount">
+                                                                       <input type="text" class="form-control" name="amount" id="amount" value="{{ $auctionData->auction_amount }}"placeholder="Amount" readonly>
                                                                        </div>
                                                                    </div>
                                                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                                        <div class="form-label-group">
                                                                            <label><span>Payable Amount</span></label>
-                                                                           <input type="text" class="form-control" name="pay-amount" id="pay-amount" placeholder="Pay Amount">
+                                                                           <input type="text" class="form-control" name="payable_amount" id="Payable-amount" placeholder="Payable Amount">
                                                                        </div>
                                                                    </div>
-                                                                   <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                                   <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"> 
                                                                     <div class="form-label-group">
                                                                         <label><span>Due Amount</span></label>
-                                                                        <input type="text" class="form-control" name="pay-amount" id="pay-amount" placeholder="Pay Amount">
+                                                                        <input type="text" class="form-control" name="due_amount" id="Due-amount" placeholder="Due Amount">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                                     <div class="form-label-group">
                                                                         <label><span>GST Amount</span></label>
-                                                                        <input type="text" class="form-control" name="pay-amount" id="pay-amount" placeholder="Pay Amount">
+                                                                        <input type="text" class="form-control" name="gst_amount" id="Gst-amount" placeholder="GST Amount">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                                     <div class="form-label-group">
                                                                         <label><span>Processing Amount</span></label>
-                                                                        <input type="text" class="form-control" name="pay-amount" id="pay-amount" placeholder="Pay Amount">
+                                                                        <input type="text" class="form-control" name="processing_amount" id="Processing-amount" placeholder="Processing Amount">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                                     <div class="form-label-group">
                                                                         <label><span>Other Amount</span></label>
-                                                                        <input type="text" class="form-control" name="pay-amount" id="pay-amount" placeholder="Pay Amount">
+                                                                        <input type="text" class="form-control" name="other_amount" id="Other-amount" placeholder="Other Amount">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                                     <div class="form-label-group">
                                                                         <label><span>Pay Amount</span></label>
-                                                                        <input type="text" class="form-control" name="pay-amount" id="pay-amount" placeholder="Pay Amount">
+                                                                        <input type="text" class="form-control" name="pay_amount" id="pay-amount" placeholder="Pay Amount">
                                                                     </div>
                                                                 </div>
                                                                 
@@ -1255,18 +1257,23 @@
                                                                </div>
                                                            </div>
                                                        </div>
+                                                      
                                                        <div class="row">
                                                            <div class="col-12 col-sm-12 col-md-12 col-lg-6 offset-lg-3">
                                                                <div class="form-row btntop">
                                                                    <div class="col-md-4 col-4 col-sm-4 col-lg-4 col-xl-4">
-                                                                       <input type="submit" class="btn btn-primary btn-block btn-blue" value="Save">
+                                                                       <input type="submit" class="btn btn-primary btn-block btn-blue debit-amount" value="Save">
                                                                    </div>
                                                                    <div class="col-md-4 col-4 col-sm-4 col-lg-4 col-xl-4">
-                                                                       <a href="http://localhost:8000/subscriber" class="btn btn-block btn-dark">Cancel</a>
+                                                                   <a href="{{ url()->previous() }}" class="btn btn-block btn-dark">Cancel</a>
                                                                    </div>
                                                                </div>
                                                            </div>
                                                        </div>
+                                                    <input type="hidden" name="auction_id" class="form-control"  value="{{ $auctionData->id }}" >
+
+                                                       
+                                                    </form>
                                                    </div>
                                                </div>
                                            </div>
@@ -1399,6 +1406,33 @@ $(document).on('click', '.document-save', function(documentSave){
                     toastr.success(data.message, data.title);
                     removeLocationHash();
                     window.location.href += "#tabs-4";
+                    location.reload();
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    printErrorMsg( jqXhr.responseJSON.errors );
+                }
+            });
+
+  });
+  $(document).on('click', '.debit-amount', function(debitAmount){    
+    debitAmount.preventDefault();
+    var formData = $('#paymentData')[0];
+    var debitData = new FormData(formData);
+    var show_url="{{ route('debitPayment.auction.store',["auction"=>$auction]) }}";
+          $.ajax({
+              type: "POST",
+              enctype: 'multipart/form-data',
+              url: show_url,
+              data: debitData,
+              processData: false,
+              contentType: false,
+              cache: false,
+              dataType: "json",
+                success: function( data, textStatus, jQxhr ){
+
+                    toastr.success(data.message, data.title);
+                    removeLocationHash();
+                    window.location.href += "#tabs-3";
                     location.reload();
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
@@ -1631,6 +1665,23 @@ Webcam.set({
       });
 
    });
+   $(document).on("click",".pay-type",function(pay) {
+	  pay.preventDefault();
+	  var type=$(this).val();
+	 if(type=='cash'){
+		$("#bank_name").attr('readonly', true);
+	    $("#cheque_number").attr('readonly', true);
+	     $("#ChequeDate").attr('disabled', true);
+	 }else{
+       $("#bank_name").attr('readonly', false);
+	  $("#cheque_number").attr('readonly', false);
+	  $("#ChequeDate").attr('disabled', false);
+	 }
+	  
+	 
+});
+
+
 
 </script>
 @endsection
