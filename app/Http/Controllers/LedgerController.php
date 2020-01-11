@@ -172,6 +172,7 @@ class LedgerController extends Controller
                          'auctions.status',
                          'auctions.subscriber_id as actionSub_id',
                          'auctions.auction_number',
+                         'auctions.id as auction_id',
                         
                         )->get()->groupBy(function($item) {
                             return $item->group_id;

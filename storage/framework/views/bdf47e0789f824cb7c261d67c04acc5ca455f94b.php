@@ -1,12 +1,10 @@
-
-@extends('layouts.main')
-@section('title', 'Master')
-@section('breadcrumb')
+<?php $__env->startSection('title', 'Master'); ?>
+<?php $__env->startSection('breadcrumb'); ?>
 <div class="col-lg-9 col-md-8 col-sm-8 col-2">
    <div class="breadcrumbbar">
       <ul>
          <li class="breadcrumb-item">
-            <a href="{{ url('home') }}"><span>Dashboard</span><i class="fas fa-arrow-left fa-fw"></i></a>
+            <a href="<?php echo e(url('home')); ?>"><span>Dashboard</span><i class="fas fa-arrow-left fa-fw"></i></a>
          </li>
          <li class="breadcrumb-item">
              Master
@@ -14,19 +12,20 @@
       </ul>
    </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row">
-        @if (session('status'))
+        <?php if(session('status')): ?>
             <div class="alert alert-success" role="alert">
-                {{ session('status') }}
+                <?php echo e(session('status')); ?>
+
             </div>
-        @endif
+        <?php endif; ?>
                     
         <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
-            <a href="{{ url('state') }}" class="after-loop-item card border-0 card-templates">
+            <a href="<?php echo e(url('state')); ?>" class="after-loop-item card border-0 card-templates">
                 <div class="card-body d-flex align-items-end flex-column text-right">
                 <h4>State</h4>
                 <h2></h2>
@@ -35,7 +34,7 @@
             </a>
         </div>
         <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
-            <a href="{{ url('city') }}" class="after-loop-item card border-0 card-snippets">
+            <a href="<?php echo e(url('city')); ?>" class="after-loop-item card border-0 card-snippets">
                 <div class="card-body d-flex align-items-end flex-column text-right">
                 <h4>City</h4>
                 <h2 class="w-75"></h2>
@@ -44,7 +43,7 @@
             </a>
         </div>
         <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
-            <a href="{{ url('taluk') }}" class="after-loop-item card border-0 card-guides shadow-lg">
+            <a href="<?php echo e(url('taluk')); ?>" class="after-loop-item card border-0 card-guides shadow-lg">
             <div class="card-body d-flex align-items-end flex-column text-right">
                 <h4>Taluk</h4>
                 <h2 class="w-75"></h2>
@@ -53,7 +52,7 @@
             </a>
         </div>
          <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
-            <a href="{{ url('village') }}" class="after-loop-item card border-0 card-expence">
+            <a href="<?php echo e(url('village')); ?>" class="after-loop-item card border-0 card-expence">
                 <div class="card-body d-flex align-items-end flex-column text-right">
                 <h4>Village</h4>
                 <h2></h2>
@@ -63,7 +62,7 @@
         </div>
 
         <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
-            <a href="{{ url('documentType') }}" class="after-loop-item card border-0 card-guides">
+            <a href="<?php echo e(url('documentType')); ?>" class="after-loop-item card border-0 card-guides">
                 <div class="card-body d-flex align-items-end flex-column text-right">
                 <h4>Document Type</h4>
                 <h2></h2>
@@ -73,7 +72,7 @@
         </div>
 
         <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
-            <a href="{{ url('relationship') }}" class="after-loop-item card border-0 card-templates">
+            <a href="<?php echo e(url('relationship')); ?>" class="after-loop-item card border-0 card-templates">
                 <div class="card-body d-flex align-items-end flex-column text-right">
                 <h4>Relationship</h4>
                 <h2></h2>
@@ -83,7 +82,7 @@
         </div>
 
         <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
-            <a href="{{ url('sourceOfFunds') }}" class="after-loop-item card border-0 card-templates">
+            <a href="<?php echo e(url('sourceOfFunds')); ?>" class="after-loop-item card border-0 card-templates">
                 <div class="card-body d-flex align-items-end flex-column text-right">
                 <h4>Source Of Funds</h4>
                 <h2></h2>
@@ -92,7 +91,7 @@
             </a>
         </div>
         <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
-            <a href="{{ url('employee') }}" class="after-loop-item card border-0 card-expence">
+            <a href="<?php echo e(url('employee')); ?>" class="after-loop-item card border-0 card-expence">
                 <div class="card-body d-flex align-items-end flex-column text-right">
                 <h4>Employee</h4>
                 <h2></h2>
@@ -101,7 +100,7 @@
             </a>
         </div>
         <div class="col-12 col-sm-12 col-lg-4 col-md-4 bottomgap">
-            <a href="{{ url('agent') }}" class="after-loop-item card border-0 card-snippets">
+            <a href="<?php echo e(url('agent')); ?>" class="after-loop-item card border-0 card-snippets">
                 <div class="card-body d-flex align-items-end flex-column text-right">
                 <h4>Agent</h4>
                 <h2></h2>
@@ -116,4 +115,6 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\finance\finance\resources\views/master.blade.php ENDPATH**/ ?>

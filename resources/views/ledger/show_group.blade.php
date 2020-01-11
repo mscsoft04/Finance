@@ -19,13 +19,13 @@
 		
 		<tr>
 			<td>{{ $loop->iteration }}</td>
-			<td class="text-success"><label><input type="checkbox" data-id="{{$row[0] }}" class="group-check" name="check"></label></td>
+			<td class="text-success"><label><input type="checkbox" data-id="{{$row}}" class="group-check" name="check"></label></td>
 			@if ( (count($row) == 1 ) && (is_null($row[0]->auction_number)))
 			<td><a href="javascript:void(0)" class="add-payment-diabled" data-id="{{$row[0] }}">{{ $row[0]->group_name }}</a></td>
 			@else
-			<td><a href="javascript:void(0)" class="add-payment" data-id="{{$row[0] }}">{{ $row[0]->group_name }}</a></td>
+			<td><a href="javascript:void(0)" class="add-payment-diabled" data-id="{{$row[0] }}">{{ $row[0]->group_name }}</a></td>
 			@endif
-			<td><a href="{{ route('debitPayment.auction.index', ['auction'=>$row[0]->actionSub_id] ) }}" class="" data-id="{{$row[0] }}">{{ $row[0]->ticket_number }}</a></td>
+			<td><a href="javascript:void(0)" class="" data-id="{{$row[0] }}">{{ $row[0]->ticket_number }}</a></td>
 			<td>{{ $row[0]->collection_type }}</td>
 			<td>{{ $row[0]->chit_value }}</td>
 			@if ( (count($row) == 1 ) && (is_null($row[0]->auction_number)))

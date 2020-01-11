@@ -1,20 +1,19 @@
-@extends('layouts.main')
-@section('title', 'ledger')
-@section('breadcrumb')
+<?php $__env->startSection('title', 'ledger'); ?>
+<?php $__env->startSection('breadcrumb'); ?>
 <div class="col-lg-9 col-md-8 col-sm-8 col-2">
             	
             	<div class="breadcrumbbar">
                 	<ul>
                     	<li class="breadcrumb-item">
-                        <a href="{{ url('ledger') }}"><span>Ledger</span><i class="fas fa-arrow-left fa-fw"></i></a>
+                        <a href="<?php echo e(url('ledger')); ?>"><span>Ledger</span><i class="fas fa-arrow-left fa-fw"></i></a>
                         </li>
 <!--                         <li class="breadcrumb-item active">Edit</li>
  -->                    </ul>
                 </div>
             </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 	  <div class="row">
 		<div class="col-lg-12">
@@ -56,7 +55,8 @@
 										<div id="data" class="auto-focus-table"></div>
 										
 										</div>
-										{{ csrf_field() }}
+										<?php echo e(csrf_field()); ?>
+
 									</td>
 								
 									</tr>
@@ -126,8 +126,8 @@
 			</div>
 	
 
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
 <script>
 $(document).ready(function(){
 
@@ -137,9 +137,9 @@ $(document).ready(function(){
         {
          var _token = $('input[name="_token"]').val();
          $.ajax({
-          url:"{{ route('autocomplete.fetch') }}",
+          url:"<?php echo e(route('autocomplete.fetch')); ?>",
           method:"POST",
-          data:{query:query, _token:"{{ csrf_token() }}"},
+          data:{query:query, _token:"<?php echo e(csrf_token()); ?>"},
           success:function(data){
            $('#data').fadeIn();  
               $('#data').html(data);
@@ -176,9 +176,9 @@ $(document).ready(function(){
         {
          var _token = $('input[name="_token"]').val();
          $.ajax({
-          url:"{{ route('groupdata.list') }}",
+          url:"<?php echo e(route('groupdata.list')); ?>",
           method:"POST",
-          data:{id:id, _token:"{{ csrf_token() }}"},
+          data:{id:id, _token:"<?php echo e(csrf_token()); ?>"},
           success:function(data){
 
               $('.group-table').html(data);
@@ -194,9 +194,9 @@ $(document).ready(function(){
 	   	var _token = $('input[name="_token"]').val();
 		   $('.chitfund-table').html("");
          $.ajax({
-          url:"{{ route('autciondata.list') }}",
+          url:"<?php echo e(route('autciondata.list')); ?>",
           method:"POST",
-		  data:{group:data.groupId,subscriber_id:data.subscriber_id, _token:"{{ csrf_token() }}"},
+		  data:{group:data.groupId,subscriber_id:data.subscriber_id, _token:"<?php echo e(csrf_token()); ?>"},
           success:function(data){
 
               $('.chitfund-table').html(data);
@@ -210,12 +210,12 @@ $(document).ready(function(){
        var data=JSON.parse($(this).attr("data-id"));
 	   autcionData(data[0]);
 	   var _token = $('input[name="_token"]').val();
-        var show_url="{{ route('payment.add') }}";
+        var show_url="<?php echo e(route('payment.add')); ?>";
           $.ajax({
                 url: show_url,
                 dataType: 'html',
 				        method:"POST",
-                data:{group:data.groupId,subscriber_id:data.subscriber_id, _token:"{{ csrf_token() }}"},
+                data:{group:data.groupId,subscriber_id:data.subscriber_id, _token:"<?php echo e(csrf_token()); ?>"},
                 success: function( data, textStatus, jQxhr ){
                     $('#response-full').html( data );
                     $('#response-full-title').text('Bill');
@@ -247,7 +247,7 @@ $(document).on('click', '.creditPayment-add', function(creditPay){
     creditPay.preventDefault();
     var creditPayment = $('#creditPaymentData')[0];
     var creditPaymentData = new FormData(creditPayment);
-    var show_url="{{ route('creditpayment.store') }}";
+    var show_url="<?php echo e(route('creditpayment.store')); ?>";
           $.ajax({
               type: "POST",
               enctype: 'multipart/form-data',
@@ -275,8 +275,8 @@ $(document).on('click', '.creditPayment-add', function(creditPay){
 	$.ajax({
            
             type:'POST',
-            url: '{{ route('billgenerate.generate') }}',
-            data:{id:data,_token:"{{ csrf_token() }}"},
+            url: '<?php echo e(route('billgenerate.generate')); ?>',
+            data:{id:data,_token:"<?php echo e(csrf_token()); ?>"},
             xhrFields: {
                 responseType: 'blob'
             },
@@ -338,10 +338,10 @@ $(document).on('click', '.accordion-toggle', function(hs){
 	var dataID=data.unique_id;
 	var _token = $('input[name="_token"]').val();
          $.ajax({
-          url:"{{ route('creditpayment.list') }}",
+          url:"<?php echo e(route('creditpayment.list')); ?>",
           method:"POST",
 		  dataType: 'html',
-		  data:{autcion_id:data.autcion_id,subscriber_id:data.subscriber_id, _token:"{{ csrf_token() }}"},
+		  data:{autcion_id:data.autcion_id,subscriber_id:data.subscriber_id, _token:"<?php echo e(csrf_token()); ?>"},
           success:function(data){
               $("#demo-"+dataID).html(data);
           }
@@ -389,7 +389,7 @@ $(document).on('click', '.led-payment-add', function(hs){
       if (typeof data.auction_id == "undefined" || data.auction_id == null){
         alert("fail");
       } else{
-        var url = '{{ route("debitPayment.auction.index", ["auction"=>":id"]) }}';
+        var url = '<?php echo e(route("debitPayment.auction.index", ["auction"=>":id"])); ?>';
         url = url.replace(':id', data.auction_id); 
         window.open(url, '_blank');
         
@@ -404,12 +404,12 @@ $(document).on('click', '.led-payment-add', function(hs){
 });
 
 function BillpaymentDataShow(data){
-  var show_url="{{ route('payment.add') }}";
+  var show_url="<?php echo e(route('payment.add')); ?>";
           $.ajax({
                 url: show_url,
                 dataType: 'html',
 				        method:"POST",
-                data:{group:data.groupId,subscriber_id:data.subscriber_id, _token:"{{ csrf_token() }}"},
+                data:{group:data.groupId,subscriber_id:data.subscriber_id, _token:"<?php echo e(csrf_token()); ?>"},
                 success: function( data, textStatus, jQxhr ){
                     $('#response-full').html( data );
                     $('#response-full-title').text('Bill');
@@ -423,4 +423,5 @@ function BillpaymentDataShow(data){
     console.log(data);
 }
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\finance\finance\resources\views/ledger/index.blade.php ENDPATH**/ ?>

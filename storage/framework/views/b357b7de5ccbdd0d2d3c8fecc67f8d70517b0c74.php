@@ -1,20 +1,19 @@
-@extends('layouts.main')
-@section('title', 'Payment')
-@section('breadcrumb')
+<?php $__env->startSection('title', 'Payment'); ?>
+<?php $__env->startSection('breadcrumb'); ?>
 <div class="col-lg-9 col-md-8 col-sm-8 col-2">
             	
             	<div class="breadcrumbbar">
                 	<ul>
                     	<li class="breadcrumb-item">
-                        <a href="{{ url('ledger') }}"><span>Payment</span><i class="fas fa-arrow-left fa-fw"></i></a>
+                        <a href="<?php echo e(url('ledger')); ?>"><span>Payment</span><i class="fas fa-arrow-left fa-fw"></i></a>
                         </li>
 <!--                         <li class="breadcrumb-item active">Edit</li>
  -->                    </ul>
                 </div>
             </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="alert alert-danger print-error-msg" style="display:none">
     <ul></ul>
 </div>
@@ -56,7 +55,7 @@
                                                                Documents Details
                                                            </div>
                                                            <form method="POST" id="documentData"  enctype="multipart/form-data" >
-                                                            @csrf
+                                                            <?php echo csrf_field(); ?>
                                                            <div class="card-body">
                                                                <div class="form-row">
                                                                    <!-- Form row start -->
@@ -73,10 +72,7 @@
                                                                        </div>
                                                                    </div>
                                                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                                                       {{-- <div class="form-label-group">
-                                                                           <label for="retirementdate"><span>No.of Documents</span></label>
-                                                                           <input type="number"  name="no_of_doc" value="1" pattern="[0-9]*" class="form-control doc-count" max="10"  placeholder="No.of Documents">
-                                                                       </div> --}}
+                                                                       
                                                                        <div class="col-md-4 col-4 col-sm-4 col-lg-4 col-xl-4" >
                                                                         <label for="retirementdate"><span></span></label>
                                                                         <input type="button" class="btn btn-success btn-block add-new-doc" value="Add new" style="margin-top:10px">
@@ -91,9 +87,9 @@
                                                                                <label><span>Document Type</span></label>
                                                                                <select class="form-control" name="document_type[]">
                                                                                    <option value="">Document Type</option>
-                                                                                   @foreach ($document as $doc)
-                                                                               <option value="{{ $doc->id }}">{{ $doc->name }}</option>
-                                                                                   @endforeach
+                                                                                   <?php $__currentLoopData = $document; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $doc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                               <option value="<?php echo e($doc->id); ?>"><?php echo e($doc->name); ?></option>
+                                                                                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                                </select>
                                                                            </div>
                                                                        </div>
@@ -128,7 +124,7 @@
                                                                     </div>
                                                                     
                                                                     <div class="col-md-4 col-4 col-sm-4 col-lg-4 col-xl-4">
-                                                                        <a href="{{url()->previous()}}" class="btn btn-block btn-dark">Cancel</a>
+                                                                        <a href="<?php echo e(url()->previous()); ?>" class="btn btn-block btn-dark">Cancel</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -149,12 +145,12 @@
                                                            </tr>
                                                          </thead>
                                                          <tbody>
-                                                            @foreach ($auction_doc as $auc)
+                                                            <?php $__currentLoopData = $auction_doc; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $auc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                            <tr>
-                                                           <th scope="row">{{ $loop->iteration }}</th>
-                                                             <td>{{ $auc->name }}</td>
-                                                           <td><a href="javascript:void(0)" class="fileOpen" data-id="{{ $auc->id }}"><i class="fas fa-file" aria-hidden="true"></i></a></td>
-                                                             <td>{{ $auc->remarks }}</td>
+                                                           <th scope="row"><?php echo e($loop->iteration); ?></th>
+                                                             <td><?php echo e($auc->name); ?></td>
+                                                           <td><a href="javascript:void(0)" class="fileOpen" data-id="<?php echo e($auc->id); ?>"><i class="fas fa-file" aria-hidden="true"></i></a></td>
+                                                             <td><?php echo e($auc->remarks); ?></td>
                                                              <td>
                                                                 <span class="badge badge-info">Save</span> 
 
@@ -163,7 +159,7 @@
                                                                  
                                                             </td>
                                                            </tr>
-                                                           @endforeach
+                                                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                          </tbody>
                                                        </table>
                                                      </div>
@@ -171,9 +167,9 @@
                                                 </div>
                                                    </div>
                                                    <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                                    @if (count($nominees) === 0)
+                                                    <?php if(count($nominees) === 0): ?>
                                                     <form method="POST" id="nomineeData"  enctype="multipart/form-data" >
-                                                        @csrf
+                                                        <?php echo csrf_field(); ?>
                                                           <div class="form-group">
                                                                <div class="form-row">
                                                                    <!-- Form row start-->
@@ -301,9 +297,9 @@
                                                                                        <div class="form-label-group">
                                                                                            <label for="referedby"><span>Relation Type</span></label>
                                                                                            <select name="relationship" class="form-control">
-                                                                                            @foreach ($relationships as $relationship)
-                                                                                            <option  value="{{$relationship->id}}" {{ old("relationship") == $relationship->id ? "selected":"" }}>{{$relationship->name }}</option>
-                                                                                            @endforeach
+                                                                                            <?php $__currentLoopData = $relationships; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $relationship): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                            <option  value="<?php echo e($relationship->id); ?>" <?php echo e(old("relationship") == $relationship->id ? "selected":""); ?>><?php echo e($relationship->name); ?></option>
+                                                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                                                                            </select>
                                                                                        </div>
@@ -333,9 +329,9 @@
                                                                                            <label for="gstin"><span>State</span></label>
                                                                                            <select  name="state" class="form-control nominee_state">
                                                                                             <option value="">State Name</option>
-                                                                                            @foreach ($states as $state)
-                                                                                            <option  value="{{$state->id}}" >{{ $state->name }}</option>
-                                                                                            @endforeach
+                                                                                            <?php $__currentLoopData = $states; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                            <option  value="<?php echo e($state->id); ?>" ><?php echo e($state->name); ?></option>
+                                                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                                                                            </select>
                                                                                        </div>
@@ -345,9 +341,9 @@
                                                                                            <label for="gstin"><span>District</span></label>
                                                                                            <select name="district" class="form-control nominee_district">
                                                                                             <option value="">District</option>
-                                                                                            @foreach ($cities as $city)
-                                                                                            <option  value="{{$city->id}}" >{{ $city->name }}</option>
-                                                                                            @endforeach
+                                                                                            <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                            <option  value="<?php echo e($city->id); ?>" ><?php echo e($city->name); ?></option>
+                                                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                                                                            </select>
                                                                                        </div>
@@ -357,9 +353,9 @@
                                                                                            <label for="gstin"><span>Taluk</span></label>
                                                                                            <select id="ptalukname" name="taluk" class="form-control nominee_taluk">
                                                                                             <option value="">Taluk Name</option>
-                                                                                            @foreach ($taluks as $taluk)
-                                                                                            <option  value="{{$taluk->id}}" >{{ $taluk->name }}</option>
-                                                                                            @endforeach
+                                                                                            <?php $__currentLoopData = $taluks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $taluk): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                            <option  value="<?php echo e($taluk->id); ?>" ><?php echo e($taluk->name); ?></option>
+                                                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                                            </select>
                                                                                        </div>
                                                                                    </div>
@@ -369,9 +365,9 @@
                                                                                            <select  name="village" class="form-control nominee_village">
                                                                                             <option value="">Village</option> 
                                              
-                                                                                            @foreach ($villages as $village)
-                                                                                            <option  value="{{$village->id}}" >{{ $village->name }}</option>
-                                                                                            @endforeach
+                                                                                            <?php $__currentLoopData = $villages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $village): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                            <option  value="<?php echo e($village->id); ?>" ><?php echo e($village->name); ?></option>
+                                                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                                            </select>
                                                                                        </div>
                                                                                    </div>
@@ -415,9 +411,9 @@
                                                                                            <label for="occupation"><span>Source of funds</span></label>
                                                                                            <select  name="sourceof_fund" class="form-control selectpicker">
                                                                                             <option value="">Source of funds</option>
-                                                                                            @foreach ($sources as $source)
-                                                                                            <option  value="{{$source->id}}">{{$source->name }}</option>
-                                                                                            @endforeach
+                                                                                            <?php $__currentLoopData = $sources; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $source): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                            <option  value="<?php echo e($source->id); ?>"><?php echo e($source->name); ?></option>
+                                                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                                                                            </select>
                                                                                        </div>
@@ -428,7 +424,7 @@
                                                                                            <input type="text"  class="form-control" name="monthly_income" value="" placeholder="Monthly Income">
                                                                                        </div>
                                                                                    </div>
-                                                                                   <input type="hidden" name="subscriber_id" value="{{ $auctionData->subscriber_id }}">
+                                                                                   <input type="hidden" name="subscriber_id" value="<?php echo e($auctionData->subscriber_id); ?>">
                                                                                </div>
                                                                            </div>
                                                                            <!-- card end -->
@@ -450,11 +446,11 @@
                                                                                  <img src="http://localhost:8000/public/image/girl.svg" class="profile" alt="profile photo">
                                                                              </div>
                                                                              <div class="nominee_profile-image-save" style="display: none">
-                                                                                 <img src="{{ asset('public/image/girl.svg') }}" class="profile" alt="profile photo">
+                                                                                 <img src="<?php echo e(asset('public/image/girl.svg')); ?>" class="profile" alt="profile photo">
                                                                              </div>
                                                                          </div>
                                                                          <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4 uploadbtn">
-                                                                             <input type="hidden"  class="form-control nominee-profile" name="image" value="{{ old('image') }}">
+                                                                             <input type="hidden"  class="form-control nominee-profile" name="image" value="<?php echo e(old('image')); ?>">
                                                                              <button class="btn btn-warning preview" type="button" onClick="nominee_preview_snapshot()">Preview</button>
                                                                              <button class="btn btn-primary save" type="button" onClick="nominee_save_photo()" style="display: none">Save</button>
                                                                              <button class="btn btn-default cancel" type="button" onClick="nominee_cancel_preview()" style="display: none">Cancel</button>
@@ -497,9 +493,9 @@
                                                                                     <label><span>Document Type</span></label>
                                                                                     <select class="form-control" name="document_type[]">
                                                                                         <option value="">Document Type</option>
-                                                                                        @foreach ($document as $doc)
-                                                                                    <option value="{{ $doc->id }}">{{ $doc->name }}</option>
-                                                                                        @endforeach
+                                                                                        <?php $__currentLoopData = $document; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $doc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                    <option value="<?php echo e($doc->id); ?>"><?php echo e($doc->name); ?></option>
+                                                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -536,14 +532,14 @@
                                                                            <input type="submit" class="btn btn-primary btn-block btn-blue nominee-save">
                                                                        </div>
                                                                        <div class="col-md-2">
-                                                                           <a href="{{url()->previous()}}" class="btn btn-block btn-dark">Cancel</a>
+                                                                           <a href="<?php echo e(url()->previous()); ?>" class="btn btn-block btn-dark">Cancel</a>
                                                                        </div>
                                                                    </div>
                                                                </div>
                                                        </form>
 
                                                        </div>
-                                                       @else
+                                                       <?php else: ?>
                                                        <table class=" table table-bordered">
                                                         <tbody>
                                                            <tr>
@@ -551,75 +547,75 @@
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Name </th>
-                                                           <td>{{ $nominees[0]->salutation_name.'.'.$nominees[0]->nominee_name.' '.$nominees[0]->Initial_name}}</td>
+                                                           <td><?php echo e($nominees[0]->salutation_name.'.'.$nominees[0]->nominee_name.' '.$nominees[0]->Initial_name); ?></td>
                                                               <th scope="row">Occupation</th>
-                                                              <td>{{ $nominees[0]->occupation }}</td>
+                                                              <td><?php echo e($nominees[0]->occupation); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Father Name</th>
-                                                              <td>{{ $nominees[0]->relation_type.' '.$nominees[0]->name_of_father }}</td>
+                                                              <td><?php echo e($nominees[0]->relation_type.' '.$nominees[0]->name_of_father); ?></td>
                                                               <th scope="row">Realtion Name</th>
-                                                              <td>{{ $nominees[0]->relationShip_name }}</td>
+                                                              <td><?php echo e($nominees[0]->relationShip_name); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Date Of Birth</th>
-                                                              <td>{{ $nominees[0]->dob }}</td>
+                                                              <td><?php echo e($nominees[0]->dob); ?></td>
                                                               <th scope="row">Age</th>
-                                                              <td>{{ $nominees[0]->age }}</td>
+                                                              <td><?php echo e($nominees[0]->age); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Gender</th>
-                                                              <td>{{ $nominees[0]->gender }}</td>
+                                                              <td><?php echo e($nominees[0]->gender); ?></td>
                                                               <th scope="row">Marital Status</th>
-                                                              <td>{{ $nominees[0]->marital_status }}</td>
+                                                              <td><?php echo e($nominees[0]->marital_status); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Date Of Joing</th>
-                                                              <td>{{ $nominees[0]->doj }}</td>
+                                                              <td><?php echo e($nominees[0]->doj); ?></td>
                                                               <th scope="row">Email</th>
-                                                              <td>{{ $nominees[0]->mail_id }}</td>
+                                                              <td><?php echo e($nominees[0]->mail_id); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Mobile Number</th>
-                                                              <td>{{ $nominees[0]->mobile_no }}</td>
+                                                              <td><?php echo e($nominees[0]->mobile_no); ?></td>
                                                               <th scope="row">Phone Number</th>
-                                                              <td>{{ $nominees[0]->phone_no }}</td>
+                                                              <td><?php echo e($nominees[0]->phone_no); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row" rowspan="6">Permanent Address</th>
                                                               <th scope="row">ADDRESS</th>
-                                                              <td colspan="2">{{ $nominees[0]->address }}</td>
+                                                              <td colspan="2"><?php echo e($nominees[0]->address); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">State</th>
-                                                              <td colspan="2">{{ $nominees[0]->state_name }}</td>
+                                                              <td colspan="2"><?php echo e($nominees[0]->state_name); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">District</th>
-                                                              <td colspan="2">{{ $nominees[0]->city_name }}</td>
+                                                              <td colspan="2"><?php echo e($nominees[0]->city_name); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Taluk</th>
-                                                              <td colspan="2">{{ $nominees[0]->taluk_name }}</td>
+                                                              <td colspan="2"><?php echo e($nominees[0]->taluk_name); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Village</th>
-                                                              <td colspan="2">{{ $nominees[0]->village_name }}</td>
+                                                              <td colspan="2"><?php echo e($nominees[0]->village_name); ?></td>
                                                            </tr>
                                                            <tr>
                                                             <th scope="row">Pincode</th>
-                                                            <td colspan="2">{{ $nominees[0]->pincode }}</td>
+                                                            <td colspan="2"><?php echo e($nominees[0]->pincode); ?></td>
                                                          </tr>
                                                           
                                                            <tr>
                                                               <th scope="row">Designation</th>
-                                                              <td>{{ $nominees[0]->designation }}</td>
+                                                              <td><?php echo e($nominees[0]->designation); ?></td>
                                                               <th scope="row">Monthly Income</th>
-                                                              <td>{{ $nominees[0]->monthly_income }}</td>
+                                                              <td><?php echo e($nominees[0]->monthly_income); ?></td>
                                                            </tr>
                                                            <tr>
                                                             <th scope="row">Source Of Funds</th>
-                                                            <td colspan="2">{{ $nominees[0]->sourceof_fund }}</td>
+                                                            <td colspan="2"><?php echo e($nominees[0]->sourceof_fund); ?></td>
                                                             
                                                          </tr>
                                                           
@@ -637,12 +633,12 @@
                                                            </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($nominees as $nominee)
+                                                            <?php $__currentLoopData = $nominees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nominee): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <tr>
-                                                            <th scope="row">{{ $loop->iteration }}</th>
-                                                              <td>{{ $nominee->name }}</td>
-                                                            <td><a href="{{ url($nominee->document) }}" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
-                                                              <td>{{ $nominee->remarks }}</td>
+                                                            <th scope="row"><?php echo e($loop->iteration); ?></th>
+                                                              <td><?php echo e($nominee->name); ?></td>
+                                                            <td><a href="<?php echo e(url($nominee->document)); ?>" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
+                                                              <td><?php echo e($nominee->remarks); ?></td>
                                                               <td>
                                                                  <span class="badge badge-info">Save</span> 
  
@@ -651,18 +647,18 @@
                                                                   
                                                              </td>
                                                             </tr>
-                                                            @endforeach
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                           
                                                           
                                                         </tbody>
                                                      </table>
-                                                     @endif
+                                                     <?php endif; ?>
                                                    </div>
 
                                                    <div class="tab-pane" id="tabs-4" role="tabpanel">
                                                     <div class="guarantor-add" style="display:none">
                                                     <form method="POST" id="guarantorData"  enctype="multipart/form-data" >
-                                                        @csrf
+                                                        <?php echo csrf_field(); ?>
                                                           <div class="form-group">
                                                                <div class="form-row">
                                                                    <!-- Form row start-->
@@ -790,9 +786,9 @@
                                                                                        <div class="form-label-group">
                                                                                            <label for="referedby"><span>Relation Type</span></label>
                                                                                            <select name="relationship" class="form-control">
-                                                                                            @foreach ($relationships as $relationship)
-                                                                                            <option  value="{{$relationship->id}}" {{ old("relationship") == $relationship->id ? "selected":"" }}>{{$relationship->name }}</option>
-                                                                                            @endforeach
+                                                                                            <?php $__currentLoopData = $relationships; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $relationship): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                            <option  value="<?php echo e($relationship->id); ?>" <?php echo e(old("relationship") == $relationship->id ? "selected":""); ?>><?php echo e($relationship->name); ?></option>
+                                                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                                                                            </select>
                                                                                        </div>
@@ -822,9 +818,9 @@
                                                                                            <label for="gstin"><span>State</span></label>
                                                                                            <select  name="state" class="form-control guarantor_state">
                                                                                             <option value="">State Name</option>
-                                                                                            @foreach ($states as $state)
-                                                                                            <option  value="{{$state->id}}" >{{ $state->name }}</option>
-                                                                                            @endforeach
+                                                                                            <?php $__currentLoopData = $states; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                            <option  value="<?php echo e($state->id); ?>" ><?php echo e($state->name); ?></option>
+                                                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                                                                            </select>
                                                                                        </div>
@@ -834,9 +830,9 @@
                                                                                            <label for="gstin"><span>District</span></label>
                                                                                            <select name="district" class="form-control guarantor_district">
                                                                                             <option value="">District</option>
-                                                                                            @foreach ($cities as $city)
-                                                                                            <option  value="{{$city->id}}" >{{ $city->name }}</option>
-                                                                                            @endforeach
+                                                                                            <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                            <option  value="<?php echo e($city->id); ?>" ><?php echo e($city->name); ?></option>
+                                                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                                                                            </select>
                                                                                        </div>
@@ -846,9 +842,9 @@
                                                                                            <label for="gstin"><span>Taluk</span></label>
                                                                                            <select id="ptalukname" name="taluk" class="form-control guarantor_taluk">
                                                                                             <option value="">Taluk Name</option>
-                                                                                            @foreach ($taluks as $taluk)
-                                                                                            <option  value="{{$taluk->id}}" >{{ $taluk->name }}</option>
-                                                                                            @endforeach
+                                                                                            <?php $__currentLoopData = $taluks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $taluk): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                            <option  value="<?php echo e($taluk->id); ?>" ><?php echo e($taluk->name); ?></option>
+                                                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                                            </select>
                                                                                        </div>
                                                                                    </div>
@@ -858,9 +854,9 @@
                                                                                            <select  name="village" class="form-control guarantor_village">
                                                                                             <option value="">Village</option> 
                                              
-                                                                                            @foreach ($villages as $village)
-                                                                                            <option  value="{{$village->id}}" >{{ $village->name }}</option>
-                                                                                            @endforeach
+                                                                                            <?php $__currentLoopData = $villages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $village): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                            <option  value="<?php echo e($village->id); ?>" ><?php echo e($village->name); ?></option>
+                                                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                                            </select>
                                                                                        </div>
                                                                                    </div>
@@ -904,9 +900,9 @@
                                                                                            <label for="occupation"><span>Source of funds</span></label>
                                                                                            <select  name="sourceof_fund" class="form-control selectpicker">
                                                                                             <option value="">Source of funds</option>
-                                                                                            @foreach ($sources as $source)
-                                                                                            <option  value="{{$source->id}}">{{$source->name }}</option>
-                                                                                            @endforeach
+                                                                                            <?php $__currentLoopData = $sources; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $source): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                            <option  value="<?php echo e($source->id); ?>"><?php echo e($source->name); ?></option>
+                                                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                                                                            </select>
                                                                                        </div>
@@ -917,7 +913,7 @@
                                                                                            <input type="text"  class="form-control" name="monthly_income" value="" placeholder="Monthly Income">
                                                                                        </div>
                                                                                    </div>
-                                                                                   <input type="hidden" name="auction_id" value="{{ $auction }}">
+                                                                                   <input type="hidden" name="auction_id" value="<?php echo e($auction); ?>">
                                                                                </div>
                                                                            </div>
                                                                            <!-- card end -->
@@ -939,11 +935,11 @@
                                                                                  <img src="http://localhost:8000/public/image/girl.svg" class="profile" alt="profile photo">
                                                                              </div>
                                                                              <div class="guarantor_profile-image-save" style="display: none">
-                                                                                 <img src="{{ asset('public/image/girl.svg') }}" class="profile" alt="profile photo">
+                                                                                 <img src="<?php echo e(asset('public/image/girl.svg')); ?>" class="profile" alt="profile photo">
                                                                              </div>
                                                                          </div>
                                                                          <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4 uploadbtn">
-                                                                             <input type="hidden"  class="form-control guarantor-profile" name="image" value="{{ old('image') }}">
+                                                                             <input type="hidden"  class="form-control guarantor-profile" name="image" value="<?php echo e(old('image')); ?>">
                                                                              <button class="btn btn-warning preview" type="button" onClick="guarantor_preview_snapshot()">Preview</button>
                                                                              <button class="btn btn-primary save" type="button" onClick="guarantor_save_photo()" style="display: none">Save</button>
                                                                              <button class="btn btn-default cancel" type="button" onClick="guarantor_cancel_preview()" style="display: none">Cancel</button>
@@ -986,9 +982,9 @@
                                                                                     <label><span>Document Type</span></label>
                                                                                     <select class="form-control" name="document_type[]">
                                                                                         <option value="">Document Type</option>
-                                                                                        @foreach ($document as $doc)
-                                                                                    <option value="{{ $doc->id }}">{{ $doc->name }}</option>
-                                                                                        @endforeach
+                                                                                        <?php $__currentLoopData = $document; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $doc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                    <option value="<?php echo e($doc->id); ?>"><?php echo e($doc->name); ?></option>
+                                                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -1036,7 +1032,7 @@
                                             
                                                         <input type="button" class="btn btn-success btn-block btn-fl-r addGuarantor" value="Add new" style="margin-top:10px">
                                                         </div>
-                                                        @foreach ($guarantors as $guarantor)
+                                                        <?php $__currentLoopData = $guarantors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $guarantor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                       <table class=" table table-bordered">
                                                         <tbody>
                                                            <tr>
@@ -1044,75 +1040,75 @@
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Name </th>
-                                                           <td>{{ $guarantor[0]->salutation_name.'.'.$guarantor[0]->nominee_name.' '.$guarantor[0]->Initial_name}}</td>
+                                                           <td><?php echo e($guarantor[0]->salutation_name.'.'.$guarantor[0]->nominee_name.' '.$guarantor[0]->Initial_name); ?></td>
                                                               <th scope="row">Occupation</th>
-                                                              <td>{{ $guarantor[0]->occupation }}</td>
+                                                              <td><?php echo e($guarantor[0]->occupation); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Father Name</th>
-                                                              <td>{{ $guarantor[0]->relation_type.' '.$guarantor[0]->name_of_father }}</td>
+                                                              <td><?php echo e($guarantor[0]->relation_type.' '.$guarantor[0]->name_of_father); ?></td>
                                                               <th scope="row">Realtion Name</th>
-                                                              <td>{{ $guarantor[0]->relationShip_name }}</td>
+                                                              <td><?php echo e($guarantor[0]->relationShip_name); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Date Of Birth</th>
-                                                              <td>{{ $guarantor[0]->dob }}</td>
+                                                              <td><?php echo e($guarantor[0]->dob); ?></td>
                                                               <th scope="row">Age</th>
-                                                              <td>{{ $guarantor[0]->age }}</td>
+                                                              <td><?php echo e($guarantor[0]->age); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Gender</th>
-                                                              <td>{{ $guarantor[0]->gender }}</td>
+                                                              <td><?php echo e($guarantor[0]->gender); ?></td>
                                                               <th scope="row">Marital Status</th>
-                                                              <td>{{ $guarantor[0]->marital_status }}</td>
+                                                              <td><?php echo e($guarantor[0]->marital_status); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Date Of Joing</th>
-                                                              <td>{{ $guarantor[0]->doj }}</td>
+                                                              <td><?php echo e($guarantor[0]->doj); ?></td>
                                                               <th scope="row">Email</th>
-                                                              <td>{{ $guarantor[0]->mail_id }}</td>
+                                                              <td><?php echo e($guarantor[0]->mail_id); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Mobile Number</th>
-                                                              <td>{{ $guarantor[0]->mobile_no }}</td>
+                                                              <td><?php echo e($guarantor[0]->mobile_no); ?></td>
                                                               <th scope="row">Phone Number</th>
-                                                              <td>{{ $guarantor[0]->phone_no }}</td>
+                                                              <td><?php echo e($guarantor[0]->phone_no); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row" rowspan="6">Permanent Address</th>
                                                               <th scope="row">ADDRESS</th>
-                                                              <td colspan="2">{{ $guarantor[0]->address }}</td>
+                                                              <td colspan="2"><?php echo e($guarantor[0]->address); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">State</th>
-                                                              <td colspan="2">{{ $guarantor[0]->state_name }}</td>
+                                                              <td colspan="2"><?php echo e($guarantor[0]->state_name); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">District</th>
-                                                              <td colspan="2">{{ $guarantor[0]->city_name }}</td>
+                                                              <td colspan="2"><?php echo e($guarantor[0]->city_name); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Taluk</th>
-                                                              <td colspan="2">{{ $guarantor[0]->taluk_name }}</td>
+                                                              <td colspan="2"><?php echo e($guarantor[0]->taluk_name); ?></td>
                                                            </tr>
                                                            <tr>
                                                               <th scope="row">Village</th>
-                                                              <td colspan="2">{{ $guarantor[0]->village_name }}</td>
+                                                              <td colspan="2"><?php echo e($guarantor[0]->village_name); ?></td>
                                                            </tr>
                                                            <tr>
                                                             <th scope="row">Pincode</th>
-                                                            <td colspan="2">{{ $guarantor[0]->pincode }}</td>
+                                                            <td colspan="2"><?php echo e($guarantor[0]->pincode); ?></td>
                                                          </tr>
                                                           
                                                            <tr>
                                                               <th scope="row">Designation</th>
-                                                              <td>{{ $guarantor[0]->designation }}</td>
+                                                              <td><?php echo e($guarantor[0]->designation); ?></td>
                                                               <th scope="row">Monthly Income</th>
-                                                              <td>{{ $guarantor[0]->monthly_income }}</td>
+                                                              <td><?php echo e($guarantor[0]->monthly_income); ?></td>
                                                            </tr>
                                                            <tr>
                                                             <th scope="row">Source Of Funds</th>
-                                                            <td colspan="3">{{ $nominees[0]->funds }}</td>
+                                                            <td colspan="3"><?php echo e($nominees[0]->funds); ?></td>
                                                             
                                                          </tr>
                                                           
@@ -1131,16 +1127,16 @@
                                                            </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($guarantor as $row)
+                                                            <?php $__currentLoopData = $guarantor; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             
-                                                            @if ($row['docId'])
+                                                            <?php if($row['docId']): ?>
                                                             <tr>
-                                                                <th scope="row">{{ $loop->iteration }}</th>
-                                                              <td>{{ $row['name'] }}</td>
-                                                              @if ($row['document'])
-                                                            <td><a href="{{ url($row['document']) }}" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
-                                                            @endif
-                                                            <td>{{ $row['remarks'] }}</td>
+                                                                <th scope="row"><?php echo e($loop->iteration); ?></th>
+                                                              <td><?php echo e($row['name']); ?></td>
+                                                              <?php if($row['document']): ?>
+                                                            <td><a href="<?php echo e(url($row['document'])); ?>" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
+                                                            <?php endif; ?>
+                                                            <td><?php echo e($row['remarks']); ?></td>
                                                               <td>
                                                                  <span class="badge badge-info">Save</span> 
  
@@ -1149,17 +1145,17 @@
                                                                   
                                                              </td>
                                                             </tr>
-                                                            @endif
-                                                            @endforeach
+                                                            <?php endif; ?>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                           
                                                           
                                                         </tbody>
                                                      </table>
-                                                     @endforeach
+                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                   </div>
                                                    <div class="tab-pane" id="tabs-3" role="tabpanel">
                                                     <form method="POST" id="paymentData"  enctype="multipart/form-data" >
-                                                        @csrf
+                                                        <?php echo csrf_field(); ?>
                                                        <div class="card card-box">
                                                            <!-- card start -->
                                                            <div class="card-header">
@@ -1208,7 +1204,7 @@
                                                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                                        <div class="form-label-group">
                                                                            <label><span>Amount</span></label>
-                                                                       <input type="text" class="form-control" name="amount" id="amount" value="{{ $auctionData->auction_amount }}"placeholder="Amount" readonly>
+                                                                       <input type="text" class="form-control" name="amount" id="amount" value="<?php echo e($auctionData->auction_amount); ?>"placeholder="Amount" readonly>
                                                                        </div>
                                                                    </div>
                                                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -1265,12 +1261,12 @@
                                                                        <input type="submit" class="btn btn-primary btn-block btn-blue debit-amount" value="Save">
                                                                    </div>
                                                                    <div class="col-md-4 col-4 col-sm-4 col-lg-4 col-xl-4">
-                                                                   <a href="{{ url()->previous() }}" class="btn btn-block btn-dark">Cancel</a>
+                                                                   <a href="<?php echo e(url()->previous()); ?>" class="btn btn-block btn-dark">Cancel</a>
                                                                    </div>
                                                                </div>
                                                            </div>
                                                        </div>
-                                                    <input type="hidden" name="auction_id" class="form-control"  value="{{ $auctionData->id }}" >
+                                                    <input type="hidden" name="auction_id" class="form-control"  value="<?php echo e($auctionData->id); ?>" >
 
                                                        
                                                     </form>
@@ -1291,9 +1287,9 @@
    </div>
 </div>
 
-@endsection
-@section('script')
-<script src="{{ asset('public/vendor/webcam/webcam.js') }}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+<script src="<?php echo e(asset('public/vendor/webcam/webcam.js')); ?>"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -1336,7 +1332,7 @@ $(document).on('click', '.document-save', function(documentSave){
     documentSave.preventDefault();
     var formData = $('#documentData')[0];
     var documentData = new FormData(formData);
-    var show_url="{{ route('auctionDocument.auction.store',["auction"=>$auction]) }}";
+    var show_url="<?php echo e(route('auctionDocument.auction.store',["auction"=>$auction])); ?>";
           $.ajax({
               type: "POST",
               enctype: 'multipart/form-data',
@@ -1363,7 +1359,7 @@ $(document).on('click', '.document-save', function(documentSave){
     nomineeSave.preventDefault();
     var formData = $('#nomineeData')[0];
     var nomineeData = new FormData(formData);
-    var show_url="{{ route('nomineeDetails.store') }}";
+    var show_url="<?php echo e(route('nomineeDetails.store')); ?>";
           $.ajax({
               type: "POST",
               enctype: 'multipart/form-data',
@@ -1391,7 +1387,7 @@ $(document).on('click', '.document-save', function(documentSave){
     guarantorSave.preventDefault();
     var formData = $('#guarantorData')[0];
     var guarantorData = new FormData(formData);
-    var show_url="{{ route('guarantorSurety.store') }}";
+    var show_url="<?php echo e(route('guarantorSurety.store')); ?>";
           $.ajax({
               type: "POST",
               enctype: 'multipart/form-data',
@@ -1418,7 +1414,7 @@ $(document).on('click', '.document-save', function(documentSave){
     debitAmount.preventDefault();
     var formData = $('#paymentData')[0];
     var debitData = new FormData(formData);
-    var show_url="{{ route('debitPayment.auction.store',["auction"=>$auction]) }}";
+    var show_url="<?php echo e(route('debitPayment.auction.store',["auction"=>$auction])); ?>";
           $.ajax({
               type: "POST",
               enctype: 'multipart/form-data',
@@ -1577,7 +1573,7 @@ Webcam.set({
     }
    $(document).on("change",".nominee_state",function(){
      // alert($(this).val());
-      let city=@json($cities); 
+      let city=<?php echo json_encode($cities, 15, 512) ?>; 
       const result = city.filter(res => res.state_id==$(this).val());
       console.log(result);
       $('.nominee_district').html("");
@@ -1594,7 +1590,7 @@ Webcam.set({
 
    $(document).on("change",".nominee_district",function(){
      // alert($(this).val());
-      let taluk=@json($taluks); 
+      let taluk=<?php echo json_encode($taluks, 15, 512) ?>; 
       const result = taluk.filter(res => res.city_id==$(this).val());
       console.log(result);
       $(".nominee_taluk").html("");
@@ -1609,7 +1605,7 @@ Webcam.set({
    });
    $(document).on("change",".nominee_taluk",function(){
      // alert($(this).val());
-      let village=@json($villages); 
+      let village=<?php echo json_encode($villages, 15, 512) ?>; 
       const result = village.filter(res => res.taluk_id==$(this).val());
       console.log(result);
       
@@ -1622,7 +1618,7 @@ Webcam.set({
 
       $(document).on("change",".guarantor_state",function(){
      // alert($(this).val());
-      let city=@json($cities); 
+      let city=<?php echo json_encode($cities, 15, 512) ?>; 
       const result = city.filter(res => res.state_id==$(this).val());
       console.log(result);
       $('.guarantor_district').html("");
@@ -1639,7 +1635,7 @@ Webcam.set({
 
    $(document).on("change",".guarantor_district",function(){
      // alert($(this).val());
-      let taluk=@json($taluks); 
+      let taluk=<?php echo json_encode($taluks, 15, 512) ?>; 
       const result = taluk.filter(res => res.city_id==$(this).val());
       console.log(result);
       $(".guarantor_taluk").html("");
@@ -1654,7 +1650,7 @@ Webcam.set({
    });
    $(document).on("change",".guarantor_taluk",function(){
      // alert($(this).val());
-      let village=@json($villages); 
+      let village=<?php echo json_encode($villages, 15, 512) ?>; 
       const result = village.filter(res => res.taluk_id==$(this).val());
       console.log(result);
       
@@ -1697,10 +1693,11 @@ Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
  $(document).on("click",".fileOpen",function(fileOpen) {
     fileOpen.preventDefault();
    let id= $(this).attr("data-id");
-   var url = '{{ route("auctionDocument.download") }}';
+   var url = '<?php echo e(route("auctionDocument.download")); ?>';
 
    file_open(url,id);
  });
  
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\finance\finance\resources\views/debit_payment/payment.blade.php ENDPATH**/ ?>
