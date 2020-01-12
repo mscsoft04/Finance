@@ -1917,3 +1917,36 @@ padding: 0 0px 0 0;
  	min-height: 304px;
  	margin-bottom: 0 !important;
  }
+ .table-surety tbody tr td {
+ 	vertical-align: top;
+ }
+ .table-surety .custdetails {
+ 	width: 200px;
+ }
+ .table-surety.table .table {
+ 	background-color: #fff;
+ }
+ .table-surety.table .table tr td,
+ .table-surety.table .table tr th {
+ 	border: 0;
+ }
+ .td-star {
+ 	font-size: 24px;
+ 	font-weight: bold;
+ }
+ .td-initial {
+ 	text-transform: capitalize;
+ }
+ .name-caps {
+ 	text-transform: uppercase;
+ }
+ .colan-right {
+ 	content: "";
+ 	text-align: right;
+ 	padding-left: 5px;
+ 	float: right;
+ }
+ .table-surety.table tfoot tr td  .table  tbody tr td,
+ .table-surety.table tfoot tr td  .table  thead tr th {
+ 	border: 1px solid #ccc;
+ }
