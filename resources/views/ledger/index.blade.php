@@ -18,27 +18,41 @@
 
 	  <div class="row">
 		<div class="col-lg-12">
+      <table class="table-btn">
+        <tbody>
+          <tr>
+            
+            <td><button type="button" class="btn btn-success led-payment-add" >Payment Add</button></td>
+            <td><button type="button" class="btn btn-primary led-bill-add">Bill Receipt</button></td>
+            <td><button type="button" class="btn btn-warning led-auction-add">Auction Add</button></td>
+            <td><button type="button" class="btn btn-secondary">Refund</button></td>
+            <td><button type="button" class="btn btn-dark">Close</button></td>
+          </tr>
+        </tbody>
+      </table>
 		  <div class="widget-bg"> 
 			<div class="card  ">
 			  <div class="card-body">
 				<div class="row">
 				  
-					<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 					  <form>
 					  <div class="card card-box">
+              
 						<!-- card start -->
 						<div class="card-header">
 						   Customer Details
 						</div>
 						<div class="card-body address-tab">
 							<div class="table-responsive">
+               
 								<table class="table table-hover table-bordered">
 								  <tbody>
 									<tr>
-									  <td rowspan="10" colspan="2">
+									  <td rowspan="6" colspan="2">
 										<img src="http://localhost:8000/public/image/girl.svg" style="width: 100px; height: 100px;" alt="profile">
 									  </td>
-									  <td colspan="2"><input type="text" name="name" class="form-control autocomplete" placeholder="Name">
+									  <td colspan="6"><input type="text" name="name" class="form-control autocomplete" autocomplete="off" placeholder="Name">
 										<div id="data" class="auto-focus-table"></div>
 										
 										</div>
@@ -49,38 +63,34 @@
 									<tr>
 									  <td class="table-primary">Occupation</td>
 									  <td ><span class="occupation"></span></td>
-									</tr>
-									<tr>
+							
 									  <td class="table-primary">Address</td>
 									  <td><span class="address"></span></td>
 									</tr>
 									<tr>
 									  <td class="table-primary">Village</td>
 									  <td><span class="village"></span></td>
-									</tr>
-									<tr>
+								
 									  <td class="table-primary">Taluk</td>
 									  <td><span class="taluk"></span></td>
 									</tr>
 									<tr>
 									  <td class="table-primary">Pincode</td>
 									  <td><span class="pincode"></span></td>
-									</tr>
-									<tr>
+									
 									  <td class="table-primary">Mobile</td>
 									  <td><span class="phone"></span></td>
 									</tr>
 									<tr>
 									  <td class="table-primary">Email</td>
 									  <td><span class="email"></span></td>
-									</tr>
-									<tr>
+									
 									  <td class="table-primary">Area Name</td>
 									  <td><span class="area"></span></td>
 									</tr>
 									<tr>
 									  <td class="table-primary">DR Amt</td>
-									  <td><span class="credit_amount"></span></td>
+									  <td colspan="4"><span class="credit_amount"></span></td>
 									</tr>
 								  </tbody>
 								</table>
@@ -88,7 +98,7 @@
 						</div>
 					 </div> <!-- Card end -->
 					</div> <!-- col-mg-6 end-->
-					<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 address-detail">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 address-detail">
 						  <div class="card card-box"> 
 						  <!-- card start -->
 							<div class="card-header">
@@ -160,9 +170,7 @@ $(document).ready(function(){
 		groupdata(data.id);
 		$('.chitfund-table').html("");
     }); 
-	$(window).click(function(e) {
-		$('#data').fadeOut(); 
-   });
+
    function groupdata(id){
 	if(id != '')
         {
@@ -200,13 +208,13 @@ $(document).ready(function(){
    $(document).on("click",".add-payment",function(e) {
       e.preventDefault();
        var data=JSON.parse($(this).attr("data-id"));
-	   autcionData(data);
+	   autcionData(data[0]);
 	   var _token = $('input[name="_token"]').val();
         var show_url="{{ route('payment.add') }}";
           $.ajax({
                 url: show_url,
                 dataType: 'html',
-				method:"POST",
+				        method:"POST",
                 data:{group:data.groupId,subscriber_id:data.subscriber_id, _token:"{{ csrf_token() }}"},
                 success: function( data, textStatus, jQxhr ){
                     $('#response-full').html( data );
@@ -345,10 +353,74 @@ $(document).on('click', '.accordion-toggle', function(hs){
 	if($(this).is(':checked')){
      $(".group-check").not($(this)).attr("checked",false);
 	 var data=JSON.parse($(this).attr("data-id"));
-	 autcionData(data);
+	 autcionData(data[0]);
     } 
   });
   
+  
+  
 });
+
+$(document).on('click', '.led-bill-add', function(hs){ 
+  if ($('.group-check').is(":checked")){
+    let array=JSON.parse($('.group-check:checked').attr("data-id"));
+    let data=array[0];
+    if(data.actionSub_id){
+      BillpaymentDataShow(data);
+    } else {
+        alert("fail");
+    }
+    
+   }else{
+    alert("select Group please");
+   }
+   
+});
+$(document).on('click', '.led-payment-add', function(hs){ 
+  if ($('.group-check').is(":checked")){
+    let array=JSON.parse($('.group-check:checked').attr("data-id"));
+    const result = array.filter(res => res.subscriber_id == res.actionSub_id);
+    console.log(result);
+    
+    if ((result.length)==0 ){
+            alert("fail");
+    } else {
+      let data=result[0];
+      if (typeof data.auction_id == "undefined" || data.auction_id == null){
+        alert("fail");
+      } else{
+        var url = '{{ route("debitPayment.auction.index", ["auction"=>":id"]) }}';
+        url = url.replace(':id', data.auction_id); 
+        window.open(url, '_blank');
+        
+      }
+      
+    }
+    
+   }else{
+    alert("select Group please");
+   }
+   
+});
+
+function BillpaymentDataShow(data){
+  var show_url="{{ route('payment.add') }}";
+          $.ajax({
+                url: show_url,
+                dataType: 'html',
+				        method:"POST",
+                data:{group:data.groupId,subscriber_id:data.subscriber_id, _token:"{{ csrf_token() }}"},
+                success: function( data, textStatus, jQxhr ){
+                    $('#response-full').html( data );
+                    $('#response-full-title').text('Bill');
+                    $('#myModal-full').modal('show')
+
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                }
+            });
+    console.log(data);
+}
 </script>
 @endsection
