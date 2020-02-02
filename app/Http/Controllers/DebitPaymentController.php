@@ -90,6 +90,7 @@ class DebitPaymentController extends Controller
                     ->where('auction_documents.auction_id',$auction)
                     ->select('auction_documents.id',
                             'auction_documents.remarks',
+                            'auction_documents.document_number',
                             'auction_documents.document_date',
                             'auction_documents.document',
                             'auction_documents.status',

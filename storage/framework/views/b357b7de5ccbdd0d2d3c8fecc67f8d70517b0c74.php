@@ -152,11 +152,18 @@
                                                            <td><a href="javascript:void(0)" class="fileOpen" data-id="<?php echo e($auc->id); ?>"><i class="fas fa-file" aria-hidden="true"></i></a></td>
                                                              <td><?php echo e($auc->remarks); ?></td>
                                                              <td>
+                                                             <?php if($auc->status ==0): ?>
                                                                 <span class="badge badge-info">Save</span> 
-
+                                                             <?php elseif($auc->status ==1): ?>
+                                                             <span class="badge badge-success">Verified</span> 
+                                                             <?php elseif($auc->status ==3): ?>
+                                                             <span class="badge badge-danger">Rejected</span> 
+                                                             <?php endif; ?>
                                                             </td>
                                                              <td>
-                                                                 
+                                                              <?php if($auc->status ==0): ?>
+                                                                <span class="badge badge-warning documentVerify" data-option="doc-verify" data-id="<?php echo e($auc->id); ?>">verify</span> 
+                                                               <?php endif; ?>
                                                             </td>
                                                            </tr>
                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -640,11 +647,20 @@
                                                             <td><a href="<?php echo e(url($nominee->document)); ?>" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
                                                               <td><?php echo e($nominee->remarks); ?></td>
                                                               <td>
-                                                                 <span class="badge badge-info">Save</span> 
+                                                              <?php if($nominee->status ==0): ?>
+                                                                <span class="badge badge-info">Save</span> 
+                                                             <?php elseif($nominee->status ==1): ?>
+                                                             <span class="badge badge-success">Verified</span> 
+                                                             <?php elseif($nominee->status ==3): ?>
+                                                             <span class="badge badge-danger">Rejected</span> 
+                                                             <?php endif; ?>
  
                                                              </td>
                                                               <td>
-                                                                  
+                                                              <?php if($nominee->status ==0): ?>
+                                                                <span class="badge badge-warning documentVerify" data-option="nominee-verify" data-id="<?php echo e($nominee->nominee_document_id); ?>">verify</span> 
+                                                               <?php endif; ?>
+ 
                                                              </td>
                                                             </tr>
                                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -1138,11 +1154,19 @@
                                                             <?php endif; ?>
                                                             <td><?php echo e($row['remarks']); ?></td>
                                                               <td>
-                                                                 <span class="badge badge-info">Save</span> 
+                                                              <?php if($row->status ==0): ?>
+                                                                <span class="badge badge-info">Save</span> 
+                                                             <?php elseif($row->status ==1): ?>
+                                                             <span class="badge badge-success">Verified</span> 
+                                                             <?php elseif($row->status ==3): ?>
+                                                             <span class="badge badge-danger">Rejected</span> 
+                                                             <?php endif; ?>
  
                                                              </td>
                                                               <td>
-                                                                  
+                                                              <?php if($row->status ==0): ?> 
+                                                              <span class="badge badge-warning documentVerify" data-option="guarnti-verify" data-id="<?php echo e($row->id); ?>">verify</span> 
+                                                              <?php endif; ?>
                                                              </td>
                                                             </tr>
                                                             <?php endif; ?>
@@ -1291,7 +1315,10 @@
 <?php $__env->startSection('script'); ?>
 <script src="<?php echo e(asset('public/vendor/webcam/webcam.js')); ?>"></script>
 <script type="text/javascript">
-
+   function removeLocationHash(){
+    var noHashURL = window.location.href.replace(/#.*$/, '');
+    window.history.replaceState('', document.title, noHashURL) 
+}
 $(document).ready(function() {
 
 var myvar =  $("#doc-new").html();
@@ -1437,10 +1464,7 @@ $(document).on('click', '.document-save', function(documentSave){
             });
 
   });
-  function removeLocationHash(){
-    var noHashURL = window.location.href.replace(/#.*$/, '');
-    window.history.replaceState('', document.title, noHashURL) 
-}
+
   function printErrorMsg (msg) {  
         //console.log(msg);
          
@@ -1698,6 +1722,60 @@ Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
    file_open(url,id);
  });
  
+ $(document).on("click",".documentVerify",function(){
+     var option = $(this).attr("data-option");
+     var id = $(this).attr("data-id")
+    $('#myModal-full .modal-dialog').removeClass("modal-xl");
+    $('#myModal-full .modal-dialog').addClass("modal-sm");
+    $('#response-full-title').text('Document Verification');
+
+     $('#response-full').html(`<form id="documentVerificationForm">
+                                <input type="hidden" name="docverfyid" value="${id}">
+                                <input type="hidden" name="option" value="${option}">
+                                <div class="form-label-group "> <input type="radio"   name="document_verification" value="1" checked>Verify                        
+                                <input type="radio"  name="document_verification" value="3" >Reject 
+                                </div><div class="form-label-group"><label for="p_address"><span>Remarks</span></label>
+                                <textarea  class="form-control" name="document_verification_remarks" rows="2" ></textarea>
+                                </div><br><div class="form-label-group"> <button class="btn btn-primary documentVerificationBtn" type="button"  >Save</button></div>
+                                </form>`);
+    $('#myModal-full').modal('show')
+ })
+
+ $(document).on("click",".documentVerificationBtn",function(){
+    $('#myModal-full').modal('hide')
+    var hasTab;
+    var optVal = $("input[name='option']").val();
+    var data = {"id":$("input[name='docverfyid']").val(),
+                "status": $("input[name='document_verification']:checked").val(),
+                 "remarks":$.trim($("textarea[name='document_verification_remarks']").val()),
+                 _token:"<?php echo e(csrf_token()); ?>"};
+    if( optVal    == "nominee-verify"){
+                var show_url="<?php echo e(route('nomineeDocuments.documentverificationupdate')); ?>";
+                hasTab = "#tabs-2";
+    }else if( optVal == "doc-verify"){
+                 var show_url="<?php echo e(route('auctionDocument.documentverificationupdate')); ?>";
+                 hasTab = "#tabs-1";
+    }else if( optVal == "guarnti-verify"){
+                 var show_url="<?php echo e(route('guarntiesDocuments.documentverificationupdate')); ?>";
+                 hasTab = "#tabs-4";
+    }
+        $.ajax({
+              type: "POST",            
+              url: show_url,
+              data: data,              
+              cache: false,
+              dataType: "json",
+                success: function( data, textStatus, jQxhr ){
+                    toastr.success(data.message, data.title);
+                    removeLocationHash();
+                   window.location.href += hasTab;
+                   location.reload();
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    printErrorMsg( jqXhr.responseJSON.errors );
+                }
+            });
+        })
 </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\finance\finance\resources\views/debit_payment/payment.blade.php ENDPATH**/ ?>

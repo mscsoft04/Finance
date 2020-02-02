@@ -82,4 +82,11 @@ class GuarantorDocumentController extends Controller
     {
         //
     }
+    public function documentverificationupdate(Request $request){
+        
+        $guarnti = GuarantorDocument::findOrFail($request->id);
+
+            $guarnti->update($request->all());
+            return  $arr = array('message' => 'updated data successfully');
+    }
 }

@@ -72,7 +72,10 @@ Route::get('branch/add', 'BranchController@create')->name('branch.create');
     Route::resource('guarantorSurety', 'GuarantorSuretyController');
     Route::resource('employee', 'EmployeeController');
     Route::resource('agent', 'AgentController');
-    
+    Route::post('auctionDocument/documentverificationupdate', 'AuctionDocumentController@documentverificationupdate')->name('auctionDocument.documentverificationupdate');
+    Route::post('/nomineeDocuments/documentverificationupdate', 'NomineeDocumentController@documentverificationupdate')->name('nomineeDocuments.documentverificationupdate');
+    Route::post('/guarntiesDocuments/documentverificationupdate', 'GuarantorDocumentController@documentverificationupdate')->name('guarntiesDocuments.documentverificationupdate');
+
 
     
 

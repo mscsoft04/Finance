@@ -10,6 +10,7 @@ class AuctionDocument extends Model
     protected $fillable = ['auction_id', 
                            'document_id',
                            'document_date',
+                           'document_number',
                            'remarks', 
                            'document',
                            'status',

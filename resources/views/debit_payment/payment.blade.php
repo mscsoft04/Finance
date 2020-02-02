@@ -156,11 +156,18 @@
                                                            <td><a href="javascript:void(0)" class="fileOpen" data-id="{{ $auc->id }}"><i class="fas fa-file" aria-hidden="true"></i></a></td>
                                                              <td>{{ $auc->remarks }}</td>
                                                              <td>
+                                                             @if($auc->status ==0)
                                                                 <span class="badge badge-info">Save</span> 
-
+                                                             @elseif($auc->status ==1)
+                                                             <span class="badge badge-success">Verified</span> 
+                                                             @elseif($auc->status ==3)
+                                                             <span class="badge badge-danger">Rejected</span> 
+                                                             @endif
                                                             </td>
                                                              <td>
-                                                                 
+                                                              @if($auc->status ==0)
+                                                                <span class="badge badge-warning documentVerify" data-option="doc-verify" data-id="{{ $auc->id }}">verify</span> 
+                                                               @endif
                                                             </td>
                                                            </tr>
                                                            @endforeach
@@ -644,11 +651,20 @@
                                                             <td><a href="{{ url($nominee->document) }}" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
                                                               <td>{{ $nominee->remarks }}</td>
                                                               <td>
-                                                                 <span class="badge badge-info">Save</span> 
+                                                              @if($nominee->status ==0)
+                                                                <span class="badge badge-info">Save</span> 
+                                                             @elseif($nominee->status ==1)
+                                                             <span class="badge badge-success">Verified</span> 
+                                                             @elseif($nominee->status ==3)
+                                                             <span class="badge badge-danger">Rejected</span> 
+                                                             @endif
  
                                                              </td>
                                                               <td>
-                                                                  
+                                                              @if($nominee->status ==0)
+                                                                <span class="badge badge-warning documentVerify" data-option="nominee-verify" data-id="{{ $nominee->nominee_document_id }}">verify</span> 
+                                                               @endif
+ 
                                                              </td>
                                                             </tr>
                                                             @endforeach
@@ -1142,11 +1158,19 @@
                                                             @endif
                                                             <td>{{ $row['remarks'] }}</td>
                                                               <td>
-                                                                 <span class="badge badge-info">Save</span> 
+                                                              @if($row->status ==0)
+                                                                <span class="badge badge-info">Save</span> 
+                                                             @elseif($row->status ==1)
+                                                             <span class="badge badge-success">Verified</span> 
+                                                             @elseif($row->status ==3)
+                                                             <span class="badge badge-danger">Rejected</span> 
+                                                             @endif
  
                                                              </td>
                                                               <td>
-                                                                  
+                                                              @if($row->status ==0) 
+                                                              <span class="badge badge-warning documentVerify" data-option="guarnti-verify" data-id="{{ $row->id }}">verify</span> 
+                                                              @endif
                                                              </td>
                                                             </tr>
                                                             @endif
@@ -1295,7 +1319,10 @@
 @section('script')
 <script src="{{ asset('public/vendor/webcam/webcam.js') }}"></script>
 <script type="text/javascript">
-
+   function removeLocationHash(){
+    var noHashURL = window.location.href.replace(/#.*$/, '');
+    window.history.replaceState('', document.title, noHashURL) 
+}
 $(document).ready(function() {
 
 var myvar =  $("#doc-new").html();
@@ -1441,10 +1468,7 @@ $(document).on('click', '.document-save', function(documentSave){
             });
 
   });
-  function removeLocationHash(){
-    var noHashURL = window.location.href.replace(/#.*$/, '');
-    window.history.replaceState('', document.title, noHashURL) 
-}
+
   function printErrorMsg (msg) {  
         //console.log(msg);
          
@@ -1702,5 +1726,59 @@ Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
    file_open(url,id);
  });
  
+ $(document).on("click",".documentVerify",function(){
+     var option = $(this).attr("data-option");
+     var id = $(this).attr("data-id")
+    $('#myModal-full .modal-dialog').removeClass("modal-xl");
+    $('#myModal-full .modal-dialog').addClass("modal-sm");
+    $('#response-full-title').text('Document Verification');
+
+     $('#response-full').html(`<form id="documentVerificationForm">
+                                <input type="hidden" name="docverfyid" value="${id}">
+                                <input type="hidden" name="option" value="${option}">
+                                <div class="form-label-group "> <input type="radio"   name="document_verification" value="1" checked>Verify                        
+                                <input type="radio"  name="document_verification" value="3" >Reject 
+                                </div><div class="form-label-group"><label for="p_address"><span>Remarks</span></label>
+                                <textarea  class="form-control" name="document_verification_remarks" rows="2" ></textarea>
+                                </div><br><div class="form-label-group"> <button class="btn btn-primary documentVerificationBtn" type="button"  >Save</button></div>
+                                </form>`);
+    $('#myModal-full').modal('show')
+ })
+
+ $(document).on("click",".documentVerificationBtn",function(){
+    $('#myModal-full').modal('hide')
+    var hasTab;
+    var optVal = $("input[name='option']").val();
+    var data = {"id":$("input[name='docverfyid']").val(),
+                "status": $("input[name='document_verification']:checked").val(),
+                 "remarks":$.trim($("textarea[name='document_verification_remarks']").val()),
+                 _token:"{{ csrf_token() }}"};
+    if( optVal    == "nominee-verify"){
+                var show_url="{{ route('nomineeDocuments.documentverificationupdate') }}";
+                hasTab = "#tabs-2";
+    }else if( optVal == "doc-verify"){
+                 var show_url="{{ route('auctionDocument.documentverificationupdate') }}";
+                 hasTab = "#tabs-1";
+    }else if( optVal == "guarnti-verify"){
+                 var show_url="{{ route('guarntiesDocuments.documentverificationupdate') }}";
+                 hasTab = "#tabs-4";
+    }
+        $.ajax({
+              type: "POST",            
+              url: show_url,
+              data: data,              
+              cache: false,
+              dataType: "json",
+                success: function( data, textStatus, jQxhr ){
+                    toastr.success(data.message, data.title);
+                    removeLocationHash();
+                   window.location.href += hasTab;
+                   location.reload();
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    printErrorMsg( jqXhr.responseJSON.errors );
+                }
+            });
+        })
 </script>
 @endsection

@@ -82,4 +82,11 @@ class NomineeDocumentController extends Controller
     {
         //
     }
+    public function documentverificationupdate(Request $request){
+        
+        $nominee = NomineeDocument::findOrFail($request->id);
+
+            $nominee->update($request->all());
+            return  $arr = array('message' => 'updated data successfully');
+    }
 }
