@@ -107,6 +107,7 @@ class EmployeeController extends Controller
     public function show(Employee $employee)
     {
         //
+        
     }
 
     /**
@@ -118,6 +119,14 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         //
+        $document=DocumentType::all();
+        $states=State::all();
+        $cities=City::all();
+        $taluks=Taluk::all();
+        $villages=Village::all();
+        $roles= Role::all();
+       
+        return view('employee.edit',compact('employee','document','states','cities','taluks','villages','roles'));
     }
 
     /**
@@ -129,7 +138,50 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+          $this->validate($request, ['salutation_name'=>'required',
+                                    'employee_name'=>'required', 
+                                    'Initial_name'=>'required',
+                                    'relation_type'=>'required',
+                                    'name_of_father'=>'required',
+                                    'dob'=>'required',
+                                    'age'=>'required',
+                                    'gender'=>'required',
+                                    'marital_status'=>'required',
+                                    'doj'=>'required',
+                                    'qualification'=>'required',
+                                    'designation'=>'required',
+                                    'document_id'=>'required',
+                                    'document_number'=>'required',
+                                    'mail_id'=>'required',
+                                    'mobile_no'=>'required',
+                                    'phone_no'=>'required',
+                                    'address'=>'required',
+                                    'state'=>'required',
+                                    'district'=>'required',
+                                    'taluk'=>'required',
+                                    'village'=>'required',
+                                    'pincode'=>'required',
+                                    
+                       ]); 
+                if($request['dob']){
+                        $request['dob']=date ("Y-m-d",strtotime($request['dob']));
+                }
+                if($request['doj']){
+                        $request['doj']=date ("Y-m-d",strtotime($request['doj']));
+                }
+                if($request->image){
+                        $image = $request->image;  // your base64 encoded
+                        $image = str_replace('data:image/png;base64,', '', $image);
+                        $image = str_replace(' ', '+', $image);
+                        $imageName = str_random(10) . '.png';
+                    
+                        Storage::disk('local')->put($imageName, base64_decode($image));  
+                        $request['profile']=Storage::url($imageName);
+                    }
+                    $employee->update($request->all());
+                    Toastr::success('Updated data successfully', '', ["positionClass" => "toast-top-center"]);
+                   
+                   return redirect()->route('employee.index');
     }
 
     /**
