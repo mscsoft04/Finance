@@ -35,6 +35,7 @@ Route::get('branch/add', 'BranchController@create')->name('branch.create');
     Route::get('relationship/getdata', 'RelationshipController@getdata')->name('relationship.getdata');
     Route::get('sourceOfFunds/getdata', 'SourceOfFundsController@getdata')->name('sourceOfFunds.getdata');
     Route::get('agent/getdata', 'AgentController@getdata')->name('agent.getdata');
+    Route::get('employee/getdata', 'EmployeeController@getdata')->name('employee.getdata');
     
     
 
