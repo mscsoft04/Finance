@@ -12,6 +12,7 @@ class NomineeDocument extends Model
                             'document_date',
                             'remarks', 
                             'document',
+                            'document_number',
                             'status',
                             'created_by',
                             'updated_by'

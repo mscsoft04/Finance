@@ -19,7 +19,6 @@ class CreateGuarantorDocumentsTable extends Migration
             $table->foreign('guarantor_id')->references('id')->on('guarantor_sureties');
             $table->unsignedBigInteger('document_id');
             $table->foreign('document_id')->references('id')->on('document_types');
-            $table->text('remarks');
             $table->date('document_date');
             $table->text('document');
             $table->string('document_number');

@@ -76,10 +76,11 @@ Route::get('branch/add', 'BranchController@create')->name('branch.create');
     Route::post('auctionDocument/documentverificationupdate', 'AuctionDocumentController@documentverificationupdate')->name('auctionDocument.documentverificationupdate');
     Route::post('/nomineeDocuments/documentverificationupdate', 'NomineeDocumentController@documentverificationupdate')->name('nomineeDocuments.documentverificationupdate');
     Route::post('/guarntiesDocuments/documentverificationupdate', 'GuarantorDocumentController@documentverificationupdate')->name('guarntiesDocuments.documentverificationupdate');
-
+    Route::post('/guarntiesDocuments/documentPrint', 'GuarantorDocumentController@documentPrint')->name('guarntiesDocuments.documentPrint');
+    Route::post('/autcion/verificationupdate', 'AuctionController@verificationupdate')->name('autcion.verificationupdate');
 
     
-
+    
 
     
     
@@ -91,6 +92,9 @@ Route::post('group/{group}/auction/fetch', 'AuctionController@fetch')->name('auc
 Route::post('/autciondata/list', 'LedgerController@autciondata')->name('autciondata.list');
 Route::post('/creditpayment/list', 'LedgerController@creditpayment')->name('creditpayment.list');
 Route::post('/billgenerate/generate', 'CreditPaymentAuctionController@bill_generate')->name('billgenerate.generate');
+
+Route::post('/debitPayment/generate', 'DebitPaymentController@bill_generate')->name('debitPaymentbill.generate');
+
 
 Route::get('/paymentData/add', 'LedgerController@paymentData')->name('paymentData.add');
 

@@ -65,7 +65,7 @@ class GuarantorSuretyController extends Controller
             'relation_for'=>'nullable|max:20',
             "document_date"=>"required",
              "document_type.*"=>"required",
-            "remarks.*"=>"required",
+            "document_number.*"=>"required",
             "file"=> "required",
             "file.*"=> "required|file|min:1|max:10000|mimes:pdf,jpeg,jpg,png |max:4096",
     
@@ -134,7 +134,7 @@ class GuarantorSuretyController extends Controller
                 $data[]=array('guarantor_id'=>$guarantorSurety->id, 
                               'document_id'=>$request['document_type'][$x],
                               'document_date'=>$request['document_date'],
-                              'remarks'=>$request['remarks'][$x], 
+                              'document_number'=>$request['document_number'][$x], 
                               'document'=>$url,
                               'created_by'=>auth()->user()->id
                             );
