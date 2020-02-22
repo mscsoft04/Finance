@@ -100,3 +100,5 @@ Route::get('/paymentData/add', 'LedgerController@paymentData')->name('paymentDat
 
 
 Route::get('auctionDocument/download', 'AuctionDocumentController@download')->name('auctionDocument.download');
+Route::get('nomineeDocument/download', 'NomineeDocumentController@download')->name('nomineeDocument.download');
+Route::get('guarantorDocument/download', 'GuarantorDocumentController@download')->name('guarantorDocument.download');

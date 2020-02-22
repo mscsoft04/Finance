@@ -128,14 +128,14 @@ class GuarantorSuretyController extends Controller
                  $image=$request->file('file')[$x];
                 $destinationPath = storage_path('document');
                 $extension = $image->getClientOriginalExtension(); 
-                $fileName = rand(11111, 99999) . '.' . $extension;
+                $fileName = date("YmdHisu").'.' .$extension;
                 $upload_success = $image->move($destinationPath, $fileName);
                 $url= Storage::url('document/'.$fileName);
                 $data[]=array('guarantor_id'=>$guarantorSurety->id, 
                               'document_id'=>$request['document_type'][$x],
                               'document_date'=>$request['document_date'],
                               'document_number'=>$request['document_number'][$x], 
-                              'document'=>$url,
+                              'document'=>$fileName,
                               'created_by'=>auth()->user()->id
                             );
             }

@@ -654,8 +654,8 @@
                                                             <tr>
                                                             <th scope="row"><?php echo e($loop->iteration); ?></th>
                                                               <td><?php echo e($nominee->name); ?></td>
-                                                            <td><a href="<?php echo e(url($nominee->document)); ?>" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
-                                                            <td><?php echo e($nominee->document_number); ?></td>
+                                                              <td><a href="javascript:void(0)" class="fileOpenNominee" data-id="<?php echo e($nominee->docId); ?>"><i class="fas fa-file" aria-hidden="true"></i></a></td>
+                                                              <td><?php echo e($nominee->document_number); ?></td>
                                                             <td><?php echo e($nominee->remarks); ?></td>
                                                               
                                                               <td>
@@ -1168,8 +1168,10 @@
                                                                 <th scope="row"><?php echo e($loop->iteration); ?></th>
                                                               <td><?php echo e($row['name']); ?></td>
                                                               <?php if($row['document']): ?>
-                                                            <td><a href="<?php echo e(url($row['document'])); ?>" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
-                                                            <?php endif; ?>
+                                                              <td><a href="javascript:void(0)" class="fileOpenGurantor" data-id="<?php echo e($row['docId']); ?>"><i class="fas fa-file" aria-hidden="true"></i></a></td>
+                                                              <?php endif; ?>
+
+                                                              
                                                             
                                                             <td><?php echo e($row['document_number']); ?></td>
                                                             <td><?php echo e($row['remarks']); ?></td>
@@ -1950,6 +1952,21 @@ Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
     fileOpen.preventDefault();
    let id= $(this).attr("data-id");
    var url = '<?php echo e(route("auctionDocument.download")); ?>';
+
+   file_open(url,id);
+ });
+
+ $(document).on("click",".fileOpenNominee",function(fileOpen) {
+    fileOpen.preventDefault();
+   let id= $(this).attr("data-id");
+   var url = '<?php echo e(route("nomineeDocument.download")); ?>';
+
+   file_open(url,id);
+ });
+ $(document).on("click",".fileOpenGurantor",function(fileOpen) {
+    fileOpen.preventDefault();
+   let id= $(this).attr("data-id");
+   var url = '<?php echo e(route("guarantorDocument.download")); ?>';
 
    file_open(url,id);
  });

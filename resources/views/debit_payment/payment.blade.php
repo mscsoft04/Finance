@@ -655,8 +655,8 @@
                                                             <tr>
                                                             <th scope="row">{{ $loop->iteration }}</th>
                                                               <td>{{ $nominee->name }}</td>
-                                                            <td><a href="{{ url($nominee->document) }}" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
-                                                            <td>{{ $nominee->document_number }}</td>
+                                                              <td><a href="javascript:void(0)" class="fileOpenNominee" data-id="{{ $nominee->docId }}"><i class="fas fa-file" aria-hidden="true"></i></a></td>
+                                                              <td>{{ $nominee->document_number }}</td>
                                                             <td>{{ $nominee->remarks }}</td>
                                                               
                                                               <td>
@@ -1169,8 +1169,10 @@
                                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                               <td>{{ $row['name'] }}</td>
                                                               @if ($row['document'])
-                                                            <td><a href="{{ url($row['document']) }}" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
-                                                            @endif
+                                                              <td><a href="javascript:void(0)" class="fileOpenGurantor" data-id="{{ $row['docId'] }}"><i class="fas fa-file" aria-hidden="true"></i></a></td>
+                                                              @endif
+
+                                                              
                                                             
                                                             <td>{{ $row['document_number'] }}</td>
                                                             <td>{{ $row['remarks'] }}</td>
@@ -1951,6 +1953,21 @@ Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
     fileOpen.preventDefault();
    let id= $(this).attr("data-id");
    var url = '{{ route("auctionDocument.download") }}';
+
+   file_open(url,id);
+ });
+
+ $(document).on("click",".fileOpenNominee",function(fileOpen) {
+    fileOpen.preventDefault();
+   let id= $(this).attr("data-id");
+   var url = '{{ route("nomineeDocument.download") }}';
+
+   file_open(url,id);
+ });
+ $(document).on("click",".fileOpenGurantor",function(fileOpen) {
+    fileOpen.preventDefault();
+   let id= $(this).attr("data-id");
+   var url = '{{ route("guarantorDocument.download") }}';
 
    file_open(url,id);
  });
