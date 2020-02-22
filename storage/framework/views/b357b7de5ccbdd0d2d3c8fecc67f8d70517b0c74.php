@@ -1063,6 +1063,8 @@
                                                         </div>
                                                         <?php endif; ?>
                                                         <?php $__currentLoopData = $guarantors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $guarantor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        
+                                                        
                                                       <table class=" table table-bordered">
                                                         <tbody>
                                                            <tr>
@@ -1138,7 +1140,7 @@
                                                            </tr>
                                                            <tr>
                                                             <th scope="row">Source Of Funds</th>
-                                                            <td colspan="3"><?php echo e($nominees[0]->funds); ?></td>
+                                                            <td colspan="3"><?php echo e($guarantor[0]->funds); ?></td>
                                                             
                                                          </tr>
                                                           
@@ -1194,7 +1196,7 @@
                                                         </tbody>
                                                      </table>
                                                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                     <?php if(($auctionData->status ==0) && (count($guarantors)!=0)): ?>
+                                                     <?php if(($auctionData->status ==0) && (count($guarantors)!= 0 )): ?>
                                                      <div class="form-group  text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 offset-md-4">
                                                         <div class="form-row btntop">
                                                            <div class="col-md-2">

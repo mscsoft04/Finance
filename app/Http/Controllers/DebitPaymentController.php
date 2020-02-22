@@ -63,7 +63,7 @@ class DebitPaymentController extends Controller
                             'document_types.name',
                  )->get();
 
-                 $guarantor=GuarantorSurety::leftJoin('states', 'guarantor_sureties.state', '=', 'states.id')
+                  $guarantor=GuarantorSurety::leftJoin('states', 'guarantor_sureties.state', '=', 'states.id')
                                 ->leftJoin('taluks', 'guarantor_sureties.taluk', '=', 'taluks.id')
                                 ->leftJoin('cities', 'guarantor_sureties.district', '=', 'cities.id')
                                 ->leftJoin('villages', 'guarantor_sureties.village', '=', 'villages.id')
@@ -87,7 +87,7 @@ class DebitPaymentController extends Controller
                                             'guarantor_documents.id as docId',
                                             'document_types.name',
                                 )->get();
-                  $guarantors=$this->group_by('id',$guarantor);
+                                 $guarantors=$this->group_by('id',$guarantor);
 
 
         $auction_doc=AuctionDocument:: leftJoin('document_types', 'auction_documents.document_id', '=', 'document_types.id')

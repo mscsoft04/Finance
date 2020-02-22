@@ -1064,6 +1064,8 @@
                                                         </div>
                                                         @endif
                                                         @foreach ($guarantors as $guarantor)
+                                                        
+                                                        
                                                       <table class=" table table-bordered">
                                                         <tbody>
                                                            <tr>
@@ -1139,7 +1141,7 @@
                                                            </tr>
                                                            <tr>
                                                             <th scope="row">Source Of Funds</th>
-                                                            <td colspan="3">{{ $nominees[0]->funds }}</td>
+                                                            <td colspan="3">{{ $guarantor[0]->funds }}</td>
                                                             
                                                          </tr>
                                                           
@@ -1195,7 +1197,7 @@
                                                         </tbody>
                                                      </table>
                                                      @endforeach
-                                                     @if (($auctionData->status ==0) && (count($guarantors)!=0))
+                                                     @if (($auctionData->status ==0) && (count($guarantors)!= 0 ))
                                                      <div class="form-group  text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 offset-md-4">
                                                         <div class="form-row btntop">
                                                            <div class="col-md-2">
