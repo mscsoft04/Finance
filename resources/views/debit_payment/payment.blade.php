@@ -1057,7 +1057,7 @@
                                                        </form>
                                                     </div>
                                                        </div>
-                                                       @if ($auctionData->status ==0)
+                                                       @if($auctionData->status ==0)
                                                        <div class="col-md-2 col-2 col-sm-2 col-lg-2 col-xl-2" style="float: right;padding-bottom: 5px;" >
                                             
                                                         <input type="button" class="btn btn-success btn-block btn-fl-r addGuarantor" value="Add new" style="margin-top:10px">
@@ -1195,7 +1195,7 @@
                                                         </tbody>
                                                      </table>
                                                      @endforeach
-                                                     @if ($auctionData->status ==0)
+                                                     @if (($auctionData->status ==0) && (count($guarantors)!=0))
                                                      <div class="form-group  text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 offset-md-4">
                                                         <div class="form-row btntop">
                                                            <div class="col-md-2">

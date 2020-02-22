@@ -1194,7 +1194,7 @@
                                                         </tbody>
                                                      </table>
                                                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                     <?php if($auctionData->status ==0): ?>
+                                                     <?php if(($auctionData->status ==0) && (count($guarantors)!=0)): ?>
                                                      <div class="form-group  text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 offset-md-4">
                                                         <div class="form-row btntop">
                                                            <div class="col-md-2">
