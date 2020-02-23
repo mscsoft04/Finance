@@ -18,6 +18,8 @@ class Auction extends Model
                            'dividend_amount',
                            'each_dividend_amount',
                            'due_amount',
+                           'remarks',
+                           'status',
                            'created_by',
                            'updated_by'
                        ];

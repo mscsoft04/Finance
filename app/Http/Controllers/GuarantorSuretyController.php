@@ -65,7 +65,7 @@ class GuarantorSuretyController extends Controller
             'relation_for'=>'nullable|max:20',
             "document_date"=>"required",
              "document_type.*"=>"required",
-            "remarks.*"=>"required",
+            "document_number.*"=>"required",
             "file"=> "required",
             "file.*"=> "required|file|min:1|max:10000|mimes:pdf,jpeg,jpg,png |max:4096",
     
@@ -128,14 +128,14 @@ class GuarantorSuretyController extends Controller
                  $image=$request->file('file')[$x];
                 $destinationPath = storage_path('document');
                 $extension = $image->getClientOriginalExtension(); 
-                $fileName = rand(11111, 99999) . '.' . $extension;
+                $fileName = date("YmdHisu").'.' .$extension;
                 $upload_success = $image->move($destinationPath, $fileName);
                 $url= Storage::url('document/'.$fileName);
                 $data[]=array('guarantor_id'=>$guarantorSurety->id, 
                               'document_id'=>$request['document_type'][$x],
                               'document_date'=>$request['document_date'],
-                              'remarks'=>$request['remarks'][$x], 
-                              'document'=>$url,
+                              'document_number'=>$request['document_number'][$x], 
+                              'document'=>$fileName,
                               'created_by'=>auth()->user()->id
                             );
             }

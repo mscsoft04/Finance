@@ -43,10 +43,13 @@
                                                    <li class="nav-item">
                                                        <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">Guarantor/Surety</a>
                                                    </li>
+                                                   @if ($auctionData->status !=0)
                                                    <li class="nav-item">
                                                        <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Payment</a>
                                                    </li>
+                                                   @endif
                                                </ul>
+                                               
                                                <!-- Tab panes -->
                                                <div class="tab-content">
                                                    <div class="tab-pane active" id="tabs-1" role="tabpanel">
@@ -55,6 +58,7 @@
                                                            <div class="card-header">
                                                                Documents Details
                                                            </div>
+                                                           @if ($auctionData->status ==0)
                                                            <form method="POST" id="documentData"  enctype="multipart/form-data" >
                                                             @csrf
                                                            <div class="card-body">
@@ -73,17 +77,16 @@
                                                                        </div>
                                                                    </div>
                                                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                                                       {{-- <div class="form-label-group">
-                                                                           <label for="retirementdate"><span>No.of Documents</span></label>
-                                                                           <input type="number"  name="no_of_doc" value="1" pattern="[0-9]*" class="form-control doc-count" max="10"  placeholder="No.of Documents">
-                                                                       </div> --}}
+                                                                   
                                                                        <div class="col-md-4 col-4 col-sm-4 col-lg-4 col-xl-4" >
                                                                         <label for="retirementdate"><span></span></label>
                                                                         <input type="button" class="btn btn-success btn-block add-new-doc" value="Add new" style="margin-top:10px">
                                                                         </div>
+                                                                   
                                                                    </div>
                                                                    
                                                                </div>
+                                                              
                                                                <div id="doc-new">
                                                                    <div class="row doc-close">
                                                                        <div class="col-12 col-sm-12 col-md-4  col-lg-4  col-xl-4 ">
@@ -99,8 +102,8 @@
                                                                        </div>
                                                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
                                                                            <div class="form-label-group">
-                                                                               <label><span>Remarks</span></label>
-                                                                               <input type="text" class="form-control"  name="remarks[]">
+                                                                               <label><span>Document Number</span></label>
+                                                                               <input type="text" class="form-control"  name="document_number[]">
                                                                            </div>
                                                                        </div>
                                                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
@@ -119,6 +122,7 @@
                                                                    </div>
                                                                    
                                                                </div>
+                                                              
                                                            </div>
                                                            <div class="row">
                                                             <div class="col-12 col-sm-12 col-md-12 col-lg-6 offset-lg-3">
@@ -134,7 +138,7 @@
                                                             </div>
                                                         </div>
                                                       </form>
-                                                      
+                                                      @endif
                                                        <div class="row btntop">
                                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                                         <table class="table">
@@ -143,6 +147,7 @@
                                                              <th scope="col">#</th>
                                                              <th scope="col">Document Type</th>
                                                              <th scope="col">Document</th>
+                                                             <th scope="col">Document number</th>
                                                              <th scope="col">Remarks</th>
                                                              <th scope="col">Status</th>
                                                              <th scope="col">Action</th>
@@ -154,13 +159,21 @@
                                                            <th scope="row">{{ $loop->iteration }}</th>
                                                              <td>{{ $auc->name }}</td>
                                                            <td><a href="javascript:void(0)" class="fileOpen" data-id="{{ $auc->id }}"><i class="fas fa-file" aria-hidden="true"></i></a></td>
+                                                             <td>{{ $auc->document_number }}</td>
                                                              <td>{{ $auc->remarks }}</td>
                                                              <td>
+                                                             @if($auc->status ==0)
                                                                 <span class="badge badge-info">Save</span> 
-
+                                                             @elseif($auc->status ==1)
+                                                             <span class="badge badge-success">Verified</span> 
+                                                             @elseif($auc->status ==3)
+                                                             <span class="badge badge-danger">Rejected</span> 
+                                                             @endif
                                                             </td>
                                                              <td>
-                                                                 
+                                                              @if($auc->status ==0)
+                                                                <span class="badge badge-warning documentVerify" data-option="doc-verify" data-id="{{ $auc->id }}">verify</span> 
+                                                               @endif
                                                             </td>
                                                            </tr>
                                                            @endforeach
@@ -505,8 +518,8 @@
                                                                             </div>
                                                                             <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
                                                                                 <div class="form-label-group">
-                                                                                    <label><span>Remarks</span></label>
-                                                                                    <input type="text" class="form-control"  name="remarks[]">
+                                                                                    <label><span>Document Number</span></label>
+                                                                                    <input type="text" class="form-control"  name="document_number[]">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
@@ -631,6 +644,7 @@
                                                               <th scope="col">#</th>
                                                               <th scope="col">Document Type</th>
                                                               <th scope="col">Document</th>
+                                                              <th scope="col">Document Number</th>
                                                               <th scope="col">Remarks</th>
                                                               <th scope="col">Status</th>
                                                               <th scope="col">Action</th>
@@ -641,14 +655,25 @@
                                                             <tr>
                                                             <th scope="row">{{ $loop->iteration }}</th>
                                                               <td>{{ $nominee->name }}</td>
-                                                            <td><a href="{{ url($nominee->document) }}" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
-                                                              <td>{{ $nominee->remarks }}</td>
+                                                              <td><a href="javascript:void(0)" class="fileOpenNominee" data-id="{{ $nominee->docId }}"><i class="fas fa-file" aria-hidden="true"></i></a></td>
+                                                              <td>{{ $nominee->document_number }}</td>
+                                                            <td>{{ $nominee->remarks }}</td>
+                                                              
                                                               <td>
-                                                                 <span class="badge badge-info">Save</span> 
+                                                              @if($nominee->status ==0)
+                                                                <span class="badge badge-info">Save</span> 
+                                                             @elseif($nominee->status ==1)
+                                                             <span class="badge badge-success">Verified</span> 
+                                                             @elseif($nominee->status ==3)
+                                                             <span class="badge badge-danger">Rejected</span> 
+                                                             @endif
  
                                                              </td>
                                                               <td>
-                                                                  
+                                                              @if($nominee->status ==0)
+                                                                <span class="badge badge-warning documentVerify" data-option="nominee-verify" data-id="{{ $nominee->docId }}">verify</span> 
+                                                               @endif
+ 
                                                              </td>
                                                             </tr>
                                                             @endforeach
@@ -994,8 +1019,8 @@
                                                                             </div>
                                                                             <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
                                                                                 <div class="form-label-group">
-                                                                                    <label><span>Remarks</span></label>
-                                                                                    <input type="text" class="form-control"  name="remarks[]">
+                                                                                    <label><span>Document Number</span></label>
+                                                                                    <input type="text" class="form-control"  name="document_number[]">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
@@ -1032,11 +1057,15 @@
                                                        </form>
                                                     </div>
                                                        </div>
+                                                       @if($auctionData->status ==0)
                                                        <div class="col-md-2 col-2 col-sm-2 col-lg-2 col-xl-2" style="float: right;padding-bottom: 5px;" >
                                             
                                                         <input type="button" class="btn btn-success btn-block btn-fl-r addGuarantor" value="Add new" style="margin-top:10px">
                                                         </div>
+                                                        @endif
                                                         @foreach ($guarantors as $guarantor)
+                                                        
+                                                        
                                                       <table class=" table table-bordered">
                                                         <tbody>
                                                            <tr>
@@ -1112,7 +1141,7 @@
                                                            </tr>
                                                            <tr>
                                                             <th scope="row">Source Of Funds</th>
-                                                            <td colspan="3">{{ $nominees[0]->funds }}</td>
+                                                            <td colspan="3">{{ $guarantor[0]->funds }}</td>
                                                             
                                                          </tr>
                                                           
@@ -1125,7 +1154,9 @@
                                                               <th scope="col">#</th>
                                                               <th scope="col">Document Type</th>
                                                               <th scope="col">Document</th>
+                                                              <th scope="col">Document Number</th>
                                                               <th scope="col">Remarks</th>
+                                                              
                                                               <th scope="col">Status</th>
                                                               <th scope="col">Action</th>
                                                            </tr>
@@ -1138,15 +1169,27 @@
                                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                               <td>{{ $row['name'] }}</td>
                                                               @if ($row['document'])
-                                                            <td><a href="{{ url($row['document']) }}" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
-                                                            @endif
+                                                              <td><a href="javascript:void(0)" class="fileOpenGurantor" data-id="{{ $row['docId'] }}"><i class="fas fa-file" aria-hidden="true"></i></a></td>
+                                                              @endif
+
+                                                              
+                                                            
+                                                            <td>{{ $row['document_number'] }}</td>
                                                             <td>{{ $row['remarks'] }}</td>
                                                               <td>
-                                                                 <span class="badge badge-info">Save</span> 
+                                                              @if($row['status'] ==0)
+                                                                <span class="badge badge-info">Save</span> 
+                                                             @elseif($row['status'] ==1)
+                                                             <span class="badge badge-success">Verified</span> 
+                                                             @elseif($row['status'] ==3)
+                                                             <span class="badge badge-danger">Rejected</span> 
+                                                             @endif
  
                                                              </td>
                                                               <td>
-                                                                  
+                                                              @if($row['status'] ==0) 
+                                                              <span class="badge badge-warning documentVerify" data-option="guarnti-verify" data-id="{{ $row['docId'] }}">verify</span> 
+                                                              @endif
                                                              </td>
                                                             </tr>
                                                             @endif
@@ -1156,8 +1199,99 @@
                                                         </tbody>
                                                      </table>
                                                      @endforeach
+                                                     @if (($auctionData->status ==0) && (count($guarantors)!= 0 ))
+                                                     <div class="form-group  text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 offset-md-4">
+                                                        <div class="form-row btntop">
+                                                           <div class="col-md-2">
+                                                              <input type="submit" class="btn btn-primary btn-block btn-blue documentVerify" data-option="auctionData-verify" data-id="{{ $auctionData->id }}"value="Verfication">
+                                                           </div>
+                                                           <div class="col-md-2">
+                                                              <a href="{{url()->previous()}}"  class="btn btn-block btn-dark">Cancel</a>
+                                                           </div>
+                                                        </div>
+                                                     </div>
+                                                    @endif
+                                                    @if ($auctionData->status ==1)
+                                                    <div class="form-group  text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 offset-md-4">
+                                                        <div class="form-row btntop">
+                                                           <div class="col-md-2">
+                                                              <input type="submit" class="btn btn-primary btn-block btn-blue" value="Print Document">
+                                                           </div>
+                                                           <div class="col-md-2">
+                                                              <a href="{{url()->previous()}}"  class="btn btn-block btn-dark">Cancel</a>
+                                                           </div>
+                                                        </div>
+                                                     </div>
+                                                   @endif   
+
                                                   </div>
+                                                  @if ($auctionData->status !=0)
                                                    <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                                    @if ($auctionData->status ==3)
+                                                    <table class="table table-sm">
+                                                        <thead>
+                                                            <tr>
+                                                              <th colspan="4">Payment Details</th>
+                                                        
+                                                            </tr>
+                                                          </thead>
+                                                        <tbody>
+                                                          <tr>
+                                                            <th scope="row">Payment ID</th>
+                                                            <td>{{ $debitData->unique_id }}</td>
+                                                            <th scope="row">Payment Date</th>
+                                                            <td>{{ $debitData->payment_date }}</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th scope="row">Payment Type</th>
+                                                            <td>{{ $debitData->payment_type }}</td>
+                                                            <th scope="row">Bank Name</th>
+                                                            <td>{{ $debitData->bank_name }}</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th scope="row">Cheque No</th>
+                                                            <td>{{ $debitData->cheque_number }}</td>
+                                                            <th scope="row">Cheque Date</th>
+                                                            <td>{{ $debitData->cheque_date }}</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th scope="row">Amount</th>
+                                                            <td>{{ $debitData->amount }}</td>
+                                                            <th scope="row">Payable Amount</th>
+                                                            <td>{{ $debitData->payable_amount }}</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th scope="row">Due Amount</th>
+                                                            <td>{{ $debitData->due_amount }}</td>
+                                                            <th scope="row">Gst Amount</th>
+                                                            <td>{{ $debitData->gst_amount }}</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th scope="row">Processing Amount</th>
+                                                            <td>{{ $debitData->processing_amount }}</td>
+                                                            <th scope="row">Other Amount</th>
+                                                            <td>{{ $debitData->other_amount }}</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th scope="row">Due Amount</th>
+                                                            <td>{{ $debitData->due_amount }}</td>
+                                                            <th scope="row">Pay Amount</th>
+                                                            <td>{{ $debitData->pay_amount }}</td>
+                                                          </tr>
+
+                                                          <tr>
+                                                            <th scope="row"  colspan="3">Remarks</th>
+                                                            <td>{{ $debitData->remarks }}</td>
+                                                            
+                                                          </tr>
+                                                          
+                                                          
+                                                        </tbody>
+                                                      </table>
+
+                                                    @endif  
+
+                                                    @if ($auctionData->status ==1)
                                                     <form method="POST" id="paymentData"  enctype="multipart/form-data" >
                                                         @csrf
                                                        <div class="card card-box">
@@ -1274,7 +1408,9 @@
 
                                                        
                                                     </form>
+                                                    @endif
                                                    </div>
+                                                   @endif
                                                </div>
                                            </div>
                                        </div>
@@ -1295,7 +1431,10 @@
 @section('script')
 <script src="{{ asset('public/vendor/webcam/webcam.js') }}"></script>
 <script type="text/javascript">
-
+   function removeLocationHash(){
+    var noHashURL = window.location.href.replace(/#.*$/, '');
+    window.history.replaceState('', document.title, noHashURL) 
+}
 $(document).ready(function() {
 
 var myvar =  $("#doc-new").html();
@@ -1350,7 +1489,7 @@ $(document).on('click', '.document-save', function(documentSave){
 
                     toastr.success(data.message, data.title);
                     removeLocationHash();
-                    window.location.href += "#tabs-2";
+                    window.location.href += "#tabs-1";
                     location.reload();
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
@@ -1377,7 +1516,7 @@ $(document).on('click', '.document-save', function(documentSave){
 
                     toastr.success(data.message, data.title);
                     removeLocationHash();
-                    window.location.href += "#tabs-1";
+                    window.location.href += "#tabs-2";
                     location.reload();
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
@@ -1431,9 +1570,10 @@ $(document).on('click', '.document-save', function(documentSave){
                 success: function( data, textStatus, jQxhr ){
 
                     toastr.success(data.message, data.title);
+                    pdf_load(data.data);
                     removeLocationHash();
                     window.location.href += "#tabs-3";
-                    location.reload();
+                   location.reload();
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
                     printErrorMsg( jqXhr.responseJSON.errors );
@@ -1441,10 +1581,125 @@ $(document).on('click', '.document-save', function(documentSave){
             });
 
   });
-  function removeLocationHash(){
-    var noHashURL = window.location.href.replace(/#.*$/, '');
-    window.history.replaceState('', document.title, noHashURL) 
-}
+  function pdf_load(data){
+	  //console.log(data);
+	$.ajax({
+           
+            type:'POST',
+            url: '{{ route('debitPaymentbill.generate') }}',
+            data:{id:data,_token:"{{ csrf_token() }}"},
+            xhrFields: {
+                responseType: 'blob'
+            },
+            success: function (response, status, xhr) {
+
+                var filename = "";                   
+                var disposition = xhr.getResponseHeader('Content-Disposition');
+
+                 if (disposition) {
+                    var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                    var matches = filenameRegex.exec(disposition);
+                    if (matches !== null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                } 
+                var linkelem = document.createElement('a');
+                try {
+                                           var blob = new Blob([response], { type: 'application/pdf' });                        
+
+                    if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                        //   IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+                        window.navigator.msSaveBlob(blob, filename);
+                    } else {
+                        var URL = window.URL || window.webkitURL;
+                        var downloadUrl = URL.createObjectURL(blob);
+						window.open(downloadUrl, '_blank');
+						console.log(downloadUrl);
+
+                        if (filename) { 
+                            // use HTML5 a[download] attribute to specify filename
+                            var a = document.createElement("a");
+
+                            // safari doesn't support this yet
+                            if (typeof a.download === 'undefined') {
+                                window.location = downloadUrl;
+                            } else {
+                                 a.href = downloadUrl;
+                                a.download = filename;
+                                document.body.appendChild(a);
+                                a.target = "_blank";
+                                a.click(); 
+                            }
+                        } else {
+                           window.location = downloadUrl;
+                        }
+                    }   
+
+                } catch (ex) {
+                    console.log(ex);
+                } 
+            }
+        });
+
+
+  }
+  $(document).on("click",".documentVerify",function(){
+     var option = $(this).attr("data-option");
+     var id = $(this).attr("data-id")
+    $('#myModal-full .modal-dialog').removeClass("modal-xl");
+    $('#myModal-full .modal-dialog').addClass("modal-sm");
+    $('#response-full-title').text('Document Verification');
+
+     $('#response-full').html(`<form id="documentVerificationForm">
+                                <input type="hidden" name="docverfyid" value="${id}">
+                                <input type="hidden" name="option" value="${option}">
+                                <div class="form-label-group "> <input type="radio"   name="document_verification" value="1" checked>Verify                        
+                                <input type="radio"  name="document_verification" value="3" >Reject 
+                                </div><div class="form-label-group"><label for="p_address"><span>Remarks</span></label>
+                                <textarea  class="form-control" name="document_verification_remarks" rows="2" ></textarea>
+                                </div><br><div class="form-label-group"> <button class="btn btn-primary documentVerificationBtn" type="button"  >Save</button></div>
+                                </form>`);
+    $('#myModal-full').modal('show')
+ })
+
+ $(document).on("click",".documentVerificationBtn",function(){
+    $('#myModal-full').modal('hide')
+    var hasTab;
+    var optVal = $("input[name='option']").val();
+    var data = {"id":$("input[name='docverfyid']").val(),
+                "status": $("input[name='document_verification']:checked").val(),
+                 "remarks":$.trim($("textarea[name='document_verification_remarks']").val()),
+                 _token:"{{ csrf_token() }}"};
+    if( optVal    == "nominee-verify"){
+                var show_url="{{ route('nomineeDocuments.documentverificationupdate') }}";
+                hasTab = "#tabs-2";
+    }else if( optVal == "doc-verify"){
+                 var show_url="{{ route('auctionDocument.documentverificationupdate') }}";
+                 hasTab = "#tabs-1";
+    }else if( optVal == "guarnti-verify"){
+                 var show_url="{{ route('guarntiesDocuments.documentverificationupdate') }}";
+                 hasTab = "#tabs-4";
+    }
+    else if( optVal == "auctionData-verify"){
+                 var show_url="{{ route('autcion.verificationupdate') }}";
+                 hasTab = "#tabs-4";
+    }
+    
+        $.ajax({
+              type: "POST",            
+              url: show_url,
+              data: data,              
+              cache: false,
+              dataType: "json",
+                success: function( data, textStatus, jQxhr ){
+                    toastr.success(data.message, data.title);
+                    removeLocationHash();
+                  window.location.href += hasTab;
+                   location.reload();
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    printErrorMsg( jqXhr.responseJSON.errors );
+                }
+            });
+        })
   function printErrorMsg (msg) {  
         //console.log(msg);
          
@@ -1701,6 +1956,22 @@ Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
    file_open(url,id);
  });
+
+ $(document).on("click",".fileOpenNominee",function(fileOpen) {
+    fileOpen.preventDefault();
+   let id= $(this).attr("data-id");
+   var url = '{{ route("nomineeDocument.download") }}';
+
+   file_open(url,id);
+ });
+ $(document).on("click",".fileOpenGurantor",function(fileOpen) {
+    fileOpen.preventDefault();
+   let id= $(this).attr("data-id");
+   var url = '{{ route("guarantorDocument.download") }}';
+
+   file_open(url,id);
+ });
  
+
 </script>
 @endsection

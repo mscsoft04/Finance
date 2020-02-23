@@ -19,9 +19,10 @@ class CreateNomineeDocumentsTable extends Migration
             $table->foreign('nominee_id')->references('id')->on('nominee_details');
             $table->unsignedBigInteger('document_id');
             $table->foreign('document_id')->references('id')->on('document_types');
-            $table->text('remarks');
             $table->date('document_date');
             $table->text('document');
+            $table->string('document_number');
+            $table->text('remarks')->nullable();
             $table->integer('created_by')->length(11);	
             $table->integer('updated_by')->length(11)->nullable();
             $table->enum('status', ['0', '1','3','4'])->default('0');

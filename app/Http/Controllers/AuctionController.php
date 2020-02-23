@@ -205,4 +205,10 @@ class AuctionController extends Controller
         return $output;
 
     }
+    public function verificationupdate(Request $request){
+        $audoc = Auction::findOrFail($request->id);
+
+        $audoc->update($request->all());
+        return  $arr = array('message' => 'updated data successfully');
+    }
 }

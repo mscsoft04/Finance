@@ -39,7 +39,7 @@ class AuctionDocumentController extends Controller
          
         $this->validate($request, ["document_date.*"=>"required",
                                     "document_type.*"=>"required",
-                                    "remarks.*"=>"required",
+                                    "document_number.*"=>"required",
                                     "file"=> "required",
                                     "file.*"=> "required|file|min:1|max:10000|mimes:pdf,jpeg,jpg,png |max:4096",
 
@@ -65,7 +65,7 @@ class AuctionDocumentController extends Controller
                 $data[]=array('auction_id'=>$auction, 
                               'document_id'=>$request['document_type'][$x],
                               'document_date'=>$request['document_date'],
-                              'remarks'=>$request['remarks'][$x], 
+                              'document_number'=>$request['document_number'][$x], 
                               'document'=>$fileName,
                               'created_by'=>auth()->user()->id
                             );
@@ -109,7 +109,12 @@ class AuctionDocumentController extends Controller
      */
     public function update(Request $request, AuctionDocument $auctionDocument)
     {
+
         //
+        $request['updated_by']=auth()->user()->id;
+        $auctionDocument->update($request->all());
+        return $request;
+         $arr = array('message' => 'Updated successfully');
     }
 
     /**
@@ -329,4 +334,12 @@ class AuctionDocumentController extends Controller
              return $mime_types[$exe];
  
      }
+
+     public function documentverificationupdate(Request $request){
+      
+        $audoc = AuctionDocument::findOrFail($request->id);
+
+            $audoc->update($request->all());
+            return  $arr = array('message' => 'updated data successfully');
+    }
 }

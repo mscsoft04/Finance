@@ -42,10 +42,13 @@
                                                    <li class="nav-item">
                                                        <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">Guarantor/Surety</a>
                                                    </li>
+                                                   <?php if($auctionData->status !=0): ?>
                                                    <li class="nav-item">
                                                        <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Payment</a>
                                                    </li>
+                                                   <?php endif; ?>
                                                </ul>
+                                               
                                                <!-- Tab panes -->
                                                <div class="tab-content">
                                                    <div class="tab-pane active" id="tabs-1" role="tabpanel">
@@ -54,6 +57,7 @@
                                                            <div class="card-header">
                                                                Documents Details
                                                            </div>
+                                                           <?php if($auctionData->status ==0): ?>
                                                            <form method="POST" id="documentData"  enctype="multipart/form-data" >
                                                             <?php echo csrf_field(); ?>
                                                            <div class="card-body">
@@ -72,14 +76,16 @@
                                                                        </div>
                                                                    </div>
                                                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                                                       
+                                                                   
                                                                        <div class="col-md-4 col-4 col-sm-4 col-lg-4 col-xl-4" >
                                                                         <label for="retirementdate"><span></span></label>
                                                                         <input type="button" class="btn btn-success btn-block add-new-doc" value="Add new" style="margin-top:10px">
                                                                         </div>
+                                                                   
                                                                    </div>
                                                                    
                                                                </div>
+                                                              
                                                                <div id="doc-new">
                                                                    <div class="row doc-close">
                                                                        <div class="col-12 col-sm-12 col-md-4  col-lg-4  col-xl-4 ">
@@ -95,8 +101,8 @@
                                                                        </div>
                                                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
                                                                            <div class="form-label-group">
-                                                                               <label><span>Remarks</span></label>
-                                                                               <input type="text" class="form-control"  name="remarks[]">
+                                                                               <label><span>Document Number</span></label>
+                                                                               <input type="text" class="form-control"  name="document_number[]">
                                                                            </div>
                                                                        </div>
                                                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
@@ -115,6 +121,7 @@
                                                                    </div>
                                                                    
                                                                </div>
+                                                              
                                                            </div>
                                                            <div class="row">
                                                             <div class="col-12 col-sm-12 col-md-12 col-lg-6 offset-lg-3">
@@ -130,7 +137,7 @@
                                                             </div>
                                                         </div>
                                                       </form>
-                                                      
+                                                      <?php endif; ?>
                                                        <div class="row btntop">
                                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                                         <table class="table">
@@ -139,6 +146,7 @@
                                                              <th scope="col">#</th>
                                                              <th scope="col">Document Type</th>
                                                              <th scope="col">Document</th>
+                                                             <th scope="col">Document number</th>
                                                              <th scope="col">Remarks</th>
                                                              <th scope="col">Status</th>
                                                              <th scope="col">Action</th>
@@ -150,13 +158,21 @@
                                                            <th scope="row"><?php echo e($loop->iteration); ?></th>
                                                              <td><?php echo e($auc->name); ?></td>
                                                            <td><a href="javascript:void(0)" class="fileOpen" data-id="<?php echo e($auc->id); ?>"><i class="fas fa-file" aria-hidden="true"></i></a></td>
+                                                             <td><?php echo e($auc->document_number); ?></td>
                                                              <td><?php echo e($auc->remarks); ?></td>
                                                              <td>
+                                                             <?php if($auc->status ==0): ?>
                                                                 <span class="badge badge-info">Save</span> 
-
+                                                             <?php elseif($auc->status ==1): ?>
+                                                             <span class="badge badge-success">Verified</span> 
+                                                             <?php elseif($auc->status ==3): ?>
+                                                             <span class="badge badge-danger">Rejected</span> 
+                                                             <?php endif; ?>
                                                             </td>
                                                              <td>
-                                                                 
+                                                              <?php if($auc->status ==0): ?>
+                                                                <span class="badge badge-warning documentVerify" data-option="doc-verify" data-id="<?php echo e($auc->id); ?>">verify</span> 
+                                                               <?php endif; ?>
                                                             </td>
                                                            </tr>
                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -501,8 +517,8 @@
                                                                             </div>
                                                                             <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
                                                                                 <div class="form-label-group">
-                                                                                    <label><span>Remarks</span></label>
-                                                                                    <input type="text" class="form-control"  name="remarks[]">
+                                                                                    <label><span>Document Number</span></label>
+                                                                                    <input type="text" class="form-control"  name="document_number[]">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
@@ -627,6 +643,7 @@
                                                               <th scope="col">#</th>
                                                               <th scope="col">Document Type</th>
                                                               <th scope="col">Document</th>
+                                                              <th scope="col">Document Number</th>
                                                               <th scope="col">Remarks</th>
                                                               <th scope="col">Status</th>
                                                               <th scope="col">Action</th>
@@ -637,14 +654,25 @@
                                                             <tr>
                                                             <th scope="row"><?php echo e($loop->iteration); ?></th>
                                                               <td><?php echo e($nominee->name); ?></td>
-                                                            <td><a href="<?php echo e(url($nominee->document)); ?>" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
-                                                              <td><?php echo e($nominee->remarks); ?></td>
+                                                              <td><a href="javascript:void(0)" class="fileOpenNominee" data-id="<?php echo e($nominee->docId); ?>"><i class="fas fa-file" aria-hidden="true"></i></a></td>
+                                                              <td><?php echo e($nominee->document_number); ?></td>
+                                                            <td><?php echo e($nominee->remarks); ?></td>
+                                                              
                                                               <td>
-                                                                 <span class="badge badge-info">Save</span> 
+                                                              <?php if($nominee->status ==0): ?>
+                                                                <span class="badge badge-info">Save</span> 
+                                                             <?php elseif($nominee->status ==1): ?>
+                                                             <span class="badge badge-success">Verified</span> 
+                                                             <?php elseif($nominee->status ==3): ?>
+                                                             <span class="badge badge-danger">Rejected</span> 
+                                                             <?php endif; ?>
  
                                                              </td>
                                                               <td>
-                                                                  
+                                                              <?php if($nominee->status ==0): ?>
+                                                                <span class="badge badge-warning documentVerify" data-option="nominee-verify" data-id="<?php echo e($nominee->docId); ?>">verify</span> 
+                                                               <?php endif; ?>
+ 
                                                              </td>
                                                             </tr>
                                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -990,8 +1018,8 @@
                                                                             </div>
                                                                             <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
                                                                                 <div class="form-label-group">
-                                                                                    <label><span>Remarks</span></label>
-                                                                                    <input type="text" class="form-control"  name="remarks[]">
+                                                                                    <label><span>Document Number</span></label>
+                                                                                    <input type="text" class="form-control"  name="document_number[]">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
@@ -1028,11 +1056,15 @@
                                                        </form>
                                                     </div>
                                                        </div>
+                                                       <?php if($auctionData->status ==0): ?>
                                                        <div class="col-md-2 col-2 col-sm-2 col-lg-2 col-xl-2" style="float: right;padding-bottom: 5px;" >
                                             
                                                         <input type="button" class="btn btn-success btn-block btn-fl-r addGuarantor" value="Add new" style="margin-top:10px">
                                                         </div>
+                                                        <?php endif; ?>
                                                         <?php $__currentLoopData = $guarantors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $guarantor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        
+                                                        
                                                       <table class=" table table-bordered">
                                                         <tbody>
                                                            <tr>
@@ -1108,7 +1140,7 @@
                                                            </tr>
                                                            <tr>
                                                             <th scope="row">Source Of Funds</th>
-                                                            <td colspan="3"><?php echo e($nominees[0]->funds); ?></td>
+                                                            <td colspan="3"><?php echo e($guarantor[0]->funds); ?></td>
                                                             
                                                          </tr>
                                                           
@@ -1121,7 +1153,9 @@
                                                               <th scope="col">#</th>
                                                               <th scope="col">Document Type</th>
                                                               <th scope="col">Document</th>
+                                                              <th scope="col">Document Number</th>
                                                               <th scope="col">Remarks</th>
+                                                              
                                                               <th scope="col">Status</th>
                                                               <th scope="col">Action</th>
                                                            </tr>
@@ -1134,15 +1168,27 @@
                                                                 <th scope="row"><?php echo e($loop->iteration); ?></th>
                                                               <td><?php echo e($row['name']); ?></td>
                                                               <?php if($row['document']): ?>
-                                                            <td><a href="<?php echo e(url($row['document'])); ?>" target="_blank"><i class="fas fa-file" aria-hidden="true"></i></a></td>
-                                                            <?php endif; ?>
+                                                              <td><a href="javascript:void(0)" class="fileOpenGurantor" data-id="<?php echo e($row['docId']); ?>"><i class="fas fa-file" aria-hidden="true"></i></a></td>
+                                                              <?php endif; ?>
+
+                                                              
+                                                            
+                                                            <td><?php echo e($row['document_number']); ?></td>
                                                             <td><?php echo e($row['remarks']); ?></td>
                                                               <td>
-                                                                 <span class="badge badge-info">Save</span> 
+                                                              <?php if($row['status'] ==0): ?>
+                                                                <span class="badge badge-info">Save</span> 
+                                                             <?php elseif($row['status'] ==1): ?>
+                                                             <span class="badge badge-success">Verified</span> 
+                                                             <?php elseif($row['status'] ==3): ?>
+                                                             <span class="badge badge-danger">Rejected</span> 
+                                                             <?php endif; ?>
  
                                                              </td>
                                                               <td>
-                                                                  
+                                                              <?php if($row['status'] ==0): ?> 
+                                                              <span class="badge badge-warning documentVerify" data-option="guarnti-verify" data-id="<?php echo e($row['docId']); ?>">verify</span> 
+                                                              <?php endif; ?>
                                                              </td>
                                                             </tr>
                                                             <?php endif; ?>
@@ -1152,8 +1198,99 @@
                                                         </tbody>
                                                      </table>
                                                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                     <?php if(($auctionData->status ==0) && (count($guarantors)!= 0 )): ?>
+                                                     <div class="form-group  text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 offset-md-4">
+                                                        <div class="form-row btntop">
+                                                           <div class="col-md-2">
+                                                              <input type="submit" class="btn btn-primary btn-block btn-blue documentVerify" data-option="auctionData-verify" data-id="<?php echo e($auctionData->id); ?>"value="Verfication">
+                                                           </div>
+                                                           <div class="col-md-2">
+                                                              <a href="<?php echo e(url()->previous()); ?>"  class="btn btn-block btn-dark">Cancel</a>
+                                                           </div>
+                                                        </div>
+                                                     </div>
+                                                    <?php endif; ?>
+                                                    <?php if($auctionData->status ==1): ?>
+                                                    <div class="form-group  text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 offset-md-4">
+                                                        <div class="form-row btntop">
+                                                           <div class="col-md-2">
+                                                              <input type="submit" class="btn btn-primary btn-block btn-blue" value="Print Document">
+                                                           </div>
+                                                           <div class="col-md-2">
+                                                              <a href="<?php echo e(url()->previous()); ?>"  class="btn btn-block btn-dark">Cancel</a>
+                                                           </div>
+                                                        </div>
+                                                     </div>
+                                                   <?php endif; ?>   
+
                                                   </div>
+                                                  <?php if($auctionData->status !=0): ?>
                                                    <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                                    <?php if($auctionData->status ==3): ?>
+                                                    <table class="table table-sm">
+                                                        <thead>
+                                                            <tr>
+                                                              <th colspan="4">Payment Details</th>
+                                                        
+                                                            </tr>
+                                                          </thead>
+                                                        <tbody>
+                                                          <tr>
+                                                            <th scope="row">Payment ID</th>
+                                                            <td><?php echo e($debitData->unique_id); ?></td>
+                                                            <th scope="row">Payment Date</th>
+                                                            <td><?php echo e($debitData->payment_date); ?></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th scope="row">Payment Type</th>
+                                                            <td><?php echo e($debitData->payment_type); ?></td>
+                                                            <th scope="row">Bank Name</th>
+                                                            <td><?php echo e($debitData->bank_name); ?></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th scope="row">Cheque No</th>
+                                                            <td><?php echo e($debitData->cheque_number); ?></td>
+                                                            <th scope="row">Cheque Date</th>
+                                                            <td><?php echo e($debitData->cheque_date); ?></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th scope="row">Amount</th>
+                                                            <td><?php echo e($debitData->amount); ?></td>
+                                                            <th scope="row">Payable Amount</th>
+                                                            <td><?php echo e($debitData->payable_amount); ?></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th scope="row">Due Amount</th>
+                                                            <td><?php echo e($debitData->due_amount); ?></td>
+                                                            <th scope="row">Gst Amount</th>
+                                                            <td><?php echo e($debitData->gst_amount); ?></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th scope="row">Processing Amount</th>
+                                                            <td><?php echo e($debitData->processing_amount); ?></td>
+                                                            <th scope="row">Other Amount</th>
+                                                            <td><?php echo e($debitData->other_amount); ?></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th scope="row">Due Amount</th>
+                                                            <td><?php echo e($debitData->due_amount); ?></td>
+                                                            <th scope="row">Pay Amount</th>
+                                                            <td><?php echo e($debitData->pay_amount); ?></td>
+                                                          </tr>
+
+                                                          <tr>
+                                                            <th scope="row"  colspan="3">Remarks</th>
+                                                            <td><?php echo e($debitData->remarks); ?></td>
+                                                            
+                                                          </tr>
+                                                          
+                                                          
+                                                        </tbody>
+                                                      </table>
+
+                                                    <?php endif; ?>  
+
+                                                    <?php if($auctionData->status ==1): ?>
                                                     <form method="POST" id="paymentData"  enctype="multipart/form-data" >
                                                         <?php echo csrf_field(); ?>
                                                        <div class="card card-box">
@@ -1270,7 +1407,9 @@
 
                                                        
                                                     </form>
+                                                    <?php endif; ?>
                                                    </div>
+                                                   <?php endif; ?>
                                                </div>
                                            </div>
                                        </div>
@@ -1291,7 +1430,10 @@
 <?php $__env->startSection('script'); ?>
 <script src="<?php echo e(asset('public/vendor/webcam/webcam.js')); ?>"></script>
 <script type="text/javascript">
-
+   function removeLocationHash(){
+    var noHashURL = window.location.href.replace(/#.*$/, '');
+    window.history.replaceState('', document.title, noHashURL) 
+}
 $(document).ready(function() {
 
 var myvar =  $("#doc-new").html();
@@ -1346,7 +1488,7 @@ $(document).on('click', '.document-save', function(documentSave){
 
                     toastr.success(data.message, data.title);
                     removeLocationHash();
-                    window.location.href += "#tabs-2";
+                    window.location.href += "#tabs-1";
                     location.reload();
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
@@ -1373,7 +1515,7 @@ $(document).on('click', '.document-save', function(documentSave){
 
                     toastr.success(data.message, data.title);
                     removeLocationHash();
-                    window.location.href += "#tabs-1";
+                    window.location.href += "#tabs-2";
                     location.reload();
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
@@ -1427,9 +1569,10 @@ $(document).on('click', '.document-save', function(documentSave){
                 success: function( data, textStatus, jQxhr ){
 
                     toastr.success(data.message, data.title);
+                    pdf_load(data.data);
                     removeLocationHash();
                     window.location.href += "#tabs-3";
-                    location.reload();
+                   location.reload();
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
                     printErrorMsg( jqXhr.responseJSON.errors );
@@ -1437,10 +1580,125 @@ $(document).on('click', '.document-save', function(documentSave){
             });
 
   });
-  function removeLocationHash(){
-    var noHashURL = window.location.href.replace(/#.*$/, '');
-    window.history.replaceState('', document.title, noHashURL) 
-}
+  function pdf_load(data){
+	  //console.log(data);
+	$.ajax({
+           
+            type:'POST',
+            url: '<?php echo e(route('debitPaymentbill.generate')); ?>',
+            data:{id:data,_token:"<?php echo e(csrf_token()); ?>"},
+            xhrFields: {
+                responseType: 'blob'
+            },
+            success: function (response, status, xhr) {
+
+                var filename = "";                   
+                var disposition = xhr.getResponseHeader('Content-Disposition');
+
+                 if (disposition) {
+                    var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                    var matches = filenameRegex.exec(disposition);
+                    if (matches !== null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                } 
+                var linkelem = document.createElement('a');
+                try {
+                                           var blob = new Blob([response], { type: 'application/pdf' });                        
+
+                    if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                        //   IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+                        window.navigator.msSaveBlob(blob, filename);
+                    } else {
+                        var URL = window.URL || window.webkitURL;
+                        var downloadUrl = URL.createObjectURL(blob);
+						window.open(downloadUrl, '_blank');
+						console.log(downloadUrl);
+
+                        if (filename) { 
+                            // use HTML5 a[download] attribute to specify filename
+                            var a = document.createElement("a");
+
+                            // safari doesn't support this yet
+                            if (typeof a.download === 'undefined') {
+                                window.location = downloadUrl;
+                            } else {
+                                 a.href = downloadUrl;
+                                a.download = filename;
+                                document.body.appendChild(a);
+                                a.target = "_blank";
+                                a.click(); 
+                            }
+                        } else {
+                           window.location = downloadUrl;
+                        }
+                    }   
+
+                } catch (ex) {
+                    console.log(ex);
+                } 
+            }
+        });
+
+
+  }
+  $(document).on("click",".documentVerify",function(){
+     var option = $(this).attr("data-option");
+     var id = $(this).attr("data-id")
+    $('#myModal-full .modal-dialog').removeClass("modal-xl");
+    $('#myModal-full .modal-dialog').addClass("modal-sm");
+    $('#response-full-title').text('Document Verification');
+
+     $('#response-full').html(`<form id="documentVerificationForm">
+                                <input type="hidden" name="docverfyid" value="${id}">
+                                <input type="hidden" name="option" value="${option}">
+                                <div class="form-label-group "> <input type="radio"   name="document_verification" value="1" checked>Verify                        
+                                <input type="radio"  name="document_verification" value="3" >Reject 
+                                </div><div class="form-label-group"><label for="p_address"><span>Remarks</span></label>
+                                <textarea  class="form-control" name="document_verification_remarks" rows="2" ></textarea>
+                                </div><br><div class="form-label-group"> <button class="btn btn-primary documentVerificationBtn" type="button"  >Save</button></div>
+                                </form>`);
+    $('#myModal-full').modal('show')
+ })
+
+ $(document).on("click",".documentVerificationBtn",function(){
+    $('#myModal-full').modal('hide')
+    var hasTab;
+    var optVal = $("input[name='option']").val();
+    var data = {"id":$("input[name='docverfyid']").val(),
+                "status": $("input[name='document_verification']:checked").val(),
+                 "remarks":$.trim($("textarea[name='document_verification_remarks']").val()),
+                 _token:"<?php echo e(csrf_token()); ?>"};
+    if( optVal    == "nominee-verify"){
+                var show_url="<?php echo e(route('nomineeDocuments.documentverificationupdate')); ?>";
+                hasTab = "#tabs-2";
+    }else if( optVal == "doc-verify"){
+                 var show_url="<?php echo e(route('auctionDocument.documentverificationupdate')); ?>";
+                 hasTab = "#tabs-1";
+    }else if( optVal == "guarnti-verify"){
+                 var show_url="<?php echo e(route('guarntiesDocuments.documentverificationupdate')); ?>";
+                 hasTab = "#tabs-4";
+    }
+    else if( optVal == "auctionData-verify"){
+                 var show_url="<?php echo e(route('autcion.verificationupdate')); ?>";
+                 hasTab = "#tabs-4";
+    }
+    
+        $.ajax({
+              type: "POST",            
+              url: show_url,
+              data: data,              
+              cache: false,
+              dataType: "json",
+                success: function( data, textStatus, jQxhr ){
+                    toastr.success(data.message, data.title);
+                    removeLocationHash();
+                  window.location.href += hasTab;
+                   location.reload();
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    printErrorMsg( jqXhr.responseJSON.errors );
+                }
+            });
+        })
   function printErrorMsg (msg) {  
         //console.log(msg);
          
@@ -1697,7 +1955,23 @@ Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
    file_open(url,id);
  });
+
+ $(document).on("click",".fileOpenNominee",function(fileOpen) {
+    fileOpen.preventDefault();
+   let id= $(this).attr("data-id");
+   var url = '<?php echo e(route("nomineeDocument.download")); ?>';
+
+   file_open(url,id);
+ });
+ $(document).on("click",".fileOpenGurantor",function(fileOpen) {
+    fileOpen.preventDefault();
+   let id= $(this).attr("data-id");
+   var url = '<?php echo e(route("guarantorDocument.download")); ?>';
+
+   file_open(url,id);
+ });
  
+
 </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\finance\finance\resources\views/debit_payment/payment.blade.php ENDPATH**/ ?>

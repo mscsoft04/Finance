@@ -28,6 +28,7 @@ class CreateAuctionsTable extends Migration
             $table->string('dividend_amount');
             $table->string('each_dividend_amount');
             $table->string('due_amount');
+            $table->text('remarks')->nullable();
             $table->enum('status', ['0', '1','3','4'])->default('0');
             $table->integer('created_by')->length(11);	
             $table->integer('updated_by')->length(11)->nullable();
